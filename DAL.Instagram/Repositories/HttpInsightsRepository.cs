@@ -1,11 +1,12 @@
-﻿using DAL.Instagram.Interfaces;
-using DAL.Instagram.Models;
+﻿using System.Collections.Generic;
+using BLL.InstagramFetcher.Models;
+using DAL.Instagram.Interfaces;
 
 namespace DAL.Instagram.Repositories
 {
     public class HttpInsightsRepository : IInsightsRepository
     {
-        public Metric GetImpressions(string instaId)
+        public IEnumerable<Impression> GetImpressions(string instaId)
         {
             throw new System.NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using DAL.Instagram.Models;
+﻿
+using BLL.InstagramFetcher.Models;
 
 namespace DAL.Instagram.Interfaces
 {

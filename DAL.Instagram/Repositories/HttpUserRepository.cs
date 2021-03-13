@@ -1,5 +1,5 @@
-﻿using DAL.Instagram.Interfaces;
-using DAL.Instagram.Models;
+﻿using BLL.InstagramFetcher.Models;
+using DAL.Instagram.Interfaces;
 
 namespace DAL.Instagram.Repositories
 {

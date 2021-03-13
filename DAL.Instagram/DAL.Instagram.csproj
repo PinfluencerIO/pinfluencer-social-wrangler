@@ -8,4 +8,8 @@
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1-beta2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BLL.InstagramFetcher\BLL.InstagramFetcher.csproj" />
+    </ItemGroup>
+
 </Project>

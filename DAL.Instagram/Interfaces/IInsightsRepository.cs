@@ -1,9 +1,10 @@
-﻿using DAL.Instagram.Models;
+﻿using System.Collections.Generic;
+using BLL.InstagramFetcher.Models;
 
 namespace DAL.Instagram.Interfaces
 {
     public interface IInsightsRepository
     {
-        Metric GetImpressions(string instaId);
+        IEnumerable<Impression> GetImpressions(string instaId);
     }
 }
