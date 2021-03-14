@@ -5,11 +5,14 @@ using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Repositories;
 using NSubstitute;
 using NUnit.Framework;
-using Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests.Shared;
+using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests.Shared;
 
-namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests
 {
     [TestFixture(1,2)]
+    [TestFixture(18,25)]
+    [TestFixture(65,100)]
+    [TestFixture(0,0)]
     public class When_Insta_Audience_Age_Range_Is_Invalid : When_Age_Range_Varies
     {
         public When_Insta_Audience_Age_Range_Is_Invalid(int ageMin,int ageMax)

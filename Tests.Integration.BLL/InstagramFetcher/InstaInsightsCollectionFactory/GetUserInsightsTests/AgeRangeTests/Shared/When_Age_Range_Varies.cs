@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using BLL.Models;
 using Bootstrapping.Services.Enum;
-using Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared;
+using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared;
 
-namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests.Shared
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests.Shared
 {
     public abstract class When_Age_Range_Varies : When_Get_User_Insights_Is_Called
     {

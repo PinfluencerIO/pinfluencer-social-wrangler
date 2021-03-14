@@ -3,7 +3,7 @@ using Bootstrapping.Services.Repositories;
 using Crosscutting.Testing.Extensions;
 using NSubstitute;
 
-namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory
 {
     public abstract class Given_A_InstaInsightsCollectionFactory : GivenWhenThen<global::BLL.InstagramFetcher.Factories.InstaInsightsCollectionFactory>
     {

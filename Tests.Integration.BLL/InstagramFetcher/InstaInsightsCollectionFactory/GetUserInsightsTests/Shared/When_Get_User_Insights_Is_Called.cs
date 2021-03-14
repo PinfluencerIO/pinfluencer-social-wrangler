@@ -5,7 +5,7 @@ using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Repositories;
 using NSubstitute;
 
-namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared
 {
     public abstract class When_Get_User_Insights_Is_Called : Given_A_InstaInsightsCollectionFactory
     {

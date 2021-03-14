@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.Models", "BLL.Models\BL
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FF419C49-47C7-4780-A669-D8EBC3E9C61D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Unit.BLL", "Tests.Unit.BLL\Tests.Unit.BLL.csproj", "{8AE3340C-6021-4E1E-8F0A-5CDDA6EE198C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Integration.BLL", "Tests.Integration.BLL\Tests.Integration.BLL.csproj", "{8AE3340C-6021-4E1E-8F0A-5CDDA6EE198C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{A314F08B-12DF-4C23-AE06-8F238FE89CF8}"
 EndProject
