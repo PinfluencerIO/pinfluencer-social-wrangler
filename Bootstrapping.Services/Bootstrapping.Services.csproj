@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Bootstrapping.Services\Bootstrapping.Services.csproj" />
+      <ProjectReference Include="..\BLL.Models\BLL.Models.csproj" />
     </ItemGroup>
 
 </Project>

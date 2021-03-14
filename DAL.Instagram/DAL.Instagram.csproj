@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BLL.InstagramFetcher\BLL.InstagramFetcher.csproj" />
+      <ProjectReference Include="..\Bootstrapping.Services\Bootstrapping.Services.csproj" />
     </ItemGroup>
 
 </Project>
