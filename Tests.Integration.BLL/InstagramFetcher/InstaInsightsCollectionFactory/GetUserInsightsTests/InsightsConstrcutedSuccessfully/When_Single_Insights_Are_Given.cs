@@ -7,7 +7,7 @@ using Bootstrapping.Services.Enum;
 using NUnit.Framework;
 using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared;
 
-namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Success
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.InsightsConstrcutedSuccessfully
 {
     [TestFixture]
     public class When_Single_Insights_Are_Given : When_Get_User_Insights_Is_Called

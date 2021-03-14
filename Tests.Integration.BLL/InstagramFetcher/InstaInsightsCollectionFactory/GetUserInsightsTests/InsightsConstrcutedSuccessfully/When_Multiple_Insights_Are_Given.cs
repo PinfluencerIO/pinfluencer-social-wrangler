@@ -1,0 +1,105 @@
+﻿using System;
+using System.Linq;
+using BLL.InstagramFetcher;
+using BLL.InstagramFetcher.Enums;
+using BLL.Models;
+using Bootstrapping.Services.Enum;
+using NUnit.Framework;
+using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared;
+
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.InsightsConstrcutedSuccessfully
+{
+    public class When_Multiple_Insights_Are_Given : When_Get_User_Insights_Is_Called
+    {
+        private OperationResult<InstaInsightsCollection> _result;
+
+        protected override void When()
+        {
+            AudienceGenderAgeColleciton = GetTwoAudienceGenderAgeColleciton(
+                "male",18, 24,200,
+                "female",35, 44,112
+            );
+            AudienceGenderAgeQueryResult = QueryResultEnum.NotEmpty;
+            AudienceCountryColleciton = GetTwoAudienceCountryColleciton(
+                "GB", 200,
+                "FR", 120
+            );
+            AudienceCountryQueryResult = QueryResultEnum.NotEmpty;
+            ImpressionsColleciton = GetTwoImpressionsColleciton(
+                new DateTime(2000,1,1), 5,
+                new DateTime(2001,2,2),10
+            );
+            ImpressionsQueryResult = QueryResultEnum.NotEmpty;
+            
+            base.When();
+
+            _result = Sut.GetUserInsights(TestId);
+        }
+
+        [Test]
+        public void Then_Impressions_Count_Are_Correct()
+        {
+            Assert.True(new []{5,10}.SequenceEqual(_result.Value.Impressions.Select(x => x.Count)));
+        }
+        
+        [Test]
+        public void Then_Impressions_Day_Is_Correct()
+        {
+            Assert.True(new []{1,2}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Day)));
+        }
+        
+        [Test]
+        public void Then_Impressions_Month_Is_Correct()
+        {
+            Assert.True(new []{1,2}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Month)));
+        }
+        
+        [Test]
+        public void Then_Impressions_Year_Is_Correct()
+        {
+            Assert.True(new []{2000,2001}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Year)));
+        }
+        
+        [Test]
+        public void Then_Audience_Country_Country_Code_Is_Correct()
+        {
+            Assert.True(new []{"GB","FR"}.SequenceEqual(_result.Value.FollowersCountries.Select(x => x.Property.CountryCode)));
+        }
+        
+        [Test]
+        public void Then_Audience_Country_Followers_Is_Correct()
+        {
+            Assert.True(new []{200,120}.SequenceEqual(_result.Value.FollowersCountries.Select(x => x.Count)));
+        }
+        
+        [Test]
+        public void Then_Audience_Gender_Age_Followers_Is_Correct()
+        {
+            Assert.True(new []{200,112}.SequenceEqual(_result.Value.FollowersGenderAges.Select(x => x.Count)));
+        }
+        
+        [Test]
+        public void Then_Audience_Gender_Age_Age_Min_Is_Correct()
+        {
+            Assert.True(new []{18,35}.SequenceEqual(_result.Value.FollowersGenderAges.Select(x => x.Property.AgeRange.Item1)));
+        }
+        
+        [Test]
+        public void Then_Audience_Gender_Age_Age_Max_Is_Correct()
+        {
+            Assert.True(new []{24,44}.SequenceEqual(_result.Value.FollowersGenderAges.Select(x => x.Property.AgeRange.Item2)));
+        }
+        
+        [Test]
+        public void Then_Audience_Gender_Age_Gender_Is_Correct()
+        {
+            Assert.True(new []{"male","female"}.SequenceEqual(_result.Value.FollowersGenderAges.Select(x => x.Property.Gender)));
+        }
+        
+        [Test]
+        public void Then_Result_Status_Is_Success()
+        {
+            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
+        }
+    }
+}
