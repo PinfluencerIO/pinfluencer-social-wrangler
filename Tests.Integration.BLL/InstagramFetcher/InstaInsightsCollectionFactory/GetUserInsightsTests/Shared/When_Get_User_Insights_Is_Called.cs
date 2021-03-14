@@ -65,5 +65,21 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
                 .Received()
                 .GetCountry(Arg.Is(TestId));
         }
+        
+        [Test]
+        public void Then_Get_Impressions_Insights_Was_Called_Once()
+        {
+            MockImpressionsInsightsRepository
+                .Received(1)
+                .GetImpressions(Arg.Any<string>());
+        }
+        
+        [Test]
+        public void Then_Get_Impressions_Insights_Was_Called_With_Correct_Id()
+        {
+            MockImpressionsInsightsRepository
+                .Received()
+                .GetImpressions(Arg.Is(TestId));
+        }
     }
 }

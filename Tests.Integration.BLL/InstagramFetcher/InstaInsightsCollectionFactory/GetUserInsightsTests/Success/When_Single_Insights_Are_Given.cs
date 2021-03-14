@@ -1,4 +1,5 @@
 ﻿using System;
+using BLL.InstagramFetcher;
 using BLL.Models;
 using Bootstrapping.Services.Enum;
 using NUnit.Framework;
@@ -9,6 +10,8 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
     [TestFixture]
     public class When_Single_Insights_Are_Given : When_Get_User_Insights_Is_Called
     {
+        private OperationResult<InstaInsightsCollection> _result;
+
         protected override void When()
         {
             AudienceGenderAgeColleciton = new[]
@@ -34,9 +37,12 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
             
             base.When();
             
-            Sut.GetUserInsights(TestId);
+            _result = Sut.GetUserInsights(TestId);
         }
-        
-        
+
+        [Test]
+        public void Then_Insights_Are_Constructed_Correctly()
+        {
+        }
     }
 }

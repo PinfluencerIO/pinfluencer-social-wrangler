@@ -13,20 +13,22 @@ namespace BLL.InstagramFetcher.Factories
     {
         private readonly IInstaAudienceInsightsRepository _audienceInsightsRepository;
         private readonly ValidateInstaAudienceAgeRange _validateInstaAudienceAgeRange;
+        private readonly IInstaImpressionsRepository _impressionsRepository;
 
         public InstaInsightsCollectionFactory(
             IInstaAudienceInsightsRepository audienceInsightsRepository,
-            ValidateInstaAudienceAgeRange validateInstaAudienceAgeRange
-        )
+            ValidateInstaAudienceAgeRange validateInstaAudienceAgeRange, IInstaImpressionsRepository impressionsRepository)
         {
             _audienceInsightsRepository = audienceInsightsRepository;
             _validateInstaAudienceAgeRange = validateInstaAudienceAgeRange;
+            _impressionsRepository = impressionsRepository;
         }
 
-        public InstaInsightsCollection GetUserInsights(string id)
+        public OperationResult<InstaInsightsCollection> GetUserInsights(string id)
         {
             var genderAge = _audienceInsightsRepository.GetGenderAge(id);
             var country = _audienceInsightsRepository.GetCountry(id);
+            var impressions = _impressionsRepository.GetImpressions(id);
             genderAge.Value.ToList().ForEach(x =>
             {
                 _validateInstaAudienceAgeRange.AgeRange = x.Property.AgeRange;

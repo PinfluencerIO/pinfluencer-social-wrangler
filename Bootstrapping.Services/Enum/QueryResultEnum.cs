@@ -4,6 +4,6 @@
     {
         NotEmpty,
         Empty,
-        NotAccessable
+        Failed
     }
 }
