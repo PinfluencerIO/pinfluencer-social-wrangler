@@ -18,6 +18,13 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
             AgeMax = ageMax;
         }
 
+        protected override void When()
+        {
+            base.When();
+
+            Sut.GetUserInsights(TestId);
+        }
+
         [Test]
         public void Then_ArgumentException_Was_Not_Thrown()
         {

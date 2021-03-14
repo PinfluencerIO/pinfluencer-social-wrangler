@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using BLL.Models;
-using Bootstrapping.Services.Enum;
-using Bootstrapping.Services.Repositories;
-using NSubstitute;
 using NUnit.Framework;
 using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests.Shared;
 
@@ -19,6 +14,13 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
         {
             AgeMin = ageMin;
             AgeMax = ageMax;
+        }
+
+        protected override void When()
+        {
+            base.When();
+            
+            Assert.Catch(()=> Sut.GetUserInsights(TestId));
         }
 
         [Test]

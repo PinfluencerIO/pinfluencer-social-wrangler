@@ -15,8 +15,7 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory
 
             Sut = new global::BLL.InstagramFetcher.Factories.InstaInsightsCollectionFactory(
                 MockAudienceInsightsRepository,
-                new ValidateInstaAudienceAgeRange(),
-                new ValidateCountry()
+                new ValidateInstaAudienceAgeRange()
             );
         }
     }
