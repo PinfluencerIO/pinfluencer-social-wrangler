@@ -24,7 +24,7 @@ namespace BLL.InstagramFetcher.Service
 
         public InstaInsightsCollection GetUserInsights(string id)
         {
-            throw new NotImplementedException();
+            throw new ArgumentException();
         }
     }
 }
