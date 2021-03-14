@@ -33,7 +33,19 @@ namespace BLL.InstagramFetcher.Factories
                 _validateInstaAudienceAgeRange.AgeRange = x.Property.AgeRange;
                 new Precondition().Evaluate(_validateInstaAudienceAgeRange.Validate());
             });
-            return new OperationResult<InstaInsightsCollection>(new InstaInsightsCollection(country.Value,genderAge.Value,impressions.Value),OperationResultEnum.Success);
+            if (
+                genderAge.Status == OperationResultEnum.Success &&
+                country.Status == OperationResultEnum.Success &&
+                impressions.Status == OperationResultEnum.Success
+            )
+            {
+                return new OperationResult<InstaInsightsCollection>(new InstaInsightsCollection(country.Value,genderAge.Value,impressions.Value),OperationResultEnum.Success);
+            }
+            return new OperationResult<InstaInsightsCollection>(new InstaInsightsCollection(
+                Enumerable.Empty<InstaFollowersInsight<CountryProperty>>(),
+                Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>(),
+                Enumerable.Empty<InstaImpression>()
+            ), OperationResultEnum.Failed);
         }
     }
 }
