@@ -18,8 +18,4 @@
       <ProjectReference Include="..\Crosscutting.NUnit.Extensions\Crosscutting.NUnit.Extensions.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="InstagramFetcher\InstaInsightsCollectionFactory\GetUserInsightsTests" />
-    </ItemGroup>
-
 </Project>
