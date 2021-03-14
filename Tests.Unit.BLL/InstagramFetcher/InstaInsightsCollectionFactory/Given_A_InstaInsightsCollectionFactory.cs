@@ -5,7 +5,7 @@ using NSubstitute;
 
 namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory
 {
-    public abstract class Given_A_InstaInsightsCollectionFactory : GivenWhenThen<global::BLL.InstagramFetcher.Service.InstaInsightsCollectionFactory>
+    public abstract class Given_A_InstaInsightsCollectionFactory : GivenWhenThen<global::BLL.InstagramFetcher.Factories.InstaInsightsCollectionFactory>
     {
         protected IInstaAudienceInsightsRepository MockAudienceInsightsRepository;
         
@@ -13,7 +13,7 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionFactory
         {
             MockAudienceInsightsRepository = Substitute.For<IInstaAudienceInsightsRepository>();
 
-            Sut = new global::BLL.InstagramFetcher.Service.InstaInsightsCollectionFactory(
+            Sut = new global::BLL.InstagramFetcher.Factories.InstaInsightsCollectionFactory(
                 MockAudienceInsightsRepository,
                 new ValidateInstaAudienceAgeRange(),
                 new ValidateCountry()

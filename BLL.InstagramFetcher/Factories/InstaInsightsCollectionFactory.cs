@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using BLL.InstagramFetcher.Validation;
 using BLL.Models;
 using Bootstrapping.Services.Repositories;
+using Crosscutting.CodeContracts;
 
-namespace BLL.InstagramFetcher.Service
+namespace BLL.InstagramFetcher.Factories
 {
     public class InstaInsightsCollectionFactory
     {
@@ -24,7 +28,13 @@ namespace BLL.InstagramFetcher.Service
 
         public InstaInsightsCollection GetUserInsights(string id)
         {
-            throw new ArgumentException();
+            var result = _audienceInsightsRepository.GetGenderAge(id);
+            result.Value.ToList().ForEach(x =>
+            {
+                _validateInstaAudienceAgeRange.AgeRange = x.Property.AgeRange;
+                new Precondition().Evaluate(_validateInstaAudienceAgeRange.Validate());
+            });
+            return null;
         }
     }
 }
