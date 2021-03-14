@@ -5,8 +5,8 @@ namespace Bootstrapping.Services.Repositories
 {
     public interface IInstaUserRepository
     {
-        QueryResult<InstaUser> GetUser(string id);
+        OperationResult<InstaUser> GetUser(string id);
         
-        QueryResult<IEnumerable<InstaUser>> GetUsers();
+        OperationResult<IEnumerable<InstaUser>> GetUsers();
     }
 }

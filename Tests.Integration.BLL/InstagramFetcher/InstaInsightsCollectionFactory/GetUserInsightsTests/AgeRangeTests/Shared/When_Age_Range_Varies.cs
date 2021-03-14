@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BLL.Models;
-using Bootstrapping.Services.Enum;
-using Bootstrapping.Services.Repositories;
+﻿using Bootstrapping.Services.Enum;
 using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared;
 
 namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.AgeRangeTests.Shared
@@ -16,7 +11,7 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
         protected override void When()
         {
             AudienceGenderAgeColleciton = GetSingleAudienceGenderAgeColleciton("male", AgeMin, AgeMax, 2);
-            AudienceGenderAgeQueryResult = QueryResultEnum.NotEmpty;
+            AudienceGenderAgeOperationResult = OperationResultEnum.Success;
             SetDefaultAudienceCountryColleciton();
             SetDefaultImpressionsColleciton();
 

@@ -5,6 +5,6 @@ namespace Bootstrapping.Services.Repositories
 {
     public interface IInstaImpressionsRepository
     {
-        QueryResult<IEnumerable<InstaImpression>> GetImpressions(string instaId);
+        OperationResult<IEnumerable<InstaImpression>> GetImpressions(string instaId);
     }
 }

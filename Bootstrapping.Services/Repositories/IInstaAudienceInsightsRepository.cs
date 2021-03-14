@@ -5,8 +5,8 @@ namespace Bootstrapping.Services.Repositories
 {
     public interface IInstaAudienceInsightsRepository
     {
-        QueryResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry(string instaId);
+        OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry(string instaId);
         
-        QueryResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge(string instaId);
+        OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge(string instaId);
     }
 }

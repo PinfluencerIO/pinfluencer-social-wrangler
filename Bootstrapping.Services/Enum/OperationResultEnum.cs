@@ -1,8 +1,8 @@
-﻿namespace BLL.InstagramFetcher.Enums
+﻿namespace Bootstrapping.Services.Enum
 {
     public enum OperationResultEnum
     {
         Success,
-        Fail
+        Failed
     }
 }

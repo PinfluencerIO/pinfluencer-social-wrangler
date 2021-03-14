@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Linq;
-using BLL.InstagramFetcher;
-using BLL.InstagramFetcher.Enums;
 using BLL.Models;
-using Bootstrapping.Services.Enum;
+using Bootstrapping.Services;
 using NUnit.Framework;
 using Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.Shared;
+using Bootstrapping.Services.Enum;
 
-namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.InsightsConstrcutedSuccessfully
+namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.GetUserInsightsTests.ConstructedSuccessfullyTests
 {
     [TestFixture]
-    public class When_Single_Insights_Are_Given : When_Get_User_Insights_Is_Called
+    public class When_Single_Insights_Are_Returned : When_Get_User_Insights_Is_Called
     {
         private OperationResult<InstaInsightsCollection> _result;
 
         protected override void When()
         {
             AudienceGenderAgeColleciton = GetSingleAudienceGenderAgeColleciton("male",18, 24,5);
-            AudienceGenderAgeQueryResult = QueryResultEnum.NotEmpty;
+            AudienceGenderAgeOperationResult = OperationResultEnum.Success;
             AudienceCountryColleciton = GetSingleAudienceCountryColleciton("GB", 2);
-            AudienceCountryQueryResult = QueryResultEnum.NotEmpty;
+            AudienceCountryOperationResult = OperationResultEnum.Success;
             ImpressionsColleciton = GetSingleImpressionsColleciton(new DateTime(2000,1,1), 5);
-            ImpressionsQueryResult = QueryResultEnum.NotEmpty;
+            ImpressionsOperationResult = OperationResultEnum.Success;
             
             base.When();
 

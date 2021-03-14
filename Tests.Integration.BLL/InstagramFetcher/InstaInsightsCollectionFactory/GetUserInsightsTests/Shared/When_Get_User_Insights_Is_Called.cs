@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using BLL.Models;
+using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
-using Bootstrapping.Services.Repositories;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -12,33 +12,33 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
     {
         protected const string TestId = "";
 
-        protected QueryResultEnum ImpressionsQueryResult { get; set; }
+        protected OperationResultEnum ImpressionsOperationResult { get; set; }
         protected IEnumerable<InstaImpression> ImpressionsColleciton { get; set; }
         protected IEnumerable<InstaFollowersInsight<CountryProperty>> AudienceCountryColleciton { get; set; }
-        protected QueryResultEnum AudienceCountryQueryResult { get; set; }
-        protected QueryResultEnum AudienceGenderAgeQueryResult { get; set; }
+        protected OperationResultEnum AudienceCountryOperationResult { get; set; }
+        protected OperationResultEnum AudienceGenderAgeOperationResult { get; set; }
         protected IEnumerable<InstaFollowersInsight<GenderAgeProperty>> AudienceGenderAgeColleciton { get; set; }
 
         protected override void When()
         {
             MockAudienceInsightsRepository
                 .GetGenderAge(Arg.Any<string>())
-                .Returns(new QueryResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
-                        AudienceGenderAgeColleciton,AudienceGenderAgeQueryResult
+                .Returns(new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+                        AudienceGenderAgeColleciton,AudienceGenderAgeOperationResult
                     )
                 );
             MockAudienceInsightsRepository
                 .GetCountry(Arg.Any<string>())
                 .Returns(
-                    new QueryResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
-                        AudienceCountryColleciton, AudienceCountryQueryResult
+                    new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
+                        AudienceCountryColleciton, AudienceCountryOperationResult
                     )
                 );
             MockImpressionsInsightsRepository
                 .GetImpressions(Arg.Any<string>())
                 .Returns(
-                    new QueryResult<IEnumerable<InstaImpression>>(
-                        ImpressionsColleciton, ImpressionsQueryResult
+                    new OperationResult<IEnumerable<InstaImpression>>(
+                        ImpressionsColleciton, ImpressionsOperationResult
                     )
                 );
         }
@@ -116,7 +116,7 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
         protected void SetDefaultImpressionsColleciton()
         {
             ImpressionsColleciton = GetSingleImpressionsColleciton(new DateTime(2000,1,1),5);
-            ImpressionsQueryResult = QueryResultEnum.NotEmpty;
+            ImpressionsOperationResult = OperationResultEnum.Success;
         }
 
         protected IEnumerable<InstaFollowersInsight<CountryProperty>> GetSingleAudienceCountryColleciton(string country,int followerCount)
@@ -144,7 +144,7 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
         protected void SetDefaultAudienceCountryColleciton()
         {
             AudienceCountryColleciton = GetSingleAudienceCountryColleciton("GB", 5);
-            AudienceCountryQueryResult = QueryResultEnum.NotEmpty;
+            AudienceCountryOperationResult = OperationResultEnum.Success;
         }
         
         protected IEnumerable<InstaFollowersInsight<GenderAgeProperty>> GetSingleAudienceGenderAgeColleciton(string gender,int ageMin,int ageMax,int followerCount)
@@ -176,7 +176,7 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
         protected void SetDefaultAudienceGenderAgeColleciton()
         {
             AudienceGenderAgeColleciton = GetSingleAudienceGenderAgeColleciton("male", 18, 24, 5);
-            AudienceGenderAgeQueryResult = QueryResultEnum.NotEmpty;
+            AudienceGenderAgeOperationResult = OperationResultEnum.Success;
         }
     }
 }
