@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BLL.InstagramFetcher.Enums;
 using BLL.InstagramFetcher.Validation;
 using BLL.Models;
 using Bootstrapping.Services.Repositories;
@@ -34,7 +35,11 @@ namespace BLL.InstagramFetcher.Factories
                 _validateInstaAudienceAgeRange.AgeRange = x.Property.AgeRange;
                 new Precondition().Evaluate(_validateInstaAudienceAgeRange.Validate());
             });
-            return null;
+            return new OperationResult<InstaInsightsCollection>
+            {
+                Status = OperationResultEnum.Success,
+                Value = new InstaInsightsCollection(country.Value,genderAge.Value,impressions.Value)
+            };
         }
     }
 }

@@ -15,23 +15,11 @@ namespace Tests.Integration.BLL.InstagramFetcher.InstaInsightsCollectionFactory.
 
         protected override void When()
         {
-            AudienceGenderAgeColleciton = new[]
-            {
-                new InstaFollowersInsight<GenderAgeProperty>(
-                    new GenderAgeProperty(
-                        "male", 
-                        new Tuple<int, int>(
-                            AgeMin,
-                            AgeMax
-                        )
-                    ),
-                    2
-                )
-            };
+            AudienceGenderAgeColleciton = GetSingleAudienceGenderAgeColleciton("male", AgeMin, AgeMax, 2);
             AudienceGenderAgeQueryResult = QueryResultEnum.NotEmpty;
-            AudienceCountryColleciton = Enumerable.Empty<InstaFollowersInsight<CountryProperty>>();
-            AudienceCountryQueryResult = QueryResultEnum.Empty;
-            
+            SetDefaultAudienceCountryColleciton();
+            SetDefaultImpressionsColleciton();
+
             base.When();
         }
     }
