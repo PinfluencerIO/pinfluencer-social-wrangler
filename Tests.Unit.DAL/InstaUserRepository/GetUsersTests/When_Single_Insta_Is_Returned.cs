@@ -2,6 +2,7 @@
 using System.Linq;
 using BLL.Models.InstaUser;
 using Bootstrapping.Services;
+using Bootstrapping.Services.Enum;
 using NUnit.Framework;
 
 namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
@@ -47,6 +48,12 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         public void Then_Followers_Are_Correct()
         {
             Assert.AreEqual(121,_result.Value.First().Followers);
+        }
+        
+        [Test]
+        public void Then_The_Status_Is_Successful()
+        {
+            Assert.AreEqual(OperationResultEnum.Success,_result.Status);
         }
     }
 }
