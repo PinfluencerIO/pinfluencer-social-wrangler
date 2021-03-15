@@ -22,7 +22,13 @@ namespace DAL.Instagram.Repositories
         
         public OperationResult<IEnumerable<InstaImpression>> GetImpressions(string instaId)
         {
-            var impressions = _facebookContext.Get("", "");
+            var impressions = _facebookContext.Get($"{instaId}/insights", new RequestInsightParams
+            {
+                metric="impressions",
+                period="day",
+                since=1607650400,
+                until=1610150400
+            });
 
             var impressionsObj = JsonConvert.DeserializeObject<DataArray<Metric>>(impressions);
             

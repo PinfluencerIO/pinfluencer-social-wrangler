@@ -21,9 +21,9 @@ namespace DAL.Instagram
             }));
         }
         
-        public string Get(string url)
+        public string Get<T>(string url, T parameters)
         {
-            return JsonConvert.SerializeObject(_facebookClient.Get(url));
+            return JsonConvert.SerializeObject(_facebookClient.Get(url,parameters));
         }
     }
 }

@@ -2,12 +2,13 @@
 using System.Linq;
 using BLL.Models.Insights;
 using Bootstrapping.Services;
+using Bootstrapping.Services.Enum;
 using NSubstitute;
 using NUnit.Framework;
 
 namespace Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
 {
-    public class When_Impressions_Are_Constructed_Successfully : Given_A_InstaImpressionsRepository
+    public class When_Impressions_Are_Constructed_Successfully : When_Get_Impressions_Was_Called
     {
         private OperationResult<IEnumerable<InstaImpression>> _result;
 
@@ -48,7 +49,7 @@ namespace Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
                     }
                 });
 
-            _result = Sut.GetImpressions("123456789");
+            _result = Sut.GetImpressions(TestId);
         }
 
         [Test]
@@ -73,6 +74,12 @@ namespace Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
         public void Then_Impressions_Days_Are_Valid()
         {
             Assert.True(new []{4,5,6}.SequenceEqual(_result.Value.Select(x => x.Time.Day)));
+        }
+        
+        [Test]
+        public void Then_Response_Is_Successful()
+        {
+            Assert.AreEqual(OperationResultEnum.Success,_result.Status);
         }
     }
 }
