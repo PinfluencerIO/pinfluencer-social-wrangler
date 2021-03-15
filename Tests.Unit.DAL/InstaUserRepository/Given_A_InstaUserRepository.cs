@@ -6,7 +6,7 @@ using NSubstitute;
 
 namespace Tests.Unit.DAL.InstaUserRepository
 {
-    public class Given_A_InstaUserRepository : GivenWhenThen<FacebookInstaUserRepository>
+    public abstract class Given_A_InstaUserRepository : GivenWhenThen<FacebookInstaUserRepository>
     {
         protected FacebookClient MockFacebookClient;
 
