@@ -5,3 +5,6 @@
 # IGNORE PACKAGE AND ASSEMBLY AND BINARY STUFF
 obj/
 bin/
+
+# IGNORE RESHARPER STUFF
+*.sln.DotSettings.user
