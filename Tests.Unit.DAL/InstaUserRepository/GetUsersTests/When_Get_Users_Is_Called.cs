@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using DAL.Instagram.Dtos;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
@@ -77,7 +78,7 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         {
             MockFacebookClient
                 .Received()
-                .Get(Arg.Any<string>(), Arg.Is<object>( x => x.Equals(new { fields = "instagram_business_account{id,username,name,biography,followers_count}" }) ));
+                .Get(Arg.Any<string>(), Arg.Is<RequestFields>( x => x.fields == "instagram_business_account{id,username,name,biography,followers_count}"));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Facebook;
+﻿using DAL.Instagram.Dtos;
+using Facebook;
 using Newtonsoft.Json;
 
 namespace DAL.Instagram
@@ -14,7 +15,10 @@ namespace DAL.Instagram
 
         public string Get(string url, string fields)
         {
-            return JsonConvert.SerializeObject(_facebookClient.Get(url,new {fields = fields}));
+            return JsonConvert.SerializeObject(_facebookClient.Get(url,new RequestFields
+            {
+                fields=fields
+            }));
         }
         
         public string Get(string url)

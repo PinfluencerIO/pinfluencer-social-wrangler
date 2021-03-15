@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BLL.Models.InstaUser;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Repositories;
@@ -20,8 +21,11 @@ namespace DAL.Instagram.Repositories
         }
 
         public OperationResult<IEnumerable<InstaUser>> GetUsers()
-        {
-            throw new System.NotImplementedException();
+        { 
+            var result = _facebookContext.Get("me/accounts",
+            "instagram_business_account{id,username,name,biography,followers_count}");
+
+            return null;
         }
     }
 }
