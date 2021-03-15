@@ -11,39 +11,37 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
 {
     public class When_Single_User_Is_Returned : When_Constructed_Successfully
     {
-        private OperationResult<InstaUserIdentityCollection> _result;
-
         protected override void When()
         {
             SetSingleUser("example", "123213", "Aidan Gannon", "this is my bio", 120);
 
             base.When();
 
-            _result = Sut.GetAll();
+            Result = Sut.GetAll();
         }
 
         [Test]
         public void Then_Insta_User_Id_Was_Valid()
         {
-            Assert.AreEqual("123213",_result.Value.InstaUserIdentities.First().Id);
+            Assert.AreEqual("123213",Result.Value.InstaUserIdentities.First().Id);
         }
         
         [Test]
         public void Then_Insta_User_Handle_Was_Valid()
         {
-            Assert.AreEqual("example",_result.Value.InstaUserIdentities.First().Handle);
+            Assert.AreEqual("example",Result.Value.InstaUserIdentities.First().Handle);
         }
         
         [Test]
         public void Then_Has_Multiple_Was_False()
         {
-            Assert.AreEqual(false,_result.Value.HasMultiple);
+            Assert.AreEqual(false,Result.Value.HasMultiple);
         }
         
         [Test]
         public void Then_Is_Empty_Was_False()
         {
-            Assert.AreEqual(false,_result.Value.IsEmpty);
+            Assert.AreEqual(false,Result.Value.IsEmpty);
         }
     }
 }

@@ -8,8 +8,6 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
 {
     public class When_Multiple_Users_Are_Returned : When_Constructed_Successfully
     {
-        private OperationResult<InstaUserIdentityCollection> _result;
-
         protected override void When()
         {
             SetTwoUsers(
@@ -19,31 +17,31 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
 
             base.When();
 
-            _result = Sut.GetAll();
+            Result = Sut.GetAll();
         }
         
         [Test]
         public void Then_Insta_User_Ids_Were_Valid()
         {
-            Assert.True(new[]{"123213","544341"}.SequenceEqual(_result.Value.InstaUserIdentities.Select(x => x.Id)));
+            Assert.True(new[]{"123213","544341"}.SequenceEqual(Result.Value.InstaUserIdentities.Select(x => x.Id)));
         }
         
         [Test]
         public void Then_Insta_User_Handles_Were_Valid()
         {
-            Assert.True(new[]{"example","example2"}.SequenceEqual(_result.Value.InstaUserIdentities.Select(x => x.Handle)));
+            Assert.True(new[]{"example","example2"}.SequenceEqual(Result.Value.InstaUserIdentities.Select(x => x.Handle)));
         }
         
         [Test]
         public void Then_Has_Multiple_Was_True()
         {
-            Assert.AreEqual(true,_result.Value.HasMultiple);
+            Assert.AreEqual(true,Result.Value.HasMultiple);
         }
         
         [Test]
         public void Then_Is_Empty_Was_False()
         {
-            Assert.AreEqual(false,_result.Value.IsEmpty);
+            Assert.AreEqual(false,Result.Value.IsEmpty);
         }
     }
 }

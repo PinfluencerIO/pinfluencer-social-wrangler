@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using BLL.Models.InstaUser;
+using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
+using NUnit.Framework;
 using Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
 
 namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {
+        protected OperationResult<InstaUserIdentityCollection> Result;
+        
         protected void SetSingleUser(string handle, string id, string name, string bio, int followers)
         {
             InstaUserCollection = new[]
@@ -34,6 +38,12 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
                 new InstaUser(new InstaUserIdentity(handle2, id2), name2, bio2, followers2)
             };
             InstaUsersOperationResult = OperationResultEnum.Success;
+        }
+
+        [Test]
+        public void Then_Operation_Result_Was_Successful()
+        {
+            Assert.AreEqual(OperationResultEnum.Failed,Result.Status);
         }
     }
 }
