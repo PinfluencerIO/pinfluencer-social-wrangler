@@ -26,7 +26,7 @@ namespace BLL.InstagramFetcher.Services
                     users.Value.Count()>1,
                     !users.Value.Any()
                 ),
-                OperationResultEnum.Failed
+                users.Status
             );
         }
     }
