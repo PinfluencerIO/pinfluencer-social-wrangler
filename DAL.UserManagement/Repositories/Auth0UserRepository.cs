@@ -1,4 +1,5 @@
-﻿using Bootstrapping.Services;
+﻿using System;
+using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Repositories;
 
@@ -15,8 +16,15 @@ namespace DAL.UserManagement.Repositories
 
         public OperationResult<string> GetInstagramToken(string id)
         {
-            var user = _auth0Context.GetUser(id);
-            return new OperationResult<string>(user.Identities[0].AccessToken,OperationResultEnum.Success);
+            try
+            {
+                var user = _auth0Context.GetUser(id);
+                return new OperationResult<string>(user.Identities[0].AccessToken,OperationResultEnum.Success);
+            }
+            catch (Exception)
+            {
+                return new OperationResult<string>("", OperationResultEnum.Failed);
+            }
         }
     }
 }
