@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
+using BLL.InstagramFetcher.Services;
+using DAL.Instagram;
 using DAL.Instagram.Dtos;
+using DAL.Instagram.Repositories;
 using DAL.UserManagement.Dtos;
 using Facebook;
 using Newtonsoft.Json;
@@ -11,17 +15,19 @@ namespace Local.Sandbox
     {
         static void Main(string[] args)
         {
-            var client = new FacebookClient();
-
-            var accounts = client.Get("me/accounts",new {fields = "instagram_business_account{username,name,biography,followers_count}"});
-
-            var accountsJson = JsonConvert.SerializeObject(accounts);
+            var facebookContext = new FacebookContext(new FacebookClient(""));
             
-            Console.WriteLine(accountsJson);
+            var insightsService =
+                new InstaInsightsCollectionService(
+                    new FacebookInstaImpressionsRepository(facebookContext));
             
-            var accountsFixedObj = JsonConvert.DeserializeObject<DataArray<FacebookPage>>(accountsJson);
+            var userService =
+                new InstaUserService(
+                    new FacebookInstaUserRepository(facebookContext));
 
-            Console.Read();
+            var users = userService.GetAll();
+            
+            var insights = insightsService.GetUserInsights(users.Value.InstaUserIdentities.First().Id);
         }
     }
 }

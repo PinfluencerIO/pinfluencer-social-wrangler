@@ -26,6 +26,15 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
             };
         }
         
+        protected void SetTwoPagesAndOneInsta(string id, string username, string name, string bio, int followers)
+        {
+            _response = new []
+            {
+                SetInsta(id,username,name,bio,followers),
+                new { id = "page_id" }
+            };
+        }
+        
         private static dynamic SetInsta(string id, string username, string name, string bio, int followers)
         {
             return new
@@ -34,6 +43,15 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
                 {
                     id = id, username = username, name = name, biography = bio, followers_count = followers
                 }
+            };
+        }
+        
+        protected void SetEmptyPage()
+        {
+            _response = new dynamic[]
+            {
+                new { id = "123123" },
+                new { id = "321322" }
             };
         }
         
