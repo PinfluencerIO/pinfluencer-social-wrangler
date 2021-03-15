@@ -13,4 +13,9 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Crosscutting.NUnit.Extensions\Crosscutting.NUnit.Extensions.csproj" />
+      <ProjectReference Include="..\DAL.Instagram\DAL.Instagram.csproj" />
+    </ItemGroup>
+
 </Project>

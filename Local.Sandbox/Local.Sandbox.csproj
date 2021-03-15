@@ -6,7 +6,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DAL.Instagram\DAL.Instagram.csproj" />
       <ProjectReference Include="..\DAL.UserManagement\DAL.UserManagement.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Facebook" Version="7.0.10-beta" />
     </ItemGroup>
 
 </Project>
