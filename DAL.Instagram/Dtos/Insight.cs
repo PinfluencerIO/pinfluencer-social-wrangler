@@ -5,7 +5,7 @@ namespace DAL.Instagram.Dtos
     public class Insight
     {
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public int Value { get; set; }
 
         [JsonProperty("end_time")]
         public string Time { get; set; }
