@@ -36,7 +36,7 @@ namespace DAL.Instagram.Repositories
 
                 new PostCondition().Evaluate(dataArray != null);
                 
-                var instaAccounts = dataArray.Data.Select(x => x.Insta);
+                var instaAccounts = dataArray.Data.Select(x => x.Insta).Where(x => x != null);
                 return new OperationResult<IEnumerable<InstaUser>>(instaAccounts.Select(x => new InstaUser(
                     new InstaUserIdentity(x.Username,x.Id),x.Name,x.Bio,x.Followers
                 )),OperationResultEnum.Success);
