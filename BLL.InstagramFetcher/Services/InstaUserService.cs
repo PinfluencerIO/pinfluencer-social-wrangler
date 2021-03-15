@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BLL.Models.InstaUser;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
@@ -17,10 +18,12 @@ namespace BLL.InstagramFetcher.Services
 
         public OperationResult<InstaUserIdentityCollection> GetAll()
         {
+            var users = _instaUserRepository.GetUsers();
+
             return new OperationResult<InstaUserIdentityCollection>(
                 new InstaUserIdentityCollection(
-                    new[] {new InstaUserIdentity("example", "123213")},
-                    false,
+                    users.Value.Select(x => x.Identity),
+                    users.Value.Count()>1,
                     false
                 ),
                 OperationResultEnum.Failed

@@ -6,7 +6,7 @@ using Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
 
 namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared
 {
-    public class When_Constructed_Successfully : When_Get_All_Is_Called
+    public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {
         protected void SetSingleUser(string handle, string id, string name, string bio, int followers)
         {
