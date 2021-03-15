@@ -51,6 +51,12 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         }
         
         [Test]
+        public void Then_One_Insta_Account_Is_Returned()
+        {
+            Assert.AreEqual(1,_result.Value.Count());
+        }
+        
+        [Test]
         public void Then_The_Status_Is_Success()
         {
             Assert.AreEqual(OperationResultEnum.Success,_result.Status);
