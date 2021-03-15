@@ -24,7 +24,7 @@ namespace BLL.InstagramFetcher.Services
                 new InstaUserIdentityCollection(
                     users.Value.Select(x => x.Identity),
                     users.Value.Count()>1,
-                    false
+                    !users.Value.Any()
                 ),
                 OperationResultEnum.Failed
             );
