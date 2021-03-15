@@ -36,19 +36,10 @@ namespace DAL.Instagram.Repositories
             new PostCondition().Evaluate(dataArray != null);
 
             if (dataArray == null) return null;
-            var instaAccount = dataArray.Data.Select(x => x.Insta).First();
-            return new OperationResult<IEnumerable<InstaUser>>(new []
-            {
-                new InstaUser(
-                    new InstaUserIdentity(
-                        instaAccount.Username,
-                        instaAccount.Id
-                    ),
-                    instaAccount.Name,
-                    instaAccount.Bio,
-                    instaAccount.Followers
-                )
-            },OperationResultEnum.Success);
+            var instaAccounts = dataArray.Data.Select(x => x.Insta);
+            return new OperationResult<IEnumerable<InstaUser>>(instaAccounts.Select(x => new InstaUser(
+                new InstaUserIdentity(x.Username,x.Id),x.Name,x.Bio,x.Followers
+            )),OperationResultEnum.Success);
         }
     }
 }
