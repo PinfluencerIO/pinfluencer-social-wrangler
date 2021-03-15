@@ -5,18 +5,17 @@ using NUnit.Framework;
 using Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
 using Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
 using System.Linq;
+using Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared;
 
 namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests
 {
-    public class When_Single_User_Is_Returned : When_Get_All_Is_Called
+    public class When_Single_User_Is_Returned : When_Constructed_Successfully
     {
         private OperationResult<InstaUserIdentityCollection> _result;
 
         protected override void When()
         {
-            InstaUserCollection = new[]
-                {new InstaUser(new InstaUserIdentity("example", "123213"), "Aidan Gannon", "this is my bio", 120)};
-            InstaUsersOperationResult = OperationResultEnum.Success;
+            SetSingleUser("example", "123213", "Aidan Gannon", "this is my bio", 120);
 
             base.When();
 
