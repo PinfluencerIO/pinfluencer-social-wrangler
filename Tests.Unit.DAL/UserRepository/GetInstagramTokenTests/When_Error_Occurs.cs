@@ -1,8 +1,39 @@
-﻿using Auth0.ManagementApi.Models;
+﻿using System;
+using System.Collections.Generic;
+using Auth0.Core.Exceptions;
+using Auth0.ManagementApi.Models;
+using Bootstrapping.Services;
+using Bootstrapping.Services.Enum;
+using Newtonsoft.Json;
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
+using NUnit.Framework;
 
 namespace Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
 {
-    public abstract class When_Error_Occurs : Given_A_UserRepository
+    public class When_Error_Occurs : Given_A_UserRepository
     {
+        private OperationResult<string> _result;
+
+        protected override void When()
+        {
+            MockAuth0ManagementApiConnection
+                .GetAsync<User>(Arg.Any<Uri>(), Arg.Any<IDictionary<string, string>>(), Arg.Any<JsonConverter[]>())
+                .Throws<AggregateException>();
+            
+            _result = Sut.GetInstagramToken(TestId);
+        }
+        
+        [Test]
+        public void Then_Token_Is_Empty()
+        {
+            Assert.AreEqual("",_result.Value);
+        }
+        
+        [Test]
+        public void Then_Response_Is_Fail()
+        {
+            Assert.AreEqual(OperationResultEnum.Failed,_result.Status);
+        }
     }
 }
