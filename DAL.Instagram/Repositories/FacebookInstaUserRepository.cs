@@ -27,19 +27,25 @@ namespace DAL.Instagram.Repositories
         }
 
         public OperationResult<IEnumerable<InstaUser>> GetUsers()
-        { 
-            var result = _facebookContext.Get("me/accounts",
-            "instagram_business_account{id,username,name,biography,followers_count}");
+        {
+            try
+            {
+                var result = _facebookContext.Get("me/accounts",
+                    "instagram_business_account{id,username,name,biography,followers_count}");
+                var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>(result);
 
-            var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>(result);
-
-            new PostCondition().Evaluate(dataArray != null);
-
-            if (dataArray == null) return null;
-            var instaAccounts = dataArray.Data.Select(x => x.Insta);
-            return new OperationResult<IEnumerable<InstaUser>>(instaAccounts.Select(x => new InstaUser(
-                new InstaUserIdentity(x.Username,x.Id),x.Name,x.Bio,x.Followers
-            )),OperationResultEnum.Success);
+                new PostCondition().Evaluate(dataArray != null);
+                
+                var instaAccounts = dataArray.Data.Select(x => x.Insta);
+                return new OperationResult<IEnumerable<InstaUser>>(instaAccounts.Select(x => new InstaUser(
+                    new InstaUserIdentity(x.Username,x.Id),x.Name,x.Bio,x.Followers
+                )),OperationResultEnum.Success);
+            }
+            catch (Exception)
+            {
+                return new OperationResult<IEnumerable<InstaUser>>(Enumerable.Empty<InstaUser>(),
+                    OperationResultEnum.Failed);
+            }
         }
     }
 }
