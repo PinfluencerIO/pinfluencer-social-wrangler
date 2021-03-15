@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BLL.Models;
+using BLL.Models.InstaUser;
 
 namespace Bootstrapping.Services.Repositories
 {
