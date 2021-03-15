@@ -43,7 +43,7 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
         [Test]
         public void Then_Operation_Result_Was_Successful()
         {
-            Assert.AreEqual(OperationResultEnum.Failed,Result.Status);
+            Assert.AreEqual(OperationResultEnum.Success,Result.Status);
         }
     }
 }
