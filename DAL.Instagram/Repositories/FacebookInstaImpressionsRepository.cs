@@ -13,18 +13,18 @@ namespace DAL.Instagram.Repositories
 {
     public class FacebookInstaImpressionsRepository : IInstaImpressionsRepository
     {
-        private FacebookContext _facebookContext;
+        private FacebookInstagramDataContext _facebookInstagramDataContext;
 
-        public FacebookInstaImpressionsRepository(FacebookContext facebookContext)
+        public FacebookInstaImpressionsRepository(FacebookInstagramDataContext facebookInstagramDataContext)
         {
-            _facebookContext = facebookContext;
+            _facebookInstagramDataContext = facebookInstagramDataContext;
         }
         
         public OperationResult<IEnumerable<InstaImpression>> GetImpressions(string instaId)
         {
             try
             {
-                var impressions = _facebookContext.Get($"{instaId}/insights", new RequestInsightParams
+                var impressions = _facebookInstagramDataContext.Get($"{instaId}/insights", new RequestInsightParams
                 {
                     metric = "impressions",
                     period = "day",

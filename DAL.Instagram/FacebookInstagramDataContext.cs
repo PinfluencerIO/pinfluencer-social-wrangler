@@ -1,14 +1,15 @@
-﻿using DAL.Instagram.Dtos;
+﻿using Bootstrapping.Services.DataContext;
+using DAL.Instagram.Dtos;
 using Facebook;
 using Newtonsoft.Json;
 
 namespace DAL.Instagram
 {
-    public class FacebookContext
+    public class FacebookInstagramDataContext : IInstagramDataContext
     {
         private readonly FacebookClient _facebookClient;
 
-        public FacebookContext(FacebookClient facebookClient)
+        public FacebookInstagramDataContext(FacebookClient facebookClient)
         {
             _facebookClient = facebookClient;
         }

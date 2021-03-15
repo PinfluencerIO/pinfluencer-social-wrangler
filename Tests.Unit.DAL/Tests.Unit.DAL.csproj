@@ -16,6 +16,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Crosscutting.NUnit.Extensions\Crosscutting.NUnit.Extensions.csproj" />
       <ProjectReference Include="..\DAL.Instagram\DAL.Instagram.csproj" />
+      <ProjectReference Include="..\DAL.UserManagement\DAL.UserManagement.csproj" />
     </ItemGroup>
 
 </Project>
