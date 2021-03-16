@@ -11,8 +11,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace API.InstaFetcher.Middleware
 {
+    //TODO: factories!!
     //TODO: persist token to file
-    //TODO: use singleton auth0 context, refresh token if expired
+    //TODO: use transient auth0 context for thread safety, refresh token if expired
+    //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class Auth0Middlware
     {
         private RequestDelegate _next;

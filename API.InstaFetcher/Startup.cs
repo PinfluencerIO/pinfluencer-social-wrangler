@@ -7,6 +7,7 @@ using DAL.Instagram;
 using DAL.Instagram.Factories;
 using DAL.Instagram.Repositories;
 using DAL.UserManagement;
+using DAL.UserManagement.Factories;
 using DAL.UserManagement.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace API.InstaFetcher
             services.AddScoped<FacebookContext>();
 
             services.AddTransient<IFacebookClientFactory,FacebookClientFactory>();
+            services.AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>();
 
             services.AddTransient<IUserRepository,Auth0UserRepository>();
             services.AddTransient<IInstaImpressionsRepository,FacebookInstaImpressionsRepository>();

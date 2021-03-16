@@ -20,6 +20,7 @@ namespace API.InstaFetcher.Middleware
     //TODO: add factories
     //TODO: validate scopes etc...
     //TODO: create generic error handler
+    //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class FacebookMiddlware
     {
         private RequestDelegate _next;
