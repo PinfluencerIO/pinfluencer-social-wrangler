@@ -18,6 +18,7 @@ namespace API.InstaFetcher.Middleware
 {
     //TODO: add factories
     //TODO: validate scopes etc...
+    //TODO: create generic error handler
     public class FacebookMiddlware
     {
         private RequestDelegate _next;
@@ -34,7 +35,7 @@ namespace API.InstaFetcher.Middleware
             [FromServices] IFacebookClientFactory facebookClientFactory
         )
         {
-            var auth0Id = context.Request.Query["auth0_token"];
+            var auth0Id = context.Request.Query["auth0_id"];
             facebookContext.FacebookClient = facebookClientFactory.Get(userRepository.GetInstagramToken(auth0Id).Value);
             try
             {

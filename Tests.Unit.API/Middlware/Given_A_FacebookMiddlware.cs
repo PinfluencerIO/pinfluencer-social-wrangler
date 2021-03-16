@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using API.InstaFetcher.Middleware;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
@@ -9,6 +10,7 @@ using DAL.Instagram;
 using DAL.Instagram.Dtos;
 using Facebook;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -24,8 +26,10 @@ namespace Tests.Unit.API.Middlware
         protected FacebookClient MockFacebookClient;
 
         protected const string TestToken = "";
+        protected const string TestAuth0Id = "12345";
         protected OperationResultEnum TokenFetchResult;
         protected HttpResponse MockHttpResponse;
+        protected HttpRequest MockHttpRequest;
 
         protected override void Given()
         {
@@ -41,14 +45,26 @@ namespace Tests.Unit.API.Middlware
 
         protected override void When()
         {
+            MockHttpResponse = Substitute.For<HttpResponse>();
+            MockHttpRequest = Substitute.For<HttpRequest>();
+            
+            var queryParams = new Dictionary<string, StringValues>();
+            queryParams.Add("auth0_id",new StringValues(TestAuth0Id));
+            
+            MockHttpRequest
+                .Query
+                .Returns(new QueryCollection(new Dictionary<string, StringValues>(queryParams)));
+            
             MockFacebookClientFactory
                 .Get(Arg.Any<string>())
                 .Returns(MockFacebookClient);
 
-            MockHttpResponse = Substitute.For<HttpResponse>();
             MockHttpContext
                 .Response
                 .Returns(MockHttpResponse);
+            MockHttpContext
+                .Request
+                .Returns(MockHttpRequest);
             MockUserRepository
                 .GetInstagramToken(Arg.Any<string>())
                 .Returns(new OperationResult<string>(TestToken,TokenFetchResult));
@@ -83,6 +99,22 @@ namespace Tests.Unit.API.Middlware
             MockFacebookClient
                 .Received(1)
                 .Get(Arg.Any<string>(), Arg.Any<object>());
+        }
+        
+        [Test]
+        public void Then_User_Repository_Was_Fetched_From_Once()
+        {
+            MockUserRepository
+                .Received(1)
+                .GetInstagramToken(Arg.Any<string>());
+        }
+        
+        [Test]
+        public void Then_Valid_Auth0_Id_Was_Used()
+        {
+            MockUserRepository
+                .Received()
+                .GetInstagramToken(Arg.Is(TestAuth0Id));
         }
     }
 }
