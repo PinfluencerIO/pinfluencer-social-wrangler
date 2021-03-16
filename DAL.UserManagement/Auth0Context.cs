@@ -5,16 +5,11 @@ namespace DAL.UserManagement
 {
     public class Auth0Context
     {
-        private readonly ManagementApiClient _managementApiClient;
-
-        public Auth0Context(ManagementApiClient managementApiClient)
-        {
-            _managementApiClient = managementApiClient;
-        }
+        public ManagementApiClient ManagementApiClient { set; get; }
 
         public User GetUser(string id)
         {
-            return _managementApiClient.Users.GetAsync(id).Result;
+            return ManagementApiClient.Users.GetAsync(id).Result;
         }
     }
 }

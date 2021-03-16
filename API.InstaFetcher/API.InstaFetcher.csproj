@@ -4,4 +4,14 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Bootstrapping.Services\Bootstrapping.Services.csproj" />
+      <ProjectReference Include="..\DAL.Instagram\DAL.Instagram.csproj" />
+      <ProjectReference Include="..\DAL.UserManagement\DAL.UserManagement.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Auth0.AuthenticationApi" Version="7.6.1" />
+    </ItemGroup>
+
 </Project>

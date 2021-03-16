@@ -15,9 +15,10 @@ namespace Tests.Unit.DAL.InstaImpressionsRepository
             MockFacebookClient = Substitute.For<FacebookClient>();
 
             Sut = new FacebookInstaImpressionsRepository(
-                new FacebookInstagramDataContext(
-                    MockFacebookClient
-                )
+                new FacebookContext
+                {
+                    FacebookClient = MockFacebookClient
+                }
             );
         }
     }

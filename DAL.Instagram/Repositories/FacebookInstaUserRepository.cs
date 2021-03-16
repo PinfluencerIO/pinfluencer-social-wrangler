@@ -14,11 +14,11 @@ namespace DAL.Instagram.Repositories
 {
     public class FacebookInstaUserRepository : IInstaUserRepository
     {
-        private FacebookInstagramDataContext _facebookInstagramDataContext;
+        private FacebookContext _facebookContext;
 
-        public FacebookInstaUserRepository(FacebookInstagramDataContext facebookInstagramDataContext)
+        public FacebookInstaUserRepository(FacebookContext facebookContext)
         {
-            _facebookInstagramDataContext = facebookInstagramDataContext;
+            _facebookContext = facebookContext;
         }
 
         public OperationResult<InstaUser> GetUser(string id)
@@ -30,7 +30,7 @@ namespace DAL.Instagram.Repositories
         {
             try
             {
-                var result = _facebookInstagramDataContext.Get("me/accounts",
+                var result = _facebookContext.Get("me/accounts",
                     "instagram_business_account{id,username,name,biography,followers_count}");
                 var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>(result);
 

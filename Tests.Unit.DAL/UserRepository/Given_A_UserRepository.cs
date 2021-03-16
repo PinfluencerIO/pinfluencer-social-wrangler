@@ -26,9 +26,10 @@ namespace Tests.Unit.DAL.UserRepository
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>();
             
             Sut = new Auth0UserRepository(
-                new Auth0Context(
-                    new ManagementApiClient("token","domain",MockAuth0ManagementApiConnection)
-                )
+                new Auth0Context
+                {
+                    ManagementApiClient = new ManagementApiClient("token","domain", MockAuth0ManagementApiConnection)
+                }
             );
         }
 

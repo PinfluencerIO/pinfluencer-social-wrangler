@@ -17,31 +17,6 @@ namespace Local.Sandbox
     {
         static void Main(string[] args)
         {
-            var authenticationApiClient = new AuthenticationApiClient("DOMAIN");
-            
-            var token = authenticationApiClient.GetTokenAsync(new ClientCredentialsTokenRequest
-            {
-                ClientId = "ID",
-                ClientSecret = "SECRET",
-                Audience = "DOMAIN"
-            }).Result;
-            
-            var apiClient = new ManagementApiClient(token.AccessToken, "DOMAIN", new HttpClientManagementConnection());
-            var allClients = apiClient.Users.GetAsync("USER_ID").Result;
-
-            var facebookContext = new FacebookInstagramDataContext(new FacebookClient(allClients.Identities[0].AccessToken));
-            
-            var insightsService =
-                new InstaInsightsCollectionService(
-                    new FacebookInstaImpressionsRepository(facebookContext));
-            
-            var userService =
-                new InstaUserService(
-                    new FacebookInstaUserRepository(facebookContext));
-
-            var users = userService.GetAll();
-            
-            var insights = insightsService.GetUserInsights(users.Value.InstaUserIdentities.First().Id);
         }
     }
 }
