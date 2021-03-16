@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.ManagementApi;

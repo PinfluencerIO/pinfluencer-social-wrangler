@@ -8,4 +8,8 @@
       <ProjectReference Include="..\BLL.Models\BLL.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Facebook" Version="7.0.10-beta" />
+    </ItemGroup>
+
 </Project>
