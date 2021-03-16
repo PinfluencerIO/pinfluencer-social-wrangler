@@ -6,6 +6,7 @@ using Auth0.ManagementApi;
 using Bootstrapping.Services.Factories;
 using Bootstrapping.Services.Repositories;
 using DAL.Instagram;
+using DAL.Instagram.Dtos;
 using DAL.UserManagement;
 using Facebook;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +39,7 @@ namespace API.InstaFetcher.Middleware
             try
             {
                 facebookContext.FacebookClient.Get("debug_token",
-                    new {input_token = facebookContext.FacebookClient.AccessToken});
+                    new RequestDebugTokenParams{input_token = facebookContext.FacebookClient.AccessToken});
                 await _next.Invoke(context);
             }
             catch (Exception)
