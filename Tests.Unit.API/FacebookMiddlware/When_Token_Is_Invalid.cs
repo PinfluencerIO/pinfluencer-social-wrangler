@@ -16,6 +16,8 @@ namespace Tests.Unit.API.FacebookMiddlware
         protected override void When()
         {
             SetAuth0Id();
+
+            TokenFetchResult = OperationResultEnum.Success;
             MockFacebookClient
                 .Get(Arg.Any<string>(),Arg.Any<object>())
                 .Throws<FacebookOAuthException>();

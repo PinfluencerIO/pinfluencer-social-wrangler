@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.ManagementApi;
+using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Factories;
 using Bootstrapping.Services.Repositories;
 using DAL.Instagram;
@@ -41,12 +42,20 @@ namespace API.InstaFetcher.Middleware
             {
                 await HandleError(context);
             }
+
+            var tokenResult = userRepository.GetInstagramToken(auth0Id);
+
+            if (tokenResult.Status==OperationResultEnum.Failed)
+            {
+                await HandleError(context);
+            }
             
-            facebookContext.FacebookClient = facebookClientFactory.Get(userRepository.GetInstagramToken(auth0Id).Value);
+            facebookContext.FacebookClient = facebookClientFactory.Get(tokenResult.Value);
+            
             try
             {
                 facebookContext.FacebookClient.Get("debug_token",
-                    new RequestDebugTokenParams{input_token = facebookContext.FacebookClient.AccessToken});
+                    new RequestDebugTokenParams{input_token = tokenResult.Value});
                 await _next.Invoke(context);
             }
             catch (Exception)
@@ -55,7 +64,7 @@ namespace API.InstaFetcher.Middleware
             }
         }
 
-        private async Task HandleError(HttpContext context)
+        private static async Task HandleError(HttpContext context)
         {
             context
                 .Response
