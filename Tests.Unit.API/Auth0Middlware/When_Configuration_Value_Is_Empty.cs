@@ -20,7 +20,7 @@ namespace Tests.Unit.API.Auth0Middlware
         protected override void When()
         {
             AddDefaultConfiguration();
-            AddConfiguration(_key, null);
+            AddConfiguration(_key, default);
             SetConfiguration();
             
             base.When();

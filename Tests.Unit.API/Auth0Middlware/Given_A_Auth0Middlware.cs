@@ -31,31 +31,7 @@ namespace Tests.Unit.API.Auth0Middlware
                 .Response
                 .Returns(MockHttpResponse);
 
-            MockAuth0Configuration
-                .GetValue<string>(Arg.Is("Id"))
-                .Returns("12345");
-            MockAuth0Configuration
-                .GetValue<string>(Arg.Is("Secret"))
-                .Returns("54321");
-            MockAuth0Configuration
-                .GetValue<string>(Arg.Is("Domain"))
-                .Returns("domain/domain");
-            MockAuth0Configuration
-                .GetValue<string>(Arg.Is("ManagementDomain"))
-                .Returns("management/api/domain");
-            
-            MockConfiguration
-                .GetSection(Arg.Is("Auth0"))
-                .Returns(MockAuth0Configuration);
-
             Sut = new global::API.InstaFetcher.Middleware.Auth0Middlware(MockNextMiddlware);
-
-            Sut.Invoke(
-                MockHttpContext,
-                MockAuth0Context,
-                MockConfiguration,
-                MockManagementConnection
-            );
         }
 
         protected override void When()
@@ -71,23 +47,23 @@ namespace Tests.Unit.API.Auth0Middlware
         protected void AddDefaultConfiguration()
         {
             MockAuth0Configuration
-                .GetValue<string>(Arg.Is("Id"))
+                [Arg.Is("Id")]
                 .Returns("12345");
             MockAuth0Configuration
-                .GetValue<string>(Arg.Is("Secret"))
+                [Arg.Is("Secret")]
                 .Returns("54321");
             MockAuth0Configuration
-                .GetValue<string>(Arg.Is("Domain"))
+                [Arg.Is("Domain")]
                 .Returns("domain/domain");
             MockAuth0Configuration
-                .GetValue<string>(Arg.Is("ManagementDomain"))
+                [Arg.Is("ManagementDomain")]
                 .Returns("management/api/domain");
         }
         
         protected void AddConfiguration(string key, string value)
         {
             MockAuth0Configuration
-                .GetValue<string>(Arg.Is(key))
+                [Arg.Is(key)]
                 .Returns(value);
         }
 

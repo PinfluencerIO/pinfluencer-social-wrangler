@@ -41,14 +41,14 @@ namespace API.InstaFetcher.Middleware
 
             if (auth0Id==string.Empty)
             {
-                await HandleError(context);
+                await HandleError(context, "request must have query param of auth0_id");
             }
 
             var tokenResult = userRepository.GetInstagramToken(auth0Id);
 
             if (tokenResult.Status==OperationResultEnum.Failed)
             {
-                await HandleError(context);
+                await HandleError(context, "auth0 error, cannot access user token");
             }
             
             facebookContext.FacebookClient = facebookClientFactory.Get(tokenResult.Value);
@@ -59,13 +59,13 @@ namespace API.InstaFetcher.Middleware
                     new RequestDebugTokenParams{input_token = tokenResult.Value});
                 await _next.Invoke(context);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                await HandleError(context);
+                await HandleError(context, e.Message);
             }
         }
 
-        private static async Task HandleError(HttpContext context)
+        private static async Task HandleError(HttpContext context, string message)
         {
             context
                 .Response
@@ -75,7 +75,7 @@ namespace API.InstaFetcher.Middleware
                 .ContentType = "application/json";
             await context
                 .Response
-                .WriteAsync(JsonConvert.SerializeObject(new { error = "facebook token error" }));
+                .WriteAsync(JsonConvert.SerializeObject(new { error = "facebook authorization error", message }));
         }
     }
 }

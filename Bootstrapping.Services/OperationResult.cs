@@ -2,6 +2,7 @@
 
 namespace Bootstrapping.Services
 {
+    //TODO: provide message param to allow for meaningful error messages
     public class OperationResult<T>
     {
         public T Value { get; }

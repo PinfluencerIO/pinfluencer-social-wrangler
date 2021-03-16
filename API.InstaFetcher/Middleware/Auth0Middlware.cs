@@ -8,6 +8,7 @@ using DAL.UserManagement;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace API.InstaFetcher.Middleware
 {
@@ -32,11 +33,16 @@ namespace API.InstaFetcher.Middleware
         )
         {
             var auth0Settings = configuration.GetSection("Auth0");
-            var clientId = auth0Settings.GetValue<string>("Id");
-            var clientSecret = auth0Settings.GetValue<string>("Secret");
-            var domain = auth0Settings.GetValue<string>("Domain");
-            var audience = auth0Settings.GetValue<string>("ManagementDomain");
+            var clientId = auth0Settings["Id"];
+            var clientSecret = auth0Settings["Secret"];
+            var domain = auth0Settings["Domain"];
+            var audience = auth0Settings["ManagementDomain"];
 
+            if (domain == null || clientId == null || clientSecret == null || audience == null)
+            {
+                await HandleError(context, "auth0 configuration settings are not valid");
+            }
+            
             var authenticationApiClient = new AuthenticationApiClient(domain);
             
             var token = await authenticationApiClient.GetTokenAsync(new ClientCredentialsTokenRequest
@@ -49,6 +55,19 @@ namespace API.InstaFetcher.Middleware
             auth0Context.ManagementApiClient = new ManagementApiClient(token.AccessToken, domain, managementConnection);
 
             await _next.Invoke(context);
+        }
+        
+        private static async Task HandleError(HttpContext context, string message)
+        {
+            context
+                .Response
+                .StatusCode = 401;
+            context
+                .Response
+                .ContentType = "application/json";
+            await context
+                .Response
+                .WriteAsync(JsonConvert.SerializeObject(new { error = "auth0 authorization error", message }));
         }
     }
 }
