@@ -35,7 +35,13 @@ namespace API.InstaFetcher.Middleware
             [FromServices] IFacebookClientFactory facebookClientFactory
         )
         {
-            var auth0Id = context.Request.Query["auth0_id"];
+            var auth0Id = context.Request.Query["auth0_id"].ToString();
+
+            if (auth0Id==string.Empty)
+            {
+                await HandleError(context);
+            }
+            
             facebookContext.FacebookClient = facebookClientFactory.Get(userRepository.GetInstagramToken(auth0Id).Value);
             try
             {
@@ -45,16 +51,21 @@ namespace API.InstaFetcher.Middleware
             }
             catch (Exception)
             {
-                context
-                    .Response
-                    .StatusCode = 401;
-                context
-                    .Response
-                    .ContentType = "application/json";
-                await context
-                    .Response
-                    .WriteAsync(JsonConvert.SerializeObject(new { error = "facebook token error" }));
+                await HandleError(context);
             }
+        }
+
+        private async Task HandleError(HttpContext context)
+        {
+            context
+                .Response
+                .StatusCode = 401;
+            context
+                .Response
+                .ContentType = "application/json";
+            await context
+                .Response
+                .WriteAsync(JsonConvert.SerializeObject(new { error = "facebook token error" }));
         }
     }
 }
