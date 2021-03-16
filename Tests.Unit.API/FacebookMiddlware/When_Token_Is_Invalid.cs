@@ -11,7 +11,7 @@ using Tests.Unit.API.FacebookMiddlware.Shared;
 
 namespace Tests.Unit.API.FacebookMiddlware
 {
-    public class When_Token_Is_Invalid : When_Facebook_Error_Occurs
+    public class When_Token_Is_Invalid : When_Auth0_Error_Does_Not_Occur
     {
         protected override void When()
         {
@@ -23,6 +23,30 @@ namespace Tests.Unit.API.FacebookMiddlware
                 .Throws<FacebookOAuthException>();
 
             base.When();
+        }
+        
+        [Test]
+        public void Then_Middlware_Short_Circuits()
+        {
+            MockNextMiddlware
+                .DidNotReceive()
+                .Invoke(Arg.Any<HttpContext>());
+        }
+
+        [Test]
+        public void Then_Response_Status_Code_Was_Not_Authorized()
+        {
+            MockHttpResponse
+                .Received()
+                .StatusCode = Arg.Is(401);
+        }
+        
+        [Test]
+        public void Then_Response_Status_Code_Was_Set_Once()
+        {
+            MockHttpResponse
+                .Received(1)
+                .StatusCode = Arg.Any<int>();
         }
     }
 }
