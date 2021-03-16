@@ -2,7 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Tests.Unit.API.Middlware.Shared
+namespace Tests.Unit.API.FacebookMiddlware.Shared
 {
     public abstract class When_Error_Occurs : Given_A_FacebookMiddlware
     {

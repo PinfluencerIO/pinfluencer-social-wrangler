@@ -14,9 +14,9 @@ using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Tests.Unit.API.Middlware
+namespace Tests.Unit.API.FacebookMiddlware
 {
-    public abstract class Given_A_FacebookMiddlware : GivenWhenThen<FacebookMiddlware>
+    public abstract class Given_A_FacebookMiddlware : GivenWhenThen<global::API.InstaFetcher.Middleware.FacebookMiddlware>
     {
         protected RequestDelegate MockNextMiddlware;
         protected HttpContext MockHttpContext;
@@ -25,7 +25,7 @@ namespace Tests.Unit.API.Middlware
         protected IFacebookClientFactory MockFacebookClientFactory;
         protected FacebookClient MockFacebookClient;
 
-        protected const string TestToken = "";
+        protected string TestToken = "654321";
         protected const string TestAuth0Id = "12345";
         protected OperationResultEnum TokenFetchResult;
         protected HttpResponse MockHttpResponse;
@@ -40,7 +40,7 @@ namespace Tests.Unit.API.Middlware
             MockFacebookClientFactory = Substitute.For<IFacebookClientFactory>();
             MockFacebookClient = Substitute.For<FacebookClient>();
 
-            Sut = new FacebookMiddlware(MockNextMiddlware);
+            Sut = new global::API.InstaFetcher.Middleware.FacebookMiddlware(MockNextMiddlware);
         }
 
         protected override void When()

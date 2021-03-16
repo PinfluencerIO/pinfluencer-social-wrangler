@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Tests.Unit.API.Middlware.Shared;
+using Tests.Unit.API.FacebookMiddlware.Shared;
 
-namespace Tests.Unit.API.Middlware
+namespace Tests.Unit.API.FacebookMiddlware
 {
-    public class When_Token_Is_Invalid : When_Auth0_Id_Found_But_Error_Occurs
+    public class When_Token_Is_Invalid : When_Facebook_Error_Occurs
     {
         protected override void When()
         {

@@ -2,9 +2,9 @@
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Tests.Unit.API.Middlware.Shared
+namespace Tests.Unit.API.FacebookMiddlware.Shared
 {
-    public abstract class When_Auth0_Id_Found_But_Error_Occurs : When_Error_Occurs
+    public abstract class When_Facebook_Error_Occurs : When_Error_Occurs
     {
         [Test]
         public void Then_Valid_Auth0_Id_Was_Used()

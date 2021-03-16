@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
-using Tests.Unit.API.Middlware.Shared;
+using Tests.Unit.API.FacebookMiddlware.Shared;
 
-namespace Tests.Unit.API.Middlware
+namespace Tests.Unit.API.FacebookMiddlware
 {
     public class When_Auth0_Id_Is_Not_Found : When_Error_Occurs
     {
