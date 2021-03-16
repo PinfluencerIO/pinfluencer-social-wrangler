@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using API.InstaFetcher.Middleware;
+using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
 using Bootstrapping.Services.Factories;
 using Bootstrapping.Services.Repositories;
@@ -33,6 +34,7 @@ namespace API.InstaFetcher
             services.AddTransient<IInstaUserRepository,FacebookInstaUserRepository>();
 
             services.AddTransient<IManagementConnection, HttpClientManagementConnection>();
+            services.AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

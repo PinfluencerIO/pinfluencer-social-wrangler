@@ -1,4 +1,5 @@
-﻿using Auth0.ManagementApi;
+﻿using Auth0.AuthenticationApi;
+using Auth0.ManagementApi;
 using Crosscutting.Testing.Extensions;
 using DAL.UserManagement;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +8,7 @@ using NSubstitute;
 
 namespace Tests.Unit.API.Auth0Middlware
 {
-    public class Given_A_Auth0Middlware : GivenWhenThen<global::API.InstaFetcher.Middleware.Auth0Middlware>
+    public abstract class Given_A_Auth0Middlware : GivenWhenThen<global::API.InstaFetcher.Middleware.Auth0Middlware>
     {
         protected RequestDelegate MockNextMiddlware;
         protected IConfiguration MockConfiguration;
@@ -16,6 +17,9 @@ namespace Tests.Unit.API.Auth0Middlware
         protected HttpResponse MockHttpResponse;
         protected Auth0Context MockAuth0Context;
         protected IManagementConnection MockManagementConnection;
+        protected IAuthenticationConnection MockAuthenticationConnection;
+
+        protected const string TestToken = "123456789";
 
         protected override void Given()
         {
@@ -25,6 +29,7 @@ namespace Tests.Unit.API.Auth0Middlware
             MockAuth0Configuration = Substitute.For<IConfigurationSection>();
             MockHttpContext = Substitute.For<HttpContext>();
             MockManagementConnection = Substitute.For<IManagementConnection>();
+            MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>();
             MockHttpResponse = Substitute.For<HttpResponse>();
 
             MockHttpContext
@@ -40,7 +45,8 @@ namespace Tests.Unit.API.Auth0Middlware
                 MockHttpContext,
                 MockAuth0Context,
                 MockConfiguration,
-                MockManagementConnection
+                MockManagementConnection,
+                MockAuthenticationConnection
             );
         }
 
@@ -54,10 +60,10 @@ namespace Tests.Unit.API.Auth0Middlware
                 .Returns("54321");
             MockAuth0Configuration
                 [Arg.Is("Domain")]
-                .Returns("domain/domain");
+                .Returns("www.management/api");
             MockAuth0Configuration
                 [Arg.Is("ManagementDomain")]
-                .Returns("management/api/domain");
+                .Returns("www.management/api");
         }
         
         protected void AddConfiguration(string key, string value)

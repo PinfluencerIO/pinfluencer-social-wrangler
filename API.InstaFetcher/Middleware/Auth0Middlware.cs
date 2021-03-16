@@ -15,6 +15,7 @@ namespace API.InstaFetcher.Middleware
     //TODO: factories!!
     //TODO: persist token to file
     //TODO: use transient auth0 context for thread safety, refresh token if expired
+    //TODO: validate scopes
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class Auth0Middlware
     {
@@ -29,7 +30,8 @@ namespace API.InstaFetcher.Middleware
             HttpContext context,
             [FromServices] Auth0Context auth0Context,
             [FromServices] IConfiguration configuration,
-            [FromServices] IManagementConnection managementConnection
+            [FromServices] IManagementConnection managementConnection,
+            [FromServices] IAuthenticationConnection authenticationConnection
         )
         {
             var auth0Settings = configuration.GetSection("Auth0");
@@ -43,7 +45,7 @@ namespace API.InstaFetcher.Middleware
                 await HandleError(context, "auth0 configuration settings are not valid");
             }
             
-            var authenticationApiClient = new AuthenticationApiClient(domain);
+            var authenticationApiClient = new AuthenticationApiClient(domain,authenticationConnection);
             
             var token = await authenticationApiClient.GetTokenAsync(new ClientCredentialsTokenRequest
             {
