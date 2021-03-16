@@ -59,7 +59,7 @@ namespace API.InstaFetcher.Middleware
                     new RequestDebugTokenParams{input_token = tokenResult.Value});
                 await _next.Invoke(context);
             }
-            catch (Exception e)
+            catch (FacebookApiException e)
             {
                 await HandleError(context, e.Message);
             }
