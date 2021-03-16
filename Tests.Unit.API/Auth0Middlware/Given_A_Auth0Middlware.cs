@@ -8,6 +8,7 @@ using NSubstitute;
 
 namespace Tests.Unit.API.Auth0Middlware
 {
+    //TODO: add tests for failing to parse URIs
     public abstract class Given_A_Auth0Middlware : GivenWhenThen<global::API.InstaFetcher.Middleware.Auth0Middlware>
     {
         protected RequestDelegate MockNextMiddlware;

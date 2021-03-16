@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
+using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Bootstrapping.Services.Repositories;
 using DAL.Instagram;
@@ -46,17 +47,25 @@ namespace API.InstaFetcher.Middleware
             }
             
             var authenticationApiClient = new AuthenticationApiClient(domain,authenticationConnection);
-            
-            var token = await authenticationApiClient.GetTokenAsync(new ClientCredentialsTokenRequest
+
+            try
             {
-                ClientId = clientId,
-                ClientSecret = clientSecret,
-                Audience = audience
-            });
+                var token = await authenticationApiClient.GetTokenAsync(new ClientCredentialsTokenRequest
+                {
+                    ClientId = clientId,
+                    ClientSecret = clientSecret,
+                    Audience = audience
+                });
 
-            auth0Context.ManagementApiClient = new ManagementApiClient(token.AccessToken, domain, managementConnection);
+                auth0Context.ManagementApiClient =
+                    new ManagementApiClient(token.AccessToken, domain, managementConnection);
 
-            await _next.Invoke(context);
+                await _next.Invoke(context);
+            }
+            catch (ApiException exception)
+            {
+                await HandleError(context, exception.Message);
+            }
         }
         
         private static async Task HandleError(HttpContext context, string message)
