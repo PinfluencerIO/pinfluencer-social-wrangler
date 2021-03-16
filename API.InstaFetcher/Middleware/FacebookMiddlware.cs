@@ -53,7 +53,7 @@ namespace API.InstaFetcher.Middleware
                     .ContentType = "application/json";
                 await context
                     .Response
-                    .WriteAsync(JsonConvert.SerializeObject(new { error = "facebook token is invalid" }));
+                    .WriteAsync(JsonConvert.SerializeObject(new { error = "facebook token error" }));
             }
         }
     }

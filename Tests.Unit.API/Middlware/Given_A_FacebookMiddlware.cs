@@ -46,15 +46,7 @@ namespace Tests.Unit.API.Middlware
         protected override void When()
         {
             MockHttpResponse = Substitute.For<HttpResponse>();
-            MockHttpRequest = Substitute.For<HttpRequest>();
-            
-            var queryParams = new Dictionary<string, StringValues>();
-            queryParams.Add("auth0_id",new StringValues(TestAuth0Id));
-            
-            MockHttpRequest
-                .Query
-                .Returns(new QueryCollection(new Dictionary<string, StringValues>(queryParams)));
-            
+
             MockFacebookClientFactory
                 .Get(Arg.Any<string>())
                 .Returns(MockFacebookClient);
@@ -75,6 +67,30 @@ namespace Tests.Unit.API.Middlware
                 FacebookContext,
                 MockFacebookClientFactory
             );
+        }
+
+        protected void SetAuth0Id()
+        {
+            MockHttpRequest = Substitute.For<HttpRequest>();
+            var queryParams = new Dictionary<string, StringValues>();
+            queryParams.Add("auth0_id",new StringValues(TestAuth0Id));
+            
+            SetQueryParams(queryParams);
+        }
+
+        protected void SetEmptyAuth0Id()
+        {
+            MockHttpRequest = Substitute.For<HttpRequest>();
+            var queryParams = new Dictionary<string, StringValues>();
+
+            SetQueryParams(queryParams);
+        }
+
+        private void SetQueryParams(Dictionary<string, StringValues> queryParams)
+        {
+            MockHttpRequest
+                .Query
+                .Returns(new QueryCollection(queryParams));
         }
 
         [Test]
@@ -107,14 +123,6 @@ namespace Tests.Unit.API.Middlware
             MockUserRepository
                 .Received(1)
                 .GetInstagramToken(Arg.Any<string>());
-        }
-        
-        [Test]
-        public void Then_Valid_Auth0_Id_Was_Used()
-        {
-            MockUserRepository
-                .Received()
-                .GetInstagramToken(Arg.Is(TestAuth0Id));
         }
     }
 }
