@@ -2,6 +2,7 @@
 
 namespace Crosscutting.Testing.Extensions
 {
+    //TODO: add middleware test class
     public abstract class GivenWhenThen<T>
     {
         protected T Sut;
