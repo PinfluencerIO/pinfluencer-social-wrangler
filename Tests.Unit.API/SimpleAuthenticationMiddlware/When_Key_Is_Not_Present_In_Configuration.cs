@@ -10,9 +10,9 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
     {
         protected override void When()
         {
-            var queryParams = new Dictionary<string, StringValues>();
-            queryParams.Add("InstaServiceKey","TestKey");
-            HeaderDictionary = new HeaderDictionary(queryParams);
+            var headerParams = new Dictionary<string, StringValues>();
+            headerParams.Add("InstaServiceKey","TestKey");
+            HeaderDictionary = new HeaderDictionary(headerParams);
             ApiKeyFromConfig = null;
 
             base.When();
