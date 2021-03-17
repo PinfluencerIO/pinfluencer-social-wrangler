@@ -7,14 +7,14 @@ namespace BLL.Models.Insights
     public class InstaImpression
     {
         [JsonProperty("time")]
-        public string Time { get; }
+        public DateTime Time { get; }
 
         [JsonProperty("count")]
         public int Count { get; }
 
         public InstaImpression(DateTime time, int count)
         {
-            Time = time.ToString("d");
+            Time = time;
             Count = count;
         }
     }
