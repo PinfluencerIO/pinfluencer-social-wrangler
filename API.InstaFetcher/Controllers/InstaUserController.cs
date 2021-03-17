@@ -26,7 +26,7 @@ namespace API.InstaFetcher.Controllers
 
             if (users.Status != OperationResultEnum.Failed)
                 return new JsonResult(users.Value);
-            var error = new JsonResult(new {error = "failed to fetch instagram users"}) {StatusCode = 400};
+            var error = new JsonResult(new {error = "failed to fetch instagram users", message = "spurious error"}) {StatusCode = 500};
             return error;
         }
     }
