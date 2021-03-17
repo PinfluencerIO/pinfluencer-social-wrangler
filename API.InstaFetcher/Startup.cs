@@ -51,9 +51,9 @@ namespace API.InstaFetcher
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMiddleware<Auth0Middlware>();
-                
-            app.UseMiddleware<FacebookMiddlware>();
+            app.UseMiddleware<SimpleAuthenticationMiddleware>()
+                .UseMiddleware<Auth0Middlware>()
+                .UseMiddleware<FacebookMiddlware>();
 
             app.UseRouting();
 
