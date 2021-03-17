@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using API.InstaFetcher.Middleware;
 using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
+using AutoMapper;
+using BLL.InstagramFetcher.Services;
 using Bootstrapping.Services.Factories;
 using Bootstrapping.Services.Repositories;
 using DAL.Instagram;
@@ -35,6 +37,11 @@ namespace API.InstaFetcher
 
             services.AddTransient<IManagementConnection, HttpClientManagementConnection>();
             services.AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>();
+
+            services.AddTransient<InstaUserService>();
+            services.AddTransient<InstaInsightsCollectionService>();
+
+            services.AddControllers();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,7 +59,7 @@ namespace API.InstaFetcher
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                endpoints.MapControllers();
             });
         }
     }
