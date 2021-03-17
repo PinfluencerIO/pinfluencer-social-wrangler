@@ -14,7 +14,7 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
         
         protected HttpResponse MockHttpResponse;
         protected HttpRequest MockHttpRequest;
-        protected IQueryCollection QueryParams;
+        protected IHeaderDictionary HeaderDictionary;
         protected string ApiKeyFromConfig;
 
         protected override void Given()
@@ -31,10 +31,10 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
         protected override void When()
         {
             MockHttpRequest
-                .Query
-                .Returns(QueryParams);
+                .Headers
+                .Returns(HeaderDictionary);
             MockConfiguration
-                .GetValue<string>(Arg.Any<string>())
+                [Arg.Any<string>()]
                 .Returns(ApiKeyFromConfig);
 
             MockHttpContext

@@ -34,7 +34,7 @@ namespace API.InstaFetcher.Middleware
                 await HandleError(context, "no 'InstaServiceKey' value was present in the request header");
             }
 
-            var key = configuration.GetValue<string>("SimpleAuthKey");
+            var key = configuration["SimpleAuthKey"];
 
             if (header.ToString().Equals(key))
             {
