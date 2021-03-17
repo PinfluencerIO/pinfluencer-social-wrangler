@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NUnit.Framework;
+using Tests.Unit.API.SimpleAuthenticationMiddlware;
 
 namespace Tests.Unit.API.Auth0Middlware.Shared
 {
