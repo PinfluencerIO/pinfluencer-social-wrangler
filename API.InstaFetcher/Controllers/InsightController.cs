@@ -1,23 +1,23 @@
-﻿using API.InstaFetcher.Dtos;
-using BLL.InstagramFetcher.Services;
+﻿using BLL.InstagramFetcher.Services;
 using Bootstrapping.Services.Enum;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace API.InstaFetcher.Controllers
 {
     //TODO: implement auto-mapper
-    [Route("insta_insights")]
-    public class InstaInsightsController : ControllerBase
+    [Route("insight")]
+    public class InsightController : ControllerBase
     {
         private readonly InstaInsightsCollectionService _instaInsightsCollectionService;
 
-        public InstaInsightsController(InstaInsightsCollectionService instaInsightsCollectionService)
+        public InsightController(InstaInsightsCollectionService instaInsightsCollectionService)
         {
             _instaInsightsCollectionService = instaInsightsCollectionService;
         }
 
         [Route("")]
-        public JsonResult GetUser([FromQuery] string user)
+        public JsonResult GetUserInsights([FromQuery] string user)
         {
             var insights = _instaInsightsCollectionService.GetUserInsights(user);
             if (insights.Status != OperationResultEnum.Failed)

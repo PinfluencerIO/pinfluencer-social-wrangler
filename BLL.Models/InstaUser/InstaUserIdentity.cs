@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace BLL.Models.InstaUser
 {
     public class InstaUserIdentity
     {
-        [JsonProperty("handle")]
+        [JsonPropertyName("handle")]
         public string Handle { get; }
 
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; }
 
         public InstaUserIdentity(string handle, string id)

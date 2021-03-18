@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace BLL.Models.Insights
 {
     public class InstaImpression
     {
-        [JsonProperty("time")]
+        [JsonPropertyName("time")]
         public DateTime Time { get; }
 
-        [JsonProperty("count")]
+        [JsonPropertyName("count")]
         public int Count { get; }
 
         public InstaImpression(DateTime time, int count)

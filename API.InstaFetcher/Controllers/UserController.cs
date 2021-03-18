@@ -1,20 +1,18 @@
-﻿using System.Linq;
-using API.InstaFetcher.Dtos;
-using AutoMapper;
-using BLL.InstagramFetcher.Services;
+﻿using BLL.InstagramFetcher.Services;
 using BLL.Models.InstaUser;
 using Bootstrapping.Services.Enum;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace API.InstaFetcher.Controllers
 {
     //TODO: implement auto-mapper
-    [Route("insta_user")]
-    public class InstaUserController : ControllerBase
+    [Route("user")]
+    public class UserController : ControllerBase
     {
         private readonly InstaUserService _instaUserService;
 
-        public InstaUserController(InstaUserService instaUserService)
+        public UserController(InstaUserService instaUserService)
         {
             _instaUserService = instaUserService;
         }
@@ -23,7 +21,6 @@ namespace API.InstaFetcher.Controllers
         public JsonResult GetAll()
         {
             var users = _instaUserService.GetAll();
-
             if (users.Status != OperationResultEnum.Failed)
                 return new JsonResult(users.Value);
             var error = new JsonResult(new {error = "failed to fetch instagram users", message = "spurious error"}) {StatusCode = 500};

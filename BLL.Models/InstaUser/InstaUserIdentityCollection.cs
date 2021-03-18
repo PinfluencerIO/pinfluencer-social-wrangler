@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace BLL.Models.InstaUser
 {
     public class InstaUserIdentityCollection
     {
-        [JsonProperty("insta_users")]
+        [JsonPropertyName("insta_users")]
         public IEnumerable<InstaUserIdentity> InstaUserIdentities { get; }
-
-        [JsonProperty("has_multiple")]
+        
+        [JsonPropertyName("has_multiple")]
         public bool HasMultiple { get; }
-
-        [JsonProperty("is_empty")]
+        
+        [JsonPropertyName("is_empty")]
         public bool IsEmpty { get; }
 
         public InstaUserIdentityCollection(IEnumerable<InstaUserIdentity> instaUserIdentities, bool hasMultiple, bool isEmpty)
