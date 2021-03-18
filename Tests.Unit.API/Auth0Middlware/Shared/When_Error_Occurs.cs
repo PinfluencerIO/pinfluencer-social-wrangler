@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NUnit.Framework;
-using Tests.Unit.API.SimpleAuthenticationMiddlware;
 
 namespace Tests.Unit.API.Auth0Middlware.Shared
 {
@@ -22,7 +21,7 @@ namespace Tests.Unit.API.Auth0Middlware.Shared
                 .Received()
                 .StatusCode = Arg.Is(401);
         }
-        
+
         [Test]
         public void Then_Response_Status_Code_Was_Set_Once()
         {

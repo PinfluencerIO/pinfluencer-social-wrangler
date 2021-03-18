@@ -11,7 +11,7 @@ namespace Tests.Unit.API.FacebookMiddlware
 
             TestToken = "";
             TokenFetchResult = OperationResultEnum.Failed;
-            
+
             base.When();
         }
     }

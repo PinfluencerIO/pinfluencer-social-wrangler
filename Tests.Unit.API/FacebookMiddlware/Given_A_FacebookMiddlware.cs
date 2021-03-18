@@ -1,35 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using API.InstaFetcher.Middleware;
+﻿using System.Collections.Generic;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Factories;
 using Bootstrapping.Services.Repositories;
 using Crosscutting.Testing.Extensions;
 using DAL.Instagram;
-using DAL.Instagram.Dtos;
 using Facebook;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
-using NUnit.Framework;
 
 namespace Tests.Unit.API.FacebookMiddlware
 {
-    public abstract class Given_A_FacebookMiddlware : GivenWhenThen<global::API.InstaFetcher.Middleware.FacebookMiddlware>
+    public abstract class
+        Given_A_FacebookMiddlware : GivenWhenThen<global::API.InstaFetcher.Middleware.FacebookMiddlware>
     {
-        protected RequestDelegate MockNextMiddlware;
-        protected HttpContext MockHttpContext;
-        protected IUserRepository MockUserRepository;
+        protected const string TestAuth0Id = "12345";
         protected FacebookContext FacebookContext;
-        protected IFacebookClientFactory MockFacebookClientFactory;
         protected FacebookClient MockFacebookClient;
+        protected IFacebookClientFactory MockFacebookClientFactory;
+        protected HttpContext MockHttpContext;
+        protected HttpRequest MockHttpRequest;
+        protected HttpResponse MockHttpResponse;
+        protected RequestDelegate MockNextMiddlware;
+        protected IUserRepository MockUserRepository;
 
         protected string TestToken = "654321";
-        protected const string TestAuth0Id = "12345";
         protected OperationResultEnum TokenFetchResult;
-        protected HttpResponse MockHttpResponse;
-        protected HttpRequest MockHttpRequest;
 
         protected override void Given()
         {
@@ -59,8 +56,8 @@ namespace Tests.Unit.API.FacebookMiddlware
                 .Returns(MockHttpRequest);
             MockUserRepository
                 .GetInstagramToken(Arg.Any<string>())
-                .Returns(new OperationResult<string>(TestToken,TokenFetchResult));
-            
+                .Returns(new OperationResult<string>(TestToken, TokenFetchResult));
+
             Sut.Invoke(
                 MockHttpContext,
                 MockUserRepository,
@@ -73,8 +70,8 @@ namespace Tests.Unit.API.FacebookMiddlware
         {
             MockHttpRequest = Substitute.For<HttpRequest>();
             var queryParams = new Dictionary<string, StringValues>();
-            queryParams.Add("auth0_id",new StringValues(TestAuth0Id));
-            
+            queryParams.Add("auth0_id", new StringValues(TestAuth0Id));
+
             SetQueryParams(queryParams);
         }
 

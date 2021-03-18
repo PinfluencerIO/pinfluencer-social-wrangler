@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using BLL.Models.InstaUser;
 using Bootstrapping.Services;
-using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Repositories;
 
 namespace BLL.InstagramFetcher.Services
@@ -23,7 +21,7 @@ namespace BLL.InstagramFetcher.Services
             return new OperationResult<InstaUserIdentityCollection>(
                 new InstaUserIdentityCollection(
                     users.Value.Select(x => x.Identity),
-                    users.Value.Count()>1,
+                    users.Value.Count() > 1,
                     !users.Value.Any()
                 ),
                 users.Status

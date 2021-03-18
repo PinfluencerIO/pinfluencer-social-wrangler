@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BLL.Models;
 using BLL.Models.InstaUser;
 
 namespace Bootstrapping.Services.Repositories
@@ -7,7 +6,7 @@ namespace Bootstrapping.Services.Repositories
     public interface IInstaUserRepository
     {
         OperationResult<InstaUser> GetUser(string id);
-        
+
         OperationResult<IEnumerable<InstaUser>> GetUsers();
     }
 }

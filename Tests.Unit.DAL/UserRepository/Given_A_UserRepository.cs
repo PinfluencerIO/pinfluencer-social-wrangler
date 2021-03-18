@@ -1,34 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Auth0.ManagementApi;
 using Auth0.ManagementApi.Models;
 using Crosscutting.Testing.Extensions;
 using DAL.UserManagement;
 using DAL.UserManagement.Repositories;
-using Facebook;
+using Newtonsoft.Json;
 using NSubstitute;
-using NSubstitute.Core.Arguments;
 using NUnit.Framework;
-using JsonConverter = Newtonsoft.Json.JsonConverter;
 
 namespace Tests.Unit.DAL.UserRepository
 {
     public abstract class Given_A_UserRepository : GivenWhenThen<Auth0UserRepository>
     {
+        protected const string TestId = "1234";
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected User TestUser;
-        protected const string TestId="1234";
 
         protected override void Given()
         {
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>();
-            
+
             Sut = new Auth0UserRepository(
                 new Auth0Context
                 {
-                    ManagementApiClient = new ManagementApiClient("token","domain", MockAuth0ManagementApiConnection)
+                    ManagementApiClient = new ManagementApiClient("token", "domain", MockAuth0ManagementApiConnection)
                 }
             );
         }
@@ -47,7 +44,7 @@ namespace Tests.Unit.DAL.UserRepository
                 .Received(1)
                 .GetAsync<User>(Arg.Any<Uri>(), Arg.Any<IDictionary<string, string>>(), Arg.Any<JsonConverter[]>());
         }
-        
+
         [Test]
         //TODO: flaky test
         public void Then_Valid_User_Is_Retrieved()

@@ -13,9 +13,10 @@ namespace Tests.Unit.DAL.InstaUserRepository
         protected override void Given()
         {
             MockFacebookClient = Substitute.For<FacebookClient>();
-            
+
             Sut = new FacebookInstaUserRepository(
-                new FacebookContext{
+                new FacebookContext
+                {
                     FacebookClient = MockFacebookClient
                 }
             );

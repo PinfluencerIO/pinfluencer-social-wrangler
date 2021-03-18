@@ -10,7 +10,7 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
         protected override void When()
         {
             var headerParams = new Dictionary<string, StringValues>();
-            headerParams.Add("InstaServiceKey","TestKey");
+            headerParams.Add("InstaServiceKey", "TestKey");
             HeaderDictionary = new HeaderDictionary(headerParams);
             ApiKeyFromConfig = "TestKey1";
 

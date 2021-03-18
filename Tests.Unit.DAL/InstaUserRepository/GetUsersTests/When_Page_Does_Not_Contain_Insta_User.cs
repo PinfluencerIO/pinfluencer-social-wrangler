@@ -24,11 +24,11 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         {
             Assert.IsEmpty(_result.Value);
         }
-        
+
         [Test]
         public void Then_The_Status_Is_Success()
         {
-            Assert.AreEqual(OperationResultEnum.Success,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
         }
     }
 }

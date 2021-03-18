@@ -3,7 +3,6 @@ using BLL.Models.InstaUser;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
 using NUnit.Framework;
-using Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
 using Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
 
 namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.FailTests
@@ -16,7 +15,7 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.FailTests
         {
             InstaUserCollection = Enumerable.Empty<InstaUser>();
             InstaUsersOperationResult = OperationResultEnum.Failed;
-            
+
             base.When();
 
             _result = Sut.GetAll();
@@ -25,7 +24,7 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.FailTests
         [Test]
         public void Then_Operation_Result_Fails()
         {
-            Assert.AreEqual(OperationResultEnum.Failed,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Failed, _result.Status);
         }
     }
 }

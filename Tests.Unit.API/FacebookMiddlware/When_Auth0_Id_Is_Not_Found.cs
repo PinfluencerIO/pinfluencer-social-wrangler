@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
-using NSubstitute;
-using Tests.Unit.API.FacebookMiddlware.Shared;
+﻿using Tests.Unit.API.FacebookMiddlware.Shared;
 
 namespace Tests.Unit.API.FacebookMiddlware
 {

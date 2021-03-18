@@ -1,11 +1,8 @@
 ﻿using System.Linq;
-using BLL.Models;
 using BLL.Models.Insights;
-using BLL.Models.Validation;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
 using Bootstrapping.Services.Repositories;
-using Crosscutting.CodeContracts;
 
 namespace BLL.InstagramFetcher.Services
 {
@@ -24,9 +21,8 @@ namespace BLL.InstagramFetcher.Services
         {
             var impressions = _impressionsRepository.GetImpressions(id);
             if (impressions.Status == OperationResultEnum.Success)
-            {
-                return new OperationResult<InstaInsightsCollection>(new InstaInsightsCollection(impressions.Value),OperationResultEnum.Success);
-            }
+                return new OperationResult<InstaInsightsCollection>(new InstaInsightsCollection(impressions.Value),
+                    OperationResultEnum.Success);
             return new OperationResult<InstaInsightsCollection>(new InstaInsightsCollection(
                 Enumerable.Empty<InstaImpression>()
             ), OperationResultEnum.Failed);

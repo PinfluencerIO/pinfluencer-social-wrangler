@@ -13,8 +13,8 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 
         protected override void When()
         {
-            SetSingleInsta("12321","user","Aidan Gan","this is my bio",121);
-            
+            SetSingleInsta("12321", "user", "Aidan Gan", "this is my bio", 121);
+
             base.When();
 
             _result = Sut.GetUsers();
@@ -23,37 +23,37 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         [Test]
         public void Then_Id_Is_Correct()
         {
-            Assert.AreEqual("12321",_result.Value.First().Identity.Id);
+            Assert.AreEqual("12321", _result.Value.First().Identity.Id);
         }
-        
+
         [Test]
         public void Then_Name_Is_Correct()
         {
-            Assert.AreEqual("Aidan Gan",_result.Value.First().Name);
+            Assert.AreEqual("Aidan Gan", _result.Value.First().Name);
         }
-        
+
         [Test]
         public void Then_Handle_Is_Correct()
         {
-            Assert.AreEqual("user",_result.Value.First().Identity.Handle);
+            Assert.AreEqual("user", _result.Value.First().Identity.Handle);
         }
-        
+
         [Test]
         public void Then_Bio_Is_Correct()
         {
-            Assert.AreEqual("this is my bio",_result.Value.First().Bio);
+            Assert.AreEqual("this is my bio", _result.Value.First().Bio);
         }
-        
+
         [Test]
         public void Then_Followers_Are_Correct()
         {
-            Assert.AreEqual(121,_result.Value.First().Followers);
+            Assert.AreEqual(121, _result.Value.First().Followers);
         }
-        
+
         [Test]
         public void Then_The_Status_Is_Successful()
         {
-            Assert.AreEqual(OperationResultEnum.Success,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
         }
     }
 }

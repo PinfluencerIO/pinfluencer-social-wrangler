@@ -3,8 +3,6 @@ using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
-using Bootstrapping.Services.Repositories;
-using DAL.Instagram;
 using DAL.UserManagement;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +18,7 @@ namespace API.InstaFetcher.Middleware
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class Auth0Middlware
     {
-        private RequestDelegate _next;
+        private readonly RequestDelegate _next;
 
         public Auth0Middlware(RequestDelegate next)
         {
@@ -42,11 +40,9 @@ namespace API.InstaFetcher.Middleware
             var audience = auth0Settings["ManagementDomain"];
 
             if (domain == null || clientId == null || clientSecret == null || audience == null)
-            {
                 await HandleError(context, "auth0 configuration settings are not valid");
-            }
-            
-            var authenticationApiClient = new AuthenticationApiClient(domain,authenticationConnection);
+
+            var authenticationApiClient = new AuthenticationApiClient(domain, authenticationConnection);
 
             try
             {
@@ -67,7 +63,7 @@ namespace API.InstaFetcher.Middleware
                 await HandleError(context, exception.Message);
             }
         }
-        
+
         private static async Task HandleError(HttpContext context, string message)
         {
             context
@@ -78,7 +74,7 @@ namespace API.InstaFetcher.Middleware
                 .ContentType = "application/json";
             await context
                 .Response
-                .WriteAsync(JsonConvert.SerializeObject(new { error = "auth0 authorization error", message }));
+                .WriteAsync(JsonConvert.SerializeObject(new {error = "auth0 authorization error", message}));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
         {
             ApiKeyFromConfig = configKey;
         }
-        
+
         protected override void When()
         {
             var headerParams = new Dictionary<string, StringValues>();

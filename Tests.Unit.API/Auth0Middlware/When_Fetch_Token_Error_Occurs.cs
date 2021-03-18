@@ -15,7 +15,7 @@ namespace Tests.Unit.API.Auth0Middlware
         {
             AddDefaultConfiguration();
             SetConfiguration();
-            
+
             MockAuthenticationConnection
                 .SendAsync<AccessTokenResponse>(
                     Arg.Any<HttpMethod>(),
@@ -24,7 +24,7 @@ namespace Tests.Unit.API.Auth0Middlware
                     Arg.Any<IDictionary<string, string>>()
                 )
                 .Throws<ErrorApiException>();
-            
+
             base.When();
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BLL.Models;
 using BLL.Models.Insights;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
@@ -34,7 +33,7 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
                 .Received(1)
                 .GetImpressions(Arg.Any<string>());
         }
-        
+
         [Test]
         public void Then_Get_Impressions_Insights_Was_Called_With_Correct_Id()
         {
@@ -42,15 +41,15 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
                 .Received()
                 .GetImpressions(Arg.Is(TestId));
         }
-        
-        protected IEnumerable<InstaImpression> GetSingleImpressionsColleciton(DateTime date,int impressions)
+
+        protected IEnumerable<InstaImpression> GetSingleImpressionsColleciton(DateTime date, int impressions)
         {
-            return new []
+            return new[]
             {
-                new InstaImpression(date,impressions)
+                new InstaImpression(date, impressions)
             };
         }
-        
+
         protected IEnumerable<InstaImpression> GetTwoImpressionsColleciton(
             DateTime date1,
             int impressions1,
@@ -58,16 +57,16 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
             int impressions2
         )
         {
-            return new []
+            return new[]
             {
-                new InstaImpression(date1,impressions1),
-                new InstaImpression(date2,impressions2)
+                new InstaImpression(date1, impressions1),
+                new InstaImpression(date2, impressions2)
             };
         }
-        
+
         protected void SetDefaultImpressionsColleciton()
         {
-            ImpressionsColleciton = GetSingleImpressionsColleciton(new DateTime(2000,1,1),5);
+            ImpressionsColleciton = GetSingleImpressionsColleciton(new DateTime(2000, 1, 1), 5);
             ImpressionsOperationResult = OperationResultEnum.Success;
         }
     }

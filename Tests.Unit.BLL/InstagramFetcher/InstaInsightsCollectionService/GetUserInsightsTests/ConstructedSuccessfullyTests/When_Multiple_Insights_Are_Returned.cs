@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using BLL.Models;
 using BLL.Models.Insights;
 using Bootstrapping.Services;
-using NUnit.Framework;
 using Bootstrapping.Services.Enum;
+using NUnit.Framework;
 using Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
 
-namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.ConstructedSuccessfullyTests
+namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.
+    ConstructedSuccessfullyTests
 {
     public class When_Multiple_Insights_Are_Returned : When_Get_User_Insights_Is_Called
     {
@@ -16,11 +16,11 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
         protected override void When()
         {
             ImpressionsColleciton = GetTwoImpressionsColleciton(
-                new DateTime(2000,1,1), 5,
-                new DateTime(2001,2,2),10
+                new DateTime(2000, 1, 1), 5,
+                new DateTime(2001, 2, 2), 10
             );
             ImpressionsOperationResult = OperationResultEnum.Success;
-            
+
             base.When();
 
             _result = Sut.GetUserInsights(TestId);
@@ -29,25 +29,25 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
         [Test]
         public void Then_Impressions_Count_Are_Correct()
         {
-            Assert.True(new []{5,10}.SequenceEqual(_result.Value.Impressions.Select(x => x.Count)));
+            Assert.True(new[] {5, 10}.SequenceEqual(_result.Value.Impressions.Select(x => x.Count)));
         }
-        
+
         [Test]
         public void Then_Impressions_Day_Is_Correct()
         {
-            Assert.True(new []{1,2}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Day)));
+            Assert.True(new[] {1, 2}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Day)));
         }
-        
+
         [Test]
         public void Then_Impressions_Month_Is_Correct()
         {
-            Assert.True(new []{1,2}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Month)));
+            Assert.True(new[] {1, 2}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Month)));
         }
-        
+
         [Test]
         public void Then_Impressions_Year_Is_Correct()
         {
-            Assert.True(new []{2000,2001}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Year)));
+            Assert.True(new[] {2000, 2001}.SequenceEqual(_result.Value.Impressions.Select(x => x.Time.Year)));
         }
 
         [Test]

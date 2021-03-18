@@ -1,8 +1,6 @@
 ﻿using BLL.InstagramFetcher.Services;
-using BLL.Models.InstaUser;
 using Bootstrapping.Services.Enum;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace API.InstaFetcher.Controllers
 {
@@ -23,7 +21,8 @@ namespace API.InstaFetcher.Controllers
             var users = _instaUserService.GetAll();
             if (users.Status != OperationResultEnum.Failed)
                 return new JsonResult(users.Value);
-            var error = new JsonResult(new {error = "failed to fetch instagram users", message = "spurious error"}) {StatusCode = 500};
+            var error = new JsonResult(new {error = "failed to fetch instagram users", message = "spurious error"})
+                {StatusCode = 500};
             return error;
         }
     }

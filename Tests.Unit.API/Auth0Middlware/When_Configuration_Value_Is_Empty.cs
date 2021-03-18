@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using NSubstitute;
-using NUnit.Framework;
-using Tests.Unit.API.FacebookMiddlware.Shared;
-using When_Error_Occurs = Tests.Unit.API.Auth0Middlware.Shared.When_Error_Occurs;
+﻿using NUnit.Framework;
+using Tests.Unit.API.Auth0Middlware.Shared;
 
 namespace Tests.Unit.API.Auth0Middlware
 {
@@ -18,15 +15,14 @@ namespace Tests.Unit.API.Auth0Middlware
         {
             _key = key;
         }
-        
+
         protected override void When()
         {
             AddDefaultConfiguration();
             AddConfiguration(_key, default);
             SetConfiguration();
-            
+
             base.When();
         }
-
     }
 }

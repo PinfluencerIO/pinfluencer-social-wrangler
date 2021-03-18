@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using BLL.Models;
 using BLL.Models.Insights;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
@@ -15,9 +14,9 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
         protected override void When()
         {
             ImpressionsOperationResult = OperationResultEnum.Failed;
-            
+
             ImpressionsColleciton = Enumerable.Empty<InstaImpression>();
-            
+
             base.When();
 
             _result = Sut.GetUserInsights(TestId);

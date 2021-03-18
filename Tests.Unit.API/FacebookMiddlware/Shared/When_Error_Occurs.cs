@@ -21,7 +21,7 @@ namespace Tests.Unit.API.FacebookMiddlware.Shared
                 .Received()
                 .StatusCode = Arg.Is(401);
         }
-        
+
         [Test]
         public void Then_Response_Status_Code_Was_Set_Once()
         {

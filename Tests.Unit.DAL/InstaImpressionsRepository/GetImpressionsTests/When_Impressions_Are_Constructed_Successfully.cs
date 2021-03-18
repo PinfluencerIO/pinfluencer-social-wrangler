@@ -16,11 +16,11 @@ namespace Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
         {
             MockFacebookClient
                 .Get(Arg.Any<string>(), Arg.Any<object>())
-                .Returns(new 
-                { 
+                .Returns(new
+                {
                     data = new dynamic[]
                     {
-                        new 
+                        new
                         {
                             name = "impressions",
                             period = "day",
@@ -55,31 +55,31 @@ namespace Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
         [Test]
         public void Then_Impressions_Counts_Are_Valid()
         {
-            Assert.True(new []{4,66,123}.SequenceEqual(_result.Value.Select(x => x.Count)));
+            Assert.True(new[] {4, 66, 123}.SequenceEqual(_result.Value.Select(x => x.Count)));
         }
-        
+
         [Test]
         public void Then_Impressions_Years_Are_Valid()
         {
-            Assert.True(new []{2017,2017,2017}.SequenceEqual(_result.Value.Select(x => x.Time.Year)));
+            Assert.True(new[] {2017, 2017, 2017}.SequenceEqual(_result.Value.Select(x => x.Time.Year)));
         }
-        
+
         [Test]
         public void Then_Impressions_Months_Are_Valid()
         {
-            Assert.True(new []{5,5,5}.SequenceEqual(_result.Value.Select(x => x.Time.Month)));
+            Assert.True(new[] {5, 5, 5}.SequenceEqual(_result.Value.Select(x => x.Time.Month)));
         }
-        
+
         [Test]
         public void Then_Impressions_Days_Are_Valid()
         {
-            Assert.True(new []{4,5,6}.SequenceEqual(_result.Value.Select(x => x.Time.Day)));
+            Assert.True(new[] {4, 5, 6}.SequenceEqual(_result.Value.Select(x => x.Time.Day)));
         }
-        
+
         [Test]
         public void Then_Response_Is_Successful()
         {
-            Assert.AreEqual(OperationResultEnum.Success,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
         }
     }
 }

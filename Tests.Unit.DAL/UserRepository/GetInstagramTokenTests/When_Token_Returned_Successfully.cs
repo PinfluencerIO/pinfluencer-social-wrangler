@@ -13,7 +13,7 @@ namespace Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
         {
             TestUser = new User
             {
-                Identities = new Identity[]
+                Identities = new[]
                 {
                     new Identity
                     {
@@ -21,7 +21,7 @@ namespace Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
                     }
                 }
             };
-            
+
             base.When();
 
             _result = Sut.GetInstagramToken(TestId);
@@ -30,13 +30,13 @@ namespace Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
         [Test]
         public void Then_Correct_Token_Is_Returned()
         {
-            Assert.AreEqual("1234567",_result.Value);
+            Assert.AreEqual("1234567", _result.Value);
         }
-        
+
         [Test]
         public void Then_Response_Is_Successful()
         {
-            Assert.AreEqual(OperationResultEnum.Success,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DAL.Instagram.Repositories
 {
     public class FacebookInstaUserRepository : IInstaUserRepository
     {
-        private FacebookContext _facebookContext;
+        private readonly FacebookContext _facebookContext;
 
         public FacebookInstaUserRepository(FacebookContext facebookContext)
         {
@@ -23,7 +23,7 @@ namespace DAL.Instagram.Repositories
 
         public OperationResult<InstaUser> GetUser(string id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public OperationResult<IEnumerable<InstaUser>> GetUsers()
@@ -35,11 +35,11 @@ namespace DAL.Instagram.Repositories
                 var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>(result);
 
                 new PostCondition().Evaluate(dataArray != null);
-                
+
                 var instaAccounts = dataArray.Data.Select(x => x.Insta).Where(x => x != null);
                 return new OperationResult<IEnumerable<InstaUser>>(instaAccounts.Select(x => new InstaUser(
-                    new InstaUserIdentity(x.Username,x.Id),x.Name,x.Bio,x.Followers
-                )),OperationResultEnum.Success);
+                    new InstaUserIdentity(x.Username, x.Id), x.Name, x.Bio, x.Followers
+                )), OperationResultEnum.Success);
             }
             catch (Exception)
             {

@@ -1,7 +1,6 @@
 ﻿using BLL.InstagramFetcher.Services;
 using Bootstrapping.Services.Enum;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace API.InstaFetcher.Controllers
 {
@@ -22,7 +21,9 @@ namespace API.InstaFetcher.Controllers
             var insights = _instaInsightsCollectionService.GetUserInsights(user);
             if (insights.Status != OperationResultEnum.Failed)
                 return new JsonResult(insights.Value);
-            var error = new JsonResult(new {error = "failed to fetch instagram impressions for user", message = "user was not found"}) {StatusCode = 400};
+            var error = new JsonResult(new
+                    {error = "failed to fetch instagram impressions for user", message = "user was not found"})
+                {StatusCode = 400};
             return error;
         }
     }

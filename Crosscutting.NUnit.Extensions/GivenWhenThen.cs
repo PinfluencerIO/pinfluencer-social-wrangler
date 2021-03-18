@@ -16,12 +16,10 @@ namespace Crosscutting.Testing.Extensions
 
         protected virtual void Given()
         {
-            
         }
 
         protected virtual void When()
         {
-            
         }
     }
 }

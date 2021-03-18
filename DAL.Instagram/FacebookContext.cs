@@ -10,15 +10,15 @@ namespace DAL.Instagram
 
         public string Get(string url, string fields)
         {
-            return JsonConvert.SerializeObject(FacebookClient.Get(url,new RequestFields
+            return JsonConvert.SerializeObject(FacebookClient.Get(url, new RequestFields
             {
-                fields=fields
+                fields = fields
             }));
         }
-        
+
         public string Get<T>(string url, T parameters)
         {
-            return JsonConvert.SerializeObject(FacebookClient.Get(url,parameters));
+            return JsonConvert.SerializeObject(FacebookClient.Get(url, parameters));
         }
     }
 }

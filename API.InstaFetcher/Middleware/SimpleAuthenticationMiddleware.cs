@@ -1,10 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Bootstrapping.Services.Enum;
-using Bootstrapping.Services.Factories;
-using Bootstrapping.Services.Repositories;
-using DAL.Instagram;
-using DAL.Instagram.Dtos;
-using Facebook;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +9,7 @@ namespace API.InstaFetcher.Middleware
 {
     public class SimpleAuthenticationMiddleware
     {
-        private RequestDelegate _next;
+        private readonly RequestDelegate _next;
 
         public SimpleAuthenticationMiddleware(RequestDelegate next)
         {
@@ -28,18 +22,13 @@ namespace API.InstaFetcher.Middleware
         )
         {
             StringValues header;
-            var isHeaderPresent = context.Request.Headers.TryGetValue("InstaServiceKey",out header);
+            var isHeaderPresent = context.Request.Headers.TryGetValue("InstaServiceKey", out header);
             if (!isHeaderPresent)
-            {
                 await HandleError(context, "no 'InstaServiceKey' value was present in the request header");
-            }
 
             var key = configuration["SimpleAuthKey"];
 
-            if (header.ToString().Equals(key))
-            {
-                await _next.Invoke(context);
-            }
+            if (header.ToString().Equals(key)) await _next.Invoke(context);
             await HandleError(context, "'InstaServiceKey' value was not valid");
         }
 
@@ -53,7 +42,7 @@ namespace API.InstaFetcher.Middleware
                 .ContentType = "application/json";
             await context
                 .Response
-                .WriteAsync(JsonConvert.SerializeObject(new { error = "authorization error", message }));
+                .WriteAsync(JsonConvert.SerializeObject(new {error = "authorization error", message}));
         }
     }
 }

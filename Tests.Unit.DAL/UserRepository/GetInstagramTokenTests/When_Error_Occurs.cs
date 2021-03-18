@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Auth0.Core.Exceptions;
 using Auth0.ManagementApi.Models;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
@@ -20,20 +19,20 @@ namespace Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
             MockAuth0ManagementApiConnection
                 .GetAsync<User>(Arg.Any<Uri>(), Arg.Any<IDictionary<string, string>>(), Arg.Any<JsonConverter[]>())
                 .Throws<AggregateException>();
-            
+
             _result = Sut.GetInstagramToken(TestId);
         }
-        
+
         [Test]
         public void Then_Token_Is_Empty()
         {
-            Assert.AreEqual("",_result.Value);
+            Assert.AreEqual("", _result.Value);
         }
-        
+
         [Test]
         public void Then_Response_Is_Fail()
         {
-            Assert.AreEqual(OperationResultEnum.Failed,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Failed, _result.Status);
         }
     }
 }

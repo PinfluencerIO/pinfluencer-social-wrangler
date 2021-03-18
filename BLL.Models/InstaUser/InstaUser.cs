@@ -2,14 +2,6 @@
 {
     public class InstaUser
     {
-        public InstaUserIdentity Identity { get; }
-
-        public string Name { get; }
-
-        public string Bio { get; }
-
-        public int Followers { get; }
-
         public InstaUser(InstaUserIdentity identity, string name, string bio, int followers)
         {
             Identity = identity;
@@ -17,5 +9,13 @@
             Bio = bio;
             Followers = followers;
         }
+
+        public InstaUserIdentity Identity { get; }
+
+        public string Name { get; }
+
+        public string Bio { get; }
+
+        public int Followers { get; }
     }
 }

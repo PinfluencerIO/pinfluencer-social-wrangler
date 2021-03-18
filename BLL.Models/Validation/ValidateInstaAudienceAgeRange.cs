@@ -6,8 +6,8 @@ namespace BLL.Models.Validation
 {
     public class ValidateInstaAudienceAgeRange : IValidatable
     {
-        public Tuple<int,int> AgeRange { get; set; }
-        
+        public Tuple<int, int> AgeRange { get; set; }
+
         public IEnumerable<Tuple<int, int>> AgeRanges { get; } = new[]
         {
             new Tuple<int, int>(13, 17),
@@ -20,7 +20,8 @@ namespace BLL.Models.Validation
 
         public bool Validate()
         {
-            return AgeRanges.Any(fixedAgeRange => fixedAgeRange.Item1 == AgeRange.Item1 && fixedAgeRange.Item2 == AgeRange.Item2);
+            return AgeRanges.Any(fixedAgeRange =>
+                fixedAgeRange.Item1 == AgeRange.Item1 && fixedAgeRange.Item2 == AgeRange.Item2);
         }
     }
 }

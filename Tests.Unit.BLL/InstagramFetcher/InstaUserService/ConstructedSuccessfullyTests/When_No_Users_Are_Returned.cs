@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using BLL.Models.InstaUser;
-using Bootstrapping.Services;
 using NUnit.Framework;
 using Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared;
 
@@ -16,7 +15,7 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
 
             Result = Sut.GetAll();
         }
-        
+
         [Test]
         public void Then_Insta_User_Array_Is_Empty_Valid()
         {
@@ -26,13 +25,13 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
         [Test]
         public void Then_Has_Multiple_Was_False()
         {
-            Assert.AreEqual(false,Result.Value.HasMultiple);
+            Assert.AreEqual(false, Result.Value.HasMultiple);
         }
-        
+
         [Test]
         public void Then_Is_Empty_Was_True()
         {
-            Assert.AreEqual(true,Result.Value.IsEmpty);
+            Assert.AreEqual(true, Result.Value.IsEmpty);
         }
     }
 }

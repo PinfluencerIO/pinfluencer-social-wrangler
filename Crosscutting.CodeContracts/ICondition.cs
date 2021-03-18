@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Crosscutting.CodeContracts
 {
@@ -7,10 +6,7 @@ namespace Crosscutting.CodeContracts
     {
         public void Evaluate(bool predicate)
         {
-            if (!predicate)
-            {
-                throw new T();
-            }
+            if (!predicate) throw new T();
         }
     }
 }

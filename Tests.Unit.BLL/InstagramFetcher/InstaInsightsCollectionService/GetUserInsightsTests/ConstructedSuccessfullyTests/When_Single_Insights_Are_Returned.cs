@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
-using BLL.Models;
 using BLL.Models.Insights;
 using Bootstrapping.Services;
-using NUnit.Framework;
 using Bootstrapping.Services.Enum;
+using NUnit.Framework;
 using Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
 
-namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.ConstructedSuccessfullyTests
+namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.
+    ConstructedSuccessfullyTests
 {
     [TestFixture]
     public class When_Single_Insights_Are_Returned : When_Get_User_Insights_Is_Called
@@ -16,9 +16,9 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
 
         protected override void When()
         {
-            ImpressionsColleciton = GetSingleImpressionsColleciton(new DateTime(2000,1,1), 5);
+            ImpressionsColleciton = GetSingleImpressionsColleciton(new DateTime(2000, 1, 1), 5);
             ImpressionsOperationResult = OperationResultEnum.Success;
-            
+
             base.When();
 
             _result = Sut.GetUserInsights(TestId);
@@ -29,19 +29,19 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUser
         {
             Assert.AreEqual(5, _result.Value.Impressions.First().Count);
         }
-        
+
         [Test]
         public void Then_Impressions_Day_Is_Correct()
         {
             Assert.AreEqual(1, _result.Value.Impressions.First().Time.Day);
         }
-        
+
         [Test]
         public void Then_Impressions_Month_Is_Correct()
         {
             Assert.AreEqual(1, _result.Value.Impressions.First().Time.Month);
         }
-        
+
         [Test]
         public void Then_Impressions_Year_Is_Correct()
         {

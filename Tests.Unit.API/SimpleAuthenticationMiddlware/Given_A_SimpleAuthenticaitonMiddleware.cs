@@ -8,14 +8,14 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
 {
     public class Given_A_SimpleAuthenticaitonMiddleware : GivenWhenThen<SimpleAuthenticationMiddleware>
     {
-        protected RequestDelegate MockNextMiddlware;
+        protected string ApiKeyFromConfig;
+        protected IHeaderDictionary HeaderDictionary;
         protected IConfiguration MockConfiguration;
         protected HttpContext MockHttpContext;
-        
-        protected HttpResponse MockHttpResponse;
         protected HttpRequest MockHttpRequest;
-        protected IHeaderDictionary HeaderDictionary;
-        protected string ApiKeyFromConfig;
+
+        protected HttpResponse MockHttpResponse;
+        protected RequestDelegate MockNextMiddlware;
 
         protected override void Given()
         {
@@ -34,7 +34,7 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
                 .Headers
                 .Returns(HeaderDictionary);
             MockConfiguration
-                [Arg.Any<string>()]
+                    [Arg.Any<string>()]
                 .Returns(ApiKeyFromConfig);
 
             MockHttpContext
@@ -43,7 +43,7 @@ namespace Tests.Unit.API.SimpleAuthenticationMiddlware
             MockHttpContext
                 .Response
                 .Returns(MockHttpResponse);
-            
+
             Sut.Invoke(
                 MockHttpContext,
                 MockConfiguration

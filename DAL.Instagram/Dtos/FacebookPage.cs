@@ -1,5 +1,4 @@
-﻿using Facebook;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace DAL.Instagram.Dtos
 {

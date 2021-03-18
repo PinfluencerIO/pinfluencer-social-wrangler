@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using BLL.Models.InstaUser;
-using Bootstrapping.Services;
 using NUnit.Framework;
 using Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared;
 
@@ -19,29 +17,30 @@ namespace Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessful
 
             Result = Sut.GetAll();
         }
-        
+
         [Test]
         public void Then_Insta_User_Ids_Were_Valid()
         {
-            Assert.True(new[]{"123213","544341"}.SequenceEqual(Result.Value.InstaUserIdentities.Select(x => x.Id)));
+            Assert.True(new[] {"123213", "544341"}.SequenceEqual(Result.Value.InstaUserIdentities.Select(x => x.Id)));
         }
-        
+
         [Test]
         public void Then_Insta_User_Handles_Were_Valid()
         {
-            Assert.True(new[]{"example","example2"}.SequenceEqual(Result.Value.InstaUserIdentities.Select(x => x.Handle)));
+            Assert.True(
+                new[] {"example", "example2"}.SequenceEqual(Result.Value.InstaUserIdentities.Select(x => x.Handle)));
         }
-        
+
         [Test]
         public void Then_Has_Multiple_Was_True()
         {
-            Assert.AreEqual(true,Result.Value.HasMultiple);
+            Assert.AreEqual(true, Result.Value.HasMultiple);
         }
-        
+
         [Test]
         public void Then_Is_Empty_Was_False()
         {
-            Assert.AreEqual(false,Result.Value.IsEmpty);
+            Assert.AreEqual(false, Result.Value.IsEmpty);
         }
     }
 }

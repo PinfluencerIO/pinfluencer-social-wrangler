@@ -11,16 +11,15 @@ namespace Tests.Unit.API.Auth0Middlware
     //TODO: add tests for failing to parse URIs
     public abstract class Given_A_Auth0Middlware : GivenWhenThen<global::API.InstaFetcher.Middleware.Auth0Middlware>
     {
-        protected RequestDelegate MockNextMiddlware;
-        protected IConfiguration MockConfiguration;
+        protected const string TestToken = "123456789";
         protected IConfigurationSection MockAuth0Configuration;
+        protected Auth0Context MockAuth0Context;
+        protected IAuthenticationConnection MockAuthenticationConnection;
+        protected IConfiguration MockConfiguration;
         protected HttpContext MockHttpContext;
         protected HttpResponse MockHttpResponse;
-        protected Auth0Context MockAuth0Context;
         protected IManagementConnection MockManagementConnection;
-        protected IAuthenticationConnection MockAuthenticationConnection;
-
-        protected const string TestToken = "123456789";
+        protected RequestDelegate MockNextMiddlware;
 
         protected override void Given()
         {
@@ -54,23 +53,23 @@ namespace Tests.Unit.API.Auth0Middlware
         protected void AddDefaultConfiguration()
         {
             MockAuth0Configuration
-                [Arg.Is("Id")]
+                    [Arg.Is("Id")]
                 .Returns("12345");
             MockAuth0Configuration
-                [Arg.Is("Secret")]
+                    [Arg.Is("Secret")]
                 .Returns("54321");
             MockAuth0Configuration
-                [Arg.Is("Domain")]
+                    [Arg.Is("Domain")]
                 .Returns("www.management/api");
             MockAuth0Configuration
-                [Arg.Is("ManagementDomain")]
+                    [Arg.Is("ManagementDomain")]
                 .Returns("www.management/api");
         }
-        
+
         protected void AddConfiguration(string key, string value)
         {
             MockAuth0Configuration
-                [Arg.Is(key)]
+                    [Arg.Is(key)]
                 .Returns(value);
         }
 

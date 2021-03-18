@@ -29,11 +29,11 @@ namespace Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
         {
             Assert.IsEmpty(_result.Value);
         }
-        
+
         [Test]
         public void Then_The_Status_Is_Fail()
         {
-            Assert.AreEqual(OperationResultEnum.Failed,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Failed, _result.Status);
         }
     }
 }

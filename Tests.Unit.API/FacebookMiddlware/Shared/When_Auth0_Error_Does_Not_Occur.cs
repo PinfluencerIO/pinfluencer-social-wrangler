@@ -13,7 +13,7 @@ namespace Tests.Unit.API.FacebookMiddlware.Shared
                 .Received()
                 .GetInstagramToken(Arg.Is(TestAuth0Id));
         }
-        
+
         [Test]
         public void Then_Token_Was_Inspected()
         {
@@ -21,7 +21,7 @@ namespace Tests.Unit.API.FacebookMiddlware.Shared
                 .Received()
                 .Get("debug_token", Arg.Any<object>());
         }
-        
+
         [Test]
         public void Then_Correct_Token_Was_Inspected()
         {
@@ -29,7 +29,7 @@ namespace Tests.Unit.API.FacebookMiddlware.Shared
                 .Received()
                 .Get(Arg.Any<string>(), Arg.Is<RequestDebugTokenParams>(x => x.input_token.Equals(TestToken)));
         }
-        
+
         [Test]
         public void Then_Graph_Api_Was_Called_Once()
         {
@@ -37,7 +37,7 @@ namespace Tests.Unit.API.FacebookMiddlware.Shared
                 .Received(1)
                 .Get(Arg.Any<string>(), Arg.Any<object>());
         }
-        
+
         [Test]
         public void Then_User_Repository_Was_Fetched_From_Once()
         {

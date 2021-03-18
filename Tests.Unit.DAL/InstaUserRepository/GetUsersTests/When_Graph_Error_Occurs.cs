@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BLL.Models.InstaUser;
 using Bootstrapping.Services;
 using Bootstrapping.Services.Enum;
@@ -30,11 +29,11 @@ namespace Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         {
             Assert.IsEmpty(_result.Value);
         }
-        
+
         [Test]
         public void Then_The_Status_Is_Fail()
         {
-            Assert.AreEqual(OperationResultEnum.Failed,_result.Status);
+            Assert.AreEqual(OperationResultEnum.Failed, _result.Status);
         }
     }
 }

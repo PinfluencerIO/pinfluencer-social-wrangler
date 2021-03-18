@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Bootstrapping.Services;
-using Bootstrapping.Services.Enum;
+﻿using Bootstrapping.Services.Enum;
 using Facebook;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
@@ -19,12 +16,12 @@ namespace Tests.Unit.API.FacebookMiddlware
 
             TokenFetchResult = OperationResultEnum.Success;
             MockFacebookClient
-                .Get(Arg.Any<string>(),Arg.Any<object>())
+                .Get(Arg.Any<string>(), Arg.Any<object>())
                 .Throws<FacebookOAuthException>();
 
             base.When();
         }
-        
+
         [Test]
         public void Then_Middlware_Short_Circuits()
         {
@@ -40,7 +37,7 @@ namespace Tests.Unit.API.FacebookMiddlware
                 .Received()
                 .StatusCode = Arg.Is(401);
         }
-        
+
         [Test]
         public void Then_Response_Status_Code_Was_Set_Once()
         {
