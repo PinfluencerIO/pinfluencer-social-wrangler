@@ -43,13 +43,13 @@ namespace Pinf.InstaService.API.InstaFetcher
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-
+            
+            app.UseRouting();
+            
             app.UseMiddleware<SimpleAuthenticationMiddleware>()
                 .UseMiddleware<Auth0Middlware>()
                 .UseMiddleware<FacebookMiddlware>();
-
-            app.UseRouting();
-
+   
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
