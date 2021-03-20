@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinf.InstaService.Bootstrapping.Services\Pinf.InstaService.Bootstrapping.Services.csproj" />
+      <ProjectReference Include="..\Pinf.InstaService.Crosscutting.CodeContracts\Pinf.InstaService.Crosscutting.CodeContracts.csproj" />
+    </ItemGroup>
+
+</Project>
