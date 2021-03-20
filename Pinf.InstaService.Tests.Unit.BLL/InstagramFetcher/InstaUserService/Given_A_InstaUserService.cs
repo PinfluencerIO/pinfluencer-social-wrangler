@@ -5,7 +5,7 @@ using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService
 {
     public abstract class
-        Given_A_InstaUserService : GivenWhenThen<global::Pinf.InstaService.BLL.InstagramFetcher.Services.InstaUserService>
+        Given_A_InstaUserService : GivenWhenThen<InstaService.BLL.InstagramFetcher.Services.InstaUserService>
     {
         protected IInstaUserRepository MockInstaUserRepository;
 
@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService
         {
             MockInstaUserRepository = Substitute.For<IInstaUserRepository>();
 
-            Sut = new global::Pinf.InstaService.BLL.InstagramFetcher.Services.InstaUserService(MockInstaUserRepository);
+            Sut = new InstaService.BLL.InstagramFetcher.Services.InstaUserService(MockInstaUserRepository);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Pinf.InstaService.Bootstrapping.Services.Factories;
-using Facebook;
+﻿using Facebook;
+using Pinf.InstaService.Bootstrapping.Services.Factories;
 
 namespace Pinf.InstaService.DAL.Instagram.Factories
 {

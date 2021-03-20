@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Auth0.ManagementApi;
 using Auth0.ManagementApi.Models;
-using Pinf.InstaService.DAL.UserManagement;
-using Pinf.InstaService.DAL.UserManagement.Repositories;
 using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.DAL.UserManagement;
+using Pinf.InstaService.DAL.UserManagement.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
 {

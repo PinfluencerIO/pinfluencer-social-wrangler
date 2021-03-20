@@ -1,7 +1,7 @@
 ﻿using System;
 using Auth0.AuthenticationApi;
-using Pinf.InstaService.Bootstrapping.Services.Factories;
 using Microsoft.Extensions.Configuration;
+using Pinf.InstaService.Bootstrapping.Services.Factories;
 
 namespace Pinf.InstaService.DAL.UserManagement.Factories
 {

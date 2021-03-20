@@ -6,7 +6,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollect
 {
     public abstract class
         Given_A_InstaInsightsCollectionService : GivenWhenThen<
-            global::Pinf.InstaService.BLL.InstagramFetcher.Services.InstaInsightsCollectionService>
+            InstaService.BLL.InstagramFetcher.Services.InstaInsightsCollectionService>
     {
         protected IInstaImpressionsRepository MockImpressionsInsightsRepository;
 
@@ -14,7 +14,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollect
         {
             MockImpressionsInsightsRepository = Substitute.For<IInstaImpressionsRepository>();
 
-            Sut = new global::Pinf.InstaService.BLL.InstagramFetcher.Services.InstaInsightsCollectionService(
+            Sut = new InstaService.BLL.InstagramFetcher.Services.InstaInsightsCollectionService(
                 MockImpressionsInsightsRepository
             );
         }

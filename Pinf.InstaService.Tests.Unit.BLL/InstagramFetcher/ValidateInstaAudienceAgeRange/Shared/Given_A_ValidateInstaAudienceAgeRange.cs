@@ -4,7 +4,8 @@ using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.ValidateInstaAudienceAgeRange.Shared
 {
     public abstract class
-        Given_A_ValidateInstaAudienceAgeRange : GivenWhenThen<InstaService.BLL.Models.Validation.ValidateInstaAudienceAgeRange>
+        Given_A_ValidateInstaAudienceAgeRange : GivenWhenThen<
+            InstaService.BLL.Models.Validation.ValidateInstaAudienceAgeRange>
     {
         protected int AgeMax;
         protected int AgeMin;

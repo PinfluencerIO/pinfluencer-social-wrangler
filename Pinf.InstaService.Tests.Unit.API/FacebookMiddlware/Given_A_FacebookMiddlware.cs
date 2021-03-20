@@ -13,7 +13,7 @@ using Pinf.InstaService.DAL.Instagram;
 namespace Pinf.InstaService.Tests.Unit.API.FacebookMiddlware
 {
     public abstract class
-        Given_A_FacebookMiddlware : GivenWhenThen<global::Pinf.InstaService.API.InstaFetcher.Middleware.FacebookMiddlware>
+        Given_A_FacebookMiddlware : GivenWhenThen<InstaService.API.InstaFetcher.Middleware.FacebookMiddlware>
     {
         protected const string TestAuth0Id = "12345";
         protected FacebookContext FacebookContext;
@@ -37,7 +37,7 @@ namespace Pinf.InstaService.Tests.Unit.API.FacebookMiddlware
             MockFacebookClientFactory = Substitute.For<IFacebookClientFactory>();
             MockFacebookClient = Substitute.For<FacebookClient>();
 
-            Sut = new global::Pinf.InstaService.API.InstaFetcher.Middleware.FacebookMiddlware(MockNextMiddlware);
+            Sut = new InstaService.API.InstaFetcher.Middleware.FacebookMiddlware(MockNextMiddlware);
         }
 
         protected override void When()

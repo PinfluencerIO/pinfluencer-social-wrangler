@@ -1,8 +1,8 @@
-﻿using Pinf.InstaService.DAL.Instagram;
-using Pinf.InstaService.DAL.Instagram.Repositories;
-using Facebook;
+﻿using Facebook;
 using NSubstitute;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.DAL.Instagram;
+using Pinf.InstaService.DAL.Instagram.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository
 {

@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Facebook;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Pinf.InstaService.Bootstrapping.Services.Enum;
 using Pinf.InstaService.Bootstrapping.Services.Factories;
 using Pinf.InstaService.Bootstrapping.Services.Repositories;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Dtos;
-using Facebook;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Pinf.InstaService.API.InstaFetcher.Middleware
 {

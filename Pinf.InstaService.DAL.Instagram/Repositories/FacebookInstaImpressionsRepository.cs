@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using Pinf.InstaService.BLL.Models.Insights;
 using Pinf.InstaService.Bootstrapping.Services;
 using Pinf.InstaService.Bootstrapping.Services.Enum;
 using Pinf.InstaService.Bootstrapping.Services.Repositories;
-using Newtonsoft.Json;
-using Pinf.InstaService.BLL.Models.Insights;
 using Pinf.InstaService.Crosscutting.CodeContracts;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 

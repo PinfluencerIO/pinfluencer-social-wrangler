@@ -1,5 +1,11 @@
 using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Pinf.InstaService.API.InstaFetcher.Middleware;
+using Pinf.InstaService.BLL.InstagramFetcher.Services;
 using Pinf.InstaService.Bootstrapping.Services.Factories;
 using Pinf.InstaService.Bootstrapping.Services.Repositories;
 using Pinf.InstaService.DAL.Instagram;
@@ -8,12 +14,6 @@ using Pinf.InstaService.DAL.Instagram.Repositories;
 using Pinf.InstaService.DAL.UserManagement;
 using Pinf.InstaService.DAL.UserManagement.Factories;
 using Pinf.InstaService.DAL.UserManagement.Repositories;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Pinf.InstaService.API.InstaFetcher.Middleware;
-using Pinf.InstaService.BLL.InstagramFetcher.Services;
 
 namespace Pinf.InstaService.API.InstaFetcher
 {

@@ -9,7 +9,8 @@ using Pinf.InstaService.DAL.UserManagement;
 namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
 {
     //TODO: add tests for failing to parse URIs
-    public abstract class Given_A_Auth0Middlware : GivenWhenThen<global::Pinf.InstaService.API.InstaFetcher.Middleware.Auth0Middlware>
+    public abstract class
+        Given_A_Auth0Middlware : GivenWhenThen<InstaService.API.InstaFetcher.Middleware.Auth0Middlware>
     {
         protected const string TestToken = "123456789";
         protected IConfigurationSection MockAuth0Configuration;
@@ -36,7 +37,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
                 .Response
                 .Returns(MockHttpResponse);
 
-            Sut = new global::Pinf.InstaService.API.InstaFetcher.Middleware.Auth0Middlware(MockNextMiddlware);
+            Sut = new InstaService.API.InstaFetcher.Middleware.Auth0Middlware(MockNextMiddlware);
         }
 
         protected override void When()

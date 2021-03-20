@@ -3,11 +3,11 @@ using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
-using Pinf.InstaService.DAL.UserManagement;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Pinf.InstaService.DAL.UserManagement;
 
 namespace Pinf.InstaService.API.InstaFetcher.Middleware
 {

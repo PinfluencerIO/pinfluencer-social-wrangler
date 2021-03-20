@@ -5,7 +5,8 @@ using Pinf.InstaService.Bootstrapping.Services;
 using Pinf.InstaService.Bootstrapping.Services.Enum;
 using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.FailTests
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.
+    FailTests
 {
     public class When_Insights_Fails_To_Be_Returned : When_Get_User_Insights_Is_Called
     {
