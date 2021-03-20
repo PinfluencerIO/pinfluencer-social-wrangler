@@ -22,14 +22,14 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
         )
         {
             StringValues header;
-            var isHeaderPresent = context.Request.Headers.TryGetValue("InstaServiceKey", out header);
+            var isHeaderPresent = context.Request.Headers.TryGetValue("Simple-Auth-Key", out header);
             if (!isHeaderPresent)
-                await HandleError(context, "no 'InstaServiceKey' value was present in the request header");
+                await HandleError(context, "no 'Simple-Auth-Key' value was present in the request header");
 
-            var key = configuration["SimpleAuthKey"];
+            var key = configuration["Simple-Auth-Key"];
 
             if (header.ToString().Equals(key)) await _next.Invoke(context);
-            await HandleError(context, "'InstaServiceKey' value was not valid");
+            await HandleError(context, "'Simple-Auth-Key' value was not valid");
         }
 
         private static async Task HandleError(HttpContext context, string message)

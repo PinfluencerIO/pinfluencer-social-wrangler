@@ -10,7 +10,7 @@ namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware
         protected override void When()
         {
             var headerParams = new Dictionary<string, StringValues>();
-            headerParams.Add("InstaServiceKey", "TestKey");
+            headerParams.Add("Simple-Auth-Key", "TestKey");
             HeaderDictionary = new HeaderDictionary(headerParams);
             ApiKeyFromConfig = "TestKey1";
 
