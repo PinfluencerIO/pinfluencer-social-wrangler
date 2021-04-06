@@ -38,7 +38,7 @@ jobs:
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
           Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
       - name: Zip
-        run: zip -r deploy.zip deploy
+        run: zip -r -j deploy.zip deploy
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
