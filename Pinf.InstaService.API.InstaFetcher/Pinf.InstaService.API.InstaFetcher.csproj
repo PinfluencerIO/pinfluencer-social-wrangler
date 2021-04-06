@@ -15,4 +15,10 @@
       <PackageReference Include="AutoMapper" Version="10.1.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include=".ebextensions\https-instance-securitygroup.config">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
