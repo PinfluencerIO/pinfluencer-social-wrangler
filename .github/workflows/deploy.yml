@@ -39,9 +39,6 @@ jobs:
           Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
       - name: Zip
         run: zip -r deploy.zip deploy
-      - name: Get Previous tag
-        id: previoustag
-        uses: WyriHaximus/github-action-get-previous-tag@v1
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
@@ -49,7 +46,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: Pinfluencer
           environment_name: Pinfluencer
-          version_label: ${{ steps.previoustag.outputs.tag }}
+          version_label: v1.0.0
           region: eu-west-2
           deployment_package: deploy.zip
         
