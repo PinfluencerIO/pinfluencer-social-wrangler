@@ -33,8 +33,8 @@ jobs:
         with:
           files: 'deploy/appsettings.json'
         env:
-          Auth0.Domain: 'pinfluencer.eu.auth0.com'
-          Auth0.ManagementDomain: 'https://pinfluencer.eu.auth0.com/api/v2/'
+          Auth0.Domain: ${{ secrets.AUTH0_DOMAIN }}
+          Auth0.ManagementDomain: ${{ secrets.AUTH0_MANAGEMENT_DOMAIN }}
           Auth0.Id: ${{ secrets.AUTH0_ID }}
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
       - name: Zip
