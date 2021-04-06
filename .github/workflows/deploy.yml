@@ -25,7 +25,6 @@ jobs:
         run: dotnet publish ./Pinf.InstaService.API.InstaFetcher -c Release -o deploy
       - name: Add procfile and add appsettings
         run: |
-          mkdir deploy
           touch deploy/Procfile
           touch deploy/appsettings.json
           echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
