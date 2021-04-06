@@ -28,14 +28,11 @@ jobs:
           touch deploy/Procfile
           touch deploy/appsettings.json
           echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
-      - name: App Settings Variable Substitution
+      - name: App settings variable substitution
         uses: microsoft/variable-substitution@v1
         with:
           files: 'deploy/appsettings.json'
         env:
-          Logging.LogLevel.Default: 'Debug'
-          Logging.LogLevel.System: 'Information'
-          Logging.LogLevel.Microsoft: 'Information'
           Auth0.Domain: 'pinfluencer.eu.auth0.com'
           Auth0.ManagementDomain: 'https://pinfluencer.eu.auth0.com/api/v2/'
           Auth0.Id: ${{ secrets.AUTH0_ID }}
