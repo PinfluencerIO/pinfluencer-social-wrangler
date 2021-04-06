@@ -25,8 +25,10 @@ jobs:
         run: dotnet publish ./Pinf.InstaService.API.InstaFetcher -c Release -o deploy
       - name: Add procfile
         run: |
+          touch deploy/appsettings.json
           touch deploy/Procfile
           echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
+          echo '{}' >> deploy/appsettings.json
       - name: App settings variable substitution
         uses: microsoft/variable-substitution@v1
         with:
