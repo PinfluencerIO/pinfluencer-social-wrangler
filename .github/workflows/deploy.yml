@@ -25,19 +25,18 @@ jobs:
         run: dotnet publish ./Pinf.InstaService.API.InstaFetcher -c Release -o deploy
       - name: Add procfile
         run: |
-          touch deploy/appsettings.json
           touch deploy/Procfile
           echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
-          echo '{}' >> deploy/appsettings.json
       - name: App settings variable substitution
         uses: microsoft/variable-substitution@v1
         with:
-          files: 'deploy/appsettings.json'
+          files: 'deploy/appsettings.Production.json'
         env:
           Auth0.Domain: ${{ secrets.AUTH0_DOMAIN }}
           Auth0.ManagementDomain: ${{ secrets.AUTH0_MANAGEMENT_DOMAIN }}
           Auth0.Id: ${{ secrets.AUTH0_ID }}
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
+          Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
       - name: Zip
         run: zip -r deploy.zip deploy
       - name: Get Previous tag
