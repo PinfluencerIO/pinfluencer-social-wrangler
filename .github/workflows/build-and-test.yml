@@ -1,13 +1,13 @@
-name: .NET
+name: Build And Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
 
