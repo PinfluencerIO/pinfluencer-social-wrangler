@@ -9,5 +9,4 @@ bin/
 *.sln.DotSettings.user
 
 # IGNORE WEB CONFIG STUFF
-*appsettings.json
 *appsettings.Development.json
