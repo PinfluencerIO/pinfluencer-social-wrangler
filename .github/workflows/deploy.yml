@@ -44,7 +44,7 @@ jobs:
       - name: Zip
         run: |
           cd deploy
-          zip -r deploy.zip *
+          zip -r deploy.zip .
       - name: Get commit sha
         id: vars
         shell: bash
