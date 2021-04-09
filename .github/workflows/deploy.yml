@@ -42,7 +42,9 @@ jobs:
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
           Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
       - name: Zip
-        run: zip -r deploy.zip deploy/*
+        run: |
+          cd deploy
+          zip -r deploy.zip *
       - name: Get commit sha
         id: vars
         shell: bash
@@ -57,6 +59,6 @@ jobs:
           environment_name: Pinfluencer
           version_label: ${{ steps.vars.outputs.sha_short }}
           region: eu-west-2
-          deployment_package: deploy.zip
+          deployment_package: deploy/deploy.zip
         
 
