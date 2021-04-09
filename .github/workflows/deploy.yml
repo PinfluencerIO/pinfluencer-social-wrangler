@@ -4,7 +4,7 @@ on:
   release:
     branches: [ master ]
   push:
-    branches: [ master ]
+    branches: [ master,develop ]
 
 jobs:
   build:
@@ -21,8 +21,18 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-      - name: Publish
+      - name: Get commit sha and branch
+        id: vars
+        shell: bash
+        run: |
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      - name: Publish production
+        if: ${{ ${{ steps.vars.outputs.branch }} == 'master' }}
         run: dotnet publish ./Pinf.InstaService.API.InstaFetcher -c Release -o deploy
+      - name: Publish develop
+        if: ${{ ${{ steps.vars.outputs.branch }} == 'develop' }}
+        run: dotnet publish ./Pinf.InstaService.API.InstaFetcher -c Debug -o deploy  
       - name: Add procfile
         run: |
           touch deploy/Procfile
@@ -45,18 +55,25 @@ jobs:
         run: |
           cd deploy
           zip -r deploy.zip .
-      - name: Get commit sha
-        id: vars
-        shell: bash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - name: Deploy to EB
+      - name: Deploy to production EB
+        if: ${{ ${{ steps.vars.outputs.branch }} == 'master' }}
         uses: einaregilsson/beanstalk-deploy@v16
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: Pinfluencer
           environment_name: Pinfluencer
+          version_label: ${{ steps.vars.outputs.sha_short }}
+          region: eu-west-2
+          deployment_package: deploy/deploy.zip
+      - name: Deploy to development EB
+        if: ${{ ${{ steps.vars.outputs.branch }} == 'develop' }}
+        uses: einaregilsson/beanstalk-deploy@v16
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: Pinfluencer
+          environment_name: Pinfluencer-Dev
           version_label: ${{ steps.vars.outputs.sha_short }}
           region: eu-west-2
           deployment_package: deploy/deploy.zip
