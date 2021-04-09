@@ -15,10 +15,4 @@
       <PackageReference Include="AutoMapper" Version="10.1.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include=".platform\nginx\conf.d\01_custom.conf">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
-
 </Project>
