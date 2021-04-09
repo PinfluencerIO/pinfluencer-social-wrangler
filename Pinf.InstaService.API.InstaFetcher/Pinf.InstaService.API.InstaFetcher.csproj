@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".ebextensions\nginx\conf.d\myconf.conf">
+      <Content Include=".platform\nginx\conf.d\01_custom.conf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
