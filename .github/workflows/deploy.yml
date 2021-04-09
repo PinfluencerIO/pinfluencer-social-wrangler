@@ -42,7 +42,7 @@ jobs:
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
           Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
       - name: Zip
-        run: zip -r -j deploy.zip deploy
+        run: zip -r deploy.zip deploy/*
       - name: Get commit sha
         id: vars
         shell: bash
