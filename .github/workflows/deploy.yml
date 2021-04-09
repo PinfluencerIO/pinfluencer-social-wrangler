@@ -28,7 +28,9 @@ jobs:
           touch deploy/Procfile
           echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
       - name: Add proof of domain ( for cert )
-        run: touch .well-known/pki-validation/BC074CC58368F01C6FB8CF426F41E3D1.txt
+        run: |
+          mkdir -p deploy/.well-known/pki-validation
+          touch deploy/.well-known/pki-validation/BC074CC58368F01C6FB8CF426F41E3D1.txt
       - name: App settings variable substitution
         uses: microsoft/variable-substitution@v1
         with:
