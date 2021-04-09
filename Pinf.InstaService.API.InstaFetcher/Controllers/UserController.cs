@@ -25,5 +25,9 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
                 {StatusCode = 500};
             return error;
         }
-    }
+        
+        [Route("")]
+        [HttpPost]
+        public JsonResult Create() => new JsonResult(new {status = "profile being created"}) {StatusCode = 200};
+}
 }
