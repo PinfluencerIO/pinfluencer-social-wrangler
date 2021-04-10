@@ -43,11 +43,6 @@ namespace Pinf.InstaService.API.InstaFetcher
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.All
-            });
-            
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
             
             app.UseRouting();
