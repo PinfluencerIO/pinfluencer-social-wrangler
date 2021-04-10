@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
                 await HandleError(context, "no 'Simple-Auth-Key' value was present in the request header");
 
             var key = configuration["Simple-Auth-Key"];
+
+            if (key == null) throw new ArgumentException("config is null");
 
             if (header.ToString().Equals(key)) await _next.Invoke(context);
             await HandleError(context, "'Simple-Auth-Key' value was not valid");
