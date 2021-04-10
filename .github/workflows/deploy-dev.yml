@@ -30,7 +30,7 @@ jobs:
         run: |
           touch deploy/Procfile
           echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
-          echo '\nweb2: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5200/' >> deploy/Procfile
+          echo 'web2: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5200/' >> deploy/Procfile
       - name: Add proof of domain ( for cert )
         run: |
           mkdir -p deploy/.well-known/pki-validation
