@@ -29,7 +29,7 @@ jobs:
       - name: Add procfile
         run: |
           touch deploy/Procfile
-          echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
+          echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/' >> deploy/Procfile
           echo 'web2: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5200/' >> deploy/Procfile
       - name: Add proof of domain ( for cert )
         run: |
