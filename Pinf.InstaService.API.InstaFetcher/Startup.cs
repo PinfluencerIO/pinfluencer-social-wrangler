@@ -2,6 +2,7 @@ using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
@@ -42,6 +43,11 @@ namespace Pinf.InstaService.API.InstaFetcher
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.All
+            });
+            
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
             
             app.UseRouting();
