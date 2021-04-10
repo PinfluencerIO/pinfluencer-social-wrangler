@@ -58,17 +58,6 @@ namespace Pinf.InstaService.API.InstaFetcher
             
             app.UseRouting();
 
-            app.Use((context,next) =>
-            {
-                var isHeaderPresent = context.Request.Headers.TryGetValue("Simple-Auth-Key", out var header);
-
-                var key = _configuration["Simple-Auth-Key"];
-
-                context.Response.WriteAsync($"{header}\n{key}");
-                
-                return Task.CompletedTask;
-            });
-            
             app.UseMiddleware<SimpleAuthenticationMiddleware>()
                 .UseMiddleware<Auth0Middlware>()
                 .UseMiddleware<FacebookMiddlware>();
