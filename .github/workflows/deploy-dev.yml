@@ -48,7 +48,7 @@ jobs:
         run: |
           cd deploy
           mkdir api
-          cp appsettings.json /api
+          cp appsettings.json api/appsettings.json
       - name: Zip
         run: |
           cd deploy
