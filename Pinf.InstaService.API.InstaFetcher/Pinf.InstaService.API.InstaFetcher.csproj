@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".ebextensions\nginx\nginx.conf">
+      <Content Include=".platform\nginx\conf.d\elasticbeanstalk\01_custom.conf">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>
