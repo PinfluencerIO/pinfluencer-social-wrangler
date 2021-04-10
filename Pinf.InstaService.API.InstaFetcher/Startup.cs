@@ -62,8 +62,6 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .UseMiddleware<Auth0Middlware>()
                 .UseMiddleware<FacebookMiddlware>();
 
-            app.Use((context, next) => context.Response.WriteAsync(context.Request.Path.Value));
-            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
