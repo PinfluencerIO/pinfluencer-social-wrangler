@@ -34,7 +34,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
             var normalizedHeader = Regex.Replace(header.ToString(), @"\s", "");
             var normalizedKey = Regex.Replace(key, @"\s", "");
             
-            if (normalizedHeader.Contains(normalizedKey)) await _next.Invoke(context);
+            if (normalizedKey.Contains(normalizedHeader)) await _next.Invoke(context);
             await HandleError(context, "'Simple-Auth-Key' value was not valid");
         }
 
