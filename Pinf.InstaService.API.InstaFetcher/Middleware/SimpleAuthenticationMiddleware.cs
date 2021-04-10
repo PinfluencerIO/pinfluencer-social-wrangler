@@ -29,10 +29,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
 
             var key = configuration["Simple-Auth-Key"];
 
-            if (key == null) throw new ArgumentException("config is null");
-
-            if (header.ToString().Equals(key)) await _next.Invoke(context);
-            await HandleError(context, "'Simple-Auth-Key' value was not valid");
+            await context.Response.WriteAsync($"BREAK {key} BREAK {header.ToString()} BREAK");
         }
 
         private static async Task HandleError(HttpContext context, string message)
