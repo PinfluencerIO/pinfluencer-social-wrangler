@@ -1,10 +1,14 @@
+using System.Threading.Tasks;
 using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Primitives;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
 using Pinf.InstaService.Bootstrapping.Services.Factories;
@@ -20,6 +24,13 @@ namespace Pinf.InstaService.API.InstaFetcher
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<Auth0Context>();
@@ -46,6 +57,17 @@ namespace Pinf.InstaService.API.InstaFetcher
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
             
             app.UseRouting();
+
+            app.Use((context,next) =>
+            {
+                var isHeaderPresent = context.Request.Headers.TryGetValue("Simple-Auth-Key", out var header);
+
+                var key = _configuration["Simple-Auth-Key"];
+
+                context.Response.WriteAsync($"{header}\n{key}");
+                
+                return Task.CompletedTask;
+            });
             
             app.UseMiddleware<SimpleAuthenticationMiddleware>()
                 .UseMiddleware<Auth0Middlware>()
