@@ -44,11 +44,16 @@ jobs:
           Auth0.Id: ${{ secrets.AUTH0_ID }}
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
           Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
+      - name: Copy app settings for API
+        run: |
+          cd deploy
+          mkdir api
+          cp appsettings.json /api
       - name: Zip
         run: |
           cd deploy
           zip -r deploy.zip .
-      - name: Deploy to production EB
+      - name: Deploy to development EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
