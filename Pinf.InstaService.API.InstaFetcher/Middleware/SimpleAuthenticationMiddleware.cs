@@ -31,16 +31,23 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
 
             var key = configuration["Simple-Auth-Key"];
 
-            var normalizedHeader = Regex.Replace(header.ToString(), @"\s", "");
-            var normalizedKey = Regex.Replace(key, @"\s", "");
-
-            if (normalizedKey == normalizedHeader)
+            if (key == null)
             {
-                await _next.Invoke(context);
+                await HandleError(context, "'Simple-Auth-Key' value was not found in config");
             }
             else
             {
-                await HandleError(context, "'Simple-Auth-Key' value was not valid");
+                var normalizedHeader = Regex.Replace(header.ToString(), @"\s", "");
+                var normalizedKey = Regex.Replace(key, @"\s", "");
+
+                if (normalizedKey == normalizedHeader)
+                {
+                    await _next.Invoke(context);
+                }
+                else
+                {
+                    await HandleError(context, "'Simple-Auth-Key' value was not valid");
+                }
             }
         }
 
