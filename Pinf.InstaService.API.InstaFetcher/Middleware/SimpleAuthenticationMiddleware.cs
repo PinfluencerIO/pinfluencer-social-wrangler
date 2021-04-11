@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
+using static System.String;
 
 namespace Pinf.InstaService.API.InstaFetcher.Middleware
 {
@@ -28,8 +31,24 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
 
             var key = configuration["Simple-Auth-Key"];
 
-            if (header.ToString().Equals(key)) await _next.Invoke(context);
-            await HandleError(context, "'Simple-Auth-Key' value was not valid");
+            if (key == null)
+            {
+                await HandleError(context, "'Simple-Auth-Key' value was not found in config");
+            }
+            else
+            {
+                var normalizedHeader = Regex.Replace(header.ToString(), @"\s", "");
+                var normalizedKey = Regex.Replace(key, @"\s", "");
+
+                if (normalizedKey == normalizedHeader)
+                {
+                    await _next.Invoke(context);
+                }
+                else
+                {
+                    await HandleError(context, "'Simple-Auth-Key' value was not valid");
+                }
+            }
         }
 
         private static async Task HandleError(HttpContext context, string message)

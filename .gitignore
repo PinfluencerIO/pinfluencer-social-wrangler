@@ -1,5 +1,5 @@
 ﻿# IGNORE IDE CONFIG
-/.idea/
+*.idea/
 
 # IGNORE PACKAGE AND ASSEMBLY AND BINARY STUFF
 obj/

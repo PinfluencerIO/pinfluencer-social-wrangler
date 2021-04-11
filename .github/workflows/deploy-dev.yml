@@ -5,10 +5,10 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  compile-and-deploy:
 
     runs-on: ubuntu-latest
-
+    if: "!contains(github.event.head_commit.message, 'deploy skip')"
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
@@ -29,7 +29,7 @@ jobs:
       - name: Add procfile
         run: |
           touch deploy/Procfile
-          echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5000/' >> deploy/Procfile
+          echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/' >> deploy/Procfile
       - name: Add proof of domain ( for cert )
         run: |
           mkdir -p deploy/.well-known/pki-validation
@@ -44,11 +44,16 @@ jobs:
           Auth0.Id: ${{ secrets.AUTH0_ID }}
           Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
           Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
+      - name: Copy app settings for API
+        run: |
+          cd deploy
+          mkdir api
+          cp appsettings.json api/appsettings.json
       - name: Zip
         run: |
           cd deploy
           zip -r deploy.zip .
-      - name: Deploy to production EB
+      - name: Deploy to development EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
