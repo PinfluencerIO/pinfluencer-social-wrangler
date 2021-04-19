@@ -11,8 +11,8 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
         public string Application { get; set; }
         
         public string File { get; set; }
-        
-        public string FilePath { get; set; }
+
+        public string FilePath { get; set; } = "/";
         
         public string BucketName { get; set; }
 

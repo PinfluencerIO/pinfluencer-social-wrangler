@@ -20,7 +20,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
 
         private static void UploadFileToS3Bucket(AwsCredentialsDto credentials, AwsDeployDto deploy) =>
             new TransferUtility(new AmazonS3Client(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region)))
-                .Upload($"{deploy.FilePath}/{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
+                .Upload($"{deploy.FilePath}{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
 
         private static void DeployApplication(AwsCredentialsDto credentials, AwsDeployDto deploy)
         {

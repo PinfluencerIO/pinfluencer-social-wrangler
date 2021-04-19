@@ -7,6 +7,7 @@ using System.Reflection;
 namespace Pinf.InstaService.Bootstrapping.DevOps
 {
     //TODO: configure dependency injection
+    //TODO: configure IConfiguration to use options agnostic to config file/enviroment variables etc...
     class Program
     {
         static void Main(string[] args)
@@ -30,8 +31,6 @@ namespace Pinf.InstaService.Bootstrapping.DevOps
 
             var targetClass = target.DeclaringType;
 
-            Console.WriteLine($"Class: {targetClass?.Name}");
-
             Debug.Assert(targetClass != null, nameof(targetClass) + " != null");
 
             foreach (var name in targetClass.GetConstructors().First().GetParameters().Select(x => GetArgument(args,$"--{x.Name}")))
@@ -42,10 +41,10 @@ namespace Pinf.InstaService.Bootstrapping.DevOps
             var methodParams = args
                 .Skip(1)
                 .Skip(targetClass
-                        .GetConstructors()
-                        .First()
-                        .GetParameters()
-                        .Length)
+                    .GetConstructors()
+                    .First()
+                    .GetParameters()
+                    .Length)
                 .Take(target
                     .GetParameters()
                     .Length)
