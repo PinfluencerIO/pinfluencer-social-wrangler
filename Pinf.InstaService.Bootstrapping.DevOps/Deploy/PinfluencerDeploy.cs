@@ -9,6 +9,12 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
 {
     public class PinfluencerDeploy
     {
+        [Target(Name = "test")]
+        public void Test()
+        {
+            Console.Write("test");
+        }
+        
         [Target(Name = "deploy")]
         public void Deploy()
         {

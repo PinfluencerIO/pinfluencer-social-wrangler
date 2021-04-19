@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <AssemblyName>DevOps</AssemblyName>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
@@ -11,18 +12,6 @@
       <PackageReference Include="AWSSDK.S3" Version="3.7.0.10" />
       <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0096" />
       <PackageReference Include="Octokit" Version="0.50.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="bin\Debug\netcoreapp3.1\NewFile1.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="bin\Debug\netcoreapp3.1\7912de7-Dev-Test.zip" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="bin\Debug\netcoreapp3.1" />
     </ItemGroup>
 
 </Project>
