@@ -12,7 +12,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
         )
         {
             var env = new AwsEnviromentFactory()
-                .GetEnviroment(GitAdapter.GetBranch($"{Directory.GetCurrentDirectory()}{PinfluencerDeployConstants.RepositoryLocation}"));
+                .GetEnviroment(GitAdapter.GetBranch(PinfluencerDeployConstants.RepositoryLocation));
             AwsElasticBeanstalkDeployFacade
                 .UploadAndDeploy(
                     new AwsCredentialsDto
@@ -27,28 +27,50 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                         BucketName = AwsPinfluencerConstants.S3Bucket,
                         Enviromnment = env.Id,
                         EnviromnmentName = env.Name,
-                        File = PinfluencerDeployConstants.DeployBundle,
+                        File = PinfluencerDeployConstants.ZippedDeployBundle,
                         VersionLabel = GitAdapter.GetLatestCommit(PinfluencerDeployConstants.RepositoryLocation),
-                        FilePath = PinfluencerDeployConstants.DeployBundleLocation
+                        FilePath = PinfluencerDeployConstants.RepositoryLocation
                     }
                 );
+            return this;
+        }
+
+        public PinfluencerBeanstalkBuilder CreateAppsettings(AppsettingsDto appsettingsDto)
+        {
+            var appsettingsBuilder = new AppsettingsBuilder<AppsettingsDto>(PinfluencerDeployConstants.GetAbsoluteLocation(
+                PinfluencerDeployConstants.AppsettingsFile), appsettingsDto);
+            return this;
+        }
+        
+        public PinfluencerBeanstalkBuilder ZipBundle()
+        {
+            ZipFileAdapter
+                .CreateFromDirectory(
+                    PinfluencerDeployConstants.GetAbsoluteLocation(
+                        PinfluencerDeployConstants.DeployBundleLocation),
+                    PinfluencerDeployConstants.GetAbsoluteLocation(
+                        PinfluencerDeployConstants.ZippedDeployBundle
+                    ));
             return this;
         }
         
         public PinfluencerBeanstalkBuilder CreateProcFile()
         {
-            new AwsLinxNetCoreProcFileBuilder(PinfluencerDeployConstants.DeployBundleLocation)
+            new AwsLinxNetCoreProcFileBuilder(PinfluencerDeployConstants.GetAbsoluteLocation(
+                    PinfluencerDeployConstants.DeployBundleLocation))
                 .Create()
                 .AddLine(new ProcLineDto
                 {
-                    Namespace = PinfluencerHostConstants.ProcessNamespace
+                    Namespace = PinfluencerHostConstants.ProcessNamespace,
+                    Port = PinfluencerHostConstants.ReverseProxyPort
                 });
             return this;
         }
         
         public PinfluencerBeanstalkBuilder CreateNginx()
         {
-            new AwsBeanstalkExtensionNginxConfigBuilder(PinfluencerDeployConstants.DeployBundleLocation)
+            new AwsBeanstalkExtensionNginxConfigBuilder(PinfluencerDeployConstants.GetAbsoluteLocation(
+                    PinfluencerDeployConstants.DeployBundleLocation))
                 .Create()
                 .AddReverseProxy(new NginxReverseProxyDto
                 {

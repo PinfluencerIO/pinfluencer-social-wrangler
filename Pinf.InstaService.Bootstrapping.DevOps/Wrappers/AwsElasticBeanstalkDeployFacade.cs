@@ -1,4 +1,5 @@
-﻿using Amazon;
+﻿using System;
+using Amazon;
 using Amazon.ElasticBeanstalk;
 using Amazon.ElasticBeanstalk.Model;
 using Amazon.Internal;
@@ -14,24 +15,25 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
     {
         public static void UploadAndDeploy(AwsCredentialsDto credentials, AwsDeployDto deploy)
         {
+            Console.WriteLine($"{deploy.FilePath}\\{deploy.File}");
             UploadFileToS3Bucket(credentials, deploy);
             DeployApplication(credentials, deploy);
         }
 
         private static void UploadFileToS3Bucket(AwsCredentialsDto credentials, AwsDeployDto deploy) =>
             new TransferUtility(new AmazonS3Client(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region)))
-                .Upload($"{deploy.FilePath}{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
+                .Upload($"{deploy.FilePath}\\{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
 
         private static void DeployApplication(AwsCredentialsDto credentials, AwsDeployDto deploy)
         {
             var client = new AmazonElasticBeanstalkClient(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region));
-            client.CreateApplicationVersionAsync(new CreateApplicationVersionRequest(deploy.Application,"Test")
+            client.CreateApplicationVersionAsync(new CreateApplicationVersionRequest(deploy.Application,deploy.VersionLabel)
             {
                 SourceBundle = new S3Location{S3Bucket = deploy.BucketName, S3Key = $"{deploy.Application}/{deploy.File}"}
             }).Wait();
             client.UpdateEnvironmentAsync(new UpdateEnvironmentRequest
             {
-                VersionLabel = "Test",
+                VersionLabel = deploy.VersionLabel,
                 ApplicationName = deploy.Application,
                 EnvironmentId = deploy.Enviromnment,
                 EnvironmentName = deploy.EnviromnmentName
