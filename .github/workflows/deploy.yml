@@ -4,12 +4,19 @@ on:
   release:
     branches: [ master ]
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
 
 jobs:
   compile-and-deploy:
 
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ nodeploy ]')"
+    env:
+      AUTH0_ID: ${{ secrets.AUTH0_ID }}
+      AUTH0_SECRET: ${{ secrets.AUTH0_SECRET }}
+      SIMPLE_AUTH_KEY: ${{ secrets.SIMPLE_AUTH_KEY }}
+      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -21,44 +28,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-      - name: Get commit sha
-        id: vars
-        shell: bash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - name: Publish production
-        run: dotnet publish ./Pinf.InstaService.API.InstaFetcher -c Release -o deploy
-      - name: Add procfile
-        run: |
-          touch deploy/Procfile
-          echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/' >> deploy/Procfile
-      - name: Add proof of domain ( for cert )
-        run: |
-          mkdir -p deploy/.well-known/pki-validation
-          touch deploy/.well-known/pki-validation/BC074CC58368F01C6FB8CF426F41E3D1.txt
-      - name: App settings variable substitution
-        uses: microsoft/variable-substitution@v1
-        with:
-          files: 'deploy/appsettings.json'
-        env:
-          Auth0.Domain: 'pinfluencer.eu.auth0.com'
-          Auth0.ManagementDomain: 'https://pinfluencer.eu.auth0.com/api/v2/'
-          Auth0.Id: ${{ secrets.AUTH0_ID }}
-          Auth0.Secret: ${{ secrets.AUTH0_SECRET }}
-          Simple-Auth-Key: ${{ secrets.SIMPLE_AUTH_KEY }}
-      - name: Zip
-        run: |
-          cd deploy
-          zip -r deploy.zip .
-      - name: Deploy to production EB
-        uses: einaregilsson/beanstalk-deploy@v16
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: Pinfluencer
-          environment_name: Pinfluencer
-          version_label: ${{ steps.vars.outputs.sha_short }}
-          region: eu-west-2
-          deployment_package: deploy/deploy.zip
+      - name: Deploy
+        run: ./RunDevOps deploy
         
 

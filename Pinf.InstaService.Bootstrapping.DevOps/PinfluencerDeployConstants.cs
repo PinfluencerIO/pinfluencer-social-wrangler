@@ -6,7 +6,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps
     {
         public static readonly string DeployBundleLocation = "deploy";
         public static readonly string AppsettingsFile = $"{DeployBundleLocation}\\appsettings.json";
-        private static readonly int RepositoryLocationParentFolders = 4;
+        private static readonly int RepositoryLocationParentFolders = 0;
         public static string RepositoryLocation
         {
             get
