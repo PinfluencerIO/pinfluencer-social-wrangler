@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Amazon;
 using Amazon.ElasticBeanstalk;
 using Amazon.ElasticBeanstalk.Model;
@@ -15,14 +16,14 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
     {
         public static void UploadAndDeploy(AwsCredentialsDto credentials, AwsDeployDto deploy)
         {
-            Console.WriteLine($"{deploy.FilePath}\\{deploy.File}");
+            Console.WriteLine($"{deploy.FilePath}{Path.DirectorySeparatorChar}{deploy.File}");
             UploadFileToS3Bucket(credentials, deploy);
             DeployApplication(credentials, deploy);
         }
 
         private static void UploadFileToS3Bucket(AwsCredentialsDto credentials, AwsDeployDto deploy) =>
             new TransferUtility(new AmazonS3Client(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region)))
-                .Upload($"{deploy.FilePath}\\{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
+                .Upload($"{deploy.FilePath}{Path.DirectorySeparatorChar}{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
 
         private static void DeployApplication(AwsCredentialsDto credentials, AwsDeployDto deploy)
         {

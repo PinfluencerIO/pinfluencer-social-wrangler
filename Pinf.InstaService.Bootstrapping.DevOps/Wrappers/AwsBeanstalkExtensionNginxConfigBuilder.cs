@@ -16,7 +16,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
         
         public AwsBeanstalkExtensionNginxConfigBuilder AddReverseProxy(NginxReverseProxyDto config)
         {
-            using var fs = File.OpenWrite($"{_path}\\{AwsBeanstalkConstants.NginxExtensionFile}");
+            using var fs = File.OpenWrite($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}");
             var firstLine = $"location {config.Url} "+"{"+Environment.NewLine;
             var secondLine = $"\tproxy_pass\thttp://127.0.0.1:{config.Port}/;{Environment.NewLine}";
             var thirdLine = "}";
@@ -27,9 +27,9 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
         
         public AwsBeanstalkExtensionNginxConfigBuilder Create()
         {
-            var file = new FileInfo($"{_path}\\{AwsBeanstalkConstants.NginxExtensionFile}");
+            var file = new FileInfo($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}");
             file.Directory?.Create();
-            using var fs = File.Create($"{_path}\\{AwsBeanstalkConstants.NginxExtensionFile}");
+            using var fs = File.Create($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}");
             return this;
         }
     }

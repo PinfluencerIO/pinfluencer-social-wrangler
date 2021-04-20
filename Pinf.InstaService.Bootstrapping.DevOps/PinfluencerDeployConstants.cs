@@ -5,7 +5,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps
     public static class PinfluencerDeployConstants
     {
         public static readonly string DeployBundleLocation = "deploy";
-        public static readonly string AppsettingsFile = $"{DeployBundleLocation}\\appsettings.json";
+        public static readonly string AppsettingsFile = $"{DeployBundleLocation}{Path.DirectorySeparatorChar}appsettings.json";
         private static readonly int RepositoryLocationParentFolders = 0;
         public static string RepositoryLocation
         {
@@ -26,7 +26,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps
             {
                 dir = Directory.GetParent(dir).FullName;
             }
-            return $"{dir}\\{relativePathToFile}";
+            return $"{dir}{Path.DirectorySeparatorChar}{relativePathToFile}";
         }
         public static readonly string ZippedDeployBundle = "Test.zip";
     }
