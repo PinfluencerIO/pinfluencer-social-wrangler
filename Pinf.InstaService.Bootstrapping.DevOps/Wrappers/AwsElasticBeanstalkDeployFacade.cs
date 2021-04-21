@@ -25,6 +25,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
             new TransferUtility(new AmazonS3Client(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region)))
                 .Upload($"{deploy.FilePath}{Path.DirectorySeparatorChar}{deploy.File}", deploy.BucketName, $"{deploy.Application}/{deploy.File}");
 
+        // TODO: validate errors :)) write tests :))))
         private static void DeployApplication(AwsCredentialsDto credentials, AwsDeployDto deploy)
         {
             var client = new AmazonElasticBeanstalkClient(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region));
