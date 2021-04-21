@@ -78,12 +78,6 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                 {
                     Url = PinfluencerHostConstants.ApiUrl,
                     Port = PinfluencerHostConstants.ReverseProxyPort
-                })
-                .AddTextResponse(new NginxTextResponseDto
-                {
-                    Status = 200,
-                    Text = "cert verified",
-                    Url = "/.well-known/pki-validation/BC074CC58368F01C6FB8CF426F41E3D1.txt"
                 });
             return this;
         }
