@@ -2,23 +2,25 @@
 
 namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
 {
-    public class AwsEnviromentFactory
+    public class AwsApplicationEnviromentFactory
     {
-        public AwsEnviromentDto GetEnviroment(string branch)
+        public AwsApplicationEnviromentDto GetEnviroment(string appVersion)
         {
-            switch (branch)
+            switch (EnviromentFactory.GetEnviroment())
             {
-                case GitConstants.ProductionBranch:
-                    return new AwsEnviromentDto
+                case EnvironmentType.Production:
+                    return new AwsApplicationEnviromentDto
                     {
                         Id = AwsPinfluencerConstants.EnvProd,
-                        Name = AwsPinfluencerConstants.EnvNameProd
+                        Name = AwsPinfluencerConstants.EnvNameProd,
+                        AppVersion = $"{appVersion}-Prod"
                     };
-                case GitConstants.DevelopmentBranch:
-                    return new AwsEnviromentDto
+                case EnvironmentType.Develop:
+                    return new AwsApplicationEnviromentDto
                     {
-                        Id = AwsPinfluencerConstants.EnvDev,
-                        Name = AwsPinfluencerConstants.EnvNameDev
+                        Id = AwsPinfluencerConstants.EnvProd,
+                        Name = AwsPinfluencerConstants.EnvNameProd,
+                        AppVersion = $"{appVersion}-Dev"
                     };
                 default:
                     Debug.Fail("exception!!");
@@ -26,9 +28,9 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
             }
         }
         
-        public static AwsEnviromentDto GetEmpty()
+        public static AwsApplicationEnviromentDto GetEmpty()
         {
-            return new AwsEnviromentDto();
+            return new AwsApplicationEnviromentDto();
         }
     }
 }

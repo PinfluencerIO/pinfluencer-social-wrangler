@@ -11,8 +11,8 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
             string awsToken
         )
         {
-            var env = new AwsEnviromentFactory()
-                .GetEnviroment(GitAdapter.GetBranch(PinfluencerDeployConstants.RepositoryLocation));
+            var env = new AwsApplicationEnviromentFactory()
+                .GetEnviroment(GitAdapter.GetLatestCommit(PinfluencerDeployConstants.RepositoryLocation));
             AwsElasticBeanstalkDeployFacade
                 .UploadAndDeploy(
                     new AwsCredentialsDto
@@ -27,8 +27,8 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                         BucketName = AwsPinfluencerConstants.S3Bucket,
                         Enviromnment = env.Id,
                         EnviromnmentName = env.Name,
-                        File = PinfluencerDeployConstants.ZippedDeployBundle,
-                        VersionLabel = GitAdapter.GetLatestCommit(PinfluencerDeployConstants.RepositoryLocation),
+                        File = $"{env.AppVersion}.zip",
+                        VersionLabel = env.AppVersion,
                         FilePath = PinfluencerDeployConstants.RepositoryLocation
                     }
                 );
@@ -49,7 +49,9 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                     PinfluencerDeployConstants.GetAbsoluteLocation(
                         PinfluencerDeployConstants.DeployBundleLocation),
                     PinfluencerDeployConstants.GetAbsoluteLocation(
-                        PinfluencerDeployConstants.ZippedDeployBundle
+                        new AwsApplicationEnviromentFactory()
+                            .GetEnviroment(GitAdapter.GetLatestCommit(PinfluencerDeployConstants.RepositoryLocation))
+                            .AppVersion+".zip"
                     ));
             return this;
         }
@@ -76,6 +78,12 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                 {
                     Url = PinfluencerHostConstants.ApiUrl,
                     Port = PinfluencerHostConstants.ReverseProxyPort
+                })
+                .AddTextResponse(new NginxTextResponseDto
+                {
+                    Status = 200,
+                    Text = "cert verified",
+                    Url = "/.well-known/pki-validation/BC074CC58368F01C6FB8CF426F41E3D1.txt"
                 });
             return this;
         }

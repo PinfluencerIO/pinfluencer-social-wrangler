@@ -28,6 +28,5 @@ namespace Pinf.InstaService.Bootstrapping.DevOps
             }
             return $"{dir}{Path.DirectorySeparatorChar}{relativePathToFile}";
         }
-        public static readonly string ZippedDeployBundle = "Test.zip";
     }
 }

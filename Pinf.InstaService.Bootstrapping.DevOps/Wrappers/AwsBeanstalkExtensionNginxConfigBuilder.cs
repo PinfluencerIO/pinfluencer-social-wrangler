@@ -19,12 +19,23 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
             using var fs = File.OpenWrite($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}");
             var firstLine = $"location {config.Url} "+"{"+Environment.NewLine;
             var secondLine = $"\tproxy_pass\thttp://127.0.0.1:{config.Port}/;{Environment.NewLine}";
-            var thirdLine = "}";
+            var thirdLine = "}"+Environment.NewLine;
             var info = new UTF8Encoding(true).GetBytes($"{firstLine}{secondLine}{thirdLine}");
             fs.Write(info, 0, info.Length);
             return this;
         }
-        
+
+        public AwsBeanstalkExtensionNginxConfigBuilder AddTextResponse(NginxTextResponseDto config)
+        {
+            using var fs = File.OpenWrite($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}");
+            var firstLine = $"location {config.Url} "+"{"+Environment.NewLine;
+            var secondLine = $"\treturn {config.Status} '{config.Text}';{Environment.NewLine}";
+            var thirdLine = "}"+Environment.NewLine;
+            var info = new UTF8Encoding(true).GetBytes($"{firstLine}{secondLine}{thirdLine}");
+            fs.Write(info, 0, info.Length);
+            return this;
+        }
+
         public AwsBeanstalkExtensionNginxConfigBuilder Create()
         {
             var file = new FileInfo($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}");
