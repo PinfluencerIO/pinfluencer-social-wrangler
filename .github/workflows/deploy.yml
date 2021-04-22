@@ -32,7 +32,7 @@ jobs:
         run: |
           dotnet publish Pinf.InstaService.API.InstaFetcher -o deploy -c Release
           touch deploy/Procfile
-          echo 'web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/' >> deploy/Procfile
+          echo 'pinf: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/' >> deploy/Procfile
           dotnet publish Pinf.InstaService.Bootstrapping.DevOps -o DevOps
           dotnet exec DevOps/DevOps.dll deploy
         
