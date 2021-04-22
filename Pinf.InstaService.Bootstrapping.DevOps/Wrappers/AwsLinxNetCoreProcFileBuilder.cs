@@ -23,8 +23,6 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
         
         public AwsLinxNetCoreProcFileBuilder Create()
         {
-            var file = new FileInfo($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}");
-            file.Directory?.Create();
             using var fs = File.Create($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}");
             return this;
         }
