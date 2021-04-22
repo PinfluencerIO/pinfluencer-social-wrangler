@@ -31,7 +31,6 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
                     SimpleAuthKey = Environment.GetEnvironmentVariable("SIMPLE_AUTH_KEY"),
                 })
                 .CreateNginx()
-                .CreateProcFile()
                 .ZipBundle()
                 .Deploy(
                     Environment.GetEnvironmentVariable("AWS_ID"),
