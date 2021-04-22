@@ -59,18 +59,13 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
         
         public PinfluencerBeanstalkBuilder CreateProcFile()
         {
-            /*new AwsLinxNetCoreProcFileBuilder(PinfluencerDeployConstants.GetAbsoluteLocation(
+            new AwsLinxNetCoreProcFileBuilder(PinfluencerDeployConstants.GetAbsoluteLocation(
                     PinfluencerDeployConstants.DeployBundleLocation))
-                .Create()
                 .AddLine(new ProcLineDto
                 {
                     Namespace = PinfluencerHostConstants.ProcessNamespace,
                     Port = PinfluencerHostConstants.ReverseProxyPort
-                });*/
-            var path = PinfluencerDeployConstants.GetAbsoluteLocation(PinfluencerDeployConstants.DeployBundleLocation);
-            var content = "web: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/";
-            using var stream = File.Create($"{path}\\Procfile");
-            stream.Write(new UTF8Encoding(true).GetBytes(content));
+                });
             return this;
         }
         
