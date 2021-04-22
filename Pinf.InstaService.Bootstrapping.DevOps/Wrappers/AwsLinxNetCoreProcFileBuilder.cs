@@ -16,11 +16,8 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
         
         public AwsLinxNetCoreProcFileBuilder AddLine(ProcLineDto line)
         {
-            using var fs = File.OpenWrite($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}");
-            var info = new UTF8Encoding(true).GetBytes(
-                $"{line.Name}: dotnet exec {line.Location}{line.Namespace}.dll --urls http://0.0.0.0:{line.Port}/{Environment.NewLine}"
-            );
-            fs.Write(info, 0, info.Length);
+            using var fs = File.AppendText($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}");
+            fs.Write($"{line.Name}: dotnet exec {line.Location}{line.Namespace}.dll --urls http://0.0.0.0:{line.Port}/");
             return this;
         }
         
