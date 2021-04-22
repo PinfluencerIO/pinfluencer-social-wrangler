@@ -2,7 +2,7 @@
 
 on:
   schedule:
-    - cron: "35 0 * * *"
+    - cron: "40 0 * * *"
 
 jobs:
   close-server:
