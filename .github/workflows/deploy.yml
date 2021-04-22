@@ -9,7 +9,7 @@ on:
 jobs:
   compile-and-deploy:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[ nodeploy ]')"
     env:
       AUTH0_ID: ${{ secrets.AUTH0_ID }}
@@ -31,9 +31,5 @@ jobs:
       - name: Deploy
         run: |
           dotnet publish Pinf.InstaService.API.InstaFetcher -o deploy -c Release
-          touch deploy/Procfile
-          echo 'pinf: dotnet exec ./Pinf.InstaService.API.InstaFetcher.dll --urls http://0.0.0.0:5100/' >> deploy/Procfile
           dotnet publish Pinf.InstaService.Bootstrapping.DevOps -o DevOps
           dotnet exec DevOps/DevOps.dll deploy
-        
-
