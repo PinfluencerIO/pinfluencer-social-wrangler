@@ -1,0 +1,28 @@
+﻿name: Close Server
+
+on:
+  schedule:
+    - cron: "35 0 * * *"
+
+jobs:
+  close-server:
+
+    runs-on: windows-latest
+    env:
+      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Close
+        run: |
+          dotnet publish Pinf.InstaService.Bootstrapping.DevOps -o DevOps
+          dotnet exec DevOps/DevOps.dll close

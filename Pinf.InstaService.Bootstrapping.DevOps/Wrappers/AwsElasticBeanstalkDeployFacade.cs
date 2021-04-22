@@ -41,5 +41,25 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
                 EnvironmentName = deploy.EnviromnmentName
             }).Wait();
         }
+        
+        public static void TerminateEnvironment(AwsCredentialsDto credentials, AwsEnviromentDto env)
+        {
+            var client = new AmazonElasticBeanstalkClient(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region));
+            client.TerminateEnvironmentAsync(new TerminateEnvironmentRequest
+            {
+                EnvironmentId = env.Id,
+                EnvironmentName = env.Name,
+            }).Wait();
+        }
+
+        public static void RestoreEnvironment(AwsCredentialsDto credentials, AwsEnviromentDto env)
+        {
+            var client = new AmazonElasticBeanstalkClient(credentials.Id, credentials.Token, RegionEndpoint.GetBySystemName(credentials.Region));
+            client.RebuildEnvironmentAsync(new RebuildEnvironmentRequest
+            {
+                EnvironmentId = env.Id,
+                EnvironmentName = env.Name,
+            }).Wait();
+        }
     }
 }

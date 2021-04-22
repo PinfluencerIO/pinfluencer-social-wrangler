@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Text;
-using Amazon;
-using Pinf.InstaService.Bootstrapping.DevOps.Facades;
-using Pinf.InstaService.Bootstrapping.DevOps.Wrappers;
+using Pinf.InstaService.Bootstrapping.DevOps.Deploy;
 
-namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
+namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
 {
     public class PinfluencerDeploy
     {
