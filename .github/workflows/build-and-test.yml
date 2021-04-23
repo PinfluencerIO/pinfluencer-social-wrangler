@@ -10,6 +10,8 @@ jobs:
     env:
       MAIN_SLN: Pinf.InstaService.Main.sln
       DEVOPS_SLN: Pinf.InstaService.DevOps.sln
+      API_PROJ: Pinf.InstaService.API.InstaFetcher
+      DEVOPS_EXEC: devops/DevOps.dll
     steps:
       - uses: actions/checkout@v2
       - name: Set project variables

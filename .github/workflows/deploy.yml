@@ -14,6 +14,9 @@ jobs:
       SIMPLE_AUTH_KEY: ${{ secrets.SIMPLE_AUTH_KEY }}
       AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      DEVOPS_SLN: Pinf.InstaService.DevOps.sln
+      DEVOPS_EXEC: devops/DevOps.dll
+      API_PROJ: Pinf.InstaService.API.InstaFetcher
     steps:
       - uses: actions/checkout@v2
       - name: Set project variables
@@ -24,6 +27,6 @@ jobs:
           dotnet-version: 3.1.x
       - name: Deploy
         run: |
-          dotnet publish ${API_PROJ} -o deploy -c Release
-          dotnet publish ${DEVOPS_SLN} -o devops
-          dotnet exec ${DEVOPS_EXEC} deploy
+          dotnet publish ${{ env.API_PROJ }} -o deploy -c Release
+          dotnet publish ${{ env.DEVOPS_SLN }} -o devops
+          dotnet exec ${{ env.DEVOPS_EXEC }} deploy
