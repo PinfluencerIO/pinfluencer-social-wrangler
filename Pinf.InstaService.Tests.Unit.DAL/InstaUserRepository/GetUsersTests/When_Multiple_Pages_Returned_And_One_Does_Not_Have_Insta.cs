@@ -2,8 +2,8 @@
 using System.Linq;
 using NUnit.Framework;
 using Pinf.InstaService.BLL.Models.InstaUser;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Enum;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {

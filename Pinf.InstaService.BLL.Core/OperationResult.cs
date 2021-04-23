@@ -1,6 +1,6 @@
-﻿using Pinf.InstaService.Bootstrapping.Services.Enum;
+﻿using Pinf.InstaService.BLL.Core.Enum;
 
-namespace Pinf.InstaService.Bootstrapping.Services
+namespace Pinf.InstaService.BLL.Core
 {
     //TODO: provide message param to allow for meaningful error messages
     public class OperationResult<T>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pinf.InstaService.BLL.Models.InstaUser;
 
-namespace Pinf.InstaService.Bootstrapping.Services.Repositories
+namespace Pinf.InstaService.BLL.Core.Repositories
 {
     public interface IInstaUserRepository
     {

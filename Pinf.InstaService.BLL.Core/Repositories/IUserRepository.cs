@@ -1,4 +1,4 @@
-﻿namespace Pinf.InstaService.Bootstrapping.Services.Repositories
+﻿namespace Pinf.InstaService.BLL.Core.Repositories
 {
     public interface IUserRepository
     {

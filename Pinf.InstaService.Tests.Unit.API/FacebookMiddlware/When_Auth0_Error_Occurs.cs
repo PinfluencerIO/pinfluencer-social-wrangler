@@ -1,4 +1,4 @@
-﻿using Pinf.InstaService.Bootstrapping.Services.Enum;
+﻿using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.FacebookMiddlware.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.API.FacebookMiddlware

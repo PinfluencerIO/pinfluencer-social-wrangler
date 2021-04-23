@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pinf.InstaService.BLL.Models.Insights;
 
-namespace Pinf.InstaService.Bootstrapping.Services.Repositories
+namespace Pinf.InstaService.BLL.Core.Repositories
 {
     public interface IInstaAudienceInsightsRepository
     {

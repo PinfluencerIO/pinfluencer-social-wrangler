@@ -1,4 +1,4 @@
-﻿namespace Pinf.InstaService.Bootstrapping.Services.Enum
+﻿namespace Pinf.InstaService.BLL.Core.Enum
 {
     public enum OperationResultEnum
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
-using Pinf.InstaService.Bootstrapping.Services.Repositories;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.BLL.Core.Repositories;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
 {

@@ -1,5 +1,5 @@
 ﻿using Facebook;
-using Pinf.InstaService.Bootstrapping.Services.Factories;
+using Pinf.InstaService.BLL.Core.Factories;
 
 namespace Pinf.InstaService.DAL.Instagram.Factories
 {

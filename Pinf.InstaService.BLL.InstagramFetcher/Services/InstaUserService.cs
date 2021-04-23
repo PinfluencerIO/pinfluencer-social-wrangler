@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Pinf.InstaService.BLL.Models.InstaUser;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Repositories;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Repositories;
 
 namespace Pinf.InstaService.BLL.InstagramFetcher.Services
 {

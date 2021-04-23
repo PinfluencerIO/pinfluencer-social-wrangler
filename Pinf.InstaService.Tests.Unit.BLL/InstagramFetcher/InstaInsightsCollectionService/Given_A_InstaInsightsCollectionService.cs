@@ -1,5 +1,5 @@
 ﻿using NSubstitute;
-using Pinf.InstaService.Bootstrapping.Services.Repositories;
+using Pinf.InstaService.BLL.Core.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService
