@@ -6,16 +6,24 @@ on:
     branches: [ master, develop ]
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Set project variables
+        run: set_envs.bat
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Restore dependencies main
+        run: dotnet restore ${MAIN_SLN}
+      - name: Build main
+        run: dotnet build ${MAIN_SLN} --no-restore
+      - name: Test main
+        run: dotnet test ${MAIN_SLN} --no-build --verbosity normal
+      - name: Restore dependencies devops
+        run: dotnet restore ${DEVOPS_SLN}
+      - name: Build devops
+        run: dotnet build ${DEVOPS_SLN} --no-restore
+      - name: Test devops
+        run: dotnet test ${DEVOPS_SLN} --no-build --verbosity normal

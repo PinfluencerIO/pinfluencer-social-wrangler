@@ -9,6 +9,8 @@ jobs:
       AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
+      - name: Set project variables
+        run: set_envs.bat
       - uses: actions/checkout@v2
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
@@ -16,5 +18,5 @@ jobs:
           dotnet-version: 3.1.x
       - name: Close
         run: |
-          dotnet publish Pinf.InstaService.DevOps.sln -o devops
-          dotnet exec devops/DevOps.dll close
+          dotnet publish ${DEVOPS_SLN} -o devops
+          dotnet exec ${DEVOPS_EXEC} close
