@@ -1,17 +1,11 @@
 ﻿name: Close Server
-
 on:
   schedule:
     - cron: "*/1 * * * *"
 
 jobs:
   close-server:
-
     runs-on: windows-latest
-    env:
-      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
     steps:
       - name: Test
         run: echo "hello world"
