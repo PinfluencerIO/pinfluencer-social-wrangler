@@ -24,5 +24,24 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                     }
                 );
         }
+
+        [Target(Name = "open")]
+        public void OpenServer()
+        {
+            AwsElasticBeanstalkDeployFacade
+                .RestoreEnvironment(
+                    new AwsCredentialsDto
+                    {
+                        Id = Environment.GetEnvironmentVariable("AWS_ID"),
+                        Token = Environment.GetEnvironmentVariable("AWS_TOKEN"),
+                        Region = AwsPinfluencerConstants.Region
+                    },
+                    new AwsEnviromentDto
+                    {
+                        Id = AwsPinfluencerConstants.EnvProd,
+                        Name = AwsPinfluencerConstants.EnvNameProd
+                    }
+                );
+        }
     }
 }
