@@ -7,7 +7,10 @@ on:
         required: true
 jobs:
   run-target:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    env:
+      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
