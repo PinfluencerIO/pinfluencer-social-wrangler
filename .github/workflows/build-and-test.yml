@@ -7,6 +7,9 @@ on:
 jobs:
   build_and_test:
     runs-on: windows-latest
+    env:
+      MAIN_SLN: Pinf.InstaService.Main.sln
+      DEVOPS_SLN: Pinf.InstaService.DevOps.sln
     steps:
       - uses: actions/checkout@v2
       - name: Set project variables
