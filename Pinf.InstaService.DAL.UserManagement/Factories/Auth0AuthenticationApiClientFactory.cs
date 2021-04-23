@@ -9,14 +9,8 @@ namespace Pinf.InstaService.DAL.UserManagement.Factories
     {
         private readonly IConfiguration _configuration;
 
-        public Auth0AuthenticationApiClientFactory(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        public Auth0AuthenticationApiClientFactory( IConfiguration configuration ) { _configuration = configuration; }
 
-        public IAuthenticationApiClient Get()
-        {
-            throw new NotImplementedException();
-        }
+        public IAuthenticationApiClient Get( ) { throw new NotImplementedException( ); }
     }
 }

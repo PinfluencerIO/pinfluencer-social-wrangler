@@ -5,8 +5,8 @@ namespace Pinf.InstaService.BLL.Core.Repositories
 {
     public interface IInstaUserRepository
     {
-        OperationResult<InstaUser> GetUser(string id);
+        OperationResult<InstaUser> GetUser( string id );
 
-        OperationResult<IEnumerable<InstaUser>> GetUsers();
+        OperationResult<IEnumerable<InstaUser>> GetUsers( );
     }
 }

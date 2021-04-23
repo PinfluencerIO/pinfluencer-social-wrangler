@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using Pinf.InstaService.BLL.Models.InstaUser;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Repositories;
+using Pinf.InstaService.BLL.Models.InstaUser;
 
 namespace Pinf.InstaService.BLL.InstagramFetcher.Services
 {
@@ -9,20 +9,20 @@ namespace Pinf.InstaService.BLL.InstagramFetcher.Services
     {
         private readonly IInstaUserRepository _instaUserRepository;
 
-        public InstaUserService(IInstaUserRepository instaUserRepository)
+        public InstaUserService( IInstaUserRepository instaUserRepository )
         {
             _instaUserRepository = instaUserRepository;
         }
 
-        public OperationResult<InstaUserIdentityCollection> GetAll()
+        public OperationResult<InstaUserIdentityCollection> GetAll( )
         {
-            var users = _instaUserRepository.GetUsers();
+            var users = _instaUserRepository.GetUsers( );
 
             return new OperationResult<InstaUserIdentityCollection>(
                 new InstaUserIdentityCollection(
-                    users.Value.Select(x => x.Identity),
-                    users.Value.Count() > 1,
-                    !users.Value.Any()
+                    users.Value.Select( x => x.Identity ),
+                    users.Value.Count( ) > 1,
+                    !users.Value.Any( )
                 ),
                 users.Status
             );

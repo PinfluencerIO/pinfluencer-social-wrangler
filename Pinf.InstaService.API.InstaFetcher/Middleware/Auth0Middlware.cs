@@ -20,51 +20,45 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
     {
         private readonly RequestDelegate _next;
 
-        public Auth0Middlware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public Auth0Middlware( RequestDelegate next ) { _next = next; }
 
         public async Task Invoke(
             HttpContext context,
-            [FromServices] Auth0Context auth0Context,
-            [FromServices] IConfiguration configuration,
-            [FromServices] IManagementConnection managementConnection,
-            [FromServices] IAuthenticationConnection authenticationConnection
+            [ FromServices ] Auth0Context auth0Context,
+            [ FromServices ] IConfiguration configuration,
+            [ FromServices ] IManagementConnection managementConnection,
+            [ FromServices ] IAuthenticationConnection authenticationConnection
         )
         {
-            var auth0Settings = configuration.GetSection("Auth0");
-            var clientId = auth0Settings["Id"];
-            var clientSecret = auth0Settings["Secret"];
-            var domain = auth0Settings["Domain"];
-            var audience = auth0Settings["ManagementDomain"];
+            var auth0Settings = configuration.GetSection( "Auth0" );
+            var clientId = auth0Settings [ "Id" ];
+            var clientSecret = auth0Settings [ "Secret" ];
+            var domain = auth0Settings [ "Domain" ];
+            var audience = auth0Settings [ "ManagementDomain" ];
 
-            if (domain == null || clientId == null || clientSecret == null || audience == null)
-                await HandleError(context, "auth0 configuration settings are not valid");
+            if ( domain == null || clientId == null || clientSecret == null || audience == null )
+                await HandleError( context, "auth0 configuration settings are not valid" );
 
-            var authenticationApiClient = new AuthenticationApiClient(domain, authenticationConnection);
+            var authenticationApiClient = new AuthenticationApiClient( domain, authenticationConnection );
 
             try
             {
-                var token = await authenticationApiClient.GetTokenAsync(new ClientCredentialsTokenRequest
+                var token = await authenticationApiClient.GetTokenAsync( new ClientCredentialsTokenRequest
                 {
                     ClientId = clientId,
                     ClientSecret = clientSecret,
                     Audience = audience
-                });
+                } );
 
                 auth0Context.ManagementApiClient =
-                    new ManagementApiClient(token.AccessToken, domain, managementConnection);
+                    new ManagementApiClient( token.AccessToken, domain, managementConnection );
 
-                await _next.Invoke(context);
+                await _next.Invoke( context );
             }
-            catch (ApiException exception)
-            {
-                await HandleError(context, exception.Message);
-            }
+            catch ( ApiException exception ) { await HandleError( context, exception.Message ); }
         }
 
-        private static async Task HandleError(HttpContext context, string message)
+        private static async Task HandleError( HttpContext context, string message )
         {
             context
                 .Response
@@ -74,7 +68,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
                 .ContentType = "application/json";
             await context
                 .Response
-                .WriteAsync(JsonConvert.SerializeObject(new {error = "auth0 authorization error", message}));
+                .WriteAsync( JsonConvert.SerializeObject( new { error = "auth0 authorization error", message } ) );
         }
     }
 }

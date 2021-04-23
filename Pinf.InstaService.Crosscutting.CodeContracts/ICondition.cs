@@ -2,11 +2,11 @@
 
 namespace Pinf.InstaService.Crosscutting.CodeContracts
 {
-    public abstract class Condition<T> where T : Exception, new()
+    public abstract class Condition<T> where T : Exception, new( )
     {
-        public void Evaluate(bool predicate)
+        public void Evaluate( bool predicate )
         {
-            if (!predicate) throw new T();
+            if ( !predicate ) throw new T( );
         }
     }
 }

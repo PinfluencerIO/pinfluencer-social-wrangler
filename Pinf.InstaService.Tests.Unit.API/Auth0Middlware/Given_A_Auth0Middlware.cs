@@ -22,25 +22,25 @@ namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
         protected IManagementConnection MockManagementConnection;
         protected RequestDelegate MockNextMiddlware;
 
-        protected override void Given()
+        protected override void Given( )
         {
-            MockNextMiddlware = Substitute.For<RequestDelegate>();
-            MockAuth0Context = Substitute.For<Auth0Context>();
-            MockConfiguration = Substitute.For<IConfiguration>();
-            MockAuth0Configuration = Substitute.For<IConfigurationSection>();
-            MockHttpContext = Substitute.For<HttpContext>();
-            MockManagementConnection = Substitute.For<IManagementConnection>();
-            MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>();
-            MockHttpResponse = Substitute.For<HttpResponse>();
+            MockNextMiddlware = Substitute.For<RequestDelegate>( );
+            MockAuth0Context = Substitute.For<Auth0Context>( );
+            MockConfiguration = Substitute.For<IConfiguration>( );
+            MockAuth0Configuration = Substitute.For<IConfigurationSection>( );
+            MockHttpContext = Substitute.For<HttpContext>( );
+            MockManagementConnection = Substitute.For<IManagementConnection>( );
+            MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
+            MockHttpResponse = Substitute.For<HttpResponse>( );
 
             MockHttpContext
                 .Response
-                .Returns(MockHttpResponse);
+                .Returns( MockHttpResponse );
 
-            Sut = new InstaService.API.InstaFetcher.Middleware.Auth0Middlware(MockNextMiddlware);
+            Sut = new InstaService.API.InstaFetcher.Middleware.Auth0Middlware( MockNextMiddlware );
         }
 
-        protected override void When()
+        protected override void When( )
         {
             Sut.Invoke(
                 MockHttpContext,
@@ -51,34 +51,34 @@ namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
             );
         }
 
-        protected void AddDefaultConfiguration()
+        protected void AddDefaultConfiguration( )
         {
             MockAuth0Configuration
-                    [Arg.Is("Id")]
-                .Returns("12345");
+                    [ Arg.Is( "Id" ) ]
+                .Returns( "12345" );
             MockAuth0Configuration
-                    [Arg.Is("Secret")]
-                .Returns("54321");
+                    [ Arg.Is( "Secret" ) ]
+                .Returns( "54321" );
             MockAuth0Configuration
-                    [Arg.Is("Domain")]
-                .Returns("www.management/api");
+                    [ Arg.Is( "Domain" ) ]
+                .Returns( "www.management/api" );
             MockAuth0Configuration
-                    [Arg.Is("ManagementDomain")]
-                .Returns("www.management/api");
+                    [ Arg.Is( "ManagementDomain" ) ]
+                .Returns( "www.management/api" );
         }
 
-        protected void AddConfiguration(string key, string value)
+        protected void AddConfiguration( string key, string value )
         {
             MockAuth0Configuration
-                    [Arg.Is(key)]
-                .Returns(value);
+                    [ Arg.Is( key ) ]
+                .Returns( value );
         }
 
-        protected void SetConfiguration()
+        protected void SetConfiguration( )
         {
             MockConfiguration
-                .GetSection(Arg.Is("Auth0"))
-                .Returns(MockAuth0Configuration);
+                .GetSection( Arg.Is( "Auth0" ) )
+                .Returns( MockAuth0Configuration );
         }
     }
 }

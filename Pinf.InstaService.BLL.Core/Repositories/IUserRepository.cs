@@ -2,6 +2,6 @@
 {
     public interface IUserRepository
     {
-        OperationResult<string> GetInstagramToken(string id);
+        OperationResult<string> GetInstagramToken( string id );
     }
 }

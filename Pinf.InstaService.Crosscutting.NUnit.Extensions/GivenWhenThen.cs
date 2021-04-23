@@ -7,19 +7,15 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
     {
         protected T Sut;
 
-        [SetUp]
-        public void SetUp()
+        [ SetUp ]
+        public void SetUp( )
         {
-            Given();
-            When();
+            Given( );
+            When( );
         }
 
-        protected virtual void Given()
-        {
-        }
+        protected virtual void Given( ) { }
 
-        protected virtual void When()
-        {
-        }
+        protected virtual void When( ) { }
     }
 }

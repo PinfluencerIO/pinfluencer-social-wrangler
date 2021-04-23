@@ -17,9 +17,6 @@ namespace Pinf.InstaService.BLL.Models.Insights
 
         public Tuple<int, int> AgeRange { get; private set; }
 
-        private void SetAgeRange(Tuple<int, int> ageRange)
-        {
-            AgeRange = ageRange;
-        }
+        private void SetAgeRange( Tuple<int, int> ageRange ) { AgeRange = ageRange; }
     }
 }

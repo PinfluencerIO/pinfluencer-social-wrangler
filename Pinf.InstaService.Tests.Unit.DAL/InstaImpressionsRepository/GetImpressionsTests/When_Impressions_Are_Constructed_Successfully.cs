@@ -2,9 +2,9 @@
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.BLL.Models.Insights;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.BLL.Models.Insights;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
 {
@@ -12,19 +12,19 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
     {
         private OperationResult<IEnumerable<InstaImpression>> _result;
 
-        protected override void When()
+        protected override void When( )
         {
             MockFacebookClient
-                .Get(Arg.Any<string>(), Arg.Any<object>())
-                .Returns(new
+                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
+                .Returns( new
                 {
-                    data = new dynamic[]
+                    data = new dynamic [ ]
                     {
                         new
                         {
                             name = "impressions",
                             period = "day",
-                            values = new dynamic[]
+                            values = new dynamic [ ]
                             {
                                 new
                                 {
@@ -47,39 +47,36 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
                             id = "17841400008460056/insights/impressions/day"
                         }
                     }
-                });
+                } );
 
-            _result = Sut.GetImpressions(TestId);
+            _result = Sut.GetImpressions( TestId );
         }
 
-        [Test]
-        public void Then_Impressions_Counts_Are_Valid()
+        [ Test ]
+        public void Then_Impressions_Counts_Are_Valid( )
         {
-            Assert.True(new[] {4, 66, 123}.SequenceEqual(_result.Value.Select(x => x.Count)));
+            Assert.True( new [ ] { 4, 66, 123 }.SequenceEqual( _result.Value.Select( x => x.Count ) ) );
         }
 
-        [Test]
-        public void Then_Impressions_Years_Are_Valid()
+        [ Test ]
+        public void Then_Impressions_Years_Are_Valid( )
         {
-            Assert.True(new[] {2017, 2017, 2017}.SequenceEqual(_result.Value.Select(x => x.Time.Year)));
+            Assert.True( new [ ] { 2017, 2017, 2017 }.SequenceEqual( _result.Value.Select( x => x.Time.Year ) ) );
         }
 
-        [Test]
-        public void Then_Impressions_Months_Are_Valid()
+        [ Test ]
+        public void Then_Impressions_Months_Are_Valid( )
         {
-            Assert.True(new[] {5, 5, 5}.SequenceEqual(_result.Value.Select(x => x.Time.Month)));
+            Assert.True( new [ ] { 5, 5, 5 }.SequenceEqual( _result.Value.Select( x => x.Time.Month ) ) );
         }
 
-        [Test]
-        public void Then_Impressions_Days_Are_Valid()
+        [ Test ]
+        public void Then_Impressions_Days_Are_Valid( )
         {
-            Assert.True(new[] {4, 5, 6}.SequenceEqual(_result.Value.Select(x => x.Time.Day)));
+            Assert.True( new [ ] { 4, 5, 6 }.SequenceEqual( _result.Value.Select( x => x.Time.Day ) ) );
         }
 
-        [Test]
-        public void Then_Response_Is_Successful()
-        {
-            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
-        }
+        [ Test ]
+        public void Then_Response_Is_Successful( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
     }
 }

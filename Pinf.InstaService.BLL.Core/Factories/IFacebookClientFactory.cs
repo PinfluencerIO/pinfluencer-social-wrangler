@@ -4,6 +4,6 @@ namespace Pinf.InstaService.BLL.Core.Factories
 {
     public interface IFacebookClientFactory
     {
-        public FacebookClient Get(string token);
+        public FacebookClient Get( string token );
     }
 }

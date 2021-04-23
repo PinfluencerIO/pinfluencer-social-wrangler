@@ -5,7 +5,7 @@ namespace Pinf.InstaService.BLL.Core
     //TODO: provide message param to allow for meaningful error messages
     public class OperationResult<T>
     {
-        public OperationResult(T value, OperationResultEnum status)
+        public OperationResult( T value, OperationResultEnum status )
         {
             Value = value;
             Status = status;

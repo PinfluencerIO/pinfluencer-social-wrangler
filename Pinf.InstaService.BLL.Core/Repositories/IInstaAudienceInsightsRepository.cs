@@ -5,8 +5,8 @@ namespace Pinf.InstaService.BLL.Core.Repositories
 {
     public interface IInstaAudienceInsightsRepository
     {
-        OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry(string instaId);
+        OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry( string instaId );
 
-        OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge(string instaId);
+        OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId );
     }
 }

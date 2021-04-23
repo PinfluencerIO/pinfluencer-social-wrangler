@@ -5,6 +5,6 @@ namespace Pinf.InstaService.DAL.Instagram.Dtos
 {
     public class DataArray<T>
     {
-        [JsonProperty("data")] public IEnumerable<T> Data { get; set; }
+        [ JsonProperty( "data" ) ] public IEnumerable<T> Data { get; set; }
     }
 }

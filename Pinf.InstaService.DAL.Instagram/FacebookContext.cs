@@ -8,17 +8,17 @@ namespace Pinf.InstaService.DAL.Instagram
     {
         public FacebookClient FacebookClient { set; get; }
 
-        public string Get(string url, string fields)
+        public string Get( string url, string fields )
         {
-            return JsonConvert.SerializeObject(FacebookClient.Get(url, new RequestFields
+            return JsonConvert.SerializeObject( FacebookClient.Get( url, new RequestFields
             {
                 fields = fields
-            }));
+            } ) );
         }
 
-        public string Get<T>(string url, T parameters)
+        public string Get<T>( string url, T parameters )
         {
-            return JsonConvert.SerializeObject(FacebookClient.Get(url, parameters));
+            return JsonConvert.SerializeObject( FacebookClient.Get( url, parameters ) );
         }
     }
 }

@@ -11,29 +11,29 @@ namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
 {
     public class When_Successful : Given_A_Auth0Middlware
     {
-        protected override void When()
+        protected override void When( )
         {
-            AddDefaultConfiguration();
-            SetConfiguration();
+            AddDefaultConfiguration( );
+            SetConfiguration( );
 
             MockAuthenticationConnection
                 .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>(),
-                    Arg.Any<Uri>(),
-                    Arg.Any<object>(),
-                    Arg.Any<IDictionary<string, string>>()
+                    Arg.Any<HttpMethod>( ),
+                    Arg.Any<Uri>( ),
+                    Arg.Any<object>( ),
+                    Arg.Any<IDictionary<string, string>>( )
                 )
-                .Returns(Task.FromResult(new AccessTokenResponse {AccessToken = TestToken}));
+                .Returns( Task.FromResult( new AccessTokenResponse { AccessToken = TestToken } ) );
 
-            base.When();
+            base.When( );
         }
 
-        [Test]
-        public void Then_Next_Middlware_Is_Executed()
+        [ Test ]
+        public void Then_Next_Middlware_Is_Executed( )
         {
             MockNextMiddlware
-                .Received(1)
-                .Invoke(Arg.Any<HttpContext>());
+                .Received( 1 )
+                .Invoke( Arg.Any<HttpContext>( ) );
         }
     }
 }
