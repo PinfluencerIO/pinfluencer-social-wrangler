@@ -9,9 +9,9 @@ jobs:
       AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
+      - uses: actions/checkout@v2
       - name: Set project variables
         run: set_envs.bat
-      - uses: actions/checkout@v2
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:

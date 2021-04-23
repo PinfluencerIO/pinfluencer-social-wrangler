@@ -8,9 +8,9 @@ jobs:
   build_and_test:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Set project variables
         run: set_envs.bat
-      - uses: actions/checkout@v2
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
