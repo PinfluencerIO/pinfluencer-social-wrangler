@@ -17,11 +17,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
-      - name: Restore dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet build --no-restore
       - name: Kick Off DevOps
         run: |
-          dotnet publish Pinf.InstaService.Bootstrapping.DevOps -o DevOps
-          dotnet exec DevOps/DevOps.dll ${{ github.event.inputs.target }}
+          dotnet publish Pinf.InstaService.DevOps.sln -o devops
+          dotnet exec devops/DevOps.dll ${{ github.event.inputs.target }}
