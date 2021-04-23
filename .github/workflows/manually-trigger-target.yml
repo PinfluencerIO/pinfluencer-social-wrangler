@@ -1,0 +1,24 @@
+﻿name: Manual DevOps Target
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'DevOps target to run, choose from the following => [ deploy, close, open ]'
+        required: true
+jobs:
+  run-target:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Kick Off DevOps
+        run: |
+          dotnet publish Pinf.InstaService.Bootstrapping.DevOps -o DevOps
+          dotnet exec DevOps/DevOps.dll ${{ github.event.inputs.target }}
