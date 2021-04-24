@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
 using Pinf.InstaService.BLL.Core.Factories;
 using Pinf.InstaService.BLL.Core.Repositories;
@@ -32,6 +33,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
                 .AddTransient<InstaUserService>( )
                 .AddTransient<InstaInsightsCollectionService>( )
+                .AddTransient<SimpleAuth>()
                 .AddControllers( );
         }
 
@@ -41,8 +43,7 @@ namespace Pinf.InstaService.API.InstaFetcher
 
             app.UseRouting( );
 
-            app.UseMiddleware<SimpleAuthenticationMiddleware>( )
-                .UseMiddleware<Auth0Middlware>( )
+            app.UseMiddleware<Auth0Middlware>( )
                 .UseMiddleware<FacebookMiddlware>( );
 
             app.UseEndpoints( endpoints => endpoints.MapControllers( ) );

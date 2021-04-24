@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
 
@@ -6,7 +7,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {
     //TODO: implement auto-mapper
     [ Route( "insight" ) ]
-    public class InsightController : ControllerBase
+    public class InsightController : PinfluencerController
     {
         private readonly InstaInsightsCollectionService _instaInsightsCollectionService;
 
