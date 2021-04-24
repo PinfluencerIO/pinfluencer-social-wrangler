@@ -6,7 +6,7 @@ using NSubstitute;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.DAL.UserManagement;
 
-namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
 {
     //TODO: add tests for failing to parse URIs
     public abstract class

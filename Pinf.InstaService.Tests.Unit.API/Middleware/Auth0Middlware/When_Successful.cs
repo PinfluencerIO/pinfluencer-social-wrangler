@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
 {
     public class When_Successful : Given_A_Auth0Middlware
     {

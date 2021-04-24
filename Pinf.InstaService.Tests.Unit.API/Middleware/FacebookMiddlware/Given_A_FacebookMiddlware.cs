@@ -10,7 +10,7 @@ using Pinf.InstaService.BLL.Core.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.DAL.Instagram;
 
-namespace Pinf.InstaService.Tests.Unit.API.FacebookMiddlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware
 {
     public abstract class
         Given_A_FacebookMiddlware : GivenWhenThen<InstaService.API.InstaFetcher.Middleware.FacebookMiddlware>

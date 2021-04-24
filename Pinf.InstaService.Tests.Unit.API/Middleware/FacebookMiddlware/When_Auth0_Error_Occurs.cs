@@ -1,7 +1,7 @@
 ﻿using Pinf.InstaService.BLL.Core.Enum;
-using Pinf.InstaService.Tests.Unit.API.FacebookMiddlware.Shared;
+using Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.API.FacebookMiddlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware
 {
     public class When_Auth0_Error_Occurs : When_Error_Occurs
     {

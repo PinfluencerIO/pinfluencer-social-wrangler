@@ -4,7 +4,7 @@ using NSubstitute;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 
-namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.SimpleAuthenticationMiddlware
 {
     public class Given_A_SimpleAuthenticaitonMiddleware : GivenWhenThen<SimpleAuthenticationMiddleware>
     {

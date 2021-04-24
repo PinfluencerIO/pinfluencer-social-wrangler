@@ -4,7 +4,7 @@ using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.SimpleAuthenticationMiddlware
 {
     public class When_Successful : Given_A_SimpleAuthenticaitonMiddleware
     {

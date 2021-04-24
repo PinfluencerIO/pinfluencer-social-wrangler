@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NUnit.Framework;
-using Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware.Shared;
+using Pinf.InstaService.Tests.Unit.API.Middleware.SimpleAuthenticationMiddlware.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.SimpleAuthenticationMiddlware
 {
     [ TestFixture( "key" ) ]
     [ TestFixture( null ) ]

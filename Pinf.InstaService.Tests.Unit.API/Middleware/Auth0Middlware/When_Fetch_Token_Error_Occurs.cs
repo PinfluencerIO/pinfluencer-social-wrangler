@@ -5,9 +5,9 @@ using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
-using Pinf.InstaService.Tests.Unit.API.Auth0Middlware.Shared;
+using Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
 {
     public class When_Fetch_Token_Error_Occurs : When_Error_Occurs
     {

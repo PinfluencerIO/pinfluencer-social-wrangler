@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using Pinf.InstaService.Tests.Unit.API.Auth0Middlware.Shared;
+using Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
 {
     [ TestFixture( "Id" ) ]
     [ TestFixture( "Secret" ) ]

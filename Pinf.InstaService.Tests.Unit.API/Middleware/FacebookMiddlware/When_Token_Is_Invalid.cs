@@ -4,9 +4,9 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinf.InstaService.BLL.Core.Enum;
-using Pinf.InstaService.Tests.Unit.API.FacebookMiddlware.Shared;
+using Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.API.FacebookMiddlware
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware
 {
     public class When_Token_Is_Invalid : When_Auth0_Error_Does_Not_Occur
     {

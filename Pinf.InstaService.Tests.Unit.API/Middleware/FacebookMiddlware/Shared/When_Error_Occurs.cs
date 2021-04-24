@@ -2,9 +2,9 @@
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware.Shared
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware.Shared
 {
-    public abstract class When_Error_Occurs : Given_A_SimpleAuthenticaitonMiddleware
+    public abstract class When_Error_Occurs : Given_A_FacebookMiddlware
     {
         [ Test ]
         public void Then_Middlware_Short_Circuits( )

@@ -2,7 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinf.InstaService.Tests.Unit.API.Auth0Middlware.Shared
+namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware.Shared
 {
     public abstract class When_Error_Occurs : Given_A_Auth0Middlware
     {
