@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace Pinf.InstaService.API.InstaFetcher.Middleware
 {
+    [ Obsolete ]
     public class SimpleAuthenticationMiddleware
     {
         private readonly RequestDelegate _next;
