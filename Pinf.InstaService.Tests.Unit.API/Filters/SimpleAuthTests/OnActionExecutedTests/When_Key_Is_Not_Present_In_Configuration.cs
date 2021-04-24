@@ -17,7 +17,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
         {
             base.When( );
             MockConfiguration[ ApiKeyName ].Returns( default( string ) );
-            Sut.OnActionExecuted( MockActionExecutedContext );
+            Sut.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

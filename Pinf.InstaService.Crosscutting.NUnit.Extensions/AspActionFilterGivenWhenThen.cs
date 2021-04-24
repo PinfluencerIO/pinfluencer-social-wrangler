@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
     {
         private HttpContext _mockHttpContext;
         private HttpRequest _mockHttpRequest;
-        protected ActionExecutedContext MockActionExecutedContext;
+        protected ActionExecutingContext MockActionExecutingContext;
 
         protected virtual Dictionary<string, StringValues> SetupHeaders( )
         {
@@ -22,7 +22,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
 
         protected TType GetResultObject<TResult, TType>( ) where TResult : ObjectResult where TType : class
         {
-            var objectResult = MockActionExecutedContext.Result as TResult;
+            var objectResult = MockActionExecutingContext.Result as TResult;
             return objectResult?.Value as TType;
         }
 
@@ -40,8 +40,8 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
             _mockHttpContext
                 .Request
                 .Returns( _mockHttpRequest );
-            MockActionExecutedContext = new ActionExecutedContext( new ActionContext( _mockHttpContext,
-                new RouteData( ), new ActionDescriptor( ) ), new List<IFilterMetadata>( ), new object( ) );
+            MockActionExecutingContext = new ActionExecutingContext( new ActionContext( _mockHttpContext,
+                new RouteData( ), new ActionDescriptor( ) ), new List<IFilterMetadata>( ), new Dictionary<string, object>(), new object( ) );
         }
     }
 }

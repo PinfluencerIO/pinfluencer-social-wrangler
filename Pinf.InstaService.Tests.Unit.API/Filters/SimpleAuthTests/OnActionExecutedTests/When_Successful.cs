@@ -17,10 +17,10 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
         {
             base.When( );
             MockConfiguration[ ApiKeyName ].Returns( ApiKey );
-            Sut.OnActionExecuted( MockActionExecutedContext );
+            Sut.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]
-        public void Then_Next_Action_Is_Run( ) { Assert.Null( MockActionExecutedContext.Result ); }
+        public void Then_Next_Action_Is_Run( ) { Assert.Null( MockActionExecutingContext.Result ); }
     }
 }

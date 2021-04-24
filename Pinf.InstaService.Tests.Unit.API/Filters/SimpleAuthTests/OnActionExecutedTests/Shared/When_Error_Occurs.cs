@@ -9,12 +9,12 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
         protected string ErrorMessage => GetResultObject<UnauthorizedObjectResult, ErrorDto>( ).ErrorMsg;
 
         [ Test ]
-        public void Then_Middlware_Short_Circuits( ) { Assert.NotNull( MockActionExecutedContext.Result ); }
+        public void Then_Middlware_Short_Circuits( ) { Assert.NotNull( MockActionExecutingContext.Result ); }
 
         [ Test ]
         public void Then_Result_Status_Is_Unauthorized( )
         {
-            Assert.True( MockActionExecutedContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
+            Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
         }
     }
 }

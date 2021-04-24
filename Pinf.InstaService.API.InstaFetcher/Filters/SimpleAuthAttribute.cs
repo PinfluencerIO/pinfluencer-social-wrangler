@@ -5,14 +5,14 @@ using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 
 namespace Pinf.InstaService.API.InstaFetcher.Filters
 {
-    public class SimpleAuth : ActionFilterAttribute, IActionFilter
+    public class SimpleAuthAttribute : ActionFilterAttribute, IActionFilter
     {
         public const string SimpleKeyName = "Simple-Auth-Key";
         private readonly IConfiguration _configuration;
 
-        public SimpleAuth( IConfiguration configuration ) { _configuration = configuration; }
+        public SimpleAuthAttribute( IConfiguration configuration ) { _configuration = configuration; }
 
-        public override void OnActionExecuted( ActionExecutedContext context )
+        public override void OnActionExecuting( ActionExecutingContext context )
         {
             var confKey = _configuration[ "Simple-Auth-Key" ];
             var isHeaderKeyPresent =
