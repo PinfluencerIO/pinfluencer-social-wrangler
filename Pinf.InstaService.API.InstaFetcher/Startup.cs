@@ -33,13 +33,13 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
                 .AddTransient<InstaUserService>( )
                 .AddTransient<InstaInsightsCollectionService>( )
-                .AddTransient<SimpleAuth>()
+                .AddTransient<SimpleAuth>( )
                 .AddControllers( );
         }
 
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
         {
-            if ( env.IsDevelopment( ) ) app.UseDeveloperExceptionPage( );
+            if( env.IsDevelopment( ) ) app.UseDeveloperExceptionPage( );
 
             app.UseRouting( );
 

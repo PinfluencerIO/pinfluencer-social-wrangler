@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
 
@@ -17,7 +16,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         public JsonResult GetAll( )
         {
             var users = _instaUserService.GetAll( );
-            if ( users.Status != OperationResultEnum.Failed )
+            if( users.Status != OperationResultEnum.Failed )
                 return new JsonResult( users.Value );
             var error = new JsonResult( new { error = "failed to fetch instagram users", message = "spurious error" } )
                 { StatusCode = 500 };

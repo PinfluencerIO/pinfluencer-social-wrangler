@@ -20,7 +20,7 @@ namespace Pinf.InstaService.BLL.InstagramFetcher.Services
         public OperationResult<InstaInsightsCollection> GetUserInsights( string id )
         {
             var impressions = _impressionsRepository.GetImpressions( id );
-            if ( impressions.Status == OperationResultEnum.Success )
+            if( impressions.Status == OperationResultEnum.Success )
                 return new OperationResult<InstaInsightsCollection>( new InstaInsightsCollection( impressions.Value ),
                     OperationResultEnum.Success );
             return new OperationResult<InstaInsightsCollection>( new InstaInsightsCollection(

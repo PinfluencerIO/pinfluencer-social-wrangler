@@ -8,7 +8,10 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
 {
     public class When_Key_Is_Not_Present_In_Configuration : When_Error_Occurs
     {
-        protected override Dictionary<string, StringValues> SetupHeaders( ) => new Dictionary<string, StringValues>{ { ApiKeyName, ApiKey } };
+        protected override Dictionary<string, StringValues> SetupHeaders( )
+        {
+            return new Dictionary<string, StringValues> { { ApiKeyName, ApiKey } };
+        }
 
         protected override void When( )
         {
@@ -16,7 +19,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
             MockConfiguration[ ApiKeyName ].Returns( default( string ) );
             Sut.OnActionExecuted( MockActionExecutedContext );
         }
-        
+
         [ Test ]
         public void Then_Error_Message_Is_Valid( )
         {

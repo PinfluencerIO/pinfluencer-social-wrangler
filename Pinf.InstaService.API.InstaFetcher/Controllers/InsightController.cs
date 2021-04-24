@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
 
@@ -20,7 +19,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         public JsonResult GetUserInsights( [ FromQuery ] string user )
         {
             var insights = _instaInsightsCollectionService.GetUserInsights( user );
-            if ( insights.Status != OperationResultEnum.Failed )
+            if( insights.Status != OperationResultEnum.Failed )
                 return new JsonResult( insights.Value );
             var error = new JsonResult( new
                     { error = "failed to fetch instagram impressions for user", message = "user was not found" } )

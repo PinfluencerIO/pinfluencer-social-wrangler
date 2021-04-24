@@ -28,13 +28,13 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
             [ FromServices ] IFacebookClientFactory facebookClientFactory
         )
         {
-            var auth0Id = context.Request.Query [ "auth0_id" ].ToString( );
+            var auth0Id = context.Request.Query[ "auth0_id" ].ToString( );
 
-            if ( auth0Id == string.Empty ) await HandleError( context, "request must have query param of auth0_id" );
+            if( auth0Id == string.Empty ) await HandleError( context, "request must have query param of auth0_id" );
 
             var tokenResult = userRepository.GetInstagramToken( auth0Id );
 
-            if ( tokenResult.Status == OperationResultEnum.Failed )
+            if( tokenResult.Status == OperationResultEnum.Failed )
                 await HandleError( context, "auth0 error, cannot access user token" );
 
             facebookContext.FacebookClient = facebookClientFactory.Get( tokenResult.Value );
@@ -45,7 +45,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
                     new RequestDebugTokenParams { input_token = tokenResult.Value } );
                 await _next.Invoke( context );
             }
-            catch ( FacebookApiException e ) { await HandleError( context, e.Message ); }
+            catch( FacebookApiException e ) { await HandleError( context, e.Message ); }
         }
 
         private static async Task HandleError( HttpContext context, string message )

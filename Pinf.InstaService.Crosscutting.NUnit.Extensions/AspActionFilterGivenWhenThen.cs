@@ -11,9 +11,9 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
 {
     public abstract class AspActionFilterGivenWhenThen<TFilter> : GivenWhenThen<TFilter> where TFilter : IActionFilter
     {
-        protected ActionExecutedContext MockActionExecutedContext;
-        private HttpRequest _mockHttpRequest;
         private HttpContext _mockHttpContext;
+        private HttpRequest _mockHttpRequest;
+        protected ActionExecutedContext MockActionExecutedContext;
 
         protected virtual Dictionary<string, StringValues> SetupHeaders( )
         {
@@ -25,7 +25,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
             var objectResult = MockActionExecutedContext.Result as TResult;
             return objectResult?.Value as TType;
         }
-        
+
         protected override void Given( )
         {
             _mockHttpContext = Substitute.For<HttpContext>( );

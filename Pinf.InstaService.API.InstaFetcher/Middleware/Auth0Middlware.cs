@@ -31,12 +31,12 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
         )
         {
             var auth0Settings = configuration.GetSection( "Auth0" );
-            var clientId = auth0Settings [ "Id" ];
-            var clientSecret = auth0Settings [ "Secret" ];
-            var domain = auth0Settings [ "Domain" ];
-            var audience = auth0Settings [ "ManagementDomain" ];
+            var clientId = auth0Settings[ "Id" ];
+            var clientSecret = auth0Settings[ "Secret" ];
+            var domain = auth0Settings[ "Domain" ];
+            var audience = auth0Settings[ "ManagementDomain" ];
 
-            if ( domain == null || clientId == null || clientSecret == null || audience == null )
+            if( domain == null || clientId == null || clientSecret == null || audience == null )
                 await HandleError( context, "auth0 configuration settings are not valid" );
 
             var authenticationApiClient = new AuthenticationApiClient( domain, authenticationConnection );
@@ -55,7 +55,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
 
                 await _next.Invoke( context );
             }
-            catch ( ApiException exception ) { await HandleError( context, exception.Message ); }
+            catch( ApiException exception ) { await HandleError( context, exception.Message ); }
         }
 
         private static async Task HandleError( HttpContext context, string message )

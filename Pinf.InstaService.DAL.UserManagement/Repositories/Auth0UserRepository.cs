@@ -16,9 +16,9 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             try
             {
                 var user = _auth0Context.GetUser( id );
-                return new OperationResult<string>( user.Identities [ 0 ].AccessToken, OperationResultEnum.Success );
+                return new OperationResult<string>( user.Identities[ 0 ].AccessToken, OperationResultEnum.Success );
             }
-            catch ( Exception ) { return new OperationResult<string>( "", OperationResultEnum.Failed ); }
+            catch( Exception ) { return new OperationResult<string>( "", OperationResultEnum.Failed ); }
         }
     }
 }

@@ -11,18 +11,18 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
     {
         private readonly Dictionary<string, StringValues> _headers;
 
-        private static IEnumerable<Dictionary<string, StringValues>> Headers() => new []
+        private static IEnumerable<Dictionary<string, StringValues>> Headers( )
         {
-            new Dictionary<string, StringValues>(),
-            new Dictionary<string, StringValues> { { "Invalid-Key-Name", ApiKey } }
-        };
-
-        public When_Key_Is_Not_Present_In_Header( Dictionary<string, StringValues> headers )
-        {
-            _headers = headers;
+            return new [ ]
+            {
+                new Dictionary<string, StringValues>( ),
+                new Dictionary<string, StringValues> { { "Invalid-Key-Name", ApiKey } }
+            };
         }
 
-        protected override Dictionary<string, StringValues> SetupHeaders( ) => _headers;
+        public When_Key_Is_Not_Present_In_Header( Dictionary<string, StringValues> headers ) { _headers = headers; }
+
+        protected override Dictionary<string, StringValues> SetupHeaders( ) { return _headers; }
 
         protected override void When( )
         {
@@ -30,11 +30,8 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
             MockConfiguration[ ApiKeyName ].Returns( ApiKey );
             Sut.OnActionExecuted( MockActionExecutedContext );
         }
-        
+
         [ Test ]
-        public void Then_Error_Message_Is_Valid( )
-        {
-            Assert.AreEqual( "api key was not received", ErrorMessage );
-        }
+        public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( "api key was not received", ErrorMessage ); }
     }
 }

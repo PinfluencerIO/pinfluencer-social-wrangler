@@ -6,7 +6,7 @@ namespace Pinf.InstaService.Crosscutting.CodeContracts
     {
         public void Evaluate( bool predicate )
         {
-            if ( !predicate ) throw new T( );
+            if( !predicate ) throw new T( );
         }
     }
 }

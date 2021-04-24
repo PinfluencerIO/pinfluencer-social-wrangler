@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
@@ -19,8 +18,11 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
             _configKey = configKey;
             _headerKey = headerKey;
         }
-        
-        protected override Dictionary<string, StringValues> SetupHeaders( ) => new Dictionary<string, StringValues>{ { ApiKeyName, _headerKey } };
+
+        protected override Dictionary<string, StringValues> SetupHeaders( )
+        {
+            return new Dictionary<string, StringValues> { { ApiKeyName, _headerKey } };
+        }
 
         protected override void When( )
         {
@@ -28,11 +30,8 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecu
             MockConfiguration[ ApiKeyName ].Returns( _configKey );
             Sut.OnActionExecuted( MockActionExecutedContext );
         }
-        
+
         [ Test ]
-        public void Then_Error_Message_Is_Valid( )
-        {
-            Assert.AreEqual( "api keys do not match", ErrorMessage );
-        }
+        public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( "api keys do not match", ErrorMessage ); }
     }
 }

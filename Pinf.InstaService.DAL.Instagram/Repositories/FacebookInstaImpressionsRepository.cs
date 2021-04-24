@@ -41,7 +41,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                         .Select( x => new InstaImpression( DateTime.Parse( x.Time ), x.Value ) ),
                     OperationResultEnum.Success );
             }
-            catch ( Exception )
+            catch( Exception )
             {
                 return new OperationResult<IEnumerable<InstaImpression>>( Enumerable.Empty<InstaImpression>( ),
                     OperationResultEnum.Failed );

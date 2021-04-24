@@ -35,7 +35,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                     new InstaUserIdentity( x.Username, x.Id ), x.Name, x.Bio, x.Followers
                 ) ), OperationResultEnum.Success );
             }
-            catch ( Exception )
+            catch( Exception )
             {
                 return new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>( ),
                     OperationResultEnum.Failed );
