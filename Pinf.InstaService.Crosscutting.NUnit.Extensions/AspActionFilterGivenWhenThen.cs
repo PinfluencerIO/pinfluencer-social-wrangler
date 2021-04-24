@@ -12,10 +12,9 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
     public abstract class AspActionFilterGivenWhenThen<TFilter> : GivenWhenThen<TFilter> where TFilter : IActionFilter
     {
         protected ActionExecutedContext MockActionExecutedContext;
-        protected HttpRequest MockHttpRequest;
-        protected HttpContext MockHttpContext;
-        protected HeaderDictionary Headers;
-        
+        private HttpRequest _mockHttpRequest;
+        private HttpContext _mockHttpContext;
+
         protected virtual Dictionary<string, StringValues> SetupHeaders( )
         {
             return new Dictionary<string, StringValues>( );
@@ -29,20 +28,19 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
         
         protected override void Given( )
         {
-            MockHttpContext = Substitute.For<HttpContext>( );
-            MockHttpRequest = Substitute.For<HttpRequest>( );
+            _mockHttpContext = Substitute.For<HttpContext>( );
+            _mockHttpRequest = Substitute.For<HttpRequest>( );
         }
 
         protected override void When( )
         {
-            Headers = new HeaderDictionary( SetupHeaders( ) );
-            MockHttpRequest
+            _mockHttpRequest
                 .Headers
-                .Returns( Headers );
-            MockHttpContext
+                .Returns( new HeaderDictionary( SetupHeaders( ) ) );
+            _mockHttpContext
                 .Request
-                .Returns( MockHttpRequest );
-            MockActionExecutedContext = new ActionExecutedContext( new ActionContext( MockHttpContext,
+                .Returns( _mockHttpRequest );
+            MockActionExecutedContext = new ActionExecutedContext( new ActionContext( _mockHttpContext,
                 new RouteData( ), new ActionDescriptor( ) ), new List<IFilterMetadata>( ), new object( ) );
         }
     }

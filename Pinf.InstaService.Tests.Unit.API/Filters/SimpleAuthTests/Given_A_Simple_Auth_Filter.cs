@@ -12,11 +12,10 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests
         protected const string ApiKey = "asdffdsa";
         
         protected IConfiguration MockConfiguration;
-        protected IHeaderDictionary MockHeaderDictionary;
 
         protected override void Given( )
         {
-            base.Given(  );
+            base.Given( );
             
             MockConfiguration = Substitute.For<IConfiguration>( );
 
