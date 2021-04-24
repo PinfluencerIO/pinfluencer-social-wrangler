@@ -9,17 +9,17 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
     [ Route( "insight" ) ]
     public class InsightController : PinfluencerController
     {
-        private readonly InstaInsightsCollectionService _instaInsightsCollectionService;
+        private readonly InstagramFacade _instagramFacade;
 
-        public InsightController( InstaInsightsCollectionService instaInsightsCollectionService )
+        public InsightController( InstagramFacade instagramFacade )
         {
-            _instaInsightsCollectionService = instaInsightsCollectionService;
+            _instagramFacade = instagramFacade;
         }
 
         [ Route( "" ) ]
         public IActionResult GetUserInsights( [ FromQuery ] string user )
         {
-            var insights = _instaInsightsCollectionService.GetUserInsights( user );
+            var insights = _instagramFacade.GetUserInsights( user );
             if( insights.Status != OperationResultEnum.Failed ) { return new OkObjectResult( insights.Value ); }
             return new BadRequestObjectResult( new ErrorDto{ ErrorMsg = "failed to fetch instagram impressions for user" } );
         }

@@ -5,9 +5,9 @@ using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.InstaUser;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.Shared
 {
-    public abstract class When_Get_All_Is_Called : Given_A_InstaUserService
+    public abstract class When_Get_All_Is_Called : Given_An_InstagramFacade
     {
         protected OperationResultEnum InstaUsersOperationResult { set; get; }
         protected IEnumerable<InstaUser> InstaUserCollection { set; get; }

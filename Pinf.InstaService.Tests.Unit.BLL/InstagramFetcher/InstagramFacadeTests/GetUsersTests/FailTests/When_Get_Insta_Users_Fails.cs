@@ -3,9 +3,9 @@ using NUnit.Framework;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.InstaUser;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.FailTests
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.FailTests
 {
     public class When_Get_Insta_Users_Fails : When_Get_All_Is_Called
     {
@@ -18,7 +18,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Fai
 
             base.When( );
 
-            _result = Sut.GetAll( );
+            _result = Sut.GetUsers( );
         }
 
         [ Test ]

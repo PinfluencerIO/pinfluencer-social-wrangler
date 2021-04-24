@@ -3,9 +3,9 @@ using NUnit.Framework;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.Insights;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUserInsightsTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUserInsightsTests.
     FailTests
 {
     public class When_Insights_Fails_To_Be_Returned : When_Get_User_Insights_Is_Called

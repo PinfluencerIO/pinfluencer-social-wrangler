@@ -8,14 +8,13 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
     [ Route( "user" ) ]
     public class UserController : PinfluencerController
     {
-        private readonly InstaUserService _instaUserService;
-
-        public UserController( InstaUserService instaUserService ) { _instaUserService = instaUserService; }
+        private readonly InstagramFacade _instagramFacade;
+        public UserController( InstagramFacade instagramFacade ) { _instagramFacade = instagramFacade; }
 
         [ Route( "" ) ]
         public IActionResult GetAll( )
         {
-            var users = _instaUserService.GetAll( );
+            var users = _instagramFacade.GetUsers( );
             if( users.Status != OperationResultEnum.Failed ) { return new OkObjectResult( users.Value ); }
             return new BadRequestObjectResult( "failed to fetch instagram users" );
         }

@@ -2,9 +2,9 @@
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.InstaUser;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {

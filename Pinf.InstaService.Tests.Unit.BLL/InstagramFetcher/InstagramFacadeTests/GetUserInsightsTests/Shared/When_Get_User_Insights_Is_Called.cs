@@ -5,10 +5,11 @@ using NUnit.Framework;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.Insights;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUserInsightsTests.Shared
 {
-    public abstract class When_Get_User_Insights_Is_Called : Given_A_InstaInsightsCollectionService
+    public abstract class When_Get_User_Insights_Is_Called : Given_An_InstagramFacade
     {
         protected const string TestId = "";
 

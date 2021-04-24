@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.ConstructedSuccessfullyTests
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests
 {
     public class When_Single_User_Is_Returned : When_Constructed_Successfully
     {
@@ -12,7 +12,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Con
 
             base.When( );
 
-            Result = Sut.GetAll( );
+            Result = Sut.GetUsers( );
         }
 
         [ Test ]
