@@ -13,21 +13,16 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         public UserController( InstaUserService instaUserService ) { _instaUserService = instaUserService; }
 
         [ Route( "" ) ]
-        public JsonResult GetAll( )
+        public IActionResult GetAll( )
         {
             var users = _instaUserService.GetAll( );
-            if( users.Status != OperationResultEnum.Failed )
-                return new JsonResult( users.Value );
-            var error = new JsonResult( new { error = "failed to fetch instagram users", message = "spurious error" } )
-                { StatusCode = 500 };
-            return error;
+            if( users.Status != OperationResultEnum.Failed ) { return new OkObjectResult( users.Value ); }
+            return new BadRequestObjectResult( "failed to fetch instagram users" );
         }
 
         [ Route( "" ) ]
         [ HttpPost ]
-        public JsonResult Create( )
-        {
-            return new JsonResult( new { status = "profile being created" } ) { StatusCode = 200 };
-        }
+        public IActionResult Create( ) => new OkResult( );
+        
     }
 }
