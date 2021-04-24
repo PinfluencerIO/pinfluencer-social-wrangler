@@ -1,7 +1,7 @@
 ﻿using Auth0.ManagementApi.Models;
 using NUnit.Framework;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Enum;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
 {
@@ -9,11 +9,11 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
     {
         private OperationResult<string> _result;
 
-        protected override void When()
+        protected override void When( )
         {
             TestUser = new User
             {
-                Identities = new[]
+                Identities = new [ ]
                 {
                     new Identity
                     {
@@ -22,21 +22,15 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
                 }
             };
 
-            base.When();
+            base.When( );
 
-            _result = Sut.GetInstagramToken(TestId);
+            _result = Sut.GetInstagramToken( TestId );
         }
 
-        [Test]
-        public void Then_Correct_Token_Is_Returned()
-        {
-            Assert.AreEqual("1234567", _result.Value);
-        }
+        [ Test ]
+        public void Then_Correct_Token_Is_Returned( ) { Assert.AreEqual( "1234567", _result.Value ); }
 
-        [Test]
-        public void Then_Response_Is_Successful()
-        {
-            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
-        }
+        [ Test ]
+        public void Then_Response_Is_Successful( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
     }
 }

@@ -5,12 +5,9 @@ namespace Pinf.InstaService.BLL.Models.Insights
 {
     public class InstaInsightsCollection
     {
-        public InstaInsightsCollection(IEnumerable<InstaImpression> impressions)
-        {
-            Impressions = impressions;
-        }
+        public InstaInsightsCollection( IEnumerable<InstaImpression> impressions ) { Impressions = impressions; }
 
-        [JsonPropertyName("insta_impressions")]
+        [ JsonPropertyName( "insta_impressions" ) ]
         public IEnumerable<InstaImpression> Impressions { get; }
     }
 }

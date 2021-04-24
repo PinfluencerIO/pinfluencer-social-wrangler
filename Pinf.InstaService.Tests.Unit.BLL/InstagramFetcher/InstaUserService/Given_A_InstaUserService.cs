@@ -1,5 +1,5 @@
 ﻿using NSubstitute;
-using Pinf.InstaService.Bootstrapping.Services.Repositories;
+using Pinf.InstaService.BLL.Core.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService
@@ -9,11 +9,11 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService
     {
         protected IInstaUserRepository MockInstaUserRepository;
 
-        protected override void Given()
+        protected override void Given( )
         {
-            MockInstaUserRepository = Substitute.For<IInstaUserRepository>();
+            MockInstaUserRepository = Substitute.For<IInstaUserRepository>( );
 
-            Sut = new InstaService.BLL.InstagramFetcher.Services.InstaUserService(MockInstaUserRepository);
+            Sut = new InstaService.BLL.InstagramFetcher.Services.InstaUserService( MockInstaUserRepository );
         }
     }
 }

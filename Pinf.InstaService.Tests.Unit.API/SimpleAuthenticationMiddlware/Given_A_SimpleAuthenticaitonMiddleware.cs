@@ -17,32 +17,32 @@ namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware
         protected HttpResponse MockHttpResponse;
         protected RequestDelegate MockNextMiddlware;
 
-        protected override void Given()
+        protected override void Given( )
         {
-            MockNextMiddlware = Substitute.For<RequestDelegate>();
-            MockConfiguration = Substitute.For<IConfiguration>();
-            MockHttpContext = Substitute.For<HttpContext>();
-            MockHttpResponse = Substitute.For<HttpResponse>();
-            MockHttpRequest = Substitute.For<HttpRequest>();
+            MockNextMiddlware = Substitute.For<RequestDelegate>( );
+            MockConfiguration = Substitute.For<IConfiguration>( );
+            MockHttpContext = Substitute.For<HttpContext>( );
+            MockHttpResponse = Substitute.For<HttpResponse>( );
+            MockHttpRequest = Substitute.For<HttpRequest>( );
 
-            Sut = new SimpleAuthenticationMiddleware(MockNextMiddlware);
+            Sut = new SimpleAuthenticationMiddleware( MockNextMiddlware );
         }
 
-        protected override void When()
+        protected override void When( )
         {
             MockHttpRequest
                 .Headers
-                .Returns(HeaderDictionary);
+                .Returns( HeaderDictionary );
             MockConfiguration
-                    [Arg.Any<string>()]
-                .Returns(ApiKeyFromConfig);
+                    [ Arg.Any<string>( ) ]
+                .Returns( ApiKeyFromConfig );
 
             MockHttpContext
                 .Request
-                .Returns(MockHttpRequest);
+                .Returns( MockHttpRequest );
             MockHttpContext
                 .Response
-                .Returns(MockHttpResponse);
+                .Returns( MockHttpResponse );
 
             Sut.Invoke(
                 MockHttpContext,

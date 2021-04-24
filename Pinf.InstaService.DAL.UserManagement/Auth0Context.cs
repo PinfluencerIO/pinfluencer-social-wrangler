@@ -7,9 +7,6 @@ namespace Pinf.InstaService.DAL.UserManagement
     {
         public ManagementApiClient ManagementApiClient { set; get; }
 
-        public User GetUser(string id)
-        {
-            return ManagementApiClient.Users.GetAsync(id).Result;
-        }
+        public User GetUser( string id ) { return ManagementApiClient.Users.GetAsync( id ).Result; }
     }
 }

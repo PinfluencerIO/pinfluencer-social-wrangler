@@ -5,6 +5,6 @@ namespace Pinf.InstaService.DAL.Instagram.Dtos
 {
     public class Metric
     {
-        [JsonProperty("values")] public IEnumerable<Insight> Insights { get; set; }
+        [ JsonProperty( "values" ) ] public IEnumerable<Insight> Insights { get; set; }
     }
 }

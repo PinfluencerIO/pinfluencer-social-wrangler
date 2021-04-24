@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.InstaUser;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
 using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.FailTests
@@ -11,20 +11,17 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaUserService.Fai
     {
         private OperationResult<InstaUserIdentityCollection> _result;
 
-        protected override void When()
+        protected override void When( )
         {
-            InstaUserCollection = Enumerable.Empty<InstaUser>();
+            InstaUserCollection = Enumerable.Empty<InstaUser>( );
             InstaUsersOperationResult = OperationResultEnum.Failed;
 
-            base.When();
+            base.When( );
 
-            _result = Sut.GetAll();
+            _result = Sut.GetAll( );
         }
 
-        [Test]
-        public void Then_Operation_Result_Fails()
-        {
-            Assert.AreEqual(OperationResultEnum.Failed, _result.Status);
-        }
+        [ Test ]
+        public void Then_Operation_Result_Fails( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
     }
 }

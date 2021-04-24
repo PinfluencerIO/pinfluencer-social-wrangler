@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.InstaUser;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {
@@ -10,25 +10,19 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
     {
         private OperationResult<IEnumerable<InstaUser>> _result;
 
-        protected override void When()
+        protected override void When( )
         {
-            SetEmptyPage();
+            SetEmptyPage( );
 
-            base.When();
+            base.When( );
 
-            _result = Sut.GetUsers();
+            _result = Sut.GetUsers( );
         }
 
-        [Test]
-        public void Then_The_Response_Is_Empty()
-        {
-            Assert.IsEmpty(_result.Value);
-        }
+        [ Test ]
+        public void Then_The_Response_Is_Empty( ) { Assert.IsEmpty( _result.Value ); }
 
-        [Test]
-        public void Then_The_Status_Is_Success()
-        {
-            Assert.AreEqual(OperationResultEnum.Success, _result.Status);
-        }
+        [ Test ]
+        public void Then_The_Status_Is_Success( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
     }
 }

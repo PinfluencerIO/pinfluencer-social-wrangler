@@ -3,9 +3,9 @@ using Facebook;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
-using Pinf.InstaService.Bootstrapping.Services.Factories;
-using Pinf.InstaService.Bootstrapping.Services.Repositories;
+using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.BLL.Core.Factories;
+using Pinf.InstaService.BLL.Core.Repositories;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
@@ -19,42 +19,36 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
     {
         private readonly RequestDelegate _next;
 
-        public FacebookMiddlware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public FacebookMiddlware( RequestDelegate next ) { _next = next; }
 
         public async Task Invoke(
             HttpContext context,
-            [FromServices] IUserRepository userRepository,
-            [FromServices] FacebookContext facebookContext,
-            [FromServices] IFacebookClientFactory facebookClientFactory
+            [ FromServices ] IUserRepository userRepository,
+            [ FromServices ] FacebookContext facebookContext,
+            [ FromServices ] IFacebookClientFactory facebookClientFactory
         )
         {
-            var auth0Id = context.Request.Query["auth0_id"].ToString();
+            var auth0Id = context.Request.Query [ "auth0_id" ].ToString( );
 
-            if (auth0Id == string.Empty) await HandleError(context, "request must have query param of auth0_id");
+            if ( auth0Id == string.Empty ) await HandleError( context, "request must have query param of auth0_id" );
 
-            var tokenResult = userRepository.GetInstagramToken(auth0Id);
+            var tokenResult = userRepository.GetInstagramToken( auth0Id );
 
-            if (tokenResult.Status == OperationResultEnum.Failed)
-                await HandleError(context, "auth0 error, cannot access user token");
+            if ( tokenResult.Status == OperationResultEnum.Failed )
+                await HandleError( context, "auth0 error, cannot access user token" );
 
-            facebookContext.FacebookClient = facebookClientFactory.Get(tokenResult.Value);
+            facebookContext.FacebookClient = facebookClientFactory.Get( tokenResult.Value );
 
             try
             {
-                facebookContext.FacebookClient.Get("debug_token",
-                    new RequestDebugTokenParams {input_token = tokenResult.Value});
-                await _next.Invoke(context);
+                facebookContext.FacebookClient.Get( "debug_token",
+                    new RequestDebugTokenParams { input_token = tokenResult.Value } );
+                await _next.Invoke( context );
             }
-            catch (FacebookApiException e)
-            {
-                await HandleError(context, e.Message);
-            }
+            catch ( FacebookApiException e ) { await HandleError( context, e.Message ); }
         }
 
-        private static async Task HandleError(HttpContext context, string message)
+        private static async Task HandleError( HttpContext context, string message )
         {
             context
                 .Response
@@ -64,7 +58,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
                 .ContentType = "application/json";
             await context
                 .Response
-                .WriteAsync(JsonConvert.SerializeObject(new {error = "facebook authorization error", message}));
+                .WriteAsync( JsonConvert.SerializeObject( new { error = "facebook authorization error", message } ) );
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository
     {
         protected FacebookClient MockFacebookClient;
 
-        protected override void Given()
+        protected override void Given( )
         {
-            MockFacebookClient = Substitute.For<FacebookClient>();
+            MockFacebookClient = Substitute.For<FacebookClient>( );
 
             Sut = new FacebookInstaUserRepository(
                 new FacebookContext

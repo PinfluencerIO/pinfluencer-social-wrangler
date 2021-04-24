@@ -1,0 +1,27 @@
+﻿name: Manual DevOps Target
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'DevOps target to run, choose from the following => [ deploy, close, open ]'
+        required: true
+jobs:
+  run-target:
+    runs-on: windows-latest
+    env:
+      AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      DEVOPS_SLN: Pinf.InstaService.DevOps.sln
+      DEVOPS_EXEC: devops/DevOps.dll
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set project variables
+        run: .\set_envs.bat
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Kick Off DevOps
+        run: |
+          dotnet publish ${{ env.DEVOPS_SLN }} -o devops
+          dotnet exec ${{ env.DEVOPS_EXEC }} ${{ github.event.inputs.target }}

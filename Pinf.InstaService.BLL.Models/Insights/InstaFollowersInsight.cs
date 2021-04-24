@@ -2,7 +2,7 @@
 {
     public class InstaFollowersInsight<T>
     {
-        public InstaFollowersInsight(T property, int count)
+        public InstaFollowersInsight( T property, int count )
         {
             Property = property;
             Count = count;

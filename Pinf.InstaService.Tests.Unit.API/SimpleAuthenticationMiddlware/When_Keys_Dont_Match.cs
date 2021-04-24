@@ -7,14 +7,14 @@ namespace Pinf.InstaService.Tests.Unit.API.SimpleAuthenticationMiddlware
 {
     public class When_Keys_Dont_Match : When_Error_Occurs
     {
-        protected override void When()
+        protected override void When( )
         {
-            var headerParams = new Dictionary<string, StringValues>();
-            headerParams.Add("Simple-Auth-Key", "TestKey");
-            HeaderDictionary = new HeaderDictionary(headerParams);
+            var headerParams = new Dictionary<string, StringValues>( );
+            headerParams.Add( "Simple-Auth-Key", "TestKey" );
+            HeaderDictionary = new HeaderDictionary( headerParams );
             ApiKeyFromConfig = "TestKey1";
 
-            base.When();
+            base.When( );
         }
     }
 }

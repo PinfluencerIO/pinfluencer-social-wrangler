@@ -18,41 +18,43 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected User TestUser;
 
-        protected override void Given()
+        protected override void Given( )
         {
-            MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>();
+            MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
 
             Sut = new Auth0UserRepository(
                 new Auth0Context
                 {
-                    ManagementApiClient = new ManagementApiClient("token", "domain", MockAuth0ManagementApiConnection)
+                    ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )
                 }
             );
         }
 
-        protected override void When()
+        protected override void When( )
         {
             MockAuth0ManagementApiConnection
-                .GetAsync<User>(Arg.Any<Uri>(), Arg.Any<IDictionary<string, string>>(), Arg.Any<JsonConverter[]>())
-                .Returns(Task.FromResult(TestUser));
+                .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
+                    Arg.Any<JsonConverter [ ]>( ) )
+                .Returns( Task.FromResult( TestUser ) );
         }
 
-        [Test]
-        public void Then_Get_User_Is_Called_Once()
+        [ Test ]
+        public void Then_Get_User_Is_Called_Once( )
         {
             MockAuth0ManagementApiConnection
-                .Received(1)
-                .GetAsync<User>(Arg.Any<Uri>(), Arg.Any<IDictionary<string, string>>(), Arg.Any<JsonConverter[]>());
+                .Received( 1 )
+                .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
+                    Arg.Any<JsonConverter [ ]>( ) );
         }
 
-        [Test]
+        [ Test ]
         //TODO: flaky test
-        public void Then_Valid_User_Is_Retrieved()
+        public void Then_Valid_User_Is_Retrieved( )
         {
             MockAuth0ManagementApiConnection
-                .Received()
-                .GetAsync<User>(Arg.Is<Uri>(x => x.AbsolutePath.Contains(TestId)),
-                    Arg.Any<IDictionary<string, string>>(), Arg.Any<JsonConverter[]>());
+                .Received( )
+                .GetAsync<User>( Arg.Is<Uri>( x => x.AbsolutePath.Contains( TestId ) ),
+                    Arg.Any<IDictionary<string, string>>( ), Arg.Any<JsonConverter [ ]>( ) );
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using Pinf.InstaService.BLL.Core;
+using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Models.Insights;
-using Pinf.InstaService.Bootstrapping.Services;
-using Pinf.InstaService.Bootstrapping.Services.Enum;
 using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollectionService.GetUserInsightsTests.
@@ -12,27 +12,21 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstaInsightsCollect
     {
         private OperationResult<InstaInsightsCollection> _result;
 
-        protected override void When()
+        protected override void When( )
         {
             ImpressionsOperationResult = OperationResultEnum.Failed;
 
-            ImpressionsColleciton = Enumerable.Empty<InstaImpression>();
+            ImpressionsColleciton = Enumerable.Empty<InstaImpression>( );
 
-            base.When();
+            base.When( );
 
-            _result = Sut.GetUserInsights(TestId);
+            _result = Sut.GetUserInsights( TestId );
         }
 
-        [Test]
-        public void Then_Empty_Impressions_Are_Returned()
-        {
-            Assert.IsEmpty(_result.Value.Impressions);
-        }
+        [ Test ]
+        public void Then_Empty_Impressions_Are_Returned( ) { Assert.IsEmpty( _result.Value.Impressions ); }
 
-        [Test]
-        public void Then_Return_Status_Is_Fail()
-        {
-            Assert.AreEqual(OperationResultEnum.Failed, _result.Status);
-        }
+        [ Test ]
+        public void Then_Return_Status_Is_Fail( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
     }
 }

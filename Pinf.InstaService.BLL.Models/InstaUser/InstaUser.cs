@@ -2,7 +2,7 @@
 {
     public class InstaUser
     {
-        public InstaUser(InstaUserIdentity identity, string name, string bio, int followers)
+        public InstaUser( InstaUserIdentity identity, string name, string bio, int followers )
         {
             Identity = identity;
             Name = name;

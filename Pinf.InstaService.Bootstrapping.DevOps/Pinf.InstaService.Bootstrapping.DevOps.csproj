@@ -1,12 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <AssemblyName>DevOps</AssemblyName>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Targets" />
+      <PackageReference Include="AWSSDK.Core" Version="3.7.0.10" />
+      <PackageReference Include="AWSSDK.ElasticBeanstalk" Version="3.7.0.9" />
+      <PackageReference Include="AWSSDK.S3" Version="3.7.0.10" />
+      <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0096" />
+      <PackageReference Include="Microsoft.Build" Version="16.9.0" />
+      <PackageReference Include="Microsoft.Build.Engine" Version="16.9.0" />
+      <PackageReference Include="Microsoft.Build.Framework" Version="16.9.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="Octokit" Version="0.50.0" />
     </ItemGroup>
 
 </Project>
