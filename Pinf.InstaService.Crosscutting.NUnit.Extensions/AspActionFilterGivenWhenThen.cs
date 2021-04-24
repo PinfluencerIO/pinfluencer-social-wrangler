@@ -21,6 +21,12 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
             return new Dictionary<string, StringValues>( );
         }
 
+        protected TType GetResultObject<TResult, TType>( ) where TResult : ObjectResult where TType : class
+        {
+            var objectResult = MockActionExecutedContext.Result as TResult;
+            return objectResult?.Value as TType;
+        }
+        
         protected override void Given( )
         {
             MockHttpContext = Substitute.For<HttpContext>( );

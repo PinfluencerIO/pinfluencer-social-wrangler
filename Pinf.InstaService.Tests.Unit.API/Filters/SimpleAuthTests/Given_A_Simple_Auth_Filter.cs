@@ -8,6 +8,9 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests
 {
     public class Given_A_Simple_Auth_Filter : AspActionFilterGivenWhenThen<SimpleAuth>
     {
+        protected const string ApiKeyName = "Simple-Auth-Key";
+        protected const string ApiKey = "asdffdsa";
+        
         protected IConfiguration MockConfiguration;
         protected IHeaderDictionary MockHeaderDictionary;
 
