@@ -42,8 +42,7 @@ namespace Pinf.InstaService.API.InstaFetcher
 
             app.UseRouting( );
 
-            app.UseMiddleware<Auth0Middlware>( )
-                .UseMiddleware<FacebookMiddlware>( );
+            app.UseMiddleware<Auth0Middlware>( );
 
             app.UseEndpoints( endpoints => endpoints.MapControllers( ) );
         }

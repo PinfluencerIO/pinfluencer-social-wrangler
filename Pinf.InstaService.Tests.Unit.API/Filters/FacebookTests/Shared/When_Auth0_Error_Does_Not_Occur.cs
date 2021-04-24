@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
-namespace Pinf.InstaService.Tests.Unit.API.Middleware.FacebookMiddlware.Shared
+namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared
 {
     public abstract class When_Auth0_Error_Does_Not_Occur : Given_A_FacebookMiddlware
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -16,6 +17,11 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
         protected ActionExecutingContext MockActionExecutingContext;
 
         protected virtual Dictionary<string, StringValues> SetupHeaders( )
+        {
+            return new Dictionary<string, StringValues>( );
+        }
+        
+        protected virtual Dictionary<string, StringValues> SetupQueryParams( )
         {
             return new Dictionary<string, StringValues>( );
         }
@@ -37,6 +43,9 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
             _mockHttpRequest
                 .Headers
                 .Returns( new HeaderDictionary( SetupHeaders( ) ) );
+            _mockHttpRequest
+                .Query
+                .Returns( new QueryCollection( SetupQueryParams( ) ) );
             _mockHttpContext
                 .Request
                 .Returns( _mockHttpRequest );
