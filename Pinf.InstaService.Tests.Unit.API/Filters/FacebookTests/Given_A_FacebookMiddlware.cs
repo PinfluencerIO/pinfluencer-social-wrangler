@@ -16,7 +16,7 @@ using Pinf.InstaService.DAL.Instagram;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
 {
-    public abstract class Given_A_FacebookMiddlware : AspActionFilterGivenWhenThen<FacebookAttribute>
+    public abstract class Given_A_FacebookMiddlware : AspActionFilterGivenWhenThen<FacebookActionFilter>
     {
         protected const string TestToken = "654321";
         protected const string TestAuth0Id = "12345";
@@ -40,7 +40,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
 
-            Sut = new FacebookAttribute( MockUserRepository, _facebookContext, _mockFacebookClientFactory );
+            Sut = new FacebookActionFilter( MockUserRepository, _facebookContext, _mockFacebookClientFactory );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )

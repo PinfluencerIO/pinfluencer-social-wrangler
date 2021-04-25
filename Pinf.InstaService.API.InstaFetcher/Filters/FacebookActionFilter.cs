@@ -15,13 +15,13 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     //TODO: validate scopes etc...
     //TODO: create generic error handler
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
-    public class FacebookAttribute : ActionFilterAttribute, IActionFilter
+    public class FacebookActionFilter : ActionFilterAttribute
     {
         private readonly IUserRepository _userRepository;
         private readonly FacebookContext _facebookContext;
         private readonly IFacebookClientFactory _facebookClientFactory;
 
-        public FacebookAttribute( IUserRepository userRepository,
+        public FacebookActionFilter( IUserRepository userRepository,
             FacebookContext facebookContext,
             IFacebookClientFactory facebookClientFactory )
         {
@@ -38,8 +38,9 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             {
                 context.Result = new UnauthorizedObjectResult( new ErrorDto
                 {
-                    ErrorMsg = "auth0 id did not match an existing user"
+                    ErrorMsg = "'auth0_id' parameter was not present in the request"
                 } );
+                return;
             }
 
             var tokenResult = _userRepository.GetInstagramToken( auth0Id );
@@ -48,8 +49,9 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             {
                 context.Result = new UnauthorizedObjectResult( new ErrorDto
                 {
-                    ErrorMsg = "an error occured whilst trying to access facebook user token"
+                    ErrorMsg = "auth0 id did not match an existing user"
                 } );
+                return;
             }
 
             _facebookContext.FacebookClient = _facebookClientFactory.Get( tokenResult.Value );

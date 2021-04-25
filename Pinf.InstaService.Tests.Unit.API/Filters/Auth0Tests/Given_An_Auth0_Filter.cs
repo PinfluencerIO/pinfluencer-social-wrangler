@@ -13,7 +13,8 @@ using Pinf.InstaService.DAL.UserManagement;
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
     //TODO: add tests for failing to parse URIs
-    public abstract class Given_An_Auth0_Filter : AspActionFilterGivenWhenThen<Auth0Attribute>
+    //TODO: add tests for invalid object passed into app settings options dto
+    public abstract class Given_An_Auth0_Filter : AspActionFilterGivenWhenThen<Auth0ActionFilter>
     {
         protected const string TestToken = "123456789";
         private Auth0Context _mockAuth0Context;
@@ -29,7 +30,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
             MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
 
             SetupConfiguration( OverridableAppOptions );
-            Sut = new Auth0Attribute( _mockAuth0Context, _mockConfiguration, _mockManagementConnection, MockAuthenticationConnection );
+            Sut = new Auth0ActionFilter( _mockAuth0Context, _mockConfiguration, _mockManagementConnection, MockAuthenticationConnection );
         }
 
         private void SetupConfiguration( AppOptions appOptions )

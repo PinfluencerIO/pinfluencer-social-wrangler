@@ -19,14 +19,14 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     //TODO: use transient auth0 context for thread safety, refresh token if expired
     //TODO: validate scopes
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
-    public class Auth0Attribute : ActionFilterAttribute, IActionFilter
+    public class Auth0ActionFilter : ActionFilterAttribute
     {
         private readonly Auth0Context _auth0Context;
         private readonly IConfiguration _configuration;
         private readonly IManagementConnection _managementConnection;
         private readonly IAuthenticationConnection _authenticationConnection;
 
-        public Auth0Attribute( Auth0Context auth0Context,
+        public Auth0ActionFilter( Auth0Context auth0Context,
             IConfiguration configuration,
             IManagementConnection managementConnection,
             IAuthenticationConnection authenticationConnection )
