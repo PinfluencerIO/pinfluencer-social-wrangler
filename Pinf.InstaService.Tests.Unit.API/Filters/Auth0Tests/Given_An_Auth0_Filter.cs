@@ -13,8 +13,7 @@ using Pinf.InstaService.DAL.UserManagement;
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
     //TODO: add tests for failing to parse URIs
-    public abstract class
-        Given_An_Auth0_Filter : AspActionFilterGivenWhenThen<Auth0Attribute>
+    public abstract class Given_An_Auth0_Filter : AspActionFilterGivenWhenThen<Auth0Attribute>
     {
         protected const string TestToken = "123456789";
         private Auth0Context _mockAuth0Context;
@@ -25,28 +24,31 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         protected override void Given( )
         {
             base.Given( );
-            _mockAuth0Context = Substitute.For<Auth0Context>( );
+            _mockAuth0Context = new Auth0Context( );
             _mockManagementConnection = Substitute.For<IManagementConnection>( );
             MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
 
+            SetupConfiguration( OverridableAppOptions );
             Sut = new Auth0Attribute( _mockAuth0Context, _mockConfiguration, _mockManagementConnection, MockAuthenticationConnection );
         }
 
-        protected void SetupConfiguration( AppOptions appOptions )
+        private void SetupConfiguration( AppOptions appOptions )
         {
             _mockConfiguration = FakeConfiguration.GetFake( appOptions );
         }
 
-        protected static readonly AppOptions DefaultAppOptions = new AppOptions
+        private static AppOptions DefaultAppOptions => new AppOptions
         {
             Auth0 = new Auth0Options
             {
-                Domain = "test_domain",
+                Domain = "pinfluencer.eu.auth0.com",
                 Id = "test_id",
-                ManagementDomain = "test_man_domain",
+                ManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/",
                 Secret = "test_secret"
             }
         };
+
+        protected virtual AppOptions OverridableAppOptions => DefaultAppOptions;
 
         protected static AppOptions ModifyDefaultAppOptions( Func<AppOptions, AppOptions> appOptionsModifer )
         {

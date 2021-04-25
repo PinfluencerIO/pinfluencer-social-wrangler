@@ -7,8 +7,14 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
 {
     public static class FakeConfiguration
     {
-        public static IConfiguration GetFake<T>( T optionsDto ) => new ConfigurationBuilder( )
-            .AddJsonStream( new MemoryStream( Encoding.UTF8.GetBytes( JsonConvert.SerializeObject( optionsDto ) ) ) )
-            .Build( );
+        public static IConfiguration GetFake<T>( T optionsDto )
+        {
+            var builder = new ConfigurationBuilder( );
+            var json = JsonConvert.SerializeObject( optionsDto );
+            var bytes = Encoding.UTF8.GetBytes( json );
+            var memoryStream = new MemoryStream( bytes );
+            builder.AddJsonStream( memoryStream );
+            return builder.Build( );
+        }
     }
 }

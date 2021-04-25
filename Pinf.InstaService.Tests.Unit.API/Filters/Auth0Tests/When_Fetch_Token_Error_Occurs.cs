@@ -14,7 +14,6 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         protected override void When( )
         {
             base.When( );
-            SetupConfiguration( DefaultAppOptions );
             MockAuthenticationConnection
                 .SendAsync<AccessTokenResponse>(
                     Arg.Any<HttpMethod>( ),

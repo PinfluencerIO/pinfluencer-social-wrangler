@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Pinf.InstaService.API.InstaFetcher.Options;
+using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.DAL.UserManagement;
 
 namespace Pinf.InstaService.API.InstaFetcher.Filters
@@ -36,38 +37,41 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             _authenticationConnection = authenticationConnection;
         }
 
-        public async Task Invoke( )
+        public override void OnActionExecuting( ActionExecutingContext context )
         {
-            var auth0Settings = ( ( AppOptions )_configuration.Get( typeof( AppOptions ) ) ).Auth0;
+            var auth0Settings = _configuration.Get<AppOptions>( ).Auth0;
 
-            if( auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null || auth0Settings.ManagementDomain == null )
+            if( auth0Settings.Domain == "" || auth0Settings.Id == "" || auth0Settings.Secret == "" || auth0Settings.ManagementDomain == ""  || 
+                auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null || auth0Settings.ManagementDomain == null )
             {
-                //await HandleError( context, "auth0 configuration settings are not valid" );
+                context.Result = new UnauthorizedObjectResult( new ErrorDto
+                {
+                    ErrorMsg = "auth0 configuration settings are not valid"
+                } );
+                return;
             }
 
             var authenticationApiClient = new AuthenticationApiClient( auth0Settings.Domain, _authenticationConnection );
 
             try
             {
-                var token = await authenticationApiClient.GetTokenAsync( new ClientCredentialsTokenRequest
+                var token = authenticationApiClient.GetTokenAsync( new ClientCredentialsTokenRequest
                 {
                     ClientId = auth0Settings.Id,
                     ClientSecret = auth0Settings.Secret,
                     Audience = auth0Settings.ManagementDomain
-                } );
+                } ).Result;
 
                 _auth0Context.ManagementApiClient =
                     new ManagementApiClient( token.AccessToken, auth0Settings.Domain, _managementConnection );
             }
             catch( ApiException exception )
             {
-                //await HandleError( context, exception.Message );
+                context.Result = new UnauthorizedObjectResult( new ErrorDto
+                {
+                    ErrorMsg = exception.Message
+                } );
             }
-        }
-
-        public override void OnActionExecuting( ActionExecutingContext context )
-        {
-            
         }
     }
 }

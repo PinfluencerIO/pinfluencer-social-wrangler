@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
     {
         protected override void When( )
         {
-            SetupConfiguration( DefaultAppOptions );
+            base.When( );
 
             MockAuthenticationConnection
                 .SendAsync<AccessTokenResponse>(
@@ -23,8 +23,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
                     Arg.Any<IDictionary<string, string>>( )
                 )
                 .Returns( Task.FromResult( new AccessTokenResponse { AccessToken = TestToken } ) );
-
-            base.When( );
+            Sut.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

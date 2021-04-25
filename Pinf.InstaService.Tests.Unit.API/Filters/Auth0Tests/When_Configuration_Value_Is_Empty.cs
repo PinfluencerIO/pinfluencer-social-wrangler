@@ -8,8 +8,6 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
     [ TestFixtureSource( nameof( ConfigurationData ) ) ]
     public class When_Configuration_Value_Is_Empty : When_Error_Occurs
     {
-        private readonly AppOptions _appOptions;
-
         private static IEnumerable<AppOptions> ConfigurationData( ) => new [ ]
         {
             ModifyDefaultAppOptions( options =>
@@ -34,12 +32,13 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
             } )
         };
 
-        public When_Configuration_Value_Is_Empty( AppOptions appOptions ) { _appOptions = appOptions; }
+        protected override AppOptions OverridableAppOptions { get; }
+
+        public When_Configuration_Value_Is_Empty( AppOptions appOptions ) { OverridableAppOptions = appOptions; }
 
         protected override void When( )
         {
             base.When( );
-            SetupConfiguration( _appOptions );
             Sut.OnActionExecuting( MockActionExecutingContext );
         }
     }
