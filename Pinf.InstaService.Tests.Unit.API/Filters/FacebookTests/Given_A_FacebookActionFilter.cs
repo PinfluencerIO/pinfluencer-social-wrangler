@@ -16,6 +16,7 @@ using Pinf.InstaService.DAL.Instagram;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
 {
+    //TODO: tests with factory
     public abstract class Given_A_FacebookActionFilter : AspActionFilterGivenWhenThen<FacebookActionFilter>
     {
         protected const string TestToken = "654321";

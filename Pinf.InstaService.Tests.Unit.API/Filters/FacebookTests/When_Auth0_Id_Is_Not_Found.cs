@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
+using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
@@ -20,5 +21,21 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         
         [ Test ]
         public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( "'auth0_id' parameter was not present in the request", ErrorMessage ); }
+        
+        [ Test ]
+        public void Then_Instagram_Api_Is_Not_Called( )
+        {
+            MockUserRepository
+                .DidNotReceive( )
+                .GetInstagramToken( Arg.Any<string>( ) );
+        }
+        
+        [ Test ]
+        public void Then_Graph_Api_Was_Not_Called( )
+        {
+            MockFacebookClient
+                .DidNotReceive( )
+                .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
+        }
     }
 }

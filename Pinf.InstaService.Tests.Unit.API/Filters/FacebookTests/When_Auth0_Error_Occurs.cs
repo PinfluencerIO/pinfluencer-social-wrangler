@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
+using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
@@ -29,6 +30,30 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         public void Then_Result_Status_Is_Unauthorized( )
         {
             Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
+        }
+        
+        [ Test ]
+        public void Then_User_Repository_Was_Fetched_From_Once( )
+        {
+            MockUserRepository
+                .Received( 1 )
+                .GetInstagramToken( Arg.Any<string>( ) );
+        }
+        
+        [ Test ]
+        public void Then_Valid_Auth0_Id_Was_Used( )
+        {
+            MockUserRepository
+                .Received( )
+                .GetInstagramToken( Arg.Is( TestAuth0Id ) );
+        }
+        
+        [ Test ]
+        public void Then_Graph_Api_Was_Not_Called( )
+        {
+            MockFacebookClient
+                .DidNotReceive( )
+                .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
         }
     }
 }

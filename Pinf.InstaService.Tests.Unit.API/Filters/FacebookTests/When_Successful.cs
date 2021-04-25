@@ -4,7 +4,7 @@ using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
 {
-    public class When_Successful : When_Auth0_Error_Does_Not_Occur
+    public class When_Successful : When_Auth0_Communication_Was_Successful
     {
         protected override void When( )
         {

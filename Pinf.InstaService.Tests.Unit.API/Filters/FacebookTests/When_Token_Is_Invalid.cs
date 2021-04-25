@@ -9,7 +9,7 @@ using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
 {
-    public class When_Token_Is_Invalid : When_Auth0_Error_Does_Not_Occur
+    public class When_Token_Is_Invalid : When_Auth0_Communication_Was_Successful
     {
         private const string FacebookErrorMsg = "facebook error message";
         

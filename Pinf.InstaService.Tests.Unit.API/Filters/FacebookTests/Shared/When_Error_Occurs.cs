@@ -18,13 +18,5 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared
         {
             Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
         }
-        
-        [ Test ]
-        public void Then_Instagram_Api_Is_Not_Called( )
-        {
-            MockUserRepository
-                .DidNotReceive( )
-                .GetInstagramToken( Arg.Any<string>( ) );
-        }
     }
 }
