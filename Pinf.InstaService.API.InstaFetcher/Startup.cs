@@ -33,6 +33,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
                 .AddTransient<InstagramFacade>( )
                 .AddTransient<SimpleAuthAttribute>( )
+                .AddTransient<FacebookAttribute>()
                 .AddControllers( );
         }
 

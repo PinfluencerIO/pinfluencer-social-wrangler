@@ -6,7 +6,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {
     //TODO: implement auto-mapper
     [ Route( "user" ) ]
-    public class UserController : PinfluencerController
+    public class UserController : InstagramServiceController
     {
         private readonly InstagramFacade _instagramFacade;
         public UserController( InstagramFacade instagramFacade ) { _instagramFacade = instagramFacade; }
