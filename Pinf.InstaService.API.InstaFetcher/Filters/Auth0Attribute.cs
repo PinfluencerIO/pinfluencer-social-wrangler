@@ -5,22 +5,23 @@ using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Pinf.InstaService.DAL.UserManagement;
 
-namespace Pinf.InstaService.API.InstaFetcher.Middleware
+namespace Pinf.InstaService.API.InstaFetcher.Filters
 {
     //TODO: factories!!
     //TODO: persist token to file
     //TODO: use transient auth0 context for thread safety, refresh token if expired
     //TODO: validate scopes
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
-    public class Auth0Middlware
+    public class Auth0Attribute : ActionFilterAttribute, IActionFilter
     {
         private readonly RequestDelegate _next;
 
-        public Auth0Middlware( RequestDelegate next ) { _next = next; }
+        public Auth0Attribute( RequestDelegate next ) { _next = next; }
 
         public async Task Invoke(
             HttpContext context,
@@ -69,6 +70,11 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
             await context
                 .Response
                 .WriteAsync( JsonConvert.SerializeObject( new { error = "auth0 authorization error", message } ) );
+        }
+
+        public override void OnActionExecuting( ActionExecutingContext context )
+        {
+            
         }
     }
 }

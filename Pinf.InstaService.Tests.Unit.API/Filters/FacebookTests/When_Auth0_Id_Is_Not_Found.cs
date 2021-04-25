@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
+using NUnit.Framework;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
 
@@ -16,5 +17,8 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
             SetUpUserRepository( TestToken, OperationResultEnum.Success );
             Sut.OnActionExecuting( MockActionExecutingContext );
         }
+        
+        [ Test ]
+        public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( "auth0 id did not match an existing user", ErrorMessage ); }
     }
 }

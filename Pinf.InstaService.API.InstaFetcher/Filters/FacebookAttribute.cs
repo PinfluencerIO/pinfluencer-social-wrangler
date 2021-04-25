@@ -38,7 +38,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             {
                 context.Result = new UnauthorizedObjectResult( new ErrorDto
                 {
-                    ErrorMsg = "request must have query param of auth0_id"
+                    ErrorMsg = "auth0 id did not match an existing user"
                 } );
             }
 
@@ -48,7 +48,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             {
                 context.Result = new UnauthorizedObjectResult( new ErrorDto
                 {
-                    ErrorMsg = "auth0 error, cannot access user token"
+                    ErrorMsg = "an error occured whilst trying to access facebook user token"
                 } );
             }
 

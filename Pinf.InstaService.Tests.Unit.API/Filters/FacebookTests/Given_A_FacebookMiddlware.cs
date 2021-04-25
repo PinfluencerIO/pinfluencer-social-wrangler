@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Facebook;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
+using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Core.Factories;
@@ -50,5 +52,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         
         protected override Dictionary<string, StringValues> SetupQueryParams( ) =>
             new Dictionary<string, StringValues>{ { Auth0IdParamKey, TestAuth0Id } };
+        
+        protected string ErrorMessage => GetResultObject<UnauthorizedObjectResult, ErrorDto>( ).ErrorMsg;
     }
 }

@@ -43,7 +43,7 @@ namespace Pinf.InstaService.API.InstaFetcher
 
             app.UseRouting( );
 
-            app.UseMiddleware<Auth0Middlware>( );
+            app.UseMiddleware<Auth0Attribute>( );
 
             app.UseEndpoints( endpoints => endpoints.MapControllers( ) );
         }

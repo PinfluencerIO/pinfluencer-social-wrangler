@@ -11,13 +11,15 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
 {
     public class When_Token_Is_Invalid : When_Auth0_Error_Does_Not_Occur
     {
+        private const string FacebookErrorMsg = "facebook error message";
+        
         protected override void When( )
         {
             base.When( );
             SetUpUserRepository( TestToken, OperationResultEnum.Success );
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
-                .Throws<FacebookOAuthException>( );
+                .Throws( new FacebookOAuthException( FacebookErrorMsg ) );
             Sut.OnActionExecuting( MockActionExecutingContext );
         }
 
@@ -32,5 +34,8 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         {
             Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
         }
+        
+        [ Test ]
+        public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( FacebookErrorMsg, ErrorMessage ); }
     }
 }

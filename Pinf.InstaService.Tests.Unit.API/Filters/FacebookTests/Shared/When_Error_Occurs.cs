@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
+using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared
 {
