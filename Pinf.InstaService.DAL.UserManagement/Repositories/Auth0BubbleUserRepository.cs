@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
@@ -8,6 +9,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
     public class Auth0BubbleUserRepository : IUserRepository
     {
         private readonly Auth0Context _auth0Context;
+        private readonly IHttpClientFactory _httpClient;
 
         public Auth0BubbleUserRepository( Auth0Context auth0Context ) { _auth0Context = auth0Context; }
 
