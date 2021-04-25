@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.DAL.UserManagement;
 
 namespace Pinf.InstaService.API.InstaFetcher.Filters
@@ -19,57 +20,49 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class Auth0Attribute : ActionFilterAttribute, IActionFilter
     {
-        private readonly RequestDelegate _next;
+        private readonly Auth0Context _auth0Context;
+        private readonly IConfiguration _configuration;
+        private readonly IManagementConnection _managementConnection;
+        private readonly IAuthenticationConnection _authenticationConnection;
 
-        public Auth0Attribute( RequestDelegate next ) { _next = next; }
-
-        public async Task Invoke(
-            HttpContext context,
-            [ FromServices ] Auth0Context auth0Context,
-            [ FromServices ] IConfiguration configuration,
-            [ FromServices ] IManagementConnection managementConnection,
-            [ FromServices ] IAuthenticationConnection authenticationConnection
-        )
+        public Auth0Attribute( Auth0Context auth0Context,
+            IConfiguration configuration,
+            IManagementConnection managementConnection,
+            IAuthenticationConnection authenticationConnection )
         {
-            var auth0Settings = configuration.GetSection( "Auth0" );
-            var clientId = auth0Settings[ "Id" ];
-            var clientSecret = auth0Settings[ "Secret" ];
-            var domain = auth0Settings[ "Domain" ];
-            var audience = auth0Settings[ "ManagementDomain" ];
+            _auth0Context = auth0Context;
+            _configuration = configuration;
+            _managementConnection = managementConnection;
+            _authenticationConnection = authenticationConnection;
+        }
 
-            if( domain == null || clientId == null || clientSecret == null || audience == null )
-                await HandleError( context, "auth0 configuration settings are not valid" );
+        public async Task Invoke( )
+        {
+            var auth0Settings = ( ( AppOptions )_configuration.Get( typeof( AppOptions ) ) ).Auth0;
 
-            var authenticationApiClient = new AuthenticationApiClient( domain, authenticationConnection );
+            if( auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null || auth0Settings.ManagementDomain == null )
+            {
+                //await HandleError( context, "auth0 configuration settings are not valid" );
+            }
+
+            var authenticationApiClient = new AuthenticationApiClient( auth0Settings.Domain, _authenticationConnection );
 
             try
             {
                 var token = await authenticationApiClient.GetTokenAsync( new ClientCredentialsTokenRequest
                 {
-                    ClientId = clientId,
-                    ClientSecret = clientSecret,
-                    Audience = audience
+                    ClientId = auth0Settings.Id,
+                    ClientSecret = auth0Settings.Secret,
+                    Audience = auth0Settings.ManagementDomain
                 } );
 
-                auth0Context.ManagementApiClient =
-                    new ManagementApiClient( token.AccessToken, domain, managementConnection );
-
-                await _next.Invoke( context );
+                _auth0Context.ManagementApiClient =
+                    new ManagementApiClient( token.AccessToken, auth0Settings.Domain, _managementConnection );
             }
-            catch( ApiException exception ) { await HandleError( context, exception.Message ); }
-        }
-
-        private static async Task HandleError( HttpContext context, string message )
-        {
-            context
-                .Response
-                .StatusCode = 401;
-            context
-                .Response
-                .ContentType = "application/json";
-            await context
-                .Response
-                .WriteAsync( JsonConvert.SerializeObject( new { error = "auth0 authorization error", message } ) );
+            catch( ApiException exception )
+            {
+                //await HandleError( context, exception.Message );
+            }
         }
 
         public override void OnActionExecuting( ActionExecutingContext context )

@@ -5,17 +5,16 @@ using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
-using Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware.Shared;
+using Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
+namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
     public class When_Fetch_Token_Error_Occurs : When_Error_Occurs
     {
         protected override void When( )
         {
-            AddDefaultConfiguration( );
-            SetConfiguration( );
-
+            base.When( );
+            SetupConfiguration( DefaultAppOptions );
             MockAuthenticationConnection
                 .SendAsync<AccessTokenResponse>(
                     Arg.Any<HttpMethod>( ),
@@ -24,8 +23,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
                     Arg.Any<IDictionary<string, string>>( )
                 )
                 .Throws<ErrorApiException>( );
-
-            base.When( );
+            Sut.OnActionExecuting( MockActionExecutingContext );
         }
     }
 }

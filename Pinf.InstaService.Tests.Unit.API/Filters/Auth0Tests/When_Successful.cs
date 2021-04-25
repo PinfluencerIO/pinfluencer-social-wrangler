@@ -7,14 +7,13 @@ using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
+namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
-    public class When_Successful : Given_A_Auth0Middlware
+    public class When_Successful : Given_An_Auth0_Filter
     {
         protected override void When( )
         {
-            AddDefaultConfiguration( );
-            SetConfiguration( );
+            SetupConfiguration( DefaultAppOptions );
 
             MockAuthenticationConnection
                 .SendAsync<AccessTokenResponse>(
@@ -31,9 +30,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Middleware.Auth0Middlware
         [ Test ]
         public void Then_Next_Middlware_Is_Executed( )
         {
-            MockNextMiddlware
-                .Received( 1 )
-                .Invoke( Arg.Any<HttpContext>( ) );
+            Assert.Null( MockActionExecutingContext.Result );
         }
     }
 }

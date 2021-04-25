@@ -8,7 +8,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
 {
     public class SimpleAuthAttribute : ActionFilterAttribute, IActionFilter
     {
-        public const string SimpleKeyName = "Simple-Auth-Key";
+        private const string SimpleKeyName = "Simple-Auth-Key";
         private readonly IConfiguration _configuration;
 
         public SimpleAuthAttribute( IConfiguration configuration ) { _configuration = configuration; }
