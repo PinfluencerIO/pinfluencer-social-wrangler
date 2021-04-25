@@ -1,15 +1,15 @@
 ﻿using System;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
-using Pinf.InstaService.BLL.Core.Repositories;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Repositories;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
 {
-    public class Auth0UserRepository : IUserRepository
+    public class Auth0BubbleUserRepository : IUserRepository
     {
         private readonly Auth0Context _auth0Context;
 
-        public Auth0UserRepository( Auth0Context auth0Context ) { _auth0Context = auth0Context; }
+        public Auth0BubbleUserRepository( Auth0Context auth0Context ) { _auth0Context = auth0Context; }
 
         public OperationResult<string> GetInstagramToken( string id )
         {
@@ -20,5 +20,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             }
             catch( Exception ) { return new OperationResult<string>( "", OperationResultEnum.Failed ); }
         }
+
+        public OperationResultEnum Create( string id ) { throw new NotImplementedException( ); }
     }
 }

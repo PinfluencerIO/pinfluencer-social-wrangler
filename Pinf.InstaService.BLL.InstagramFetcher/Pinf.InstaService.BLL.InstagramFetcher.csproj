@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinf.InstaService.BLL.Core\Pinf.InstaService.BLL.Core.csproj" />
+      <ProjectReference Include="..\Pinf.InstaService.Core\Pinf.InstaService.Core.csproj" />
       <ProjectReference Include="..\Pinf.InstaService.Crosscutting.CodeContracts\Pinf.InstaService.Crosscutting.CodeContracts.csproj" />
     </ItemGroup>
 

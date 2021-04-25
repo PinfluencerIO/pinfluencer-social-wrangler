@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
 {

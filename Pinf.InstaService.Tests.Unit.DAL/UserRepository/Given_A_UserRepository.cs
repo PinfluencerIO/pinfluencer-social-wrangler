@@ -12,7 +12,7 @@ using Pinf.InstaService.DAL.UserManagement.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
 {
-    public abstract class Given_A_UserRepository : GivenWhenThen<Auth0UserRepository>
+    public abstract class Given_A_UserRepository : GivenWhenThen<Auth0BubbleUserRepository>
     {
         protected const string TestId = "1234";
         protected IManagementConnection MockAuth0ManagementApiConnection;
@@ -22,7 +22,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
         {
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
 
-            Sut = new Auth0UserRepository(
+            Sut = new Auth0BubbleUserRepository(
                 new Auth0Context
                 {
                     ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )

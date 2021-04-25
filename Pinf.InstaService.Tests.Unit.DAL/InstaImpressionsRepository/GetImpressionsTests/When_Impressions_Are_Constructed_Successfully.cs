@@ -2,8 +2,8 @@
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.BLL.Models.Insights;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests

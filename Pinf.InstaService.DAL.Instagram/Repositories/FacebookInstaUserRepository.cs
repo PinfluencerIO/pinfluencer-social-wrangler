@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
-using Pinf.InstaService.BLL.Core.Repositories;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.BLL.Models.InstaUser;
 using Pinf.InstaService.Crosscutting.CodeContracts;
 using Pinf.InstaService.DAL.Instagram.Dtos;

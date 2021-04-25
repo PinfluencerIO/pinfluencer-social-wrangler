@@ -7,10 +7,10 @@ using NSubstitute;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
-using Pinf.InstaService.BLL.Core.Factories;
-using Pinf.InstaService.BLL.Core.Repositories;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Factories;
+using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.DAL.Instagram;
 

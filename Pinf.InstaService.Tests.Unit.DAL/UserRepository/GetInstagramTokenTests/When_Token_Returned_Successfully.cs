@@ -1,7 +1,7 @@
 ﻿using Auth0.ManagementApi.Models;
 using NUnit.Framework;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
 {

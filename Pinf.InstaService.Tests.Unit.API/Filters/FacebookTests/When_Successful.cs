@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests

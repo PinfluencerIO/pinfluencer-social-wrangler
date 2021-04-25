@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
-using Pinf.InstaService.BLL.Core.Enum;
-using Pinf.InstaService.BLL.Core.Factories;
-using Pinf.InstaService.BLL.Core.Repositories;
+using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Factories;
+using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using Pinf.InstaService.BLL.Core;
-using Pinf.InstaService.BLL.Core.Enum;
+using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.BLL.Models.InstaUser;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests

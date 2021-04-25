@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
-using Pinf.InstaService.BLL.Core.Factories;
-using Pinf.InstaService.BLL.Core.Repositories;
+using Pinf.InstaService.Core.Interfaces.Factories;
+using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Factories;
@@ -27,7 +27,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddScoped<FacebookContext>( )
                 .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
                 .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
-                .AddTransient<IUserRepository, Auth0UserRepository>( )
+                .AddTransient<IUserRepository, Auth0BubbleUserRepository>( )
                 .AddTransient<IInstaImpressionsRepository, FacebookInstaImpressionsRepository>( )
                 .AddTransient<IInstaUserRepository, FacebookInstaUserRepository>( )
                 .AddTransient<IManagementConnection, HttpClientManagementConnection>( )

@@ -1,6 +1,6 @@
 ﻿using Facebook;
 
-namespace Pinf.InstaService.BLL.Core.Factories
+namespace Pinf.InstaService.Core.Interfaces.Factories
 {
     public interface IFacebookClientFactory
     {

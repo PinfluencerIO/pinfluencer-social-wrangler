@@ -1,6 +1,6 @@
-﻿using Pinf.InstaService.BLL.Core.Enum;
+﻿using Pinf.InstaService.Core.Enum;
 
-namespace Pinf.InstaService.BLL.Core
+namespace Pinf.InstaService.Core
 {
     //TODO: provide message param to allow for meaningful error messages
     public class OperationResult<T>

@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>Pinf.InstaService.Core</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +13,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Pinf.InstaService.BLL.Models\Pinf.InstaService.BLL.Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Interfaces" />
     </ItemGroup>
 
 </Project>

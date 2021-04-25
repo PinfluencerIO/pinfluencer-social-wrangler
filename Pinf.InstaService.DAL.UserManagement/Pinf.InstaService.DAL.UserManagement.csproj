@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinf.InstaService.BLL.Core\Pinf.InstaService.BLL.Core.csproj" />
+      <ProjectReference Include="..\Pinf.InstaService.Core\Pinf.InstaService.Core.csproj" />
     </ItemGroup>
 
 </Project>
