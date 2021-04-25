@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.Crosscutting.Web;
 using Pinf.InstaService.DAL.UserManagement;
 using Pinf.InstaService.DAL.UserManagement.Repositories;
 
@@ -17,16 +18,19 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
         protected const string TestId = "1234";
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected User TestUser;
+        protected IHttpClient MockHttpClient;
 
         protected override void Given( )
         {
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
-
+            MockHttpClient = Substitute.For<IHttpClient>( );
+            
             Sut = new Auth0BubbleUserRepository(
                 new Auth0Context
                 {
                     ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )
-                }
+                },
+                MockHttpClient
             );
         }
 

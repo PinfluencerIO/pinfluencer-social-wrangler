@@ -19,4 +19,8 @@
       <ProjectReference Include="..\Pinf.InstaService.DAL.UserManagement\Pinf.InstaService.DAL.UserManagement.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="UserRepository\CreateTests" />
+    </ItemGroup>
+
 </Project>

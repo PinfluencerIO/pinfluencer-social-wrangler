@@ -3,15 +3,20 @@ using System.Net.Http;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
+using Pinf.InstaService.Crosscutting.Web;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
 {
     public class Auth0BubbleUserRepository : IUserRepository
     {
         private readonly Auth0Context _auth0Context;
-        private readonly IHttpClientFactory _httpClient;
+        private readonly IHttpClient _httpClient;
 
-        public Auth0BubbleUserRepository( Auth0Context auth0Context ) { _auth0Context = auth0Context; }
+        public Auth0BubbleUserRepository( Auth0Context auth0Context, IHttpClient httpClient )
+        {
+            _auth0Context = auth0Context;
+            _httpClient = httpClient;
+        }
 
         public OperationResult<string> GetInstagramToken( string id )
         {
