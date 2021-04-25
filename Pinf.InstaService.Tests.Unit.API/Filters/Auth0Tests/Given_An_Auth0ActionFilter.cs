@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
 using Auth0.AuthenticationApi;
+using Auth0.AuthenticationApi.Models;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +21,12 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
     public abstract class Given_An_Auth0ActionFilter : AspActionFilterGivenWhenThen<Auth0ActionFilter>
     {
         protected const string TestToken = "123456789";
-        private Auth0Context _mockAuth0Context;
+        protected const string TestDomain = "pinfluencer.eu.auth0.com";
+        protected const string TestId = "test_id";
+        protected const string TestManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/";
+        protected const string TestSecret = "test_secret";
+        
+        protected Auth0Context MockAuth0Context;
         protected IAuthenticationConnection MockAuthenticationConnection;
         private IConfiguration _mockConfiguration;
         private IManagementConnection _mockManagementConnection;
@@ -25,12 +34,12 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         protected override void Given( )
         {
             base.Given( );
-            _mockAuth0Context = new Auth0Context( );
+            MockAuth0Context = new Auth0Context( );
             _mockManagementConnection = Substitute.For<IManagementConnection>( );
             MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
 
             SetupConfiguration( OverridableAppOptions );
-            Sut = new Auth0ActionFilter( _mockAuth0Context, _mockConfiguration, _mockManagementConnection, MockAuthenticationConnection );
+            Sut = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection, MockAuthenticationConnection );
         }
 
         private void SetupConfiguration( AppOptions appOptions )
@@ -42,10 +51,10 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         {
             Auth0 = new Auth0Options
             {
-                Domain = "pinfluencer.eu.auth0.com",
-                Id = "test_id",
-                ManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/",
-                Secret = "test_secret"
+                Domain = TestDomain,
+                Id = TestId,
+                ManagementDomain = TestManagementDomain,
+                Secret = TestSecret
             }
         };
 
@@ -54,6 +63,36 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         protected static AppOptions ModifyDefaultAppOptions( Func<AppOptions, AppOptions> appOptionsModifer )
         {
             return appOptionsModifer( DefaultAppOptions );
+        }
+
+        protected void TokenWasFetchedOnce( )
+        {
+            MockAuthenticationConnection
+                .Received( 1 )
+                .SendAsync<AccessTokenResponse>(
+                    Arg.Any<HttpMethod>( ),
+                    Arg.Any<Uri>( ),
+                    Arg.Any<object>( ),
+                    Arg.Any<IDictionary<string, string>>( )
+                );
+        }
+        
+        protected void TokenWasFetchedWithValidBody( )
+        {
+            MockAuthenticationConnection
+                .Received( )
+                .SendAsync<AccessTokenResponse>(
+                    Arg.Any<HttpMethod>( ),
+                    Arg.Any<Uri>( ),
+                    Arg.Is<Dictionary<string, string>>( o => o.SequenceEqual( new Dictionary<string, string>
+                    {
+                        { "grant_type", "client_credentials" },
+                        { "client_id", TestId },
+                        { "client_secret", TestSecret },
+                        { "audience", TestManagementDomain }
+                    } ) ),
+                    Arg.Any<IDictionary<string, string>>( )
+                );
         }
     }
 }

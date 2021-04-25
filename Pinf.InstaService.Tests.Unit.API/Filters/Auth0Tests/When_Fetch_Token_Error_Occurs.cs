@@ -11,7 +11,7 @@ using Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
-    public class When_Fetch_Token_Error_Occurs : Given_An_Auth0ActionFilter
+    public class When_Fetch_Token_Error_Occurs : When_Error_Occurs
     {
         protected override void When( )
         {
@@ -28,15 +28,15 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         }
         
         [ Test ]
-        public void Then_Middlware_Short_Circuits( )
+        public void Then_Token_Is_Fetched_Once( )
         {
-            Assert.NotNull( MockActionExecutingContext.Result );
+            TokenWasFetchedOnce( );
         }
-
+        
         [ Test ]
-        public void Then_Result_Status_Is_Unauthorized( )
+        public void Then_Token_Is_Fetched_With_Valid_Body( )
         {
-            Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
+            TokenWasFetchedWithValidBody( );
         }
     }
 }

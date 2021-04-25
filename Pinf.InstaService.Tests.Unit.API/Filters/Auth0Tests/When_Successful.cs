@@ -6,6 +6,7 @@ using Auth0.AuthenticationApi.Models;
 using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NUnit.Framework;
+using Pinf.InstaService.DAL.UserManagement;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
@@ -30,6 +31,24 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         public void Then_Next_Middlware_Is_Executed( )
         {
             Assert.Null( MockActionExecutingContext.Result );
+        }
+        
+        [ Test ]
+        public void Then_Token_Is_Fetched_Once( )
+        {
+            TokenWasFetchedOnce( );
+        }
+        
+        [ Test ]
+        public void Then_Token_Is_Fetched_With_Valid_Body( )
+        {
+            TokenWasFetchedWithValidBody( );
+        }
+        
+        [ Test ]
+        public void Then_Management_Api_Client_Was_Set( )
+        {
+            Assert.NotNull( MockAuth0Context.ManagementApiClient );
         }
     }
 }

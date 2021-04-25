@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using Auth0.AuthenticationApi.Models;
+using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests.Shared;
@@ -40,6 +44,19 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         {
             base.When( );
             Sut.OnActionExecuting( MockActionExecutingContext );
+        }
+        
+        [ Test ]
+        public void Then_Token_Is_Not_Fetched( )
+        {
+            MockAuthenticationConnection
+                .DidNotReceive( )
+                .SendAsync<AccessTokenResponse>(
+                    Arg.Any<HttpMethod>( ),
+                    Arg.Any<Uri>( ),
+                    Arg.Any<object>( ),
+                    Arg.Any<IDictionary<string, string>>( )
+                );
         }
     }
 }

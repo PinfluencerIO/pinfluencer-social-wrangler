@@ -24,16 +24,9 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests.Shared
         }
         
         [ Test ]
-        public void Then_Token_Is_Not_Fetched( )
+        public void Then_Management_Api_Client_Was_Not_Set( )
         {
-            MockAuthenticationConnection
-                .DidNotReceive( )
-                .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>( ),
-                    Arg.Any<Uri>( ),
-                    Arg.Any<object>( ),
-                    Arg.Any<IDictionary<string, string>>( )
-                );
+            Assert.Null( MockAuth0Context.ManagementApiClient );
         }
     }
 }
