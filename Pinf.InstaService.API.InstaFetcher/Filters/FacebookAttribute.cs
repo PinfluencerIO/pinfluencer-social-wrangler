@@ -1,16 +1,15 @@
-﻿using System.Threading.Tasks;
-using Facebook;
+﻿using Facebook;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Newtonsoft.Json;
+using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.BLL.Core.Enum;
 using Pinf.InstaService.BLL.Core.Factories;
 using Pinf.InstaService.BLL.Core.Repositories;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
-namespace Pinf.InstaService.API.InstaFetcher.Middleware
+namespace Pinf.InstaService.API.InstaFetcher.Filters
 {
     //TODO: add factories
     //TODO: validate scopes etc...
@@ -31,19 +30,27 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
             _facebookClientFactory = facebookClientFactory;
         }
 
-        public void Invoke(
-            HttpContext context
-        )
+        public override void OnActionExecuting( ActionExecutingContext context )
         {
-            var auth0Id = context.Request.Query[ "auth0_id" ].ToString( );
+            var auth0Id = context.HttpContext.Request.Query[ "auth0_id" ].ToString( );
 
-            //if( auth0Id == string.Empty )
-                // HandleError( context, "request must have query param of auth0_id" );
+            if( auth0Id == string.Empty )
+            {
+                context.Result = new UnauthorizedObjectResult( new ErrorDto
+                {
+                    ErrorMsg = "request must have query param of auth0_id"
+                } );
+            }
 
             var tokenResult = _userRepository.GetInstagramToken( auth0Id );
 
-            //if( tokenResult.Status == OperationResultEnum.Failed )
-                //auth0 error, cannot access user token
+            if( tokenResult.Status == OperationResultEnum.Failed )
+            {
+                context.Result = new UnauthorizedObjectResult( new ErrorDto
+                {
+                    ErrorMsg = "auth0 error, cannot access user token"
+                } );
+            }
 
             _facebookContext.FacebookClient = _facebookClientFactory.Get( tokenResult.Value );
 
@@ -52,12 +59,13 @@ namespace Pinf.InstaService.API.InstaFetcher.Middleware
                 _facebookContext.FacebookClient.Get( "debug_token",
                     new RequestDebugTokenParams { input_token = tokenResult.Value } );
             }
-            catch( FacebookApiException e ) { /*ERROR*/ }
-        }
-
-        public override void OnActionExecuting( ActionExecutingContext context )
-        {
-            //TODO: implement
+            catch( FacebookApiException e ) 
+            {
+                context.Result = new UnauthorizedObjectResult( new ErrorDto
+                {
+                    ErrorMsg = e.Message
+                } ); 
+            }
         }
     }
 }

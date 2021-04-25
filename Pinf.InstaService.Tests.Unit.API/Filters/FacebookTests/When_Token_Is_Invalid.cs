@@ -18,6 +18,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws<FacebookOAuthException>( );
+            Sut.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

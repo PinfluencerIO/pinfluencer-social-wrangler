@@ -3,6 +3,7 @@ using Facebook;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
+using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Middleware;
 using Pinf.InstaService.BLL.Core;
 using Pinf.InstaService.BLL.Core.Enum;
@@ -18,24 +19,26 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         protected const string TestToken = "654321";
         protected const string TestAuth0Id = "12345";
         protected const string Auth0IdParamKey = "auth0_id";
-        
-        protected FacebookContext FacebookContext;
+
+        private FacebookContext _facebookContext;
+        private IFacebookClientFactory _mockFacebookClientFactory;
         protected FacebookClient MockFacebookClient;
-        protected IFacebookClientFactory MockFacebookClientFactory;
         protected IUserRepository MockUserRepository;
 
         protected override void Given( )
         {
+            base.Given( );
+            
             MockUserRepository = Substitute.For<IUserRepository>( );
-            FacebookContext = new FacebookContext( );
-            MockFacebookClientFactory = Substitute.For<IFacebookClientFactory>( );
+            _facebookContext = new FacebookContext( );
+            _mockFacebookClientFactory = Substitute.For<IFacebookClientFactory>( );
             MockFacebookClient = Substitute.For<FacebookClient>( );
             
-            MockFacebookClientFactory
+            _mockFacebookClientFactory
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
 
-            Sut = new FacebookAttribute( MockUserRepository, FacebookContext, MockFacebookClientFactory );
+            Sut = new FacebookAttribute( MockUserRepository, _facebookContext, _mockFacebookClientFactory );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )

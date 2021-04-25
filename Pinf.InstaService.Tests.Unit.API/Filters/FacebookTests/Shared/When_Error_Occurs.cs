@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
+﻿using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared
