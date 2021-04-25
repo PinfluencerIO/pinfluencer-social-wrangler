@@ -19,7 +19,6 @@ namespace Pinf.InstaService.Local.Sandbox
                     }
                 } ) ) ) )
                 .Build( );
-            var copy = MockConfiguration.Get<TestDto>( );
         }
     }
 
