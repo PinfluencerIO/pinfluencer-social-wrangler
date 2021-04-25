@@ -4,7 +4,7 @@ using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecutedTests.Shared
 {
-    public abstract class When_Error_Occurs : Given_A_Simple_Auth_Filter
+    public abstract class When_Error_Occurs : Given_A_SimpleAuthFilter
     {
         protected string ErrorMessage => GetResultObject<UnauthorizedObjectResult, ErrorDto>( ).ErrorMsg;
 

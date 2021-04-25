@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecutedTests
 {
-    public class When_Successful : Given_A_Simple_Auth_Filter
+    public class When_Successful : Given_A_SimpleAuthFilter
     {
         protected override Dictionary<string, StringValues> SetupHeaders( )
         {

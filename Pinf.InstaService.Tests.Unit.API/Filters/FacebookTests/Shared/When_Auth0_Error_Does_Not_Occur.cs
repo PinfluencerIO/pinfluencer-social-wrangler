@@ -4,7 +4,7 @@ using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared
 {
-    public abstract class When_Auth0_Error_Does_Not_Occur : Given_A_FacebookMiddlware
+    public abstract class When_Auth0_Error_Does_Not_Occur : Given_A_FacebookActionFilter
     {
         [ Test ]
         public void Then_Valid_Auth0_Id_Was_Used( )

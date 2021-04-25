@@ -14,7 +14,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
     //TODO: add tests for failing to parse URIs
     //TODO: add tests for invalid object passed into app settings options dto
-    public abstract class Given_An_Auth0_Filter : AspActionFilterGivenWhenThen<Auth0ActionFilter>
+    public abstract class Given_An_Auth0ActionFilter : AspActionFilterGivenWhenThen<Auth0ActionFilter>
     {
         protected const string TestToken = "123456789";
         private Auth0Context _mockAuth0Context;

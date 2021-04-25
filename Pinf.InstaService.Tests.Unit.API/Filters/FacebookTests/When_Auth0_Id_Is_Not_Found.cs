@@ -19,6 +19,6 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         }
         
         [ Test ]
-        public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( "auth0 id did not match an existing user", ErrorMessage ); }
+        public void Then_Error_Message_Is_Valid( ) { Assert.AreEqual( "'auth0_id' parameter was not present in the request", ErrorMessage ); }
     }
 }

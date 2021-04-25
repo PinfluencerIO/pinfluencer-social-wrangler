@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
-    public class When_Successful : Given_An_Auth0_Filter
+    public class When_Successful : Given_An_Auth0ActionFilter
     {
         protected override void When( )
         {

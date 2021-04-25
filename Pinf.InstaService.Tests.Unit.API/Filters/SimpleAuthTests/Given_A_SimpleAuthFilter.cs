@@ -5,7 +5,7 @@ using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests
 {
-    public class Given_A_Simple_Auth_Filter : AspActionFilterGivenWhenThen<SimpleAuthActionFilter>
+    public class Given_A_SimpleAuthFilter : AspActionFilterGivenWhenThen<SimpleAuthActionFilter>
     {
         protected const string ApiKeyName = "Simple-Auth-Key";
         protected const string ApiKey = "asdffdsa";
