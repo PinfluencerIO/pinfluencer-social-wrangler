@@ -11,11 +11,11 @@ using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
-    public class FacebookInstaImpressionsRepository : IInstaImpressionsRepository
+    public class InstagramImpressionsRepository : IInstaImpressionsRepository
     {
         private readonly FacebookContext _facebookContext;
 
-        public FacebookInstaImpressionsRepository( FacebookContext facebookContext )
+        public InstagramImpressionsRepository( FacebookContext facebookContext )
         {
             _facebookContext = facebookContext;
         }

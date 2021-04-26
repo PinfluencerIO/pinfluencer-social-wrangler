@@ -6,7 +6,7 @@ using Pinf.InstaService.DAL.Instagram.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository
 {
-    public class Given_A_InstaImpressionsRepository : GivenWhenThen<FacebookInstaImpressionsRepository>
+    public class Given_A_InstaImpressionsRepository : GivenWhenThen<InstaService.DAL.Instagram.Repositories.InstagramImpressionsRepository>
     {
         protected FacebookClient MockFacebookClient;
 
@@ -14,7 +14,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository
         {
             MockFacebookClient = Substitute.For<FacebookClient>( );
 
-            Sut = new FacebookInstaImpressionsRepository(
+            Sut = new InstagramImpressionsRepository(
                 new FacebookContext
                 {
                     FacebookClient = MockFacebookClient

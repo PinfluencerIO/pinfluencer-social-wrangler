@@ -4,9 +4,9 @@ using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Repositories;
 
-namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository
+namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests
 {
-    public abstract class Given_A_InstaUserRepository : GivenWhenThen<InstagramUserRepository>
+    public class Given_A_InstagramAudienceRepository : GivenWhenThen<InstagramAudienceRepository>
     {
         protected FacebookClient MockFacebookClient;
 
@@ -14,7 +14,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository
         {
             MockFacebookClient = Substitute.For<FacebookClient>( );
 
-            Sut = new InstagramUserRepository(
+            Sut = new InstagramAudienceRepository(
                 new FacebookContext
                 {
                     FacebookClient = MockFacebookClient

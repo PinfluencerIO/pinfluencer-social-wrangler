@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using Pinf.InstaService.Bootstrapping.DevOps.Deploy;
 
 namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
@@ -9,21 +7,20 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
     {
         private readonly string _path;
 
-        public AwsLinxNetCoreProcFileBuilder(string path)
+        public AwsLinxNetCoreProcFileBuilder( string path ) { _path = path; }
+
+        public AwsLinxNetCoreProcFileBuilder AddLine( ProcLineDto line )
         {
-            _path = path;
-        }
-        
-        public AwsLinxNetCoreProcFileBuilder AddLine(ProcLineDto line)
-        {
-            using var fs = File.AppendText($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}");
-            fs.Write($"{line.Name}: dotnet exec {line.Location}{line.Namespace}.dll --urls http://0.0.0.0:{line.Port}/");
+            using var fs =
+                File.AppendText( $"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}" );
+            fs.Write(
+                $"{line.Name}: dotnet exec {line.Location}{line.Namespace}.dll --urls http://0.0.0.0:{line.Port}/" );
             return this;
         }
-        
-        public AwsLinxNetCoreProcFileBuilder Create()
+
+        public AwsLinxNetCoreProcFileBuilder Create( )
         {
-            using var fs = File.Create($"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}");
+            using var fs = File.Create( $"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}" );
             return this;
         }
     }

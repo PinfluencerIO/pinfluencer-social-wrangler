@@ -5,11 +5,14 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
     // TODO => add DI !!!
     public static class EnviromentFactory
     {
-        public static EnvironmentType GetEnviroment() => GitAdapter.GetBranch(PinfluencerDeployConstants.RepositoryLocation) switch
+        public static EnvironmentType GetEnviroment( )
         {
-            GitConstants.DevelopmentBranch => EnvironmentType.Develop,
-            GitConstants.ProductionBranch => EnvironmentType.Production,
-            _ => EnvironmentType.Develop
-        };
+            return GitAdapter.GetBranch( PinfluencerDeployConstants.RepositoryLocation ) switch
+            {
+                GitConstants.DevelopmentBranch => EnvironmentType.Develop,
+                GitConstants.ProductionBranch => EnvironmentType.Production,
+                _ => EnvironmentType.Develop
+            };
+        }
     }
 }

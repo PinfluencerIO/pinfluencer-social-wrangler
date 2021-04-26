@@ -12,11 +12,11 @@ using InstaUser = Pinf.InstaService.BLL.Models.InstaUser.InstaUser;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
-    public class FacebookInstaUserRepository : IInstaUserRepository
+    public class InstagramUserRepository : IInstaUserRepository
     {
         private readonly FacebookContext _facebookContext;
 
-        public FacebookInstaUserRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
+        public InstagramUserRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
 
         public OperationResult<InstaUser> GetUser( string id ) { throw new NotImplementedException( ); }
 

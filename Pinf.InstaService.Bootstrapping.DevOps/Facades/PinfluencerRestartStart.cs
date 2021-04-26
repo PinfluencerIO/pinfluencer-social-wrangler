@@ -6,15 +6,15 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
 {
     public class PinfluencerRestartStart
     {
-        [Target(Name = "close")]
-        public void CloseServer()
+        [ Target( Name = "close" ) ]
+        public void CloseServer( )
         {
             AwsElasticBeanstalkDeployFacade
                 .TerminateEnvironment(
                     new AwsCredentialsDto
                     {
-                        Id = Environment.GetEnvironmentVariable("AWS_ID"),
-                        Token = Environment.GetEnvironmentVariable("AWS_TOKEN"),
+                        Id = Environment.GetEnvironmentVariable( "AWS_ID" ),
+                        Token = Environment.GetEnvironmentVariable( "AWS_TOKEN" ),
                         Region = AwsPinfluencerConstants.Region
                     },
                     new AwsEnviromentDto
@@ -25,15 +25,15 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                 );
         }
 
-        [Target(Name = "open")]
-        public void OpenServer()
+        [ Target( Name = "open" ) ]
+        public void OpenServer( )
         {
             AwsElasticBeanstalkDeployFacade
                 .RestoreEnvironment(
                     new AwsCredentialsDto
                     {
-                        Id = Environment.GetEnvironmentVariable("AWS_ID"),
-                        Token = Environment.GetEnvironmentVariable("AWS_TOKEN"),
+                        Id = Environment.GetEnvironmentVariable( "AWS_ID" ),
+                        Token = Environment.GetEnvironmentVariable( "AWS_TOKEN" ),
                         Region = AwsPinfluencerConstants.Region
                     },
                     new AwsEnviromentDto

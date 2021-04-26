@@ -2,7 +2,7 @@
 
 namespace Pinf.InstaService.Bootstrapping.DevOps
 {
-    [AttributeUsage(AttributeTargets.Method)]
+    [ AttributeUsage( AttributeTargets.Method ) ]
     public class TargetAttribute : Attribute
     {
         public string Name { get; set; }

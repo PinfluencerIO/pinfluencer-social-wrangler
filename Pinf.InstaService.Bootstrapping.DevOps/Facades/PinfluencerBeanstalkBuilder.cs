@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Text;
-using Pinf.InstaService.Bootstrapping.DevOps.Deploy;
+﻿using Pinf.InstaService.Bootstrapping.DevOps.Deploy;
 using Pinf.InstaService.Bootstrapping.DevOps.Wrappers;
 
 namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
@@ -12,8 +10,8 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
             string awsToken
         )
         {
-            var env = new AwsApplicationEnviromentFactory()
-                .GetEnviroment(GitAdapter.GetLatestCommit(PinfluencerDeployConstants.RepositoryLocation));
+            var env = new AwsApplicationEnviromentFactory( )
+                .GetEnviroment( GitAdapter.GetLatestCommit( PinfluencerDeployConstants.RepositoryLocation ) );
             AwsElasticBeanstalkDeployFacade
                 .UploadAndDeploy(
                     new AwsCredentialsDto
@@ -36,49 +34,51 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
             return this;
         }
 
-        public PinfluencerBeanstalkBuilder CreateAppsettings(AppsettingsDto appsettingsDto)
+        public PinfluencerBeanstalkBuilder CreateAppsettings( AppsettingsDto appsettingsDto )
         {
-            var appsettingsBuilder = new AppsettingsBuilder<AppsettingsDto>(PinfluencerDeployConstants.GetAbsoluteLocation(
-                PinfluencerDeployConstants.AppsettingsFile), appsettingsDto);
+            var appsettingsBuilder = new AppsettingsBuilder<AppsettingsDto>(
+                PinfluencerDeployConstants.GetAbsoluteLocation(
+                    PinfluencerDeployConstants.AppsettingsFile ), appsettingsDto );
             return this;
         }
-        
-        public PinfluencerBeanstalkBuilder ZipBundle()
+
+        public PinfluencerBeanstalkBuilder ZipBundle( )
         {
             ZipFileAdapter
                 .CreateFromDirectory(
                     PinfluencerDeployConstants.GetAbsoluteLocation(
-                        PinfluencerDeployConstants.DeployBundleLocation),
+                        PinfluencerDeployConstants.DeployBundleLocation ),
                     PinfluencerDeployConstants.GetAbsoluteLocation(
-                        new AwsApplicationEnviromentFactory()
-                            .GetEnviroment(GitAdapter.GetLatestCommit(PinfluencerDeployConstants.RepositoryLocation))
-                            .AppVersion+".zip"
-                    ));
+                        new AwsApplicationEnviromentFactory( )
+                            .GetEnviroment(
+                                GitAdapter.GetLatestCommit( PinfluencerDeployConstants.RepositoryLocation ) )
+                            .AppVersion + ".zip"
+                    ) );
             return this;
         }
-        
-        public PinfluencerBeanstalkBuilder CreateProcFile()
+
+        public PinfluencerBeanstalkBuilder CreateProcFile( )
         {
-            new AwsLinxNetCoreProcFileBuilder(PinfluencerDeployConstants.GetAbsoluteLocation(
-                    PinfluencerDeployConstants.DeployBundleLocation))
-                .AddLine(new ProcLineDto
+            new AwsLinxNetCoreProcFileBuilder( PinfluencerDeployConstants.GetAbsoluteLocation(
+                    PinfluencerDeployConstants.DeployBundleLocation ) )
+                .AddLine( new ProcLineDto
                 {
                     Namespace = PinfluencerHostConstants.ProcessNamespace,
                     Port = PinfluencerHostConstants.ReverseProxyPort
-                });
+                } );
             return this;
         }
-        
-        public PinfluencerBeanstalkBuilder CreateNginx()
+
+        public PinfluencerBeanstalkBuilder CreateNginx( )
         {
-            new AwsBeanstalkExtensionNginxConfigBuilder(PinfluencerDeployConstants.GetAbsoluteLocation(
-                    PinfluencerDeployConstants.DeployBundleLocation))
-                .Create()
-                .AddReverseProxy(new NginxReverseProxyDto
+            new AwsBeanstalkExtensionNginxConfigBuilder( PinfluencerDeployConstants.GetAbsoluteLocation(
+                    PinfluencerDeployConstants.DeployBundleLocation ) )
+                .Create( )
+                .AddReverseProxy( new NginxReverseProxyDto
                 {
                     Url = PinfluencerHostConstants.ApiUrl,
                     Port = PinfluencerHostConstants.ReverseProxyPort
-                });
+                } );
             return this;
         }
     }

@@ -4,9 +4,9 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
 {
     public class AwsApplicationEnviromentFactory
     {
-        public AwsApplicationEnviromentDto GetEnviroment(string appVersion)
+        public AwsApplicationEnviromentDto GetEnviroment( string appVersion )
         {
-            switch (EnviromentFactory.GetEnviroment())
+            switch( EnviromentFactory.GetEnviroment( ) )
             {
                 case EnvironmentType.Production:
                     return new AwsApplicationEnviromentDto
@@ -23,14 +23,11 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Deploy
                         AppVersion = $"{appVersion}-Dev"
                     };
                 default:
-                    Debug.Fail("exception!!");
-                    return GetEmpty();
+                    Debug.Fail( "exception!!" );
+                    return GetEmpty( );
             }
         }
-        
-        public static AwsApplicationEnviromentDto GetEmpty()
-        {
-            return new AwsApplicationEnviromentDto();
-        }
+
+        public static AwsApplicationEnviromentDto GetEmpty( ) { return new AwsApplicationEnviromentDto( ); }
     }
 }
