@@ -42,21 +42,32 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
 
         public OperationResult<User> Get( string id )
         {
+            var ( validRequest,
+                result ) = validateBubbleRequest<TypeResponse<Profile>>( _bubbleClient
+                    .Get<TypeResponse<Profile>>, $"profile/{id}" );
+            if( validRequest )
+            {
+                return new OperationResult<User>( new User { Id = result.Item2.Type.Id, Name = result.Item2.Type.Name },
+                    OperationResultEnum.Success );
+            }
+            return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
+        }
+        
+        private ( bool, ( HttpStatusCode, T ) ) validateBubbleRequest<T>( Func<string, ( HttpStatusCode, T )> httpFunc, string uri ) where T : class
+        {
             try
             {
-                var (httpStatusCode, typeResponse) = _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" );
+                var ( httpStatusCode, typeResponse ) = httpFunc( uri );
+                var returnVal = ( httpStatusCode, typeResponse );
                 if( httpStatusCode != HttpStatusCode.OK )
                 {
-                    return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
+                    return ( false, returnVal );
                 }
-
-                var profile = typeResponse.Type;
-                return new OperationResult<User>( new User { Id = profile.Id, Name = profile.Name },
-                    OperationResultEnum.Success );
+                return ( true, returnVal );
             }
             catch( Exception e ) when( e is ArgumentException || e is HttpRequestException )
             {
-                return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
+                return( false, ( HttpStatusCode.BadRequest, null ) );
             }
         }
     }
