@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
+using AutoMapper;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Dtos;
 using Pinf.InstaService.Core.Enum;
@@ -9,6 +11,7 @@ using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.Crosscutting.Web;
 using Pinf.InstaService.DAL.UserManagement.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Profile = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Profile;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
 {
@@ -37,8 +40,14 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
 
         public OperationResult<User> Get( string id )
         {
-            _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" );
-            return new OperationResult<User>( new User( ), OperationResultEnum.Success );
+            
+            var result = _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" );
+            if( result.Item1 == HttpStatusCode.OK )
+            {
+                var profile = result.Item2.Type;
+                return new OperationResult<User>( new User{ Id = profile.Id, Name = profile.Name }, OperationResultEnum.Success );
+            }
+            return null;
         }
     }
 }
