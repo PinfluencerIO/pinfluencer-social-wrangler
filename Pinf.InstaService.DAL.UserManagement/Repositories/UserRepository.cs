@@ -15,6 +15,7 @@ using Profile = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Profile;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
 {
+    //TODO: ADD LOGGING !!!
     public class UserRepository : IUserRepository
     {
         private readonly Auth0Context _auth0Context;
@@ -26,6 +27,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             _bubbleClient = bubbleClient;
         }
 
+        //TODO: dont swallow all exceptions
         public OperationResult<string> GetInstagramToken( string id )
         {
             try
@@ -40,14 +42,22 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
 
         public OperationResult<User> Get( string id )
         {
-            
-            var result = _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" );
-            if( result.Item1 == HttpStatusCode.OK )
+            try
             {
-                var profile = result.Item2.Type;
-                return new OperationResult<User>( new User{ Id = profile.Id, Name = profile.Name }, OperationResultEnum.Success );
+                var (httpStatusCode, typeResponse) = _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" );
+                if( httpStatusCode != HttpStatusCode.OK )
+                {
+                    return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
+                }
+
+                var profile = typeResponse.Type;
+                return new OperationResult<User>( new User { Id = profile.Id, Name = profile.Name },
+                    OperationResultEnum.Success );
             }
-            return null;
+            catch( Exception e ) when( e is ArgumentException || e is HttpRequestException )
+            {
+                return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
+            }
         }
     }
 }
