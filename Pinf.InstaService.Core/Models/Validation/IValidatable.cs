@@ -1,4 +1,4 @@
-﻿namespace Pinf.InstaService.BLL.Models.Validation
+﻿namespace Pinf.InstaService.Core.Models.Validation
 {
     public interface IValidatable
     {

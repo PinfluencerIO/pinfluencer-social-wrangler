@@ -1,39 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Auth0.ManagementApi;
 using Auth0.ManagementApi.Models;
 using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.Crosscutting.NUnit.Extensions;
-using Pinf.InstaService.Crosscutting.Web;
-using Pinf.InstaService.DAL.UserManagement;
-using Pinf.InstaService.DAL.UserManagement.Repositories;
 
-namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
+namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests.Shared
 {
-    public abstract class Given_A_UserRepository : GivenWhenThen<Auth0BubbleUserRepository>
+    public abstract class When_Called : Given_A_UserRepository
     {
-        protected const string TestId = "1234";
-        protected IManagementConnection MockAuth0ManagementApiConnection;
-        protected User TestUser;
-        protected IHttpClient MockHttpClient;
-
-        protected override void Given( )
-        {
-            MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
-            MockHttpClient = Substitute.For<IHttpClient>( );
-            
-            Sut = new Auth0BubbleUserRepository(
-                new Auth0Context
-                {
-                    ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )
-                },
-                MockHttpClient
-            );
-        }
-
         protected override void When( )
         {
             MockAuth0ManagementApiConnection
@@ -41,7 +17,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository
                     Arg.Any<JsonConverter [ ]>( ) )
                 .Returns( Task.FromResult( TestUser ) );
         }
-
+        
         [ Test ]
         public void Then_Get_User_Is_Called_Once( )
         {

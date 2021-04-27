@@ -5,7 +5,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.ValidateInstaAudienc
 {
     public abstract class
         Given_A_ValidateInstaAudienceAgeRange : GivenWhenThen<
-            InstaService.BLL.Models.Validation.ValidateInstaAudienceAgeRange>
+            Core.Models.Validation.ValidateInstaAudienceAgeRange>
     {
         protected int AgeMax;
         protected int AgeMin;
@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.ValidateInstaAudienc
 
         protected override void When( )
         {
-            Sut = new InstaService.BLL.Models.Validation.ValidateInstaAudienceAgeRange
+            Sut = new Core.Models.Validation.ValidateInstaAudienceAgeRange
                 { AgeRange = new Tuple<int, int>( AgeMin, AgeMax ) };
 
             Result = Sut.Validate( );

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Pinf.InstaService.BLL.Models.Insights;
+using Pinf.InstaService.Core.Models.Insights;
 
 namespace Pinf.InstaService.Core.Interfaces.Repositories
 {

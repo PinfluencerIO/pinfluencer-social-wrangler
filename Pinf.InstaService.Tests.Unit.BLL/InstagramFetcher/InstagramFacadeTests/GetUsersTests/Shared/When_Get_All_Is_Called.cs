@@ -3,7 +3,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.BLL.Models.InstaUser;
+using Pinf.InstaService.Core.Models.InstaUser;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.Shared
 {

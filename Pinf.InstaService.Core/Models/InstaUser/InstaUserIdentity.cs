@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Pinf.InstaService.BLL.Models.InstaUser
+namespace Pinf.InstaService.Core.Models.InstaUser
 {
     public class InstaUserIdentity
     {

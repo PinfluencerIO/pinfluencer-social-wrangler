@@ -2,8 +2,8 @@
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.BLL.Models.Insights;
-using Pinf.InstaService.BLL.Models.InstaUser;
+using Pinf.InstaService.Core.Models.Insights;
+using Pinf.InstaService.Core.Models.InstaUser;
 
 namespace Pinf.InstaService.BLL.InstagramFetcher.Services
 {

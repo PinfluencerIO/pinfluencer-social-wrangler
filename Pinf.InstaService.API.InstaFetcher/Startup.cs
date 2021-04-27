@@ -27,7 +27,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddScoped<FacebookContext>( )
                 .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
                 .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
-                .AddTransient<IUserRepository, Auth0BubbleUserRepository>( )
+                .AddTransient<IUserRepository, UserRepository>( )
                 .AddTransient<IInstaImpressionsRepository, InstagramImpressionsRepository>( )
                 .AddTransient<IInstaUserRepository, InstagramUserRepository>( )
                 .AddTransient<IManagementConnection, HttpClientManagementConnection>( )

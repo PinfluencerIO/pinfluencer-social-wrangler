@@ -5,6 +5,10 @@ namespace Pinf.InstaService.Crosscutting.Web
 {
     public interface IHttpClient
     {
-        HttpResponseMessage Patch( Uri uri, string body );
+        void SetBaseUrl( Uri uri );
+        void SetBearerToken( string token );
+        HttpResponseMessage Patch( string uri, string body );
+        HttpResponseMessage Get( string uri );
+        HttpResponseMessage Post( string uri, string body );
     }
 }

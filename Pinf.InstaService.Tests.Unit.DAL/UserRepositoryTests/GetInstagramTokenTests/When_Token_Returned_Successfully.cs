@@ -2,10 +2,11 @@
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
+namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests
 {
-    public class When_Token_Returned_Successfully : Given_A_UserRepository
+    public class When_Token_Returned_Successfully : When_Called
     {
         private OperationResult<string> _result;
 

@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.BLL.Models.InstaUser;
+using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Crosscutting.CodeContracts;
 using Pinf.InstaService.DAL.Instagram.Dtos;
-using InstaUser = Pinf.InstaService.BLL.Models.InstaUser.InstaUser;
+using InstaUser = Pinf.InstaService.Core.Models.InstaUser.InstaUser;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {

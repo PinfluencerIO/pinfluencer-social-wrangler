@@ -1,7 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Pinf.InstaService.Crosscutting.Web;
+using Pinf.InstaService.DAL.UserManagement.Dtos;
+using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
 
 namespace Pinf.InstaService.Local.Sandbox
 {
@@ -9,16 +13,10 @@ namespace Pinf.InstaService.Local.Sandbox
     {
         private static void Main( string [ ] args )
         {
-            var MockConfiguration = new ConfigurationBuilder( )
-                .AddJsonStream( new MemoryStream( Encoding.UTF8.GetBytes( JsonConvert.SerializeObject( new TestDto
-                {
-                    Name = "",
-                    Type = new TestNestedDto
-                    {
-                        Prop = 5
-                    }
-                } ) ) ) )
-                .Build( );
+            var profile = new ApiClientFactory( ).Create(
+                    new Uri( "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj/" ),
+                    "" )
+                .Get<TypeResponse<Profile>>( "profile/" );
         }
     }
 

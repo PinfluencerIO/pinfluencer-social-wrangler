@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Pinf.InstaService.BLL.Models.Insights
+namespace Pinf.InstaService.Core.Models.Insights
 {
     public class InstaInsightsCollection
     {

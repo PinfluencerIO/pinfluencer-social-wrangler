@@ -7,10 +7,11 @@ using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.DAL.UserRepository.GetInstagramTokenTests
+namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests
 {
-    public class When_Error_Occurs : Given_A_UserRepository
+    public class When_Error_Occurs : When_Called
     {
         private OperationResult<string> _result;
 

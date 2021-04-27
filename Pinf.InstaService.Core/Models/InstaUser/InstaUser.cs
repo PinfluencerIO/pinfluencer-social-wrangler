@@ -1,4 +1,4 @@
-﻿namespace Pinf.InstaService.BLL.Models.InstaUser
+﻿namespace Pinf.InstaService.Core.Models.InstaUser
 {
     public class InstaUser
     {

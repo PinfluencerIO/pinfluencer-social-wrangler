@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Pinf.InstaService.BLL.Models.Validation
+namespace Pinf.InstaService.Core.Models.Validation
 {
     public class ValidateInstaAudienceAgeRange : IValidatable
     {

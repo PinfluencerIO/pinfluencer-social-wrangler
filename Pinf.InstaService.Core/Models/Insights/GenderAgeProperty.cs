@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pinf.InstaService.BLL.Models.Insights
+namespace Pinf.InstaService.Core.Models.Insights
 {
     public class GenderAgeProperty
     {
