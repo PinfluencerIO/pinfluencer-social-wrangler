@@ -4,14 +4,11 @@ using System.Net.Http;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared;
-using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
 {
-
     [ TestFixtureSource( nameof( fixture ) ) ]
     public class When_Network_Error_Or_Parsing_Error_Occurs : When_Error_Occurs
     {
@@ -19,12 +16,12 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
 
         public When_Network_Error_Or_Parsing_Error_Occurs( Exception exception ) { _exception = exception; }
 
-        private static IEnumerable<Exception> fixture = new Exception[ ]
+        private static IEnumerable<Exception> fixture = new Exception [ ]
         {
             new ArgumentException( "uri was null" ),
             new HttpRequestException( "network error" )
         };
-        
+
         protected override void When( )
         {
             MockBubbleClient

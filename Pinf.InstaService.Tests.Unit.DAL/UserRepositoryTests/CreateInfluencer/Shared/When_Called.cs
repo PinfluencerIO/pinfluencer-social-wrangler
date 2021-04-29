@@ -1,9 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
 using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
@@ -23,7 +21,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.
                 Id = "123456"
             }
         };
-    
+
         [ Test ]
         public void Then_Influencer_Will_Be_Created_Once( )
         {

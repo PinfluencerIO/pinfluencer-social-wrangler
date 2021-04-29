@@ -1,5 +1,4 @@
 ﻿using Facebook;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
@@ -16,9 +15,9 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class FacebookActionFilter : ActionFilterAttribute
     {
-        private readonly IUserRepository _userRepository;
-        private readonly FacebookContext _facebookContext;
         private readonly IFacebookClientFactory _facebookClientFactory;
+        private readonly FacebookContext _facebookContext;
+        private readonly IUserRepository _userRepository;
 
         public FacebookActionFilter( IUserRepository userRepository,
             FacebookContext facebookContext,
@@ -60,12 +59,12 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
                 _facebookContext.FacebookClient.Get( "debug_token",
                     new RequestDebugTokenParams { input_token = tokenResult.Value } );
             }
-            catch( FacebookApiException e ) 
+            catch( FacebookApiException e )
             {
                 context.Result = new UnauthorizedObjectResult( new ErrorDto
                 {
                     ErrorMsg = e.Message
-                } ); 
+                } );
             }
         }
     }

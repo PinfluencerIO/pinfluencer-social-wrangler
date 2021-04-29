@@ -19,7 +19,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
         {
             return new Dictionary<string, StringValues>( );
         }
-        
+
         protected virtual Dictionary<string, StringValues> SetupQueryParams( )
         {
             return new Dictionary<string, StringValues>( );
@@ -49,7 +49,8 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
                 .Request
                 .Returns( _mockHttpRequest );
             MockActionExecutingContext = new ActionExecutingContext( new ActionContext( _mockHttpContext,
-                new RouteData( ), new ActionDescriptor( ) ), new List<IFilterMetadata>( ), new Dictionary<string, object>(), new object( ) );
+                    new RouteData( ), new ActionDescriptor( ) ), new List<IFilterMetadata>( ),
+                new Dictionary<string, object>( ), new object( ) );
         }
     }
 }

@@ -12,29 +12,32 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
     [ TestFixtureSource( nameof( ConfigurationData ) ) ]
     public class When_Configuration_Value_Is_Empty : When_Error_Occurs
     {
-        private static IEnumerable<AppOptions> ConfigurationData( ) => new [ ]
+        private static IEnumerable<AppOptions> ConfigurationData( )
         {
-            ModifyDefaultAppOptions( options =>
+            return new [ ]
             {
-                options.Auth0.Domain = default;
-                return options;
-            } ),
-            ModifyDefaultAppOptions( options =>
-            {
-                options.Auth0.Id = default;
-                return options;
-            } ),
-            ModifyDefaultAppOptions( options =>
-            {
-                options.Auth0.Secret = default;
-                return options;
-            } ),
-            ModifyDefaultAppOptions( options =>
-            {
-                options.Auth0.ManagementDomain = default;
-                return options;
-            } )
-        };
+                ModifyDefaultAppOptions( options =>
+                {
+                    options.Auth0.Domain = default;
+                    return options;
+                } ),
+                ModifyDefaultAppOptions( options =>
+                {
+                    options.Auth0.Id = default;
+                    return options;
+                } ),
+                ModifyDefaultAppOptions( options =>
+                {
+                    options.Auth0.Secret = default;
+                    return options;
+                } ),
+                ModifyDefaultAppOptions( options =>
+                {
+                    options.Auth0.ManagementDomain = default;
+                    return options;
+                } )
+            };
+        }
 
         protected override AppOptions OverridableAppOptions { get; }
 
@@ -45,7 +48,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
             base.When( );
             Sut.OnActionExecuting( MockActionExecutingContext );
         }
-        
+
         [ Test ]
         public void Then_Token_Is_Not_Fetched( )
         {

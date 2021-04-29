@@ -1,13 +1,10 @@
-﻿using System.Threading.Tasks;
-using Auth0.AuthenticationApi;
+﻿using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.DAL.UserManagement;
@@ -22,9 +19,9 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     public class Auth0ActionFilter : ActionFilterAttribute
     {
         private readonly Auth0Context _auth0Context;
+        private readonly IAuthenticationConnection _authenticationConnection;
         private readonly IConfiguration _configuration;
         private readonly IManagementConnection _managementConnection;
-        private readonly IAuthenticationConnection _authenticationConnection;
 
         public Auth0ActionFilter( Auth0Context auth0Context,
             IConfiguration configuration,
@@ -41,8 +38,10 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
         {
             var auth0Settings = _configuration.Get<AppOptions>( ).Auth0;
 
-            if( auth0Settings.Domain == "" || auth0Settings.Id == "" || auth0Settings.Secret == "" || auth0Settings.ManagementDomain == ""  || 
-                auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null || auth0Settings.ManagementDomain == null )
+            if( auth0Settings.Domain == "" || auth0Settings.Id == "" || auth0Settings.Secret == "" ||
+                auth0Settings.ManagementDomain == "" ||
+                auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null ||
+                auth0Settings.ManagementDomain == null )
             {
                 context.Result = new UnauthorizedObjectResult( new ErrorDto
                 {
@@ -51,7 +50,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
                 return;
             }
 
-            var authenticationApiClient = new AuthenticationApiClient( auth0Settings.Domain, _authenticationConnection );
+            var authenticationApiClient =
+                new AuthenticationApiClient( auth0Settings.Domain, _authenticationConnection );
 
             try
             {

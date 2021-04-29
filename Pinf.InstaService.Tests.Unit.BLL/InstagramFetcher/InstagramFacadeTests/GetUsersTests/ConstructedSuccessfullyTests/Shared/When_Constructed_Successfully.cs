@@ -4,7 +4,8 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.
+    ConstructedSuccessfullyTests.Shared
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {

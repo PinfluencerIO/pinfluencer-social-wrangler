@@ -14,9 +14,6 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         }
 
         [ Test ]
-        public void Then_Next_Middlware_Is_Called( )
-        {
-            Assert.Null( MockActionExecutingContext.Result );
-        }
+        public void Then_Next_Middlware_Is_Called( ) { Assert.Null( MockActionExecutingContext.Result ); }
     }
 }

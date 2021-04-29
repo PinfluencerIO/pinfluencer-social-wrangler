@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Auth0.AuthenticationApi.Models;
-using Microsoft.AspNetCore.Http;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.DAL.UserManagement;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {
@@ -28,27 +26,15 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         }
 
         [ Test ]
-        public void Then_Next_Middlware_Is_Executed( )
-        {
-            Assert.Null( MockActionExecutingContext.Result );
-        }
-        
+        public void Then_Next_Middlware_Is_Executed( ) { Assert.Null( MockActionExecutingContext.Result ); }
+
         [ Test ]
-        public void Then_Token_Is_Fetched_Once( )
-        {
-            TokenWasFetchedOnce( );
-        }
-        
+        public void Then_Token_Is_Fetched_Once( ) { TokenWasFetchedOnce( ); }
+
         [ Test ]
-        public void Then_Token_Is_Fetched_With_Valid_Body( )
-        {
-            TokenWasFetchedWithValidBody( );
-        }
-        
+        public void Then_Token_Is_Fetched_With_Valid_Body( ) { TokenWasFetchedWithValidBody( ); }
+
         [ Test ]
-        public void Then_Management_Api_Client_Was_Set( )
-        {
-            Assert.NotNull( MockAuth0Context.ManagementApiClient );
-        }
+        public void Then_Management_Api_Client_Was_Set( ) { Assert.NotNull( MockAuth0Context.ManagementApiClient ); }
     }
 }

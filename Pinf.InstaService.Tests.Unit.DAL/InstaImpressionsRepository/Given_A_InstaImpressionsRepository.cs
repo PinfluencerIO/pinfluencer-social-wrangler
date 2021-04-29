@@ -6,7 +6,7 @@ using Pinf.InstaService.DAL.Instagram.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository
 {
-    public class Given_A_InstaImpressionsRepository : GivenWhenThen<InstaService.DAL.Instagram.Repositories.InstagramImpressionsRepository>
+    public class Given_A_InstaImpressionsRepository : GivenWhenThen<InstagramImpressionsRepository>
     {
         protected FacebookClient MockFacebookClient;
 

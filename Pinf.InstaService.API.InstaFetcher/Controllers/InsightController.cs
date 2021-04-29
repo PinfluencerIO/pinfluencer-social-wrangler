@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
-using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
+using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {
@@ -11,17 +11,15 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
     {
         private readonly InstagramFacade _instagramFacade;
 
-        public InsightController( InstagramFacade instagramFacade )
-        {
-            _instagramFacade = instagramFacade;
-        }
+        public InsightController( InstagramFacade instagramFacade ) { _instagramFacade = instagramFacade; }
 
         [ Route( "" ) ]
         public IActionResult GetUserInsights( [ FromQuery ] string user )
         {
             var insights = _instagramFacade.GetUserInsights( user );
-            if( insights.Status != OperationResultEnum.Failed ) { return new OkObjectResult( insights.Value ); }
-            return new BadRequestObjectResult( new ErrorDto{ ErrorMsg = "failed to fetch instagram impressions for user" } );
+            if( insights.Status != OperationResultEnum.Failed ) return new OkObjectResult( insights.Value );
+            return new BadRequestObjectResult( new ErrorDto
+                { ErrorMsg = "failed to fetch instagram impressions for user" } );
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramToken
                     Arg.Any<JsonConverter [ ]>( ) )
                 .Returns( Task.FromResult( TestUser ) );
         }
-        
+
         [ Test ]
         public void Then_Get_User_Is_Called_Once( )
         {

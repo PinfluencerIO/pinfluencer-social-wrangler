@@ -1,14 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using AutoMapper;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Crosscutting.Web;
-using Pinf.InstaService.DAL.UserManagement.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Profile = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Profile;
 
 namespace Pinf.InstaService.Local.Sandbox
 {

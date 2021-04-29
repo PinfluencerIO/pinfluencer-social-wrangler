@@ -1,11 +1,9 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.DAL.UserManagement.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
@@ -29,11 +27,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
         {
             Assert.True( _result.Value.Id == "1234" && _result.Value.Name == "ExampleInfluencer" );
         }
-        
+
         [ Test ]
-        public void Then_Success_Is_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
-        }
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
     }
 }

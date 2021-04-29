@@ -1,14 +1,9 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.DAL.UserManagement.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared;
-using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
 {
@@ -19,7 +14,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
         protected override void When( )
         {
             MockBubbleClient
-                .Post( Arg.Any<string>( ), Arg.Any<Influencer>(  ) )
+                .Post( Arg.Any<string>( ), Arg.Any<Influencer>( ) )
                 .Returns( HttpStatusCode.OK );
             _result = Sut.CreateInfluencer( DefaultInfluencer );
         }
@@ -37,11 +32,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
                              x.Age == DefaultInfluencer.Age &&
                              x.Location == DefaultInfluencer.Location ) );
         }
-        
+
         [ Test ]
-        public void Then_Success_Is_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result );
-        }
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result ); }
     }
 }

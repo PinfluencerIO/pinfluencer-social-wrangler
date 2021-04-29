@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using Facebook;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Pinf.InstaService.API.InstaFetcher.Filters;
-using Pinf.InstaService.API.InstaFetcher.Middleware;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
@@ -28,15 +26,17 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         protected FacebookClient MockFacebookClient;
         protected IUserRepository MockUserRepository;
 
+        protected string ErrorMessage => GetResultObject<UnauthorizedObjectResult, ErrorDto>( ).ErrorMsg;
+
         protected override void Given( )
         {
             base.Given( );
-            
+
             MockUserRepository = Substitute.For<IUserRepository>( );
             _facebookContext = new FacebookContext( );
             _mockFacebookClientFactory = Substitute.For<IFacebookClientFactory>( );
             MockFacebookClient = Substitute.For<FacebookClient>( );
-            
+
             _mockFacebookClientFactory
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
@@ -50,10 +50,10 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
                 .GetInstagramToken( Arg.Any<string>( ) )
                 .Returns( new OperationResult<string>( value, resultEnum ) );
         }
-        
-        protected override Dictionary<string, StringValues> SetupQueryParams( ) =>
-            new Dictionary<string, StringValues>{ { Auth0IdParamKey, TestAuth0Id } };
-        
-        protected string ErrorMessage => GetResultObject<UnauthorizedObjectResult, ErrorDto>( ).ErrorMsg;
+
+        protected override Dictionary<string, StringValues> SetupQueryParams( )
+        {
+            return new Dictionary<string, StringValues> { { Auth0IdParamKey, TestAuth0Id } };
+        }
     }
 }

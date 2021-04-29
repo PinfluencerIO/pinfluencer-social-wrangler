@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using Pinf.InstaService.Core.Models.InstaUser;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.
+    Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetUsersTests.
+    ConstructedSuccessfullyTests
 {
     public class When_No_Users_Are_Returned : When_Constructed_Successfully
     {

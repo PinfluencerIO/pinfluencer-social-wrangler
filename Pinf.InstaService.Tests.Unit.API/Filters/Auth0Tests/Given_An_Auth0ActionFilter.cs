@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Auth0.ManagementApi;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinf.InstaService.API.InstaFetcher.Filters;
@@ -25,27 +23,11 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         protected const string TestId = "test_id";
         protected const string TestManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/";
         protected const string TestSecret = "test_secret";
-        
-        protected Auth0Context MockAuth0Context;
-        protected IAuthenticationConnection MockAuthenticationConnection;
         private IConfiguration _mockConfiguration;
         private IManagementConnection _mockManagementConnection;
 
-        protected override void Given( )
-        {
-            base.Given( );
-            MockAuth0Context = new Auth0Context( );
-            _mockManagementConnection = Substitute.For<IManagementConnection>( );
-            MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
-
-            SetupConfiguration( OverridableAppOptions );
-            Sut = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection, MockAuthenticationConnection );
-        }
-
-        private void SetupConfiguration( AppOptions appOptions )
-        {
-            _mockConfiguration = FakeConfiguration.GetFake( appOptions );
-        }
+        protected Auth0Context MockAuth0Context;
+        protected IAuthenticationConnection MockAuthenticationConnection;
 
         private static AppOptions DefaultAppOptions => new AppOptions
         {
@@ -59,6 +41,23 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
         };
 
         protected virtual AppOptions OverridableAppOptions => DefaultAppOptions;
+
+        protected override void Given( )
+        {
+            base.Given( );
+            MockAuth0Context = new Auth0Context( );
+            _mockManagementConnection = Substitute.For<IManagementConnection>( );
+            MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
+
+            SetupConfiguration( OverridableAppOptions );
+            Sut = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection,
+                MockAuthenticationConnection );
+        }
+
+        private void SetupConfiguration( AppOptions appOptions )
+        {
+            _mockConfiguration = FakeConfiguration.GetFake( appOptions );
+        }
 
         protected static AppOptions ModifyDefaultAppOptions( Func<AppOptions, AppOptions> appOptionsModifer )
         {
@@ -76,7 +75,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
                     Arg.Any<IDictionary<string, string>>( )
                 );
         }
-        
+
         protected void TokenWasFetchedWithValidBody( )
         {
             MockAuthenticationConnection

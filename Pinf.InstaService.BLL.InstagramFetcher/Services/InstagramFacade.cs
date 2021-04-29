@@ -29,7 +29,7 @@ namespace Pinf.InstaService.BLL.InstagramFetcher.Services
                 Enumerable.Empty<InstaImpression>( )
             ), OperationResultEnum.Failed );
         }
-        
+
         public OperationResult<InstaUserIdentityCollection> GetUsers( )
         {
             var users = _instaUserRepository.GetUsers( );

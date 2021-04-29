@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -10,7 +9,6 @@ using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {
-
     [ TestFixtureSource( nameof( fixture ) ) ]
     public class When_Network_Error_Or_Parsing_Error_Occurs : When_Error_Occurs
     {
@@ -18,12 +16,12 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 
         public When_Network_Error_Or_Parsing_Error_Occurs( Exception exception ) { _exception = exception; }
 
-        private static IEnumerable<Exception> fixture = new Exception[ ]
+        private static IEnumerable<Exception> fixture = new Exception [ ]
         {
             new ArgumentException( "uri was null" ),
             new HttpRequestException( "network error" )
         };
-        
+
         protected override void When( )
         {
             MockBubbleClient

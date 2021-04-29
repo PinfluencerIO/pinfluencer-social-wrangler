@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Models.User;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared
 {
@@ -10,9 +8,6 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.
         protected OperationResultEnum Result;
 
         [ Test ]
-        public void Then_Failiure_Is_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Failed, Result );
-        }
+        public void Then_Failiure_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Failed, Result ); }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using Pinf.InstaService.Core.Enum;
+﻿using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.User;
 
 namespace Pinf.InstaService.Core.Interfaces.Repositories

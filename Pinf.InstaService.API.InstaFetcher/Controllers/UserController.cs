@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
+using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {
@@ -15,13 +15,12 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         public IActionResult GetAll( )
         {
             var users = _instagramFacade.GetUsers( );
-            if( users.Status != OperationResultEnum.Failed ) { return new OkObjectResult( users.Value ); }
+            if( users.Status != OperationResultEnum.Failed ) return new OkObjectResult( users.Value );
             return new BadRequestObjectResult( "failed to fetch instagram users" );
         }
 
         [ Route( "" ) ]
         [ HttpPost ]
-        public IActionResult Create( ) => new OkResult( );
-        
+        public IActionResult Create( ) { return new OkResult( ); }
     }
 }

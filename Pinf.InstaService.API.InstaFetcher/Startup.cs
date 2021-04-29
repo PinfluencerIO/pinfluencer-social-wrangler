@@ -2,14 +2,12 @@ using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pinf.InstaService.API.InstaFetcher.Filters;
-using Pinf.InstaService.API.InstaFetcher.Middleware;
+using Pinf.InstaService.BLL.InstagramFetcher.Services;
 using Pinf.InstaService.Core.Interfaces.Factories;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.BLL.InstagramFetcher.Services;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Factories;
 using Pinf.InstaService.DAL.Instagram.Repositories;
@@ -34,8 +32,8 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
                 .AddTransient<InstagramFacade>( )
                 .AddTransient<SimpleAuthActionFilter>( )
-                .AddTransient<FacebookActionFilter>()
-                .AddTransient<Auth0ActionFilter>()
+                .AddTransient<FacebookActionFilter>( )
+                .AddTransient<Auth0ActionFilter>( )
                 .AddControllers( );
         }
 

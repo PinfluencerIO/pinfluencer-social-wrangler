@@ -15,10 +15,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
     {
         private readonly FacebookContext _facebookContext;
 
-        public InstagramImpressionsRepository( FacebookContext facebookContext )
-        {
-            _facebookContext = facebookContext;
-        }
+        public InstagramImpressionsRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
 
         public OperationResult<IEnumerable<InstaImpression>> GetImpressions( string instaId )
         {
