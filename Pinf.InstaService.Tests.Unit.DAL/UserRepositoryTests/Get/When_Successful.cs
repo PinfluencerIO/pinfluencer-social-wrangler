@@ -3,7 +3,6 @@ using System.Net;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
-using Pinf.InstaService.Core.Dtos;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.UserManagement.Dtos;

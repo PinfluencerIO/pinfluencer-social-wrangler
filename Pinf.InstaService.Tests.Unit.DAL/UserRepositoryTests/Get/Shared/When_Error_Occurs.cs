@@ -11,13 +11,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
         protected OperationResult<User> Result;
         
         [ Test ]
-        public void Then_Valid_User_Is_Be_Returned( )
+        public void Then_Empty_User_Is_Be_Returned( )
         {
             Assert.True( Result.Value.Id == null && Result.Value.Name == null );
         }
         
         [ Test ]
-        public void Then_Success_Is_Returned( )
+        public void Then_Failiure_Is_Returned( )
         {
             Assert.AreEqual( OperationResultEnum.Failed, Result.Status );
         }

@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using AutoMapper;
 using Pinf.InstaService.Core;
-using Pinf.InstaService.Core.Dtos;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.Crosscutting.Web;
-using Pinf.InstaService.DAL.UserManagement.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Profile = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Profile;
+using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
 {
@@ -38,7 +34,10 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             catch( Exception ) { return new OperationResult<string>( "", OperationResultEnum.Failed ); }
         }
 
-        public OperationResultEnum CreateInfluencer( InfluencerProfile id ) { throw new NotImplementedException( ); }
+        public OperationResultEnum CreateInfluencer( InfluencerModel influencer )
+        {
+            return OperationResultEnum.Failed;
+        }
 
         public OperationResult<User> Get( string id )
         {
