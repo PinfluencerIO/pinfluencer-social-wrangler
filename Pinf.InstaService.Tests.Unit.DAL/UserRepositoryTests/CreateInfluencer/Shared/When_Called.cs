@@ -4,13 +4,14 @@ using NUnit.Framework.Internal;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Influencer = Pinf.InstaService.Core.Models.User.Influencer;
+using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
+using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared
 {
     public abstract class When_Called : Given_A_UserRepository
     {
-        protected static readonly Influencer DefaultInfluencer = new Influencer
+        protected static readonly InfluencerModel DefaultInfluencer = new InfluencerModel
         {
             InstagramHandle = "example",
             Age = 24,

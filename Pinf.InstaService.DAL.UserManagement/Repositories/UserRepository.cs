@@ -7,6 +7,7 @@ using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
 namespace Pinf.InstaService.DAL.UserManagement.Repositories
@@ -36,37 +37,44 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
 
         public OperationResultEnum CreateInfluencer( InfluencerModel influencer )
         {
+            var ( validRequest, httpStatusCode ) = validateRequestException( () => _bubbleClient.Post( $"influencer", new Influencer
+            {
+                Age = influencer.Age,
+                Bio = influencer.Bio,
+                Gender = influencer.Gender,
+                Location = influencer.Location,
+                Instagram = influencer.InstagramHandle,
+                Profile = influencer.User.Id
+            } ) );
+            if( validRequest & validateHttpCode( httpStatusCode ) ) { return OperationResultEnum.Success; }
             return OperationResultEnum.Failed;
         }
 
         public OperationResult<User> Get( string id )
         {
-            var ( validRequest,
-                result ) = validateBubbleRequest<TypeResponse<Profile>>( _bubbleClient
-                    .Get<TypeResponse<Profile>>, $"profile/{id}" );
+            var ( validRequest, (httpStatusCode, typeResponse) ) = validateRequestException( () => _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ) );
             if( validRequest )
             {
-                return new OperationResult<User>( new User { Id = result.Item2.Type.Id, Name = result.Item2.Type.Name },
-                    OperationResultEnum.Success );
+                if( validateHttpCode( httpStatusCode ) )
+                {
+                    return new OperationResult<User>( new User { Id = typeResponse.Type.Id, Name = typeResponse.Type.Name },
+                        OperationResultEnum.Success );
+                }
             }
             return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
         }
+
+        private bool validateHttpCode( HttpStatusCode code ) => code == HttpStatusCode.OK;
         
-        private ( bool, ( HttpStatusCode, T ) ) validateBubbleRequest<T>( Func<string, ( HttpStatusCode, T )> httpFunc, string uri ) where T : class
+        private ( bool, T ) validateRequestException<T>( Func<T> httpFunc )
         {
             try
             {
-                var ( httpStatusCode, typeResponse ) = httpFunc( uri );
-                var returnVal = ( httpStatusCode, typeResponse );
-                if( httpStatusCode != HttpStatusCode.OK )
-                {
-                    return ( false, returnVal );
-                }
-                return ( true, returnVal );
+                return( true, httpFunc( ) );
             }
             catch( Exception e ) when( e is ArgumentException || e is HttpRequestException )
             {
-                return( false, ( HttpStatusCode.BadRequest, null ) );
+                return ( false, default );
             }
         }
     }
