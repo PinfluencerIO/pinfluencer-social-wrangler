@@ -18,6 +18,14 @@ namespace Pinf.InstaService.Core.Models.User
         public GenderEnum Gender { get; set; }
 
         //TODO: ADD LEAP YEAR
-        public DateTime Birthday { set => Age = _dateTimeAdapter.Now( ).Year - value.Year; }
+        public DateTime Birthday
+        {
+            set
+            {
+                var now = int.Parse(_dateTimeAdapter.Now().ToString("yyyyMMdd"));
+                var dob = int.Parse(value.ToString("yyyyMMdd"));
+                Age = (now - dob) / 10000;
+            }
+        }
     }
 }

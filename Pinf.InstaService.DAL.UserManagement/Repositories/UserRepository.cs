@@ -71,6 +71,9 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
                 {
                     _user.Id = typeResponse.Type.Id;
                     _user.Name = typeResponse.Type.Name;
+                    _user.Birthday = facebookUser.Birthday;
+                    _user.Gender = facebookUser.Gender;
+                    _user.Location = facebookUser.Location.Name;
                     return new OperationResult<IUser>( _user, OperationResultEnum.Success );
                 }
 
