@@ -7,6 +7,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Crosscutting.CodeContracts;
+using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 using InstaUser = Pinf.InstaService.Core.Models.InstaUser.InstaUser;
 
@@ -30,8 +31,8 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
                 new PostCondition( ).Evaluate( dataArray != null );
 
-                var instaAccounts = dataArray.Data.Select( x => x.Insta ).Where( x => x != null );
-                return new OperationResult<IEnumerable<InstaUser>>( instaAccounts.Select( x => new InstaUser(
+                var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
+                return new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser(
                     new InstaUserIdentity( x.Username, x.Id ), x.Name, x.Bio, x.Followers
                 ) ), OperationResultEnum.Success );
             }

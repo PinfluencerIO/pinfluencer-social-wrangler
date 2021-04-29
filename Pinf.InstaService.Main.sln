@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Tests.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Crosscutting.Web", "Pinf.InstaService.Crosscutting.Web\Pinf.InstaService.Crosscutting.Web.csproj", "{3D6C73F8-3539-4EC6-BBF4-77FF28195FCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.DAL.Common", "Pinf.InstaService.DAL.Common\Pinf.InstaService.DAL.Common.csproj", "{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,7 @@ Global
 		{4048B7F8-70D6-49AC-9C60-BD209A047762} = {FF419C49-47C7-4780-A669-D8EBC3E9C61D}
 		{F24208BB-AF91-412A-9DE2-1F6CF6E35A4A} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
 		{3D6C73F8-3539-4EC6-BBF4-77FF28195FCA} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
+		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3} = {260916F1-A6E4-45F1-ADC6-5A3CFA779C38}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{035B5433-6EC2-44D1-BF14-27E52B787BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -101,5 +104,9 @@ Global
 		{3D6C73F8-3539-4EC6-BBF4-77FF28195FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D6C73F8-3539-4EC6-BBF4-77FF28195FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D6C73F8-3539-4EC6-BBF4-77FF28195FCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

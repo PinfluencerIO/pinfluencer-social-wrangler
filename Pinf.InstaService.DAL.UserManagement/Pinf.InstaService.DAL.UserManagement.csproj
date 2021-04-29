@@ -16,6 +16,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Pinf.InstaService.Core\Pinf.InstaService.Core.csproj" />
       <ProjectReference Include="..\Pinf.InstaService.Crosscutting.Web\Pinf.InstaService.Crosscutting.Web.csproj" />
+      <ProjectReference Include="..\Pinf.InstaService.DAL.Common\Pinf.InstaService.DAL.Common.csproj" />
     </ItemGroup>
 
 </Project>

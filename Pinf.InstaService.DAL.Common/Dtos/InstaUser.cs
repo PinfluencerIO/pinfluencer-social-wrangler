@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Pinf.InstaService.DAL.Instagram.Dtos
+namespace Pinf.InstaService.DAL.Common.Dtos
 {
     public class InstaUser
     {
