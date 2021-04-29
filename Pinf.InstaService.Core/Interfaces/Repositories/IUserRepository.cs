@@ -1,4 +1,5 @@
 ﻿using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.User;
 
 namespace Pinf.InstaService.Core.Interfaces.Repositories
@@ -7,6 +8,6 @@ namespace Pinf.InstaService.Core.Interfaces.Repositories
     {
         OperationResult<string> GetInstagramToken( string auth0Id );
         OperationResultEnum CreateInfluencer( Influencer influencer );
-        OperationResult<User> Get( string id );
+        OperationResult<IUser> Get( string id );
     }
 }

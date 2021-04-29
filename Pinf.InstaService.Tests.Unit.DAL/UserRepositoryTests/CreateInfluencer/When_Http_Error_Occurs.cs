@@ -12,7 +12,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
             MockBubbleClient
                 .Post( Arg.Any<string>( ), Arg.Any<Influencer>( ) )
                 .Returns( HttpStatusCode.BadRequest );
-            Result = Sut.CreateInfluencer( DefaultInfluencer );
+            Result = Sut.CreateInfluencer( GetDefaultInfluencer() );
         }
     }
 }

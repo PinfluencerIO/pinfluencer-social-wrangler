@@ -9,18 +9,19 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.
 {
     public abstract class When_Called : Given_A_UserRepository
     {
-        protected static readonly InfluencerModel DefaultInfluencer = new InfluencerModel
+        protected InfluencerModel GetDefaultInfluencer()
         {
-            InstagramHandle = "example",
-            Age = 24,
-            Bio = "this an example bio",
-            Gender = GenderEnum.Male,
-            Location = "Uxbridge, West London",
-            User = new User
+            MockUser.Id = "12345678";
+            return new InfluencerModel
             {
-                Id = "123456"
-            }
-        };
+                InstagramHandle = "example",
+                Age = 24,
+                Bio = "this an example bio",
+                Gender = GenderEnum.Male,
+                Location = "Uxbridge, West London",
+                User = MockUser
+            };
+        }
 
         [ Test ]
         public void Then_Influencer_Will_Be_Created_Once( )

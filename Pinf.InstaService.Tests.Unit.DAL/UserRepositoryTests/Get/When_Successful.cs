@@ -1,17 +1,22 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
+using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {
     public class When_Successful : When_Called
     {
-        private OperationResult<User> _result;
+        private OperationResult<IUser> _result;
 
         protected override void When( )
         {
@@ -19,13 +24,29 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
                 .Get<TypeResponse<Profile>>( Arg.Any<string>( ) )
                 .Returns( ( HttpStatusCode.OK, new TypeResponse<Profile>
                     { Type = new Profile { Id = "1234", Name = "ExampleInfluencer" } } ) );
+            MockFacebookClient
+                .Get<FacebookUser>( Arg.Any<string>( ), Arg.Any<object>(  ) )
+                .Returns( new FacebookUser
+                {
+                    Location = new FacebookPage
+                    {
+                        Id = "1235",
+                        Name = "London"
+                    },
+                    Birthday = new DateTime( 1999, 11, 26 ),
+                    Gender = GenderEnum.Female
+                } );
             _result = Sut.Get( "1234" );
         }
 
         [ Test ]
         public void Then_Valid_User_Is_Be_Returned( )
         {
-            Assert.True( _result.Value.Id == "1234" && _result.Value.Name == "ExampleInfluencer" );
+            Assert.True( _result.Value.Id == "1234" &&
+             _result.Value.Name == "ExampleInfluencer" &&
+             _result.Value.Age == 21 &&
+             _result.Value.Location == "London" &&
+             _result.Value.Gender == GenderEnum.Female );
         }
 
         [ Test ]

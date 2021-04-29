@@ -4,6 +4,7 @@ using System.Net.Http;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Clients;
+using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.Common;
@@ -21,12 +22,14 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
         private readonly Auth0Context _auth0Context;
         private readonly IBubbleClient _bubbleClient;
         private readonly FacebookContext _facebookContext;
+        private readonly IUser _user;
 
-        public UserRepository( Auth0Context auth0Context, IBubbleClient bubbleClient, FacebookContext facebookContext )
+        public UserRepository( Auth0Context auth0Context, IBubbleClient bubbleClient, FacebookContext facebookContext, IUser user )
         {
             _auth0Context = auth0Context;
             _bubbleClient = bubbleClient;
             _facebookContext = facebookContext;
+            _user = user;
         }
 
         //TODO: dont swallow all exceptions
@@ -56,7 +59,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             return OperationResultEnum.Failed;
         }
 
-        public OperationResult<User> Get( string id )
+        public OperationResult<IUser> Get( string id )
         {
             var facebookUser = _facebookContext
                 .FacebookClient
@@ -65,10 +68,13 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
                 validateRequestException( ( ) => _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ) );
             if( validRequest )
                 if( validateHttpCode( httpStatusCode ) )
-                    return new OperationResult<User>(
-                        new User { Id = typeResponse.Type.Id, Name = typeResponse.Type.Name },
-                        OperationResultEnum.Success );
-            return new OperationResult<User>( new User( ), OperationResultEnum.Failed );
+                {
+                    _user.Id = typeResponse.Type.Id;
+                    _user.Name = typeResponse.Type.Name;
+                    return new OperationResult<IUser>( _user, OperationResultEnum.Success );
+                }
+
+            return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
         }
 
         private bool validateHttpCode( HttpStatusCode code ) { return code == HttpStatusCode.OK; }

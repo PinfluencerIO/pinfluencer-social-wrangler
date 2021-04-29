@@ -16,7 +16,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
             MockBubbleClient
                 .Post( Arg.Any<string>( ), Arg.Any<Influencer>( ) )
                 .Returns( HttpStatusCode.OK );
-            _result = Sut.CreateInfluencer( DefaultInfluencer );
+            _result = Sut.CreateInfluencer( GetDefaultInfluencer() );
         }
 
         [ Test ]
@@ -26,11 +26,11 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
                 .Received( )
                 .Post( Arg.Any<string>( ),
                     Arg.Is<Influencer>(
-                        x => x.Bio == DefaultInfluencer.Bio &&
-                             x.Instagram == DefaultInfluencer.InstagramHandle &&
-                             x.Profile == DefaultInfluencer.User.Id &&
-                             x.Age == DefaultInfluencer.Age &&
-                             x.Location == DefaultInfluencer.Location ) );
+                        x => x.Bio == GetDefaultInfluencer().Bio &&
+                             x.Instagram == GetDefaultInfluencer().InstagramHandle &&
+                             x.Profile == GetDefaultInfluencer().User.Id &&
+                             x.Age == GetDefaultInfluencer().Age &&
+                             x.Location == GetDefaultInfluencer().Location ) );
         }
 
         [ Test ]
