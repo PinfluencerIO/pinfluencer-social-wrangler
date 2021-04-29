@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
+using Pinf.InstaService.DAL.Common;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {

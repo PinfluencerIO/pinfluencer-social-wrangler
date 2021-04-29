@@ -7,6 +7,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.CodeContracts;
+using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories

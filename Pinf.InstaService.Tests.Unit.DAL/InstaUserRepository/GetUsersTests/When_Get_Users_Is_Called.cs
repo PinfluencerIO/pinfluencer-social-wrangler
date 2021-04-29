@@ -1,5 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests

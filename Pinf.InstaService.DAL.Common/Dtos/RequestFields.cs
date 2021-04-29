@@ -1,4 +1,4 @@
-﻿namespace Pinf.InstaService.DAL.Instagram.Dtos
+﻿namespace Pinf.InstaService.DAL.Common.Dtos
 {
     public class RequestFields
     {

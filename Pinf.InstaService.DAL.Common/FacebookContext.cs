@@ -1,8 +1,8 @@
 ﻿using Facebook;
 using Newtonsoft.Json;
-using Pinf.InstaService.DAL.Instagram.Dtos;
+using Pinf.InstaService.DAL.Common.Dtos;
 
-namespace Pinf.InstaService.DAL.Instagram
+namespace Pinf.InstaService.DAL.Common
 {
     public class FacebookContext
     {

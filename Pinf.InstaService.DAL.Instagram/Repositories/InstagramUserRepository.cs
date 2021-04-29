@@ -7,6 +7,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Crosscutting.CodeContracts;
+using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 using InstaUser = Pinf.InstaService.Core.Models.InstaUser.InstaUser;

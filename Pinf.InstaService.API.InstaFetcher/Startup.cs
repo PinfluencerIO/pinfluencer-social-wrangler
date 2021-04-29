@@ -8,6 +8,7 @@ using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.BLL.InstagramFetcher.Services;
 using Pinf.InstaService.Core.Interfaces.Factories;
 using Pinf.InstaService.Core.Interfaces.Repositories;
+using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Factories;
 using Pinf.InstaService.DAL.Instagram.Repositories;

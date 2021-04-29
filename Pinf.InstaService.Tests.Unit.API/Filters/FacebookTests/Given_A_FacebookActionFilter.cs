@@ -10,6 +10,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Factories;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Instagram;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests

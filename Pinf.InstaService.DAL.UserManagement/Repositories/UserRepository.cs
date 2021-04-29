@@ -6,6 +6,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
 using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
@@ -17,11 +18,13 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
     {
         private readonly Auth0Context _auth0Context;
         private readonly IBubbleClient _bubbleClient;
+        private readonly FacebookContext _facebookContext;
 
-        public UserRepository( Auth0Context auth0Context, IBubbleClient bubbleClient )
+        public UserRepository( Auth0Context auth0Context, IBubbleClient bubbleClient, FacebookContext facebookContext )
         {
             _auth0Context = auth0Context;
             _bubbleClient = bubbleClient;
+            _facebookContext = facebookContext;
         }
 
         //TODO: dont swallow all exceptions

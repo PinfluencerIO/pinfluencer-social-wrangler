@@ -1,6 +1,7 @@
 ﻿using Facebook;
 using NSubstitute;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Repositories;
 
