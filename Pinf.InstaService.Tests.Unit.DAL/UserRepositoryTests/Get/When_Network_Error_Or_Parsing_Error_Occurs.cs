@@ -10,7 +10,7 @@ using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {
     [ TestFixtureSource( nameof( fixture ) ) ]
-    public class When_Network_Error_Or_Parsing_Error_Occurs : When_Error_Occurs
+    public class When_Network_Error_Or_Parsing_Error_Occurs : When_Bubble_Error_Occurs
     {
         private readonly Exception _exception;
 

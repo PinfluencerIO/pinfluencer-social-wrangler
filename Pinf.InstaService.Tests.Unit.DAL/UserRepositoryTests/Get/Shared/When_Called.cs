@@ -9,14 +9,6 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
     public abstract class When_Called : Given_A_UserRepository
     {
         [ Test ]
-        public void Then_Bubble_Profile_Will_Be_Fetched_Once( )
-        {
-            MockBubbleClient
-                .Received( 1 )
-                .Get<TypeResponse<Profile>>( Arg.Any<string>( ) );
-        }
-        
-        [ Test ]
         public void Then_Facebook_User_Will_Be_Fetched_Once( )
         {
             MockFacebookClient
@@ -24,14 +16,6 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
                 .Get<FacebookUser>( Arg.Any<string>( ), Arg.Any<object>( )  );
         }
 
-        [ Test ]
-        public void Then_Correct_Bubble_Profile_Endpoint_Is_Reached( )
-        {
-            MockBubbleClient
-                .Received( 1 )
-                .Get<TypeResponse<Profile>>( Arg.Is<string>( uri => uri == "profile/1234" ) );
-        }
-        
         [ Test ]
         public void Then_Correct_Facebook_User_Endpoint_Is_Reached( )
         {

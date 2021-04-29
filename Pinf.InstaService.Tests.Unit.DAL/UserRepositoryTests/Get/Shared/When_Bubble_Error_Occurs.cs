@@ -6,7 +6,7 @@ using Pinf.InstaService.Core.Models.User;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
 {
-    public abstract class When_Error_Occurs : When_Called
+    public abstract class When_Bubble_Error_Occurs : When_Facebook_Error_Does_Not_Occur
     {
         protected OperationResult<IUser> Result;
 

@@ -5,7 +5,7 @@ using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {
-    public class When_Http_Error_Occurs : When_Error_Occurs
+    public class When_Http_Error_Occurs : When_Bubble_Error_Occurs
     {
         protected override void When( )
         {

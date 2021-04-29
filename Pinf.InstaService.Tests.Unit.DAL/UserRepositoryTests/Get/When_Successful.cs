@@ -14,7 +14,7 @@ using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {
-    public class When_Successful : When_Called
+    public class When_Successful : When_Facebook_Error_Does_Not_Occur
     {
         private OperationResult<IUser> _result;
 
