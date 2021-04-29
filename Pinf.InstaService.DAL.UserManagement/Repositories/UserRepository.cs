@@ -7,7 +7,9 @@ using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.Common;
+using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
 using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
@@ -56,6 +58,9 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
 
         public OperationResult<User> Get( string id )
         {
+            var facebookUser = _facebookContext
+                .FacebookClient
+                .Get<FacebookUser>( "me", new RequestFields{ fields = "birthday,location,gender" } );
             var (validRequest, (httpStatusCode, typeResponse)) =
                 validateRequestException( ( ) => _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ) );
             if( validRequest )
