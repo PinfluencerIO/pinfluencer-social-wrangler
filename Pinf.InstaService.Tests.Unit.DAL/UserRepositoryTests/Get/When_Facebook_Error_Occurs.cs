@@ -24,14 +24,6 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
         }
 
         [ Test ]
-        public void Then_Bubble_Profile_Will_Be_Fetched_Once( )
-        {
-            MockBubbleClient
-                .Received( 1 )
-                .Get<TypeResponse<Profile>>( Arg.Any<string>( ) );
-        }
-
-        [ Test ]
         public void Then_Empty_User_Is_Be_Returned( )
         {
             Assert.True( _result.Value.Id == null && _result.Value.Name == null );
