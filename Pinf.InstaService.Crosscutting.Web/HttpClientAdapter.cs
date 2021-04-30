@@ -28,7 +28,9 @@ namespace Pinf.InstaService.Crosscutting.Web
 
         public HttpResponseMessage Post( string uri, string body )
         {
-            return _httpClient.PostAsync( uri, new StringContent( body ) ).Result;
+            var content = new StringContent( body );
+            content.Headers.ContentType = new MediaTypeHeaderValue( "application/json" );
+            return _httpClient.PostAsync( uri, content ).Result;
         }
     }
 }

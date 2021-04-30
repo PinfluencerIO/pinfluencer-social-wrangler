@@ -89,7 +89,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
         }
 
-        private bool validateHttpCode( HttpStatusCode code ) { return code == HttpStatusCode.OK; }
+        private bool validateHttpCode( HttpStatusCode code ) { return code.GetHashCode( ).ToString( )[0].ToString() == "2"; }
 
         private( bool, T ) validateRequestException<T>( Func<T> httpFunc )
         {

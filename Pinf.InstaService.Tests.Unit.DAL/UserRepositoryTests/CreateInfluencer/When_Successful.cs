@@ -15,7 +15,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
         {
             MockBubbleClient
                 .Post( Arg.Any<string>( ), Arg.Any<Influencer>( ) )
-                .Returns( HttpStatusCode.OK );
+                .Returns( HttpStatusCode.Created );
             _result = Sut.CreateInfluencer( GetDefaultInfluencer() );
         }
 
