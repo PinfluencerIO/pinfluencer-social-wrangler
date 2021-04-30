@@ -33,9 +33,14 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                 new PostCondition( ).Evaluate( dataArray != null );
 
                 var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
-                return new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser(
-                    new InstaUserIdentity( x.Username, x.Id ), x.Name, x.Bio, x.Followers
-                ) ), OperationResultEnum.Success );
+                return new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser
+                {
+                    Handle = x.Username,
+                    Id = x.Id ,
+                    Name = x.Name,
+                    Bio = x.Bio,
+                    Followers = x.Followers
+                } ), OperationResultEnum.Success );
             }
             catch( Exception )
             {

@@ -24,7 +24,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         public void Then_Insta_User_Ids_Were_Valid( )
         {
             Assert.True(
-                new [ ] { "123213", "544341" }.SequenceEqual( Result.Value.InstaUserIdentities.Select( x => x.Id ) ) );
+                new [ ] { "123213", "544341" }.SequenceEqual( Result.Value.Select( x => x.Id ) ) );
         }
 
         [ Test ]
@@ -32,13 +32,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             Assert.True(
                 new [ ] { "example", "example2" }.SequenceEqual(
-                    Result.Value.InstaUserIdentities.Select( x => x.Handle ) ) );
+                    Result.Value.Select( x => x.Handle ) ) );
         }
-
-        [ Test ]
-        public void Then_Has_Multiple_Was_True( ) { Assert.AreEqual( true, Result.Value.HasMultiple ); }
-
-        [ Test ]
-        public void Then_Is_Empty_Was_False( ) { Assert.AreEqual( false, Result.Value.IsEmpty ); }
     }
 }

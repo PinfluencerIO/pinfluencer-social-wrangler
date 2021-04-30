@@ -1,21 +1,17 @@
-﻿namespace Pinf.InstaService.Core.Models.InstaUser
+﻿using System.Text.Json.Serialization;
+
+namespace Pinf.InstaService.Core.Models.InstaUser
 {
     public class InstaUser
     {
-        public InstaUser( InstaUserIdentity identity, string name, string bio, int followers )
-        {
-            Identity = identity;
-            Name = name;
-            Bio = bio;
-            Followers = followers;
-        }
+        [ JsonPropertyName( "handle" ) ] public string Handle { get; set; }
 
-        public InstaUserIdentity Identity { get; }
+        [ JsonPropertyName( "id" ) ] public string Id { get; set; }
 
-        public string Name { get; }
+        [ JsonPropertyName( "name" ) ] public string Name { get; set; }
 
-        public string Bio { get; }
+        [ JsonPropertyName( "bio" ) ] public string Bio { get; set; }
 
-        public int Followers { get; }
+        [ JsonPropertyName( "followers" ) ] public int Followers { get; set; }
     }
 }

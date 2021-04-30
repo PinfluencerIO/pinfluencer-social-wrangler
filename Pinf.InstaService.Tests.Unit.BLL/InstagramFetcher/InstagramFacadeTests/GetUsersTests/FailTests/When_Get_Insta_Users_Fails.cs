@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
@@ -9,7 +10,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public class When_Get_Insta_Users_Fails : When_Get_All_Is_Called
     {
-        private OperationResult<InstaUserIdentityCollection> _result;
+        private OperationResult<IEnumerable<InstaUser>> _result;
 
         protected override void When( )
         {

@@ -20,19 +20,13 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Insta_User_Id_Was_Valid( )
         {
-            Assert.AreEqual( "123213", Result.Value.InstaUserIdentities.First( ).Id );
+            Assert.AreEqual( "123213", Result.Value.First( ).Id );
         }
 
         [ Test ]
         public void Then_Insta_User_Handle_Was_Valid( )
         {
-            Assert.AreEqual( "example", Result.Value.InstaUserIdentities.First( ).Handle );
+            Assert.AreEqual( "example", Result.Value.First( ).Handle );
         }
-
-        [ Test ]
-        public void Then_Has_Multiple_Was_False( ) { Assert.AreEqual( false, Result.Value.HasMultiple ); }
-
-        [ Test ]
-        public void Then_Is_Empty_Was_False( ) { Assert.AreEqual( false, Result.Value.IsEmpty ); }
     }
 }

@@ -21,13 +21,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         }
 
         [ Test ]
-        public void Then_Id_Is_Correct( ) { Assert.AreEqual( "12321", _result.Value.First( ).Identity.Id ); }
+        public void Then_Id_Is_Correct( ) { Assert.AreEqual( "12321", _result.Value.First( ).Id ); }
 
         [ Test ]
         public void Then_Name_Is_Correct( ) { Assert.AreEqual( "Aidan Gan", _result.Value.First( ).Name ); }
 
         [ Test ]
-        public void Then_Handle_Is_Correct( ) { Assert.AreEqual( "user", _result.Value.First( ).Identity.Handle ); }
+        public void Then_Handle_Is_Correct( ) { Assert.AreEqual( "user", _result.Value.First( ).Handle ); }
 
         [ Test ]
         public void Then_Bio_Is_Correct( ) { Assert.AreEqual( "this is my bio", _result.Value.First( ).Bio ); }

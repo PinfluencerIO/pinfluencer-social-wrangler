@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.InstaUser;
@@ -9,12 +10,21 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {
-        protected OperationResult<InstaUserIdentityCollection> Result;
+        protected OperationResult<IEnumerable<InstaUser>> Result;
 
         protected void SetSingleUser( string handle, string id, string name, string bio, int followers )
         {
-            InstaUserCollection = new [ ]
-                { new InstaUser( new InstaUserIdentity( handle, id ), name, bio, followers ) };
+            InstaUserCollection = new [ ] 
+            {
+                new InstaUser
+                {
+                    Handle = handle,
+                    Id = id,
+                    Name = name,
+                    Bio = bio,
+                    Followers = followers
+                } 
+            };
             InstaUsersOperationResult = OperationResultEnum.Success;
         }
 
@@ -33,8 +43,22 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             InstaUserCollection = new [ ]
             {
-                new InstaUser( new InstaUserIdentity( handle1, id1 ), name1, bio1, followers1 ),
-                new InstaUser( new InstaUserIdentity( handle2, id2 ), name2, bio2, followers2 )
+                new InstaUser
+                {
+                    Handle = handle1,
+                    Id = id1,
+                    Name = name1,
+                    Bio = bio1,
+                    Followers = followers1
+                } ,
+                new InstaUser
+                {
+                    Handle = handle2,
+                    Id = id2,
+                    Name = name2,
+                    Bio = bio2,
+                    Followers = followers2
+                } 
             };
             InstaUsersOperationResult = OperationResultEnum.Success;
         }

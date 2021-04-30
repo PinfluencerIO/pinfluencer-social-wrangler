@@ -26,7 +26,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         [ Test ]
         public void Then_Ids_Are_Correct( )
         {
-            Assert.IsTrue( new [ ] { "12321", "543543" }.SequenceEqual( _result.Value.Select( x => x.Identity.Id ) ) );
+            Assert.IsTrue( new [ ] { "12321", "543543" }.SequenceEqual( _result.Value.Select( x => x.Id ) ) );
         }
 
         [ Test ]
@@ -39,7 +39,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
         public void Then_Handles_Are_Correct( )
         {
             Assert.IsTrue(
-                new [ ] { "user", "user2" }.SequenceEqual( _result.Value.Select( x => x.Identity.Handle ) ) );
+                new [ ] { "user", "user2" }.SequenceEqual( _result.Value.Select( x => x.Handle ) ) );
         }
 
         [ Test ]

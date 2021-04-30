@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
@@ -28,18 +29,11 @@ namespace Pinf.InstaService.BLL.Facades
             return new OperationResult<IEnumerable<InstaProfileViewsInsight>>( Enumerable.Empty<InstaProfileViewsInsight>( ), OperationResultEnum.Failed );
         }
 
-        public OperationResult<InstaUserIdentityCollection> GetUsers( )
+        public OperationResult<IEnumerable<InstaUser>> GetUsers( )
         {
             var users = _instaUserRepository.GetUsers( );
 
-            return new OperationResult<InstaUserIdentityCollection>(
-                new InstaUserIdentityCollection(
-                    users.Value.Select( x => x.Identity ),
-                    users.Value.Count( ) > 1,
-                    !users.Value.Any( )
-                ),
-                users.Status
-            );
+            return new OperationResult<IEnumerable<InstaUser>>( users.Value, users.Status );
         }
     }
 }
