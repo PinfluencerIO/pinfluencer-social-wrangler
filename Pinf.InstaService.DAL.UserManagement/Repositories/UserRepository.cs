@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using Facebook;
@@ -11,7 +13,6 @@ using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
 using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
@@ -60,6 +61,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             return OperationResultEnum.Failed;
         }
 
+        //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
         public OperationResult<IUser> Get( string id )
         {
             try
@@ -74,8 +76,8 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
                     {
                         _user.Id = typeResponse.Type.Id;
                         _user.Name = typeResponse.Type.Name;
-                        _user.Birthday = facebookUser.Birthday;
-                        _user.Gender = facebookUser.Gender;
+                        _user.BirthdayString = facebookUser.Birthday;
+                        _user.GenderString = facebookUser.Gender;
                         _user.Location = facebookUser.Location.Name;
                         return new OperationResult<IUser>( _user, OperationResultEnum.Success );
                     }

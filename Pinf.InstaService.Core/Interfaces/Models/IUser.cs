@@ -10,6 +10,8 @@ namespace Pinf.InstaService.Core.Interfaces.Models
         int Age { get; set; }
         string Location { get; set; }
         GenderEnum Gender { get; set; }
-        public DateTime Birthday { set; }
+        DateTime Birthday { set; }
+        string BirthdayString { set; }
+        string GenderString { set; }
     }
 }

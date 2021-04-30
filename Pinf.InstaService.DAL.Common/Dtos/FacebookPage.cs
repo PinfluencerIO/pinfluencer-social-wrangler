@@ -1,11 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Pinf.InstaService.DAL.Common.Dtos
 {
+    [ DataContract ]
     public class FacebookPage
     {
-        [ JsonProperty( "instagram_business_account" ) ] public InstaUser Insta { get; set; }
-        [ JsonProperty( "id" ) ] public string Id { get; set; }
-        [ JsonProperty( "name" ) ] public string Name { get; set; }
+        [ DataMember( Name = "instagram_business_account", IsRequired = false ) ] public InstaUser Insta { get; set; }
+        [ DataMember( Name = "id" ) ] public string Id { get; set; }
+        [ DataMember( Name = "name" ) ] public string Name { get; set; }
     }
 }

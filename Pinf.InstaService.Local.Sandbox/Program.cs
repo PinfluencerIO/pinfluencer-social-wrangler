@@ -1,7 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Facebook;
+using Newtonsoft.Json;
+using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.Crosscutting.Utils;
+using Pinf.InstaService.Crosscutting.Web;
+using Pinf.InstaService.DAL.Common;
+using Pinf.InstaService.DAL.Common.Dtos;
+using Pinf.InstaService.DAL.UserManagement;
+using Pinf.InstaService.DAL.UserManagement.Common;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
+using Pinf.InstaService.DAL.UserManagement.Repositories;
+using JsonConverter = System.Text.Json.Serialization.JsonConverter;
 
 namespace Pinf.InstaService.Local.Sandbox
 {
@@ -9,16 +20,6 @@ namespace Pinf.InstaService.Local.Sandbox
     {
         private static void Main( string [ ] args )
         {
-            var json = JsonConvert.DeserializeObject<FacebookUser>
-            (@"{ 
-                'birthday': '11/26/1999',
-                'location': {
-                    'id': '109435875749334',
-                    'name': 'Dorchester, Dorset'
-                },
-                'gender': 'male',
-                'id': '706884236570098'
-            }");
         }
     }
 

@@ -5,8 +5,8 @@ using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Models;
+using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get

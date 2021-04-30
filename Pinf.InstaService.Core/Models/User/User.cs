@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Crosscutting.Utils;
@@ -26,6 +27,16 @@ namespace Pinf.InstaService.Core.Models.User
                 var dob = int.Parse(value.ToString("yyyyMMdd"));
                 Age = (now - dob) / 10000;
             }
+        }
+        
+        public string BirthdayString
+        {
+            set => Birthday = DateTime.ParseExact( value, "MM/dd/yyyy", CultureInfo.CurrentCulture );
+        }
+
+        public string GenderString
+        {
+            set => Gender = value.Enumify<GenderEnum>( );
         }
     }
 }

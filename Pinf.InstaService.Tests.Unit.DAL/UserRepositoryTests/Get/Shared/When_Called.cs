@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
 {

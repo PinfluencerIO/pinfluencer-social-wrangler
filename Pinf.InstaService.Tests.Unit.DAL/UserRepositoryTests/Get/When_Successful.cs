@@ -8,7 +8,6 @@ using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Facebook;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
 
@@ -33,8 +32,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
                         Id = "1235",
                         Name = "London"
                     },
-                    Birthday = new DateTime( 1999, 11, 26 ),
-                    Gender = GenderEnum.Female
+                    Birthday = "11/26/1999",
+                    Gender = "female"
                 } );
             _result = Sut.Get( "1234" );
         }
