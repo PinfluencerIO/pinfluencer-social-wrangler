@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
@@ -12,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
     [ TestFixture ]
     public class When_Single_Insights_Are_Returned : When_Get_User_Insights_Is_Called
     {
-        private OperationResult<InstaInsightsCollection> _result;
+        private OperationResult<IEnumerable<InstaProfileImpressionsInsight>> _result;
 
         protected override void When( )
         {
@@ -27,25 +28,25 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Impressions_Count_Are_Correct( )
         {
-            Assert.AreEqual( 5, _result.Value.Impressions.First( ).Count );
+            Assert.AreEqual( 5, _result.Value.First( ).Count );
         }
 
         [ Test ]
         public void Then_Impressions_Day_Is_Correct( )
         {
-            Assert.AreEqual( 1, _result.Value.Impressions.First( ).Time.Day );
+            Assert.AreEqual( 1, _result.Value.First( ).Time.Day );
         }
 
         [ Test ]
         public void Then_Impressions_Month_Is_Correct( )
         {
-            Assert.AreEqual( 1, _result.Value.Impressions.First( ).Time.Month );
+            Assert.AreEqual( 1, _result.Value.First( ).Time.Month );
         }
 
         [ Test ]
         public void Then_Impressions_Year_Is_Correct( )
         {
-            Assert.AreEqual( 2000, _result.Value.Impressions.First( ).Time.Year );
+            Assert.AreEqual( 2000, _result.Value.First( ).Time.Year );
         }
 
         [ Test ]

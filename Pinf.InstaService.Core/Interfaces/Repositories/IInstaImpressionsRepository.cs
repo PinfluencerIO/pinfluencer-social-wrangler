@@ -6,6 +6,6 @@ namespace Pinf.InstaService.Core.Interfaces.Repositories
     //TODO: add time start and time end inputs
     public interface IInstaImpressionsRepository
     {
-        OperationResult<IEnumerable<InstaImpression>> GetImpressions( string instaId );
+        OperationResult<IEnumerable<InstaProfileImpressionsInsight>> GetImpressions( string instaId );
     }
 }

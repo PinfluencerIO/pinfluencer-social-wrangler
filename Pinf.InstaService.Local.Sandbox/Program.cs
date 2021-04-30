@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using Facebook;
 using Newtonsoft.Json;
 using Pinf.InstaService.API.InstaFetcher.Filters;
@@ -24,20 +25,7 @@ namespace Pinf.InstaService.Local.Sandbox
 {
     internal class Program
     {
-        private static void Main( string [ ] args )
-        {
-
-        }
+        private static void Main( string [ ] args ) => Console.Write( "" );
     }
 
-    public class TestDto
-    {
-        public string Name { get; set; }
-        public TestNestedDto Type { get; set; }
-    }
-
-    public class TestNestedDto
-    {
-        public int Prop { get; set; }
-    }
 }

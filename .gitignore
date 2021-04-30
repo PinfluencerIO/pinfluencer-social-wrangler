@@ -12,3 +12,6 @@ bin/
 *apsettings.json
 *appsettings.Development.json
 *appsettings.Production.json
+
+# IGNORE INTEGRATION BENCH
+*IntegrationBench.cs

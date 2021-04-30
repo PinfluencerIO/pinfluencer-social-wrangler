@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
@@ -19,15 +20,12 @@ namespace Pinf.InstaService.BLL.Facades
             _instaUserRepository = instaUserRepository;
         }
 
-        public OperationResult<InstaInsightsCollection> GetUserInsights( string id )
+        public OperationResult<IEnumerable<InstaProfileImpressionsInsight>> GetUserInsights( string id )
         {
             var impressions = _impressionsRepository.GetImpressions( id );
             if( impressions.Status == OperationResultEnum.Success )
-                return new OperationResult<InstaInsightsCollection>( new InstaInsightsCollection( impressions.Value ),
-                    OperationResultEnum.Success );
-            return new OperationResult<InstaInsightsCollection>( new InstaInsightsCollection(
-                Enumerable.Empty<InstaImpression>( )
-            ), OperationResultEnum.Failed );
+                return new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>( impressions.Value, OperationResultEnum.Success );
+            return new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>( Enumerable.Empty<InstaProfileImpressionsInsight>( ), OperationResultEnum.Failed );
         }
 
         public OperationResult<InstaUserIdentityCollection> GetUsers( )

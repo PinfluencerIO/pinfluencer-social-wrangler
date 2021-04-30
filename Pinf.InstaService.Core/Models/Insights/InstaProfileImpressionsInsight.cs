@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace Pinf.InstaService.Core.Models.Insights
 {
-    public class InstaImpression
+    public class InstaProfileImpressionsInsight
     {
-        public InstaImpression( DateTime time, int count )
+        public InstaProfileImpressionsInsight( DateTime time, int count )
         {
             Time = time;
             Count = count;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
@@ -11,7 +12,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public class When_Multiple_Insights_Are_Returned : When_Get_User_Insights_Is_Called
     {
-        private OperationResult<InstaInsightsCollection> _result;
+        private OperationResult<IEnumerable<InstaProfileImpressionsInsight>> _result;
 
         protected override void When( )
         {
@@ -29,25 +30,25 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Impressions_Count_Are_Correct( )
         {
-            Assert.True( new [ ] { 5, 10 }.SequenceEqual( _result.Value.Impressions.Select( x => x.Count ) ) );
+            Assert.True( new [ ] { 5, 10 }.SequenceEqual( _result.Value.Select( x => x.Count ) ) );
         }
 
         [ Test ]
         public void Then_Impressions_Day_Is_Correct( )
         {
-            Assert.True( new [ ] { 1, 2 }.SequenceEqual( _result.Value.Impressions.Select( x => x.Time.Day ) ) );
+            Assert.True( new [ ] { 1, 2 }.SequenceEqual( _result.Value.Select( x => x.Time.Day ) ) );
         }
 
         [ Test ]
         public void Then_Impressions_Month_Is_Correct( )
         {
-            Assert.True( new [ ] { 1, 2 }.SequenceEqual( _result.Value.Impressions.Select( x => x.Time.Month ) ) );
+            Assert.True( new [ ] { 1, 2 }.SequenceEqual( _result.Value.Select( x => x.Time.Month ) ) );
         }
 
         [ Test ]
         public void Then_Impressions_Year_Is_Correct( )
         {
-            Assert.True( new [ ] { 2000, 2001 }.SequenceEqual( _result.Value.Impressions.Select( x => x.Time.Year ) ) );
+            Assert.True( new [ ] { 2000, 2001 }.SequenceEqual( _result.Value.Select( x => x.Time.Year ) ) );
         }
 
         [ Test ]

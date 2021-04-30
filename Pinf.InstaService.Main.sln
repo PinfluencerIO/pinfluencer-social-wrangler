@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Crosscutt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Tests.Unit.DAL", "Pinf.InstaService.Tests.Unit.DAL\Pinf.InstaService.Tests.Unit.DAL.csproj", "{2D689E57-D5A4-463C-909F-CF9080571D75}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApiLayer", "WebApiLayer", "{815CA000-397D-4CE0-A5E9-A54845C9752F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{815CA000-397D-4CE0-A5E9-A54845C9752F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.API.InstaFetcher", "Pinf.InstaService.API.InstaFetcher\Pinf.InstaService.API.InstaFetcher.csproj", "{4C583762-FD97-4C72-8C4F-C268C290E2DD}"
 EndProject

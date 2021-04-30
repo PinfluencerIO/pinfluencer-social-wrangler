@@ -10,7 +10,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
 {
     public class When_Impressions_Are_Constructed_Successfully : When_Get_Impressions_Was_Called
     {
-        private OperationResult<IEnumerable<InstaImpression>> _result;
+        private OperationResult<IEnumerable<InstaProfileImpressionsInsight>> _result;
 
         protected override void When( )
         {
