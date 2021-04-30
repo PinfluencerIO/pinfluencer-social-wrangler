@@ -18,7 +18,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public InstagramImpressionsRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
 
-        public OperationResult<IEnumerable<InstaProfileImpressionsInsight>> GetImpressions( string instaId )
+        public OperationResult<IEnumerable<InstaProfileViewsInsight>> GetImpressions( string instaId )
         {
             try
             {
@@ -34,14 +34,14 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
                 new PostCondition( ).Evaluate( impressionsObj != null );
 
-                return new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>(
+                return new OperationResult<IEnumerable<InstaProfileViewsInsight>>(
                     impressionsObj.Data.First( ).Insights
-                        .Select( x => new InstaProfileImpressionsInsight( DateTime.Parse( x.Time ), x.Value ) ),
+                        .Select( x => new InstaProfileViewsInsight( DateTime.Parse( x.Time ), x.Value ) ),
                     OperationResultEnum.Success );
             }
             catch( Exception )
             {
-                return new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>( Enumerable.Empty<InstaProfileImpressionsInsight>( ),
+                return new OperationResult<IEnumerable<InstaProfileViewsInsight>>( Enumerable.Empty<InstaProfileViewsInsight>( ),
                     OperationResultEnum.Failed );
             }
         }

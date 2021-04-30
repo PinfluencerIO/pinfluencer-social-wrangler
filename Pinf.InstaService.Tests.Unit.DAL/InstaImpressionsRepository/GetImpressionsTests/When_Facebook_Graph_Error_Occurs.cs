@@ -11,7 +11,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
 {
     public class When_Facebook_Graph_Error_Occurs : When_Get_Impressions_Was_Called
     {
-        private OperationResult<IEnumerable<InstaProfileImpressionsInsight>> _result;
+        private OperationResult<IEnumerable<InstaProfileViewsInsight>> _result;
 
         protected override void When( )
         {

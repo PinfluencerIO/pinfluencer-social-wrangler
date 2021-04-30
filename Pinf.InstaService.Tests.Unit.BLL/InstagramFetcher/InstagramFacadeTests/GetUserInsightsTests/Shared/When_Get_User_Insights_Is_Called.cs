@@ -13,14 +13,14 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         protected const string TestId = "";
 
         protected OperationResultEnum ImpressionsOperationResult { get; set; }
-        protected IEnumerable<InstaProfileImpressionsInsight> ImpressionsColleciton { get; set; }
+        protected IEnumerable<InstaProfileViewsInsight> ImpressionsColleciton { get; set; }
 
         protected override void When( )
         {
             MockImpressionsInsightsRepository
                 .GetImpressions( Arg.Any<string>( ) )
                 .Returns(
-                    new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>(
+                    new OperationResult<IEnumerable<InstaProfileViewsInsight>>(
                         ImpressionsColleciton, ImpressionsOperationResult
                     )
                 );
@@ -42,15 +42,15 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
                 .GetImpressions( Arg.Is( TestId ) );
         }
 
-        protected IEnumerable<InstaProfileImpressionsInsight> GetSingleImpressionsColleciton( DateTime date, int impressions )
+        protected IEnumerable<InstaProfileViewsInsight> GetSingleImpressionsColleciton( DateTime date, int impressions )
         {
             return new [ ]
             {
-                new InstaProfileImpressionsInsight( date, impressions )
+                new InstaProfileViewsInsight( date, impressions )
             };
         }
 
-        protected IEnumerable<InstaProfileImpressionsInsight> GetTwoImpressionsColleciton(
+        protected IEnumerable<InstaProfileViewsInsight> GetTwoImpressionsColleciton(
             DateTime date1,
             int impressions1,
             DateTime date2,
@@ -59,8 +59,8 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             return new [ ]
             {
-                new InstaProfileImpressionsInsight( date1, impressions1 ),
-                new InstaProfileImpressionsInsight( date2, impressions2 )
+                new InstaProfileViewsInsight( date1, impressions1 ),
+                new InstaProfileViewsInsight( date2, impressions2 )
             };
         }
 

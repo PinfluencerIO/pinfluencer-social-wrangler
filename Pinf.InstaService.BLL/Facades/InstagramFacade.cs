@@ -20,12 +20,12 @@ namespace Pinf.InstaService.BLL.Facades
             _instaUserRepository = instaUserRepository;
         }
 
-        public OperationResult<IEnumerable<InstaProfileImpressionsInsight>> GetUserInsights( string id )
+        public OperationResult<IEnumerable<InstaProfileViewsInsight>> GetUserInsights( string id )
         {
             var impressions = _impressionsRepository.GetImpressions( id );
             if( impressions.Status == OperationResultEnum.Success )
-                return new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>( impressions.Value, OperationResultEnum.Success );
-            return new OperationResult<IEnumerable<InstaProfileImpressionsInsight>>( Enumerable.Empty<InstaProfileImpressionsInsight>( ), OperationResultEnum.Failed );
+                return new OperationResult<IEnumerable<InstaProfileViewsInsight>>( impressions.Value, OperationResultEnum.Success );
+            return new OperationResult<IEnumerable<InstaProfileViewsInsight>>( Enumerable.Empty<InstaProfileViewsInsight>( ), OperationResultEnum.Failed );
         }
 
         public OperationResult<InstaUserIdentityCollection> GetUsers( )
