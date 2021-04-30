@@ -1,5 +1,5 @@
 ﻿using NSubstitute;
-using Pinf.InstaService.BLL.InstagramFetcher.Services;
+using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuisnessLogicLayer", "BuisnessLogicLayer", "{B150C758-B7DB-4C49-A41C-E7A6BF949BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.BLL.InstagramFetcher", "Pinf.InstaService.BLL.InstagramFetcher\Pinf.InstaService.BLL.InstagramFetcher.csproj", "{035B5433-6EC2-44D1-BF14-27E52B787BAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.BLL", "Pinf.InstaService.BLL\Pinf.InstaService.BLL.csproj", "{035B5433-6EC2-44D1-BF14-27E52B787BAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{260916F1-A6E4-45F1-ADC6-5A3CFA779C38}"
 EndProject

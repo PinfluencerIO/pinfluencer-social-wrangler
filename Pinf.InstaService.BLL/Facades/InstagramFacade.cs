@@ -5,7 +5,7 @@ using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Core.Models.InstaUser;
 
-namespace Pinf.InstaService.BLL.InstagramFetcher.Services
+namespace Pinf.InstaService.BLL.Facades
 {
     public class InstagramFacade
     {

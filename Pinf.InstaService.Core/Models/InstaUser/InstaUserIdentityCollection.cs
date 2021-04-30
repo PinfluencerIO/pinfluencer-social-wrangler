@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Pinf.InstaService.Core.Models.InstaUser
 {
+    //TODO: PUT INTO VIEW MODEL
     public class InstaUserIdentityCollection
     {
         public InstaUserIdentityCollection( IEnumerable<InstaUserIdentity> instaUserIdentities, bool hasMultiple,

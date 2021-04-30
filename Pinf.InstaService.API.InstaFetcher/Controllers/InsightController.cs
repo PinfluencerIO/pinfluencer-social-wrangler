@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
-using Pinf.InstaService.BLL.InstagramFetcher.Services;
+using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers

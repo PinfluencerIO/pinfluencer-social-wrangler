@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pinf.InstaService.API.InstaFetcher.Filters;
-using Pinf.InstaService.BLL.InstagramFetcher.Services;
+using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Interfaces.Factories;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.DAL.Common;
