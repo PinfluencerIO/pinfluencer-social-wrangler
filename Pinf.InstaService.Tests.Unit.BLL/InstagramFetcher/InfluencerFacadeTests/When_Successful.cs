@@ -7,10 +7,11 @@ using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTests
 {
-    public class When_Successful : Given_A_InfluencerFacade
+    public class When_Successful : When_Called
     {
         private OperationResultEnum _result;
 
@@ -56,22 +57,6 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         public void Then_Success_Was_Returned( )
         {
             Assert.AreEqual( OperationResultEnum.Success, _result );
-        }
-
-        [ Test ]
-        public void Then_Correct_User_Was_Called( )
-        {
-            MockUserRepository
-                .Received()
-                .Get( Arg.Is( "123" ) );
-        }
-
-        [ Test ]
-        public void Then_Get_User_Was_Called_Once( )
-        {
-            MockUserRepository
-                .Received( 1 )
-                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]

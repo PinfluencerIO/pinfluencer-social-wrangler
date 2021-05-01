@@ -6,13 +6,12 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTests
 {
-    public class When_Influencer_Cannot_Be_Created : Given_A_InfluencerFacade
-    {
-        private OperationResultEnum _result;
-
+    public class When_Influencer_Cannot_Be_Created : When_Error_Occurs
+    { 
         protected override void When( )
         {
             MockUserRepository
@@ -34,7 +33,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
             MockUserRepository
                 .CreateInfluencer( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Failed );
-            _result = Sut.OnboardInfluencer( "123" );
+            Result = Sut.OnboardInfluencer( "123" );
         }
 
         [ Test ]
@@ -49,28 +48,6 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
                     x.Location == "London" &&
                     x.User.Id == "123" &&
                     x.InstagramHandle == "examplehandle" ) );
-        }
-
-        [ Test ]
-        public void Then_Failiure_Was_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Failed, _result );
-        }
-
-        [ Test ]
-        public void Then_Correct_User_Was_Called( )
-        {
-            MockUserRepository
-                .Received()
-                .Get( Arg.Is( "123" ) );
-        }
-
-        [ Test ]
-        public void Then_Get_User_Was_Called_Once( )
-        {
-            MockUserRepository
-                .Received( 1 )
-                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]
