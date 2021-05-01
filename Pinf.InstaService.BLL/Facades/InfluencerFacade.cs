@@ -27,7 +27,13 @@ namespace Pinf.InstaService.BLL.Facades
             }
 
             var user = userResult.Value;
-            var instaUser = _instaUserRepository.GetAll(  ).Value.First();
+            var instaUserResult = _instaUserRepository.GetAll(  );
+            if( instaUserResult.Status != OperationResultEnum.Success )
+            {
+                return OperationResultEnum.Failed;
+            }
+            
+            var instaUser = instaUserResult.Value.First( );
             _userRepository.CreateInfluencer( new Influencer
             {
                 Age = user.Age,
