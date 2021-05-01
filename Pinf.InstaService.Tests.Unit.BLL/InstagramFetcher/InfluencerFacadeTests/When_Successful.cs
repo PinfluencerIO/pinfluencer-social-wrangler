@@ -48,7 +48,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
                     x.Bio == "This is an example" &&
                     x.Gender == GenderEnum.Male &&
                     x.Location == "London" &&
-                    x.User.Id == "12345" &&
+                    x.User.Id == "123" &&
                     x.InstagramHandle == "examplehandle" ) );
         }
 
@@ -56,6 +56,12 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         public void Then_Success_Was_Returned( )
         {
             Assert.AreEqual( OperationResultEnum.Success, _result );
+        }
+
+        [ Test ]
+        public void Then_Correct_User_Was_Called( )
+        {
+            MockUserRepository.Get( Arg.Is( "123" ) );
         }
     }
 }

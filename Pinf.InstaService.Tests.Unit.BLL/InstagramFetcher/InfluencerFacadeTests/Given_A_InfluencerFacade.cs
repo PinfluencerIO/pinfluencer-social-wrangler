@@ -15,7 +15,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         {
             Age = 21,
             Gender = GenderEnum.Male,
-            Id = "12345",
+            Id = "123",
             Location = "London",
             Name = "Aidan"
         };
