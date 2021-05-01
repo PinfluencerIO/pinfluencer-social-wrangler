@@ -20,7 +20,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
                 .Get( Arg.Any<string>( ) )
                 .Returns( new OperationResult<IUser>( GetUser( DefaultUser ), OperationResultEnum.Success ) );
             MockInstaUserRepository
-                .GetUsers( )
+                .GetAll( )
                 .Returns( new OperationResult<IEnumerable<InstaUser>>( new [ ]
                 {
                     new InstaUser
@@ -61,7 +61,33 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         [ Test ]
         public void Then_Correct_User_Was_Called( )
         {
-            MockUserRepository.Get( Arg.Is( "123" ) );
+            MockUserRepository
+                .Received()
+                .Get( Arg.Is( "123" ) );
+        }
+
+        [ Test ]
+        public void Then_Get_User_Was_Called_Once( )
+        {
+            MockUserRepository
+                .Received( 1 )
+                .Get( Arg.Any<string>( ) );
+        }
+
+        [ Test ]
+        public void Then_Get_Instagram_Users_Was_Called_Once( )
+        {
+            MockInstaUserRepository
+                .Received( 1 )
+                .GetAll( );
+        }
+        
+        [ Test ]
+        public void Then_Create_Influencer_Was_Called_Once( )
+        {
+            MockUserRepository
+                .Received( 1 )
+                .CreateInfluencer( Arg.Any<Influencer>( ) );
         }
     }
 }

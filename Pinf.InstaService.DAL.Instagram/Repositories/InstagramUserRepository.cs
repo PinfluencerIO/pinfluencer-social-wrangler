@@ -20,9 +20,9 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public InstagramUserRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
 
-        public OperationResult<InstaUser> GetUser( string id ) { throw new NotImplementedException( ); }
+        public OperationResult<InstaUser> Get( string id ) { throw new NotImplementedException( ); }
 
-        public OperationResult<IEnumerable<InstaUser>> GetUsers( )
+        public OperationResult<IEnumerable<InstaUser>> GetAll( )
         {
             try
             {

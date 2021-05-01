@@ -31,7 +31,7 @@ namespace Pinf.InstaService.BLL.Facades
 
         public OperationResult<IEnumerable<InstaUser>> GetUsers( )
         {
-            var users = _instaUserRepository.GetUsers( );
+            var users = _instaUserRepository.GetAll( );
 
             return new OperationResult<IEnumerable<InstaUser>>( users.Value, users.Status );
         }

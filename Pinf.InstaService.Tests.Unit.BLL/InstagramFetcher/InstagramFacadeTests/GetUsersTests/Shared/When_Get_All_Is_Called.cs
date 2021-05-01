@@ -15,7 +15,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         protected override void When( )
         {
             MockInstaUserRepository
-                .GetUsers( )
+                .GetAll( )
                 .Returns( new OperationResult<IEnumerable<InstaUser>>(
                     InstaUserCollection,
                     InstaUsersOperationResult
@@ -27,7 +27,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             MockInstaUserRepository
                 .Received( 1 )
-                .GetUsers( );
+                .GetAll( );
         }
     }
 }

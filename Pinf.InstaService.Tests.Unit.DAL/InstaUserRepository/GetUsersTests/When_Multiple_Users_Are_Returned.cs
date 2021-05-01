@@ -20,7 +20,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 
             base.When( );
 
-            _result = Sut.GetUsers( );
+            _result = Sut.GetAll( );
         }
 
         [ Test ]

@@ -21,7 +21,7 @@ namespace Pinf.InstaService.BLL.Facades
         public OperationResultEnum OnboardInfluencer( string id )
         {
             var user = _userRepository.Get( id ).Value;
-            var instaUser = _instaUserRepository.GetUsers(  ).Value.First();
+            var instaUser = _instaUserRepository.GetAll(  ).Value.First();
             _userRepository.CreateInfluencer( new Influencer
             {
                 Age = user.Age,
