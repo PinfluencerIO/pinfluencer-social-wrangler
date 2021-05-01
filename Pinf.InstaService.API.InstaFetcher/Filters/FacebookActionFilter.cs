@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Facebook;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -43,7 +44,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
                     var user = context.ActionArguments[ "user" ];
                     auth0Id = ( ( UserDto ) user ).Auth0Id;
                 }
-                catch( KeyNotFoundException )
+                catch( Exception e ) when ( e is KeyNotFoundException || e is InvalidCastException )
                 {
                     context.Result = MvcExtensions.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
                     return;
