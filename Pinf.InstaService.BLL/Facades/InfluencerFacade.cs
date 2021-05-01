@@ -34,7 +34,7 @@ namespace Pinf.InstaService.BLL.Facades
             }
             
             var instaUser = instaUserResult.Value.First( );
-            _userRepository.CreateInfluencer( new Influencer
+            var influnecerStatus = _userRepository.CreateInfluencer( new Influencer
             {
                 Age = user.Age,
                 Bio = instaUser.Bio,
@@ -43,7 +43,7 @@ namespace Pinf.InstaService.BLL.Facades
                 Location = user.Location,
                 User = user
             } );
-            return OperationResultEnum.Success;
+            return influnecerStatus;
         }
     }
 }
