@@ -47,9 +47,16 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             try
             {
                 var user = _auth0Context.GetUser( id );
-                return new OperationResult<string>( user.Identities[ 0 ].AccessToken, OperationResultEnum.Success );
+                var result =
+                    new OperationResult<string>( user.Identities[ 0 ].AccessToken, OperationResultEnum.Success );
+                _logger.LogInfo( "instagram token fetched successfully" );
+                return result;
             }
-            catch( Exception ) { return new OperationResult<string>( "", OperationResultEnum.Failed ); }
+            catch( Exception )
+            {
+                _logger.LogError( "instagram token was not fetched" );
+                return new OperationResult<string>( "", OperationResultEnum.Failed );
+            }
         }
 
         public OperationResultEnum CreateInfluencer( InfluencerModel influencer )
