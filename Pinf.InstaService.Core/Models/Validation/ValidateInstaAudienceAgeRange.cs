@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Pinf.InstaService.Core.Models.Validation
 {
+    [ Obsolete ]
     public class ValidateInstaAudienceAgeRange : IValidatable
     {
         public Tuple<int, int> AgeRange { get; set; }

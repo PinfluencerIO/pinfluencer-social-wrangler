@@ -18,13 +18,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Dtos" />
       <Folder Include="Extensions" />
       <Folder Include="Models" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Dtos\InfluencerProfile.cs" />
     </ItemGroup>
 
 </Project>

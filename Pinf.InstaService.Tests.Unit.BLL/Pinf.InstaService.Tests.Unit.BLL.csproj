@@ -16,6 +16,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Pinf.InstaService.BLL\Pinf.InstaService.BLL.csproj" />
       <ProjectReference Include="..\Pinf.InstaService.Crosscutting.NUnit.Extensions\Pinf.InstaService.Crosscutting.NUnit.Extensions.csproj" />
+      <ProjectReference Include="..\Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions\Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions.csproj" />
     </ItemGroup>
 
     <ItemGroup>

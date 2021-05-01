@@ -4,11 +4,16 @@ using Pinf.InstaService.Core.Interfaces.Repositories;
 
 namespace Pinf.InstaService.BLL.Facades
 {
-    public class UserFacade
+    public class InfluencerFacade
     {
         private readonly IUserRepository _userRepository;
+        private readonly IInstaUserRepository _instaUserRepository;
 
-        public UserFacade( IUserRepository userRepository ) { _userRepository = userRepository; }
+        public InfluencerFacade( IUserRepository userRepository, IInstaUserRepository instaUserRepository )
+        {
+            _userRepository = userRepository;
+            _instaUserRepository = instaUserRepository;
+        }
         
         public OperationResultEnum OnboardInfluencer( string id )
         {
