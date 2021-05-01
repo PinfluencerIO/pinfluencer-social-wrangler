@@ -1,4 +1,5 @@
-﻿using Facebook;
+﻿using System.Collections.Generic;
+using Facebook;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pinf.InstaService.API.InstaFetcher.Extensions;
@@ -37,8 +38,16 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
 
             if( auth0Id == string.Empty )
             {
-                context.Result = MvcExtensions.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
-                return;
+                try
+                {
+                    var user = context.ActionArguments[ "user" ];
+                    auth0Id = ( ( UserDto ) user ).Auth0Id;
+                }
+                catch( KeyNotFoundException )
+                {
+                    context.Result = MvcExtensions.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
+                    return;
+                }
             }
 
             var tokenResult = _userRepository.GetInstagramToken( auth0Id );

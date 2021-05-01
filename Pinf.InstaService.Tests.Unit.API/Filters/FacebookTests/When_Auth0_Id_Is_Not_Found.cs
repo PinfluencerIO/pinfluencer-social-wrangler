@@ -12,7 +12,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
     {
         protected override Dictionary<string, StringValues> SetupQueryParams( )
         {
-            return new Dictionary<string, StringValues> { { Auth0IdParamKey, "" } };
+            return new Dictionary<string, StringValues>( );
         }
         
         protected override Dictionary<string, object> SetupActionArguments( )
