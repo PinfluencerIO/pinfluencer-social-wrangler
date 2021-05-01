@@ -12,6 +12,8 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
 {
     public class When_Successful : Given_A_InfluencerFacade
     {
+        private OperationResultEnum _result;
+
         protected override void When( )
         {
             MockUserRepository
@@ -33,7 +35,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
             MockUserRepository
                 .CreateInfluencer( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Success );
-            Sut.OnboardInfluencer( "123" );
+            _result = Sut.OnboardInfluencer( "123" );
         }
 
         [ Test ]
@@ -48,6 +50,12 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
                     x.Location == "London" &&
                     x.User.Id == "12345" &&
                     x.InstagramHandle == "examplehandle" ) );
+        }
+
+        [ Test ]
+        public void Then_Success_Was_Returned( )
+        {
+            Assert.AreEqual( OperationResultEnum.Success, _result );
         }
     }
 }

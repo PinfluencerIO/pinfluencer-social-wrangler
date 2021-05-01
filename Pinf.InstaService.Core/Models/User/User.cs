@@ -23,20 +23,27 @@ namespace Pinf.InstaService.Core.Models.User
         {
             set
             {
-                var now = int.Parse(_dateTimeAdapter.Now().ToString("yyyyMMdd"));
-                var dob = int.Parse(value.ToString("yyyyMMdd"));
-                Age = (now - dob) / 10000;
+                if( value == default ) return;
+                var now = int.Parse( _dateTimeAdapter.Now( ).ToString( "yyyyMMdd" ) );
+                var dob = int.Parse( value.ToString( "yyyyMMdd" ) );
+                Age = ( now - dob ) / 10000;
             }
         }
         
         public string BirthdayString
         {
-            set => Birthday = DateTime.ParseExact( value, "MM/dd/yyyy", CultureInfo.CurrentCulture );
+            set
+            {
+                if( value != default ) { Birthday = DateTime.ParseExact( value, "MM/dd/yyyy", CultureInfo.CurrentCulture ); }
+            }
         }
 
         public string GenderString
         {
-            set => Gender = value.Enumify<GenderEnum>( );
+            set
+            {
+                if( value != default ) { Gender = value.Enumify<GenderEnum>( ); }
+            }
         }
     }
 }
