@@ -1,6 +1,7 @@
 ﻿using Facebook;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Factories;
@@ -35,10 +36,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
 
             if( auth0Id == string.Empty )
             {
-                context.Result = new UnauthorizedObjectResult( new ErrorDto
-                {
-                    ErrorMsg = "'auth0_id' parameter was not present in the request"
-                } );
+                context.Result = MvcExtensions.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
                 return;
             }
 
@@ -46,10 +44,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
 
             if( tokenResult.Status == OperationResultEnum.Failed )
             {
-                context.Result = new UnauthorizedObjectResult( new ErrorDto
-                {
-                    ErrorMsg = "auth0 id did not match an existing user"
-                } );
+                context.Result = MvcExtensions.UnauthorizedError( "auth0 id did not match an existing user" );
                 return;
             }
 
@@ -62,10 +57,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             }
             catch( FacebookApiException e )
             {
-                context.Result = new UnauthorizedObjectResult( new ErrorDto
-                {
-                    ErrorMsg = e.Message
-                } );
+                context.Result = MvcExtensions.UnauthorizedError( e.Message );
             }
         }
     }

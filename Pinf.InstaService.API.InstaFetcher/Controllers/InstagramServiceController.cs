@@ -10,16 +10,5 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
     [ ServiceFilter( typeof( FacebookActionFilter ), Order = 3 ) ]
     public abstract class InstagramServiceController : PinfluencerController
     {
-        protected static NotFoundObjectResult GetNotFoundError( string message ) => new NotFoundObjectResult( new ErrorDto { ErrorMsg = message } );
-        
-        protected UnauthorizedObjectResult GetUnauthorizedError( string message ) => new UnauthorizedObjectResult( new ErrorDto { ErrorMsg = message } );
-
-        protected static BadRequestObjectResult GetBadRequestError( string message ) => new BadRequestObjectResult( new ErrorDto { ErrorMsg = message } );
-
-        protected static OkObjectResult GetCollection<T>( IEnumerable<T> collection ) =>
-            new OkObjectResult( new CollectionDto<T> { Collection = collection } );
-
-        protected OkObjectResult GetObject<T>( T objectVal ) =>
-            new OkObjectResult( objectVal );
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Enum;
@@ -30,7 +31,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
             }
             catch( Exception e ) when( e is ArgumentException || e is InvalidOperationException || e is NullReferenceException )
             {
-                return GetNotFoundError( "insight metric was not found" );
+                return MvcExtensions.NotFoundError( "insight metric was not found" );
             }
         }
 
@@ -39,8 +40,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         private IActionResult GetImpressions( [ FromQuery ] string user )
         {
             var insights = _instagramFacade.GetUserInsights( user );
-            if( insights.Status != OperationResultEnum.Failed ) return GetCollection( insights.Value );
-            return GetBadRequestError( "failed to fetch instagram impressions for user" );
+            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
+            return MvcExtensions.BadRequestError( "failed to fetch instagram impressions for user" );
         }
     }
 }

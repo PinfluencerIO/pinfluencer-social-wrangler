@@ -5,6 +5,7 @@ using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
+using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.DAL.UserManagement;
@@ -43,10 +44,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
                 auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null ||
                 auth0Settings.ManagementDomain == null )
             {
-                context.Result = new UnauthorizedObjectResult( new ErrorDto
-                {
-                    ErrorMsg = "auth0 configuration settings are not valid"
-                } );
+                context.Result = MvcExtensions.UnauthorizedError( "auth0 configuration settings are not valid" );
                 return;
             }
 
@@ -67,10 +65,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             }
             catch( ApiException exception )
             {
-                context.Result = new UnauthorizedObjectResult( new ErrorDto
-                {
-                    ErrorMsg = exception.Message
-                } );
+                context.Result = MvcExtensions.UnauthorizedError( exception.Message );
             }
         }
     }
