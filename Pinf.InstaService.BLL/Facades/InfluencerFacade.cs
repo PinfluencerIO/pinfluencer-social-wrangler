@@ -33,7 +33,13 @@ namespace Pinf.InstaService.BLL.Facades
                 return OperationResultEnum.Failed;
             }
             
-            var instaUser = instaUserResult.Value.First( );
+            var instaUsers = instaUserResult.Value;
+            if( !instaUsers.Any() )
+            {
+                return OperationResultEnum.Failed;
+            }
+
+            var instaUser = instaUsers.First( );
             var influnecerStatus = _userRepository.CreateInfluencer( new Influencer
             {
                 Age = user.Age,
