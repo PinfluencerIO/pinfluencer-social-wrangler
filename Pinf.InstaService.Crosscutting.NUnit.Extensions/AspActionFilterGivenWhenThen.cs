@@ -24,6 +24,11 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
         {
             return new Dictionary<string, StringValues>( );
         }
+        
+        protected virtual Dictionary<string, object> SetupActionArguments( )
+        {
+            return new Dictionary<string, object>( );
+        }
 
         protected TType GetResultObject<TResult, TType>( ) where TResult : ObjectResult where TType : class
         {
@@ -50,7 +55,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
                 .Returns( _mockHttpRequest );
             MockActionExecutingContext = new ActionExecutingContext( new ActionContext( _mockHttpContext,
                     new RouteData( ), new ActionDescriptor( ) ), new List<IFilterMetadata>( ),
-                new Dictionary<string, object>( ), new object( ) );
+                SetupActionArguments( ), new object( ) );
         }
     }
 }

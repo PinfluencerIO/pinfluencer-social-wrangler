@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
+using Pinf.InstaService.API.InstaFetcher.RequestDtos;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
 
@@ -12,6 +13,11 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         protected override Dictionary<string, StringValues> SetupQueryParams( )
         {
             return new Dictionary<string, StringValues> { { Auth0IdParamKey, "" } };
+        }
+        
+        protected override Dictionary<string, object> SetupActionArguments( )
+        {
+            return new Dictionary<string, object>( );
         }
 
         protected override void When( )

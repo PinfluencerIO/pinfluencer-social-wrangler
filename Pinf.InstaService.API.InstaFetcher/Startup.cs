@@ -29,9 +29,10 @@ namespace Pinf.InstaService.API.InstaFetcher
 {
     public class Startup
     {
-        public void ConfigureServices( IServiceCollection services )
+        public void ConfigureServices( IServiceCollection dependancyCollection )
         {
-            services.AddScoped<Auth0Context>( )
+            dependancyCollection
+                .AddScoped<Auth0Context>( )
                 .AddScoped<FacebookContext>( )
                 .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
                 .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
@@ -52,6 +53,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 } )
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>()
                 .AddTransient<IUser, User>()
+                .AddTransient<InfluencerFacade>()
                 .AddControllers( );
         }
 

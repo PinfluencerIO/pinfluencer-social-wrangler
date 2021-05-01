@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pinf.InstaService.API.InstaFetcher.Extensions;
+using Pinf.InstaService.API.InstaFetcher.RequestDtos;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Factories;
