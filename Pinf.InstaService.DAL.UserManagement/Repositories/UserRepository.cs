@@ -93,6 +93,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
                         _user.BirthdayString = facebookUser.Birthday;
                         _user.GenderString = facebookUser.Gender;
                         _user.Location = facebookUser.Location.Name;
+                        _logger.LogInfo( "user was fetched successfully" );
                         return new OperationResult<IUser>( _user, OperationResultEnum.Success );
                     }
             }
@@ -100,6 +101,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
             {
                 //TODO: LOG IT
             }
+            _logger.LogError( "user was not fetched" );
             return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
         }
 
