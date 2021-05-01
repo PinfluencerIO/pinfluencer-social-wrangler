@@ -18,9 +18,9 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
     public class InstagramUserRepository : IInstaUserRepository
     {
         private readonly FacebookContext _facebookContext;
-        private readonly ILoggerAdapter _logger;
+        private readonly ILoggerAdapter<InstagramUserRepository> _logger;
 
-        public InstagramUserRepository( FacebookContext facebookContext, ILoggerAdapter logger )
+        public InstagramUserRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramUserRepository> logger )
         {
             _facebookContext = facebookContext;
             _logger = logger;

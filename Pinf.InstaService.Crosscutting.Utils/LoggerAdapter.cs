@@ -2,11 +2,11 @@
 
 namespace Pinf.InstaService.Crosscutting.Utils
 {
-    public class LoggerAdapter : ILoggerAdapter
+    public class LoggerAdapter<T> : ILoggerAdapter<T> where T : class
     {
         private readonly ILogger _logger;
         
-        public LoggerAdapter( ILogger logger ) { _logger = logger; }
+        public LoggerAdapter( ILogger<T> logger ) { _logger = logger; }
 
         public void LogInfo( string message ) => _logger.LogInformation( message );
 

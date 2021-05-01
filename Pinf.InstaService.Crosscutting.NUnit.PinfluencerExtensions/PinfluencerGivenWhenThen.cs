@@ -7,13 +7,13 @@ using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
 {
-    public class PinfluencerGivenWhenThen<T> : GivenWhenThen<T>
+    public class PinfluencerGivenWhenThen<T> : GivenWhenThen<T> where T : class
     {
         protected IUser GetUser( FakeUserProps userProps ) => FakeUserModel.GetFake( MockDateTime, userProps );
 
-        protected ILoggerAdapter MockLogger;
+        protected ILoggerAdapter<T> MockLogger;
 
-        protected override void Given( ) { MockLogger = Substitute.For<ILoggerAdapter>( ); }
+        protected override void Given( ) { MockLogger = Substitute.For<ILoggerAdapter<T>>( ); }
 
         protected IDateTimeAdapter MockDateTime { get; } = Substitute.For<IDateTimeAdapter>( );
 

@@ -26,13 +26,13 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
         private readonly IBubbleClient _bubbleClient;
         private readonly FacebookContext _facebookContext;
         private readonly IUser _user;
-        private readonly ILoggerAdapter _logger;
+        private readonly ILoggerAdapter<UserRepository> _logger;
 
         public UserRepository( Auth0Context auth0Context,
             IBubbleClient bubbleClient,
             FacebookContext facebookContext,
             IUser user,
-            ILoggerAdapter logger )
+            ILoggerAdapter<UserRepository> logger )
         {
             _auth0Context = auth0Context;
             _bubbleClient = bubbleClient;

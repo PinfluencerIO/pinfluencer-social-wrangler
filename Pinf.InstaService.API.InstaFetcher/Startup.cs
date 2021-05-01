@@ -54,7 +54,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
                 .AddTransient<IUser, User>( )
                 .AddTransient<InfluencerFacade>( )
-                .AddTransient<ILoggerAdapter, LoggerAdapter>( )
+                .AddTransient(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
                 .AddControllers( );
         }
 
