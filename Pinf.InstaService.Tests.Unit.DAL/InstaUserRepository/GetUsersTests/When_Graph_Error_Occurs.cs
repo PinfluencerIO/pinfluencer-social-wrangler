@@ -29,5 +29,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 
         [ Test ]
         public void Then_The_Status_Is_Fail( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
+        
+        [ Test ]
+        public void Then_Error_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogError( Arg.Any<string>( ) );
+        }
     }
 }

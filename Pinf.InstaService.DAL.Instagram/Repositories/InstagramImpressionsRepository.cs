@@ -25,7 +25,8 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             _logger = logger;
         }
 
-        //TODO: DONT
+        //TODO: ADD CUSTOM TIMESPAN
+        //TODO: DONT SWALLOW ALL EXCEPTIONS
         public OperationResult<IEnumerable<InstaProfileViewsInsight>> GetImpressions( string instaId )
         {
             try

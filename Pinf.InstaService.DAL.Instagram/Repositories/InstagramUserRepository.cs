@@ -7,6 +7,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Crosscutting.CodeContracts;
+using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.Instagram.Dtos;
@@ -17,8 +18,13 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
     public class InstagramUserRepository : IInstaUserRepository
     {
         private readonly FacebookContext _facebookContext;
+        private readonly ILoggerAdapter _logger;
 
-        public InstagramUserRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
+        public InstagramUserRepository( FacebookContext facebookContext, ILoggerAdapter logger )
+        {
+            _facebookContext = facebookContext;
+            _logger = logger;
+        }
 
         public OperationResult<InstaUser> Get( string id ) { throw new NotImplementedException( ); }
 

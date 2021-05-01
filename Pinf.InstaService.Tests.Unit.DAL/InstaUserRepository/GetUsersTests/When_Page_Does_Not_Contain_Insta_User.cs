@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
@@ -24,5 +25,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 
         [ Test ]
         public void Then_The_Status_Is_Success( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+        
+        [ Test ]
+        public void Then_Success_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogInfo( Arg.Any<string>( ) );
+        }
     }
 }
