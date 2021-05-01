@@ -22,6 +22,11 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                         Secret = Environment.GetEnvironmentVariable( "AUTH0_SECRET" ),
                         ManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/"
                     },
+                    Bubble = new BubbleSettingsDto
+                    {
+                        Domain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj",
+                        Secret = Environment.GetEnvironmentVariable( "BUBBLE_TOKEN" )
+                    },
                     SimpleAuthKey = Environment.GetEnvironmentVariable( "SIMPLE_AUTH_KEY" )
                 } )
                 .CreateNginx( )

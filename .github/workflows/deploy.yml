@@ -17,6 +17,7 @@ jobs:
       DEVOPS_SLN: Pinf.InstaService.DevOps.sln
       DEVOPS_EXEC: devops/DevOps.dll
       API_PROJ: Pinf.InstaService.API.InstaFetcher
+      BUBBLE_TOKEN: ${{ secrets.BUBBLE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set project variables
