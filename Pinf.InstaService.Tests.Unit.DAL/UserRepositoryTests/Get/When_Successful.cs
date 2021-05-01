@@ -50,5 +50,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 
         [ Test ]
         public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+        
+        [ Test ]
+        public void Then_Success_Event_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogInfo( Arg.Any<string>( ) );
+        }
     }
 }

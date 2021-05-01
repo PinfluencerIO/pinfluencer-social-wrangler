@@ -39,5 +39,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
                 .DidNotReceive( )
                 .Get<TypeResponse<Profile>>( Arg.Any<string>( ) );
         }
+        
+        [ Test ]
+        public void Then_Error_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogError( Arg.Any<string>( ) );
+        }
     }
 }
