@@ -20,7 +20,13 @@ namespace Pinf.InstaService.BLL.Facades
         
         public OperationResultEnum OnboardInfluencer( string id )
         {
-            var user = _userRepository.Get( id ).Value;
+            var userResult = _userRepository.Get( id );
+            if( userResult.Status != OperationResultEnum.Success )
+            {
+                return OperationResultEnum.Failed;
+            }
+
+            var user = userResult.Value;
             var instaUser = _instaUserRepository.GetAll(  ).Value.First();
             _userRepository.CreateInfluencer( new Influencer
             {
