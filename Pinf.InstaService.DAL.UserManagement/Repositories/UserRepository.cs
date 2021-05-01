@@ -71,7 +71,12 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
                     Instagram = influencer.InstagramHandle,
                     Profile = influencer.User.Id
                 } ) );
-            if( validRequest & validateHttpCode( httpStatusCode ) ) return OperationResultEnum.Success;
+            if( validRequest & validateHttpCode( httpStatusCode ) )
+            {
+                _logger.LogInfo( "influencer created successfully" );
+                return OperationResultEnum.Success;
+            }
+            _logger.LogError( "influencer was not created" );
             return OperationResultEnum.Failed;
         }
 
