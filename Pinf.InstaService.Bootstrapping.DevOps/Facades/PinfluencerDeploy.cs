@@ -24,7 +24,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                     },
                     Bubble = new BubbleSettingsDto
                     {
-                        Domain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj",
+                        Domain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj/",
                         Secret = Environment.GetEnvironmentVariable( "BUBBLE_TOKEN" )
                     },
                     SimpleAuthKey = Environment.GetEnvironmentVariable( "SIMPLE_AUTH_KEY" )

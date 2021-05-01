@@ -1,8 +1,12 @@
-﻿namespace Pinf.InstaService.API.InstaFetcher.RequestDtos
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Pinf.InstaService.API.InstaFetcher.Contants;
+
+namespace Pinf.InstaService.API.InstaFetcher.RequestDtos
 {
     public class UserDto
     {
-        public string Auth0Id { get; set; }
-        public string UserId { get; set; }
+        [ JsonPropertyName( MvcConstants.Auth0IdKey ) ] public string Auth0Id { get; set; }
+        [ JsonPropertyName( "user" ) ] public string UserId { get; set; }
     }
 }
