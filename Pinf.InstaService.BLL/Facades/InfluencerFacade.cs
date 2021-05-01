@@ -1,6 +1,9 @@
-﻿using Pinf.InstaService.Core;
+﻿using System.Linq;
+using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Interfaces.Repositories;
+using Pinf.InstaService.Core.Models.User;
 
 namespace Pinf.InstaService.BLL.Facades
 {
@@ -17,7 +20,18 @@ namespace Pinf.InstaService.BLL.Facades
         
         public OperationResultEnum OnboardInfluencer( string id )
         {
-            return OperationResultEnum.Failed;
+            var user = _userRepository.Get( id ).Value;
+            var instaUser = _instaUserRepository.GetUsers(  ).Value.First();
+            _userRepository.CreateInfluencer( new Influencer
+            {
+                Age = user.Age,
+                Bio = instaUser.Bio,
+                Gender = user.Gender,
+                InstagramHandle = instaUser.Handle,
+                Location = user.Location,
+                User = user
+            } );
+            return OperationResultEnum.Success;
         }
     }
 }
