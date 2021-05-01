@@ -30,7 +30,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
             }
             catch( Exception e ) when( e is ArgumentException || e is InvalidOperationException || e is NullReferenceException )
             {
-                return NotFound( new ErrorDto { ErrorMsg = "insight metric was not found" } );
+                return GetNotFoundError( "insight metric was not found" );
             }
         }
 
@@ -39,9 +39,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         private IActionResult GetImpressions( [ FromQuery ] string user )
         {
             var insights = _instagramFacade.GetUserInsights( user );
-            if( insights.Status != OperationResultEnum.Failed ) return new OkObjectResult( insights.Value );
-            return new BadRequestObjectResult( new ErrorDto
-                { ErrorMsg = "failed to fetch instagram impressions for user" } );
+            if( insights.Status != OperationResultEnum.Failed ) return GetCollection( insights.Value );
+            return GetBadRequestError( "failed to fetch instagram impressions for user" );
         }
     }
 }

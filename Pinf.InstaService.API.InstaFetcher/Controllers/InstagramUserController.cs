@@ -17,15 +17,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         public IActionResult GetAll( )
         {
             var users = _instagramFacade.GetUsers( );
-            if( users.Status != OperationResultEnum.Failed )
-                return new OkObjectResult(
-                    new
-                    {
-                        users = users.Value,
-                        multiple = users.Value.Count( ) > 1,
-                        empty = !users.Value.Any( )
-                    } );
-            return new BadRequestObjectResult( "failed to fetch instagram users" );
+            if( users.Status != OperationResultEnum.Failed ) { return GetCollection( users.Value ); }
+            return GetBadRequestError( "failed to fetch instagram users" );
         }
     }
 }
