@@ -5,6 +5,7 @@ using Facebook;
 using NSubstitute;
 using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.UserManagement;
@@ -12,7 +13,7 @@ using Pinf.InstaService.DAL.UserManagement.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests
 {
-    public abstract class Given_A_UserRepository : GivenWhenThen<UserRepository>
+    public abstract class Given_A_UserRepository : PinfluencerGivenWhenThen<UserRepository>
     {
         protected const string BubbleDomain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj";
         protected const string TestId = "1234";
@@ -26,6 +27,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests
         //TODO: REFACTOR OUT TIME DEPENDANT TESTS
         protected override void Given( )
         {
+            base.Given( );
             MockDateTime = Substitute.For<IDateTimeAdapter>( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
             MockBubbleClient = Substitute.For<IBubbleClient>( );
@@ -46,7 +48,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests
                 {
                     FacebookClient = MockFacebookClient
                 },
-                MockUser
+                MockUser,
+                MockLogger
             );
         }
     }

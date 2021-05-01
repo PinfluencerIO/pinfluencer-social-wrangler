@@ -10,6 +10,7 @@ using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
@@ -25,13 +26,19 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
         private readonly IBubbleClient _bubbleClient;
         private readonly FacebookContext _facebookContext;
         private readonly IUser _user;
+        private readonly ILoggerAdapter _logger;
 
-        public UserRepository( Auth0Context auth0Context, IBubbleClient bubbleClient, FacebookContext facebookContext, IUser user )
+        public UserRepository( Auth0Context auth0Context,
+            IBubbleClient bubbleClient,
+            FacebookContext facebookContext,
+            IUser user,
+            ILoggerAdapter logger )
         {
             _auth0Context = auth0Context;
             _bubbleClient = bubbleClient;
             _facebookContext = facebookContext;
             _user = user;
+            _logger = logger;
         }
 
         //TODO: dont swallow all exceptions

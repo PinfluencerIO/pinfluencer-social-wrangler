@@ -1,4 +1,5 @@
 ﻿using Auth0.ManagementApi.Models;
+using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
@@ -33,5 +34,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramToken
 
         [ Test ]
         public void Then_Response_Is_Successful( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+        
+        [ Test ]
+        public void Then_Success_Event_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogInfo( Arg.Any<string>( ) );
+        }
     }
 }

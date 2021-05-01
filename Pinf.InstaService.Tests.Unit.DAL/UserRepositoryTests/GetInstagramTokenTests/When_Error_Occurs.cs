@@ -30,5 +30,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.GetInstagramToken
 
         [ Test ]
         public void Then_Response_Is_Fail( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
+        
+        [ Test ]
+        public void Then_Error_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogError( Arg.Any<string>( ) );
+        }
     }
 }
