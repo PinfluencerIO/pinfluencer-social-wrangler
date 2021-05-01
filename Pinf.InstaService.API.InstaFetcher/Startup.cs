@@ -48,12 +48,13 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IHttpClient, HttpClientAdapter>( )
                 .AddTransient<IBubbleClient>( provider =>
                 {
-                    var bubbleSettings = provider.GetService<IConfiguration>( ).Get<AppOptions>();
+                    var bubbleSettings = provider.GetService<IConfiguration>( ).Get<AppOptions>( );
                     return new BubbleClient( provider.GetService<IHttpClient>( ), new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
                 } )
-                .AddTransient<IDateTimeAdapter, DateTimeAdapter>()
-                .AddTransient<IUser, User>()
-                .AddTransient<InfluencerFacade>()
+                .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
+                .AddTransient<IUser, User>( )
+                .AddTransient<InfluencerFacade>( )
+                .AddTransient<ILoggerAdapter, LoggerAdapter>( )
                 .AddControllers( );
         }
 
