@@ -39,7 +39,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                 new PostCondition( ).Evaluate( dataArray != null );
 
                 var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
-                return new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser
+                var repositoryResult = new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser
                 {
                     Handle = x.Username,
                     Id = x.Id ,
@@ -47,9 +47,12 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                     Bio = x.Bio,
                     Followers = x.Followers
                 } ), OperationResultEnum.Success );
+                _logger.LogInfo( "instagram users were fetched" );
+                return repositoryResult;
             }
             catch( Exception )
             {
+                _logger.LogError( "instagram users were not fetched" );
                 return new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>( ),
                     OperationResultEnum.Failed );
             }
