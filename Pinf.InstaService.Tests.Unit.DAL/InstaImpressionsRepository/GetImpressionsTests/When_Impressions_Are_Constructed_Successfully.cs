@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
+using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
 {
@@ -78,5 +80,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
 
         [ Test ]
         public void Then_Response_Is_Successful( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+
+        [ Test ]
+        public void Then_Success_Event_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogInfo( Arg.Any<string>( ) );
+        }
     }
 }

@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Facebook;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
+using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
 {
@@ -29,5 +32,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
 
         [ Test ]
         public void Then_The_Status_Is_Fail( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
+
+        [ Test ]
+        public void Then_Error_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogError( Arg.Any<string>( ) );
+        }
     }
 }

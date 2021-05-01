@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
