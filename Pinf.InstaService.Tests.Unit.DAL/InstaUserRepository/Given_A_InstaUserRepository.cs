@@ -8,20 +8,14 @@ using Pinf.InstaService.DAL.Instagram.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository
 {
-    public abstract class Given_A_InstaUserRepository : PinfluencerGivenWhenThen<InstagramUserRepository>
+    public abstract class Given_A_InstaUserRepository : DataGivenWhenThen<InstagramUserRepository>
     {
-        protected FacebookClient MockFacebookClient;
-
         protected override void Given( )
         {
             base.Given( );
-            MockFacebookClient = Substitute.For<FacebookClient>( );
 
             Sut = new InstagramUserRepository(
-                new FacebookContext
-                {
-                    FacebookClient = MockFacebookClient
-                },
+                FacebookContext,
                 MockLogger
             );
         }
