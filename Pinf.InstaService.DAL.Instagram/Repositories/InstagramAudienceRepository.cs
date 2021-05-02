@@ -15,12 +15,12 @@ using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
-    public class InstagramAudienceRepository : IInstaAudienceInsightsRepository
+    public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, IInstaAudienceInsightsRepository
     {
         private readonly FacebookContext _facebookContext;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
 
-        public InstagramAudienceRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramAudienceRepository> logger )
+        public InstagramAudienceRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramAudienceRepository> logger ) : base( logger )
         {
             _facebookContext = facebookContext;
             _logger = logger;
@@ -33,54 +33,49 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
-            try
+            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
+                    .Get( $"{instaId}/insights",
+                        new RequestInsightLifetimeParams { metric = "audience_gender_age" } ) );
+            if( !fbValidResult )
             {
-                var fbResult = _facebookContext
-                    .Get( $"{instaId}/insights", new RequestInsightLifetimeParams { metric = "audience_gender_age" } );
-
-                var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
-                var genderAge =
-                    result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-                var outputResult = new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
-                    genderAge.Select( x =>
-                    {
-                        var generString = x.Key.Split( "." )[ 0 ];
-                        int ageMin;
-                        int? ageMax;
-                        if( x.Key.Split( "." )[ 1 ].Contains( "+" ) )
-                        {
-                            ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "+" )[ 0 ] );
-                            ageMax = null;
-                        }
-                        else
-                        {
-                            ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
-                            ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
-                        }
-
-                        return new InstaFollowersInsight<GenderAgeProperty>
-                        {
-                            Count = ( int ) x.Value,
-                            Property = new GenderAgeProperty
-                            {
-                                Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
-                                AgeRange = new Tuple<int, int?>( ageMin, ageMax )
-                            }
-                        };
-                    } ),
-                    OperationResultEnum.Success );
-                _logger.LogInfo( "audience insights fetched successfully" );
-                return outputResult;
-            }
-            catch( Exception e ) when( e is FacebookApiException ||
-                                       e is FacebookApiLimitException ||
-                                       e is FacebookOAuthException )
-            {
-                _logger.LogError( e.Message );
+                _logger.LogError( "audience insights not fetched successfully" );
                 return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
                     Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed );
             }
+            var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
+            var genderAge =
+                result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
+            var outputResult = new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+                genderAge.Select( x =>
+                {
+                    var generString = x.Key.Split( "." )[ 0 ];
+                    int ageMin;
+                    int? ageMax;
+                    if( x.Key.Split( "." )[ 1 ].Contains( "+" ) )
+                    {
+                        ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "+" )[ 0 ] );
+                        ageMax = null;
+                    }
+                    else
+                    {
+                        ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
+                        ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
+                    }
+
+                    return new InstaFollowersInsight<GenderAgeProperty>
+                    {
+                        Count = ( int ) x.Value,
+                        Property = new GenderAgeProperty
+                        {
+                            Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
+                            AgeRange = new Tuple<int, int?>( ageMin, ageMax )
+                        }
+                    };
+                } ),
+                OperationResultEnum.Success );
+            _logger.LogInfo( "audience insights fetched successfully" );
+            return outputResult;
         }
     }
 }

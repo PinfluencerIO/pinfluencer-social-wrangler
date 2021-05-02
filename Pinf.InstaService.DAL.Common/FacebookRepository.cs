@@ -4,11 +4,11 @@ using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.DAL.Common
 {
-    public abstract class FacebookRepository
+    public abstract class FacebookRepository<T> where T : class
     {
-        protected readonly ILoggerAdapter<FacebookRepository> Logger;
+        protected readonly ILoggerAdapter<T> Logger;
 
-        protected FacebookRepository( ILoggerAdapter<FacebookRepository> logger ) { Logger = logger; }
+        protected FacebookRepository( ILoggerAdapter<T> logger ) { Logger = logger; }
         
         protected( string, bool ) ValidateFacebookCall( Func<string> facebookCall )
         {

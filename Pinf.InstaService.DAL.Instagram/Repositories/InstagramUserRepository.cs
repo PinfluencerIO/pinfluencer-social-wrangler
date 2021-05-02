@@ -15,12 +15,12 @@ using InstaUser = Pinf.InstaService.Core.Models.InstaUser.InstaUser;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
-    public class InstagramUserRepository : IInstaUserRepository
+    public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, IInstaUserRepository
     {
         private readonly FacebookContext _facebookContext;
         private readonly ILoggerAdapter<InstagramUserRepository> _logger;
 
-        public InstagramUserRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramUserRepository> logger )
+        public InstagramUserRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramUserRepository> logger ) : base( logger )
         {
             _facebookContext = facebookContext;
             _logger = logger;
@@ -30,32 +30,27 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaUser>> GetAll( )
         {
-            try
-            {
-                var result = _facebookContext.Get( "me/accounts",
-                    "instagram_business_account{id,username,name,biography,followers_count}" );
-                var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>( result );
-
-                new PostCondition( ).Evaluate( dataArray != null );
-
-                var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
-                var repositoryResult = new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser
-                {
-                    Handle = x.Username,
-                    Id = x.Id ,
-                    Name = x.Name,
-                    Bio = x.Bio,
-                    Followers = x.Followers
-                } ), OperationResultEnum.Success );
-                _logger.LogInfo( "instagram users were fetched" );
-                return repositoryResult;
-            }
-            catch( Exception )
+            var ( result, fbResult ) = ValidateFacebookCall( ( ) => _facebookContext.Get( "me/accounts",
+                "instagram_business_account{id,username,name,biography,followers_count}" ) );
+            if( !fbResult )
             {
                 _logger.LogError( "instagram users were not fetched" );
                 return new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>( ),
                     OperationResultEnum.Failed );
             }
+            var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>( result );
+            new PostCondition( ).Evaluate( dataArray != null );
+            var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
+            var repositoryResult = new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser
+            {
+                Handle = x.Username,
+                Id = x.Id ,
+                Name = x.Name,
+                Bio = x.Bio,
+                Followers = x.Followers
+            } ), OperationResultEnum.Success );
+            _logger.LogInfo( "instagram users were fetched" );
+            return repositoryResult;
         }
     }
 }

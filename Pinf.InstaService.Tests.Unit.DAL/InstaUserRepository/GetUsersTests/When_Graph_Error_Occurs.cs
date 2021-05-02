@@ -23,8 +23,6 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _apiException );
 
-            base.When( );
-
             _result = Sut.GetAll( );
         }
 
