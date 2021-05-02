@@ -13,42 +13,26 @@ using Pinf.InstaService.DAL.UserManagement.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests
 {
-    public abstract class Given_A_UserRepository : PinfluencerGivenWhenThen<UserRepository>
+    public abstract class Given_A_UserRepository : DataGivenWhenThen<UserRepository>
     {
         protected const string BubbleDomain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj";
         protected const string TestId = "1234";
-        protected IManagementConnection MockAuth0ManagementApiConnection;
         protected IBubbleClient MockBubbleClient;
         protected User TestUser;
-        protected FacebookClient MockFacebookClient;
-        protected IDateTimeAdapter MockDateTime;
-        protected Core.Models.User.User MockUser;
 
         //TODO: REFACTOR OUT TIME DEPENDANT TESTS
         protected override void Given( )
         {
             base.Given( );
-            MockDateTime = Substitute.For<IDateTimeAdapter>( );
-            MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
             MockBubbleClient = Substitute.For<IBubbleClient>( );
-            MockFacebookClient = Substitute.For<FacebookClient>( );
-            MockUser = new Core.Models.User.User( MockDateTime );
 
-            MockDateTime
-                .Now( )
-                .Returns( new DateTime( 2021, 4, 29 ) );
+            CurrentTime = new DateTime( 2021, 4, 29 );
             
             Sut = new UserRepository(
-                new Auth0Context
-                {
-                    ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )
-                },
+                Auth0Context,
                 MockBubbleClient,
-                new FacebookContext
-                {
-                    FacebookClient = MockFacebookClient
-                },
-                MockUser,
+                FacebookContext,
+                User,
                 MockLogger
             );
         }

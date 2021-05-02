@@ -11,7 +11,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.
     {
         protected InfluencerModel GetDefaultInfluencer()
         {
-            MockUser.Id = "12345678";
+            User.Id = "12345678";
             return new InfluencerModel
             {
                 InstagramHandle = "example",
@@ -19,7 +19,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.
                 Bio = "this an example bio",
                 Gender = GenderEnum.Male,
                 Location = "Uxbridge, West London",
-                User = MockUser
+                User = User
             };
         }
 
