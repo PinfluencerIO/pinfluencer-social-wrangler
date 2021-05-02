@@ -18,7 +18,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         protected override void When( )
         {
             MockFacebookClient
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ), Arg.Any<Type>( ) )
+                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Returns( new
                 {
                     data = new dynamic [ ]
@@ -59,7 +59,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         {
             MockFacebookClient
                 .Received( 1 )
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ), Arg.Any<Type>( ) );
+                .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
         }
         
         [ Test ]
@@ -67,7 +67,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         {
             MockFacebookClient
                 .Received( )
-                .Get( "123/insights", Arg.Any<object>( ), Arg.Any<Type>( ) );
+                .Get( "123/insights", Arg.Any<object>( ) );
         }
         
                 
@@ -76,13 +76,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         {
             MockFacebookClient
                 .Received( )
-                .Get( Arg.Any<string>( ), Arg.Is<object>( new { metric = "audience_gender_age", period = "lifetime" } ), Arg.Any<Type>( ) );
+                .Get( Arg.Any<string>( ), Arg.Is<object>( new { metric = "audience_gender_age", period = "lifetime" } ) );
         }
         
         [ Test ]
         public void Then_Success_Was_Returned( )
         {
-            Assert.AreEqual( OperationResultEnum.Success, _result );
+            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
         }
         
         [ Test ]

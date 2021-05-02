@@ -7,6 +7,7 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Common;
+using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
@@ -23,9 +24,12 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
+            _facebookContext
+                .FacebookClient
+                .Get( $"{instaId}/insights", new RequestInsightLifetimeParams{ metric = "audience_gender_age" } );
             return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
                 Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
-                OperationResultEnum.Failed );
+                OperationResultEnum.Success );
         }
     }
 }
