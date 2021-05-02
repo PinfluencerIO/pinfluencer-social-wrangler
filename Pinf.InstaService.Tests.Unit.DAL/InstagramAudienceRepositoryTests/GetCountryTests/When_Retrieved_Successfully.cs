@@ -76,7 +76,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         {
             MockFacebookClient
                 .Received( )
-                .Get( Arg.Any<string>( ), Arg.Is<object>( new { metric = "audience_gender_age", period = "lifetime" } ) );
+                .Get( Arg.Any<string>( ), Arg.Is<RequestInsightLifetimeParams>( x => x.period == "lifetime" && x.metric == "audience_gender_age" ) );
         }
         
         [ Test ]
@@ -102,7 +102,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
             var maxAges = new [ ] { 24, 34, 54, 24, 34, 44, 54, 64 }
                 .OrderBy( x => x );
             Assert.True( _result.Value
-                .Select( x => x.Property.AgeRange.Item1 )
+                .Select( x => x.Property.AgeRange.Item2 )
                 .OrderBy( x => x )
                 .SequenceEqual( maxAges ) );
         }
@@ -120,7 +120,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 GenderEnum.Male, 
                 GenderEnum.Male, 
                 GenderEnum.Male 
-            }.OrderBy( x => x );
+            };
             Assert.True( _result.Value
                 .Select( x => x.Property.Gender )
                 .SequenceEqual( genders ) );

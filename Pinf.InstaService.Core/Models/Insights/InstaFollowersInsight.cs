@@ -2,14 +2,9 @@
 {
     public class InstaFollowersInsight<T>
     {
-        public InstaFollowersInsight( T property, int count )
-        {
-            Property = property;
-            Count = count;
-        }
 
-        public T Property { get; }
+        public T Property { get; set; }
 
-        public int Count { get; }
+        public int Count { get; set; }
     }
 }

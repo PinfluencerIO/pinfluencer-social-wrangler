@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Facebook;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
@@ -24,11 +27,26 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
-            _facebookContext
-                .FacebookClient
+            var fbResult = _facebookContext
                 .Get( $"{instaId}/insights", new RequestInsightLifetimeParams{ metric = "audience_gender_age" } );
+            var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
+            var genderAge = result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
             return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
-                Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
+                genderAge.Select( x =>
+                {
+                    var generString = x.Key.Split( "." )[ 0 ];
+                    var ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
+                    var ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
+                    return new InstaFollowersInsight<GenderAgeProperty>
+                    {
+                        Count = ( int ) x.Value,
+                        Property = new GenderAgeProperty
+                        {
+                            Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
+                            AgeRange = new Tuple<int, int>( ageMin, ageMax )
+                        }
+                    };
+                } ),
                 OperationResultEnum.Success );
         }
     }
