@@ -15,7 +15,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
     public class When_Graph_Error_Occurs : When_Called
     {
         private readonly FacebookApiException _apiException;
-        private OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> _result;
+        private OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> _result;
 
         public When_Graph_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
         
@@ -24,7 +24,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _apiException );
-            _result = Sut.GetGenderAge( "123" );
+            _result = Sut.GetCountry( "123" );
         }
 
         [ Test ]

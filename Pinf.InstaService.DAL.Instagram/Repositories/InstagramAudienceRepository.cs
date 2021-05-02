@@ -28,7 +28,8 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry( string instaId )
         {
-            throw new NotImplementedException( );
+            return new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
+                Enumerable.Empty<InstaFollowersInsight<CountryProperty>>( ), OperationResultEnum.Failed );
         }
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
