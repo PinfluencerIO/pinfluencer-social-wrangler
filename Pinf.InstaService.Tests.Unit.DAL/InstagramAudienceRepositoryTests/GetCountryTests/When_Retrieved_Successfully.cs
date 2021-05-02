@@ -14,7 +14,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
 {
     public class When_Retrieved_Successfully : When_Called
     {
-        private OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> _result;
+        private OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> _result;
 
         protected override void When( )
         {
@@ -26,34 +26,34 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                     {
                         new
                         {
-                            name = "audience_gender_age",
+                            name = "audience_country",
                             period = "lifetime",
                             values = new dynamic [ ]
                             {
                                 new
                                 {
-                                    value = new Dictionary<string, int>
+                                    value = new
                                     {
-                                        { "F.18-24", 39 },
-                                        { "F.25-34", 4 },
-                                        { "F.45-54", 1 },
-                                        { "M.18-24", 73 },
-                                        { "M.25-34", 9 },
-                                        { "M.35-44", 2 },
-                                        { "M.45-54", 2 },
-                                        { "M.55-64", 1 },
-                                        { "M.65+", 1 }
+                                        EG = 1,
+                                        SG = 1,
+                                        AU = 1,
+                                        IN = 1,
+                                        CI = 1,
+                                        PH = 1,
+                                        GB = 113,
+                                        ES = 1,
+                                        US = 11
                                     },
                                     end_time = "2020-12-19T08:00:00+0000"
                                 }
                             },
-                            title = "Gender and age",
-                            description = "The gender and age distribution of this profile's followers",
-                            id = "17841405594881885/insights/audience_gender_age/lifetime"
+                            title = "Audience country",
+                            description = "The countries of this profile's followers",
+                            id = "17841405594881885/insights/audience_country/lifetime"
                         }
                     }
                 } );
-            _result = Sut.GetGenderAge( "123" );
+            _result = Sut.GetCountry( "123" );
         }
 
         [ Test ]
@@ -65,45 +65,39 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         [ Test ]
         public void Then_Correct_Min_Age_Ranges_Were_Returned( )
         {
-            var minAges = new [ ] { 18, 25, 45, 18, 25, 35, 45, 55, 65 }
-                .OrderBy( x => x );
-            Assert.True( _result.Value
-                .Select( x => x.Property.AgeRange.Item1 )
-                .OrderBy( x => x )
-                .SequenceEqual( minAges ) );
-        }
-        
-        [ Test ]
-        public void Then_Correct_Max_Age_Ranges_Were_Returned( )
-        {
-            var maxAges = new int?[ ] { 24, 34, 54, 24, 34, 44, 54, 64, null }
-                .OrderBy( x => x );
-            Assert.True( _result.Value
-                .Select( x => x.Property.AgeRange.Item2 )
-                .OrderBy( x => x )
-                .SequenceEqual( maxAges ) );
-        }
-        
-        [ Test ]
-        public void Then_Correct_Genders_Were_Returned( )
-        {
-            var genders = new [ ] 
-            { 
-                GenderEnum.Female,
-                GenderEnum.Female, 
-                GenderEnum.Female, 
-                GenderEnum.Male,
-                GenderEnum.Male, 
-                GenderEnum.Male, 
-                GenderEnum.Male, 
-                GenderEnum.Male,
-                GenderEnum.Male
+            var countries = new [ ]
+            {
+                "Egypt",
+                "Singapore",
+                "Australia",
+                "India",
+                "Côte d’Ivoire",
+                "Philippines",
+                "United Kingdom",
+                "Spain",
+                "United States"
             };
-            Assert.True( _result.Value
-                .Select( x => x.Property.Gender )
-                .SequenceEqual( genders ) );
+            Assert.True( _result.Value.Select( x => x.Property.Country.EnglishName ).SequenceEqual( countries ) );
         }
         
+        [ Test ]
+        public void Then_Correct_Follower_Counts_Were_Returned( )
+        {
+            var followerCounts = new [ ]
+            {
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                113,
+                1,
+                11
+            };
+            Assert.True( _result.Value.Select( x => x.Count ).SequenceEqual( followerCounts ) );
+        }
+
         [ Test ]
         public void Then_Success_Event_Is_Logged( )
         {

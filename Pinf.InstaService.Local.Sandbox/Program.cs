@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -29,7 +30,8 @@ namespace Pinf.InstaService.Local.Sandbox
     {
         private static void Main( string [ ] args )
         {
-
+            var regions =
+                new [ ] { "EG", "SG", "AU", "IN", "CI", "PH", "GB", "ES", "US" }.Select( x => new RegionInfo( x ).EnglishName );
         }
     }
 
