@@ -41,7 +41,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                 var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
                 var genderAge =
                     result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-                return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+                var outputResult = new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
                     genderAge.Select( x =>
                     {
                         var generString = x.Key.Split( "." )[ 0 ];
@@ -69,11 +69,14 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                         };
                     } ),
                     OperationResultEnum.Success );
+                _logger.LogInfo( "audience insights fetched successfully" );
+                return outputResult;
             }
             catch( Exception e ) when( e is FacebookApiException ||
                                        e is FacebookApiLimitException ||
                                        e is FacebookOAuthException )
             {
+                _logger.LogError( e.Message );
                 return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
                     Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed );
