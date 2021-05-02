@@ -1,4 +1,5 @@
-﻿using Auth0.ManagementApi;
+﻿using System.Collections.Generic;
+using Auth0.ManagementApi;
 using Facebook;
 using NSubstitute;
 using Pinf.InstaService.Core.Interfaces.Models;
@@ -24,5 +25,12 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
             Auth0Context = new Auth0Context( ){ ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
             User = new User( MockDateTime );
         }
+
+        protected static IEnumerable<FacebookApiException> FacebookExceptionFixture( ) => new [ ]
+        {
+            new FacebookApiException( "api error" ),
+            new FacebookApiLimitException( "limit error" ),
+            new FacebookOAuthException( "oauth error" )
+        };
     }
 }
