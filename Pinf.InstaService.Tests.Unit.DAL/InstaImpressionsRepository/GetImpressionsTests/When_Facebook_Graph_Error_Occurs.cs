@@ -9,10 +9,11 @@ using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
+using Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
 {
-    public class When_Facebook_Graph_Error_Occurs : When_Get_Impressions_Was_Called
+    public class When_Facebook_Graph_Error_Occurs : When_Called
     {
         private OperationResult<IEnumerable<InstaProfileViewsInsight>> _result;
 

@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
-namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
+namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests.Shared
 {
-    public abstract class When_Get_Impressions_Was_Called : Given_A_InstaImpressionsRepository
+    public abstract class When_Called : Given_A_InstaImpressionsRepository
     {
         protected const string TestId = "123456789";
 
