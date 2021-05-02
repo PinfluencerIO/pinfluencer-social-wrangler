@@ -43,7 +43,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                         Property = new GenderAgeProperty
                         {
                             Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
-                            AgeRange = new Tuple<int, int>( ageMin, ageMax )
+                            AgeRange = new Tuple<int, int?>( ageMin, ageMax )
                         }
                     };
                 } ),

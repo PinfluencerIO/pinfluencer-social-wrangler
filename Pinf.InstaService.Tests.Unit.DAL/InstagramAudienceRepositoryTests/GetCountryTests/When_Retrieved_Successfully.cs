@@ -40,7 +40,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                                         { "M.25-34", 9 },
                                         { "M.35-44", 2 },
                                         { "M.45-54", 2 },
-                                        { "M.55-64", 1 }
+                                        { "M.55-64", 1 },
+                                        { "M.65+", 1 }
                                     },
                                     end_time = "2020-12-19T08:00:00+0000"
                                 }
@@ -88,7 +89,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         [ Test ]
         public void Then_Correct_Min_Age_Ranges_Were_Returned( )
         {
-            var minAges = new [ ] { 18, 25, 45, 18, 25, 35, 45, 55 }
+            var minAges = new [ ] { 18, 25, 45, 18, 25, 35, 45, 55, 65 }
                 .OrderBy( x => x );
             Assert.True( _result.Value
                 .Select( x => x.Property.AgeRange.Item1 )
@@ -99,7 +100,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         [ Test ]
         public void Then_Correct_Max_Age_Ranges_Were_Returned( )
         {
-            var maxAges = new [ ] { 24, 34, 54, 24, 34, 44, 54, 64 }
+            var maxAges = new int?[ ] { 24, 34, 54, 24, 34, 44, 54, 64, null }
                 .OrderBy( x => x );
             Assert.True( _result.Value
                 .Select( x => x.Property.AgeRange.Item2 )
@@ -119,7 +120,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 GenderEnum.Male, 
                 GenderEnum.Male, 
                 GenderEnum.Male, 
-                GenderEnum.Male 
+                GenderEnum.Male,
+                GenderEnum.Male
             };
             Assert.True( _result.Value
                 .Select( x => x.Property.Gender )

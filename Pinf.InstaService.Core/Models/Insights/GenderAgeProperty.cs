@@ -7,6 +7,6 @@ namespace Pinf.InstaService.Core.Models.Insights
     {
         public GenderEnum Gender { get; set; }
 
-        public Tuple<int, int> AgeRange { get; set; }
+        public Tuple<int, int?> AgeRange { get; set; }
     }
 }
