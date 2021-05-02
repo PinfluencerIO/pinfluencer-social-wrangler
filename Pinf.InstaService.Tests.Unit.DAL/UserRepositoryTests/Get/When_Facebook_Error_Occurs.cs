@@ -22,7 +22,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
         protected override void When( )
         {
             MockFacebookClient
-                .Get<FacebookUser>( Arg.Any<string>( ), Arg.Any<object>( ) )
+                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _apiException );
             _result = Sut.Get( "12345" );
         }
