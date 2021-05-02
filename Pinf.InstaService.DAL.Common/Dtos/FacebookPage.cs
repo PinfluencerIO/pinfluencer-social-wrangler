@@ -3,11 +3,10 @@ using Newtonsoft.Json;
 
 namespace Pinf.InstaService.DAL.Common.Dtos
 {
-    [ DataContract ]
     public class FacebookPage
     {
-        [ DataMember( Name = "instagram_business_account", IsRequired = false ) ] public InstaUser Insta { get; set; }
-        [ DataMember( Name = "id" ) ] public string Id { get; set; }
-        [ DataMember( Name = "name" ) ] public string Name { get; set; }
+        [ JsonProperty( "instagram_business_account" ) ] public InstaUser Insta { get; set; }
+        [ JsonProperty( "id" ) ] public string Id { get; set; }
+        [ JsonProperty( "name" ) ] public string Name { get; set; }
     }
 }

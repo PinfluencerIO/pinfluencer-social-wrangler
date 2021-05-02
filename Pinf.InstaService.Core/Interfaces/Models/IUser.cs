@@ -11,7 +11,5 @@ namespace Pinf.InstaService.Core.Interfaces.Models
         string Location { get; set; }
         GenderEnum Gender { get; set; }
         DateTime Birthday { set; }
-        string BirthdayString { set; }
-        string GenderString { set; }
     }
 }

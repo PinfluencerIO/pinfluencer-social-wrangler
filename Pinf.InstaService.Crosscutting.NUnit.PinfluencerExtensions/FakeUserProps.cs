@@ -11,7 +11,5 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
         public string Location { get; set; }
         public GenderEnum Gender { get; set; }
         public DateTime Birthday { get; set; }
-        public string BirthdayString { get; set; }
-        public string GenderString { get; set; }
     }
 }

@@ -29,21 +29,5 @@ namespace Pinf.InstaService.Core.Models.User
                 Age = ( now - dob ) / 10000;
             }
         }
-        
-        public string BirthdayString
-        {
-            set
-            {
-                if( value != default ) { Birthday = DateTime.ParseExact( value, "MM/dd/yyyy", CultureInfo.CurrentCulture ); }
-            }
-        }
-
-        public string GenderString
-        {
-            set
-            {
-                if( value != default ) { Gender = value.Enumify<GenderEnum>( ); }
-            }
-        }
     }
 }

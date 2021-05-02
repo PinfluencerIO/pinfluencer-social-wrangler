@@ -24,16 +24,17 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
                 .Returns( ( HttpStatusCode.OK, new TypeResponse<Profile>
                     { Type = new Profile { Id = "1234", Name = "ExampleInfluencer" } } ) );
             MockFacebookClient
-                .Get<FacebookUser>( Arg.Any<string>( ), Arg.Any<object>(  ) )
-                .Returns( new FacebookUser
+                .Get( Arg.Any<string>( ), Arg.Any<object>(  ) )
+                .Returns( new
                 {
-                    Location = new FacebookPage
+                    birthday = "11/26/1999",
+                    location = new
                     {
-                        Id = "1235",
-                        Name = "London"
+                        id = "109435875749334",
+                        name = "Dorchester, Dorset",
                     },
-                    Birthday = "11/26/1999",
-                    Gender = "female"
+                    gender = "male",
+                    id = "706884236570098"
                 } );
             _result = Sut.Get( "1234" );
         }
@@ -44,8 +45,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
             Assert.True( _result.Value.Id == "1234" &&
              _result.Value.Name == "ExampleInfluencer" &&
              _result.Value.Age == 21 &&
-             _result.Value.Location == "London" &&
-             _result.Value.Gender == GenderEnum.Female );
+             _result.Value.Location == "Dorchester, Dorset" &&
+             _result.Value.Gender == GenderEnum.Male );
         }
 
         [ Test ]

@@ -12,9 +12,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
             {
                 Age = props.Age,
                 Birthday = props.Birthday,
-                BirthdayString = props.BirthdayString,
                 Gender = props.Gender,
-                GenderString = props.GenderString,
                 Id = props.Id,
                 Location = props.Location,
                 Name = props.Name
