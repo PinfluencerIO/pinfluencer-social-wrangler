@@ -1,11 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Pinf.InstaService.DAL.Instagram.Dtos
 {
-    public class Insight
+    [ DataContract ]
+    public class Insight<T>
     {
-        [ JsonProperty( "value" ) ] public int Value { get; set; }
+        [ DataMember( Name = "value" ) ] public T Value { get; set; }
 
-        [ JsonProperty( "end_time" ) ] public string Time { get; set; }
+        [ DataMember( Name = "end_time" ) ] public string Time { get; set; }
     }
 }

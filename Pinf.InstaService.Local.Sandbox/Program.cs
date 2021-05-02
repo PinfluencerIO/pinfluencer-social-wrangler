@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -12,6 +13,7 @@ using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.Crosscutting.Web;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
+using Pinf.InstaService.DAL.Instagram.Dtos;
 using Pinf.InstaService.DAL.UserManagement;
 using Pinf.InstaService.DAL.UserManagement.Common;
 using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
@@ -25,7 +27,10 @@ namespace Pinf.InstaService.Local.Sandbox
 {
     internal class Program
     {
-        private static void Main( string [ ] args ) => Console.Write( "" );
+        private static void Main( string [ ] args )
+        {
+
+        }
     }
 
 }

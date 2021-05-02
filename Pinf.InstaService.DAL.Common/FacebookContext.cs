@@ -4,6 +4,7 @@ using Pinf.InstaService.DAL.Common.Dtos;
 
 namespace Pinf.InstaService.DAL.Common
 {
+    //TODO: GRAPH API VERSIONING
     public class FacebookContext
     {
         public FacebookClient FacebookClient { set; get; }

@@ -39,7 +39,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                     until = 1610150400
                 } );
 
-                var impressionsObj = JsonConvert.DeserializeObject<DataArray<Metric>>( impressions );
+                var impressionsObj = JsonConvert.DeserializeObject<DataArray<Metric<int>>>( impressions );
 
                 new PostCondition( ).Evaluate( impressionsObj != null );
 

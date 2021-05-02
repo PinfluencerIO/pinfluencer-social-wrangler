@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Pinf.InstaService.DAL.Instagram.Dtos
 {
-    public class Metric
+    [ DataContract ]
+    public class Metric<T>
     {
-        [ JsonProperty( "values" ) ] public IEnumerable<Insight> Insights { get; set; }
+        [ DataMember( Name = "values" ) ] public IEnumerable<Insight<T>> Insights { get; set; }
     }
 }
