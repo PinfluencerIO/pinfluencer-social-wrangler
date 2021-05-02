@@ -35,8 +35,19 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                 genderAge.Select( x =>
                 {
                     var generString = x.Key.Split( "." )[ 0 ];
-                    var ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
-                    var ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
+                    int ageMin;
+                    int? ageMax;
+                    if( x.Key.Split( "." )[ 1 ].Contains( "+" ) )
+                    {
+                        ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "+" )[ 0 ] );
+                        ageMax = null;
+                    }
+                    else
+                    {
+                        ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
+                        ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
+                    }
+
                     return new InstaFollowersInsight<GenderAgeProperty>
                     {
                         Count = ( int ) x.Value,
