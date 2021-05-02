@@ -13,15 +13,22 @@ using Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressions
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
 {
+    [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
     public class When_Facebook_Graph_Error_Occurs : When_Called
     {
+        private readonly FacebookApiException _apiException;
         private OperationResult<IEnumerable<InstaProfileViewsInsight>> _result;
 
+        public When_Facebook_Graph_Error_Occurs( FacebookApiException apiException )
+        {
+            _apiException = apiException;
+        }
+        
         protected override void When( )
         {
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
-                .Throws<FacebookOAuthException>( );
+                .Throws( _apiException );
 
             base.When( );
 

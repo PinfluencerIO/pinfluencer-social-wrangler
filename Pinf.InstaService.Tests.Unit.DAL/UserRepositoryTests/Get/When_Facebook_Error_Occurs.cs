@@ -11,15 +11,19 @@ using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {
+    [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
     public class When_Facebook_Error_Occurs : When_Called
     {
+        private readonly FacebookApiException _apiException;
         private OperationResult<IUser> _result;
 
+        public When_Facebook_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
+        
         protected override void When( )
         {
             MockFacebookClient
                 .Get<FacebookUser>( Arg.Any<string>( ), Arg.Any<object>( ) )
-                .Throws( new FacebookOAuthException( "message" ) );
+                .Throws( _apiException );
             _result = Sut.Get( "12345" );
         }
 

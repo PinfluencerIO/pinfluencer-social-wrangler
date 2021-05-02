@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Facebook;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -9,15 +10,18 @@ using Pinf.InstaService.Core.Models.InstaUser;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {
+    [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
     public class When_Graph_Error_Occurs : When_Get_Users_Is_Called
     {
         private OperationResult<IEnumerable<InstaUser>> _result;
+        private readonly FacebookApiException _apiException;
+        public When_Graph_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
 
         protected override void When( )
         {
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
-                .Throws<FacebookOAuthException>( );
+                .Throws( _apiException );
 
             base.When( );
 
