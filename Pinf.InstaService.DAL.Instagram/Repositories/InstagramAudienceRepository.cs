@@ -27,38 +27,51 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
-            var fbResult = _facebookContext
-                .Get( $"{instaId}/insights", new RequestInsightLifetimeParams{ metric = "audience_gender_age" } );
-            var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
-            var genderAge = result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
-                genderAge.Select( x =>
-                {
-                    var generString = x.Key.Split( "." )[ 0 ];
-                    int ageMin;
-                    int? ageMax;
-                    if( x.Key.Split( "." )[ 1 ].Contains( "+" ) )
-                    {
-                        ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "+" )[ 0 ] );
-                        ageMax = null;
-                    }
-                    else
-                    {
-                        ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
-                        ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
-                    }
+            try
+            {
+                var fbResult = _facebookContext
+                    .Get( $"{instaId}/insights", new RequestInsightLifetimeParams { metric = "audience_gender_age" } );
 
-                    return new InstaFollowersInsight<GenderAgeProperty>
+                var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
+                var genderAge =
+                    result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
+                return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+                    genderAge.Select( x =>
                     {
-                        Count = ( int ) x.Value,
-                        Property = new GenderAgeProperty
+                        var generString = x.Key.Split( "." )[ 0 ];
+                        int ageMin;
+                        int? ageMax;
+                        if( x.Key.Split( "." )[ 1 ].Contains( "+" ) )
                         {
-                            Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
-                            AgeRange = new Tuple<int, int?>( ageMin, ageMax )
+                            ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "+" )[ 0 ] );
+                            ageMax = null;
                         }
-                    };
-                } ),
-                OperationResultEnum.Success );
+                        else
+                        {
+                            ageMin = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 0 ] );
+                            ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
+                        }
+
+                        return new InstaFollowersInsight<GenderAgeProperty>
+                        {
+                            Count = ( int ) x.Value,
+                            Property = new GenderAgeProperty
+                            {
+                                Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
+                                AgeRange = new Tuple<int, int?>( ageMin, ageMax )
+                            }
+                        };
+                    } ),
+                    OperationResultEnum.Success );
+            }
+            catch( Exception e ) when( e is FacebookApiException ||
+                                       e is FacebookApiLimitException ||
+                                       e is FacebookOAuthException )
+            {
+                return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+                    Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
+                    OperationResultEnum.Failed );
+            }
         }
     }
 }
