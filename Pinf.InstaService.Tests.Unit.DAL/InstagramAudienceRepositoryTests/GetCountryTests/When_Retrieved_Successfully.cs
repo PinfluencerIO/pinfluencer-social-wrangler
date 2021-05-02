@@ -103,5 +103,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 .Select( x => x.Property.Gender )
                 .SequenceEqual( genders ) );
         }
+        
+        [ Test ]
+        public void Then_Success_Event_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogInfo( Arg.Any<string>( ) );
+        }
     }
 }

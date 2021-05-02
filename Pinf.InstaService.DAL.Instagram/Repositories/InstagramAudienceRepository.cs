@@ -9,6 +9,7 @@ using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
+using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
@@ -17,8 +18,13 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
     public class InstagramAudienceRepository : IInstaAudienceInsightsRepository
     {
         private readonly FacebookContext _facebookContext;
+        private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
 
-        public InstagramAudienceRepository( FacebookContext facebookContext ) { _facebookContext = facebookContext; }
+        public InstagramAudienceRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramAudienceRepository> logger )
+        {
+            _facebookContext = facebookContext;
+            _logger = logger;
+        }
 
         public OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry( string instaId )
         {

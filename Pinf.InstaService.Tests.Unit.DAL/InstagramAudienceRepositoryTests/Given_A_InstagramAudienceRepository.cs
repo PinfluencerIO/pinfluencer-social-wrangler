@@ -11,7 +11,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests
         protected override void Given( )
         {
             base.Given( );
-            Sut = new InstagramAudienceRepository( new FacebookContext{ FacebookClient = MockFacebookClient } );
+            Sut = new InstagramAudienceRepository( new FacebookContext{ FacebookClient = MockFacebookClient }, MockLogger );
         }
     }
 }

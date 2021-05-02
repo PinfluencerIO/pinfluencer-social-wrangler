@@ -32,5 +32,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         {
             Assert.AreEqual( OperationResultEnum.Failed, _result.Status );
         }
+        
+        [ Test ]
+        public void Then_Error_Is_Logged( )
+        {
+            MockLogger
+                .Received( )
+                .LogError( Arg.Any<string>( ) );
+        }
     }
 }
