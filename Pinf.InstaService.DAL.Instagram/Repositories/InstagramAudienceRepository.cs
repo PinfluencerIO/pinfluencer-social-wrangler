@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using Pinf.InstaService.Core;
+using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Common;
@@ -21,7 +23,9 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
-            throw new NotImplementedException( );
+            return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+                Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
+                OperationResultEnum.Failed );
         }
     }
 }
