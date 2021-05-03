@@ -110,7 +110,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
         {
             MockFacebookClient
                 .Received( )
-                .Get( Arg.Any<string>( ), Arg.Is<RequestInsightLifetimeParams>( x => x.period == "lifetime" && x.metric == "audience_gender_age" ) );
+                .Get( Arg.Any<string>( ), Arg.Is<BaseRequestInsightParams>( x => x.period == "lifetime" && x.metric == "audience_gender_age" ) );
         }
     }
 }

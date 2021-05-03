@@ -4,6 +4,6 @@
     {
         public string metric { get; set; }
 
-        public virtual string period { get; set; }
+        public string period { get; set; }
     }
 }

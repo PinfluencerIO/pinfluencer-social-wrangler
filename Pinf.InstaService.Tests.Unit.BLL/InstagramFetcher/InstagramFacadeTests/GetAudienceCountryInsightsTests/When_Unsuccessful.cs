@@ -17,7 +17,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 
         protected override void When( )
         {
-            MockInstaAudienceInsightsRepository
+            MockInstaAudienceRepository
                 .GetCountry( Arg.Any<string>(  ) )
                 .Returns( new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
                     Enumerable.Empty<FollowersInsight<RegionInfo>>(  ), 

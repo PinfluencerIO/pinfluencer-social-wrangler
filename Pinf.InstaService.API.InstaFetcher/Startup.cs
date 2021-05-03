@@ -38,6 +38,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
                 .AddTransient<IUserRepository, UserRepository>( )
                 .AddTransient<IInstaImpressionsRepository, InstagramImpressionsRepository>( )
+                .AddTransient<IInstaAudienceRepository, InstagramAudienceRepository>( )
                 .AddTransient<IInstaUserRepository, InstagramUserRepository>( )
                 .AddTransient<IManagementConnection, HttpClientManagementConnection>( )
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )

@@ -16,7 +16,7 @@ using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
-    public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, IInstaAudienceInsightsRepository
+    public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, IInstaAudienceRepository
     {
         private readonly FacebookContext _facebookContext;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
@@ -31,7 +31,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
-                        new RequestInsightLifetimeParams { metric = "audience_country" } ) );
+                        new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
@@ -57,7 +57,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
-                        new RequestInsightLifetimeParams { metric = "audience_gender_age" } ) );
+                        new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );

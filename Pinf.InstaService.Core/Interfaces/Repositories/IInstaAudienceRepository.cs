@@ -4,7 +4,7 @@ using Pinf.InstaService.Core.Models.Insights;
 
 namespace Pinf.InstaService.Core.Interfaces.Repositories
 {
-    public interface IInstaAudienceInsightsRepository
+    public interface IInstaAudienceRepository
     {
         OperationResult<IEnumerable<FollowersInsight<RegionInfo>>> GetCountry( string instaId );
 

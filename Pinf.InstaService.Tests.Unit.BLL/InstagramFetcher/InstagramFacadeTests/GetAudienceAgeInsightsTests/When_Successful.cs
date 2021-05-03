@@ -16,7 +16,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 
         protected override void When( )
         {
-            MockInstaAudienceInsightsRepository
+            MockInstaAudienceRepository
                 .GetGenderAge( Arg.Any<string>(  ) )
                 .Returns( new OperationResult<IEnumerable<FollowersInsight<GenderAgeProperty>>>(
                     new [ ]

@@ -15,14 +15,14 @@ namespace Pinf.InstaService.BLL.Facades
     {
         private readonly IInstaImpressionsRepository _impressionsRepository;
         private readonly IInstaUserRepository _instaUserRepository;
-        private readonly IInstaAudienceInsightsRepository _instaAudienceInsightsRepository;
+        private readonly IInstaAudienceRepository _instaAudienceRepository;
 
         public InstagramFacade(
-            IInstaImpressionsRepository impressionsRepository, IInstaUserRepository instaUserRepository, IInstaAudienceInsightsRepository instaAudienceInsightsRepository )
+            IInstaImpressionsRepository impressionsRepository, IInstaUserRepository instaUserRepository, IInstaAudienceRepository instaAudienceRepository )
         {
             _impressionsRepository = impressionsRepository;
             _instaUserRepository = instaUserRepository;
-            _instaAudienceInsightsRepository = instaAudienceInsightsRepository;
+            _instaAudienceRepository = instaAudienceRepository;
         }
 
         public OperationResult<IEnumerable<ProfileViewsInsight>> GetMonthlyProfileViews( string id ) => _impressionsRepository.GetImpressions( id );
@@ -32,7 +32,7 @@ namespace Pinf.InstaService.BLL.Facades
 
         public OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> GetAudienceCountryInsights( string id )
         {
-            var result = _instaAudienceInsightsRepository.GetCountry( id );
+            var result = _instaAudienceRepository.GetCountry( id );
             if( result.Status != OperationResultEnum.Success )
             {
                 return new OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>>(
@@ -48,7 +48,7 @@ namespace Pinf.InstaService.BLL.Facades
 
         public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
         {
-            var result = _instaAudienceInsightsRepository.GetGenderAge( id );
+            var result = _instaAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
             {
                 return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
@@ -69,7 +69,7 @@ namespace Pinf.InstaService.BLL.Facades
         
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
-            var result = _instaAudienceInsightsRepository.GetGenderAge( id );
+            var result = _instaAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
             {
                 return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(

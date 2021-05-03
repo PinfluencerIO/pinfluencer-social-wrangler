@@ -10,19 +10,19 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
     {
         protected IInstaImpressionsRepository MockImpressionsInsightsRepository;
         protected IInstaUserRepository MockInstaUserRepository;
-        protected IInstaAudienceInsightsRepository MockInstaAudienceInsightsRepository;
+        protected IInstaAudienceRepository MockInstaAudienceRepository;
 
         protected override void Given( )
         {
             
             MockImpressionsInsightsRepository = Substitute.For<IInstaImpressionsRepository>( );
             MockInstaUserRepository = Substitute.For<IInstaUserRepository>( );
-            MockInstaAudienceInsightsRepository = Substitute.For<IInstaAudienceInsightsRepository>( );
+            MockInstaAudienceRepository = Substitute.For<IInstaAudienceRepository>( );
 
             Sut = new InstagramFacade(
                 MockImpressionsInsightsRepository,
                 MockInstaUserRepository,
-                MockInstaAudienceInsightsRepository
+                MockInstaAudienceRepository
             );
         }
     }
