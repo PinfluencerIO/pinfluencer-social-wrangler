@@ -37,11 +37,29 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
 
         [ NonAction ]
         [ ActionName( "profile_impressions" ) ]
-        private IActionResult GetImpressions( [ FromQuery ] string user )
+        private IActionResult getImpressions( string user )
         {
             var insights = _instagramFacade.GetMonthlyProfileViews( user );
             if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
             return MvcExtensions.BadRequestError( "failed to fetch instagram impressions for user" );
+        }
+        
+        [ NonAction ]
+        [ ActionName( "audience_age" ) ]
+        private IActionResult getAudienceAge( string user )
+        {
+            var insights = _instagramFacade.GetAudienceAgeInsights( user );
+            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
+            return MvcExtensions.BadRequestError( "failed to fetch instagram audience age insights for user" );
+        }
+        
+        [ NonAction ]
+        [ ActionName( "audience_gender" ) ]
+        private IActionResult getAudienceGender( string user )
+        {
+            var insights = _instagramFacade.GetAudienceGenderInsights( user );
+            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
+            return MvcExtensions.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
     }
 }
