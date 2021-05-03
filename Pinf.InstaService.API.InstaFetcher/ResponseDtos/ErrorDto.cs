@@ -1,9 +1,10 @@
 ﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pinf.InstaService.API.InstaFetcher.ResponseDtos
 {
     public class ErrorDto
     {
-        [ JsonPropertyName( "error_msg" ) ] public string ErrorMsg { get; set; }
+        public string ErrorMsg { get; set; }
     }
 }

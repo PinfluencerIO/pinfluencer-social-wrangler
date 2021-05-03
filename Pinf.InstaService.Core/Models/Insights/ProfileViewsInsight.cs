@@ -11,8 +11,8 @@ namespace Pinf.InstaService.Core.Models.Insights
             Count = count;
         }
 
-        [ JsonPropertyName( "time" ) ] public DateTime Time { get; }
+        public DateTime Time { get; }
 
-        [ JsonPropertyName( "count" ) ] public int Count { get; }
+        public int Count { get; }
     }
 }

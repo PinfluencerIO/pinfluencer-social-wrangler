@@ -7,14 +7,12 @@ namespace Pinf.InstaService.Core.Models.Insights
     {
         private double _percentage;
         
-        [ JsonPropertyName( "percentage" ) ]
         public double Percentage
         {
             get => _percentage;
             set => _percentage = Math.Round( value, 2 );
         }
-
-        [ JsonPropertyName( "value" ) ]
+        
         public T Value { get; set; }
     }
 }

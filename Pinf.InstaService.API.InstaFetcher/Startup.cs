@@ -56,7 +56,8 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IUser, User>( )
                 .AddTransient<InfluencerFacade>( )
                 .AddTransient(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
-                .AddControllers( );
+                .AddControllers( )
+                .AddNewtonsoftJson( );
         }
 
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
