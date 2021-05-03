@@ -31,7 +31,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
-                        new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
+                        new BaseRequestInsightParams { metric = "audience_country", period = "lifetime" } ) );
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
