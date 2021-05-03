@@ -1,9 +1,9 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceGenderInsightsTests.Shared
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.Shared
 {
-    public abstract class When_Called : Given_An_InstagramFacade
+    public abstract class When_Gender_Age_Audience_Data_Is_Fetched : Given_An_InstagramFacade
     {
         protected const string InstagramId = "123";
         

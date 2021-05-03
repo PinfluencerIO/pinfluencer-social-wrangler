@@ -6,11 +6,11 @@ using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceAgeInsightsTests.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceAgeInsightsTests
 {
-    public class When_Successful : When_Called
+    public class When_Successful : When_Gender_Age_Audience_Data_Is_Fetched
     {
         private OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> _result;
 
