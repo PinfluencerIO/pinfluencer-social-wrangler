@@ -7,10 +7,11 @@ using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.Utils;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceCountryInsightsTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceCountryInsightsTests
 {
-    public class When_Successful : Given_An_InstagramFacade
+    public class When_Successful : When_Called
     {
         private OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> _result;
 
@@ -30,7 +31,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
                     },
                     OperationResultEnum.Success
                 ) );
-            _result = Sut.GetAudienceCountryInsights( "123" );
+            _result = Sut.GetAudienceCountryInsights( InstagramId );
         }
 
         [ Test ]
