@@ -10,7 +10,7 @@ using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceCountryInsightsTests
 {
-    public class When_Fetched_Successfully : Given_An_InstagramFacade
+    public class When_Successful : Given_An_InstagramFacade
     {
         private OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> _result;
 
