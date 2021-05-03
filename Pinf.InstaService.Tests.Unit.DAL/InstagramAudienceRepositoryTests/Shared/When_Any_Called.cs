@@ -8,7 +8,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shar
 {
     public abstract class When_Any_Called<T> : Given_A_InstagramAudienceRepository
     {
-        protected OperationResult<IEnumerable<InstaFollowersInsight<T>>> Result;
+        protected OperationResult<IEnumerable<FollowersInsight<T>>> Result;
         
         [ Test ]
         public void Then_Graph_Api_Was_Called_Once( )

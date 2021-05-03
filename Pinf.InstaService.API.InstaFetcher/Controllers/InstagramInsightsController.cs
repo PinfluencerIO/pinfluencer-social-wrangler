@@ -39,7 +39,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         [ ActionName( "profile_impressions" ) ]
         private IActionResult GetImpressions( [ FromQuery ] string user )
         {
-            var insights = _instagramFacade.GetUserInsights( user );
+            var insights = _instagramFacade.GetMonthlyProfileViews( user );
             if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
             return MvcExtensions.BadRequestError( "failed to fetch instagram impressions for user" );
         }

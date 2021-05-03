@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using Pinf.InstaService.Core;
@@ -13,27 +14,34 @@ namespace Pinf.InstaService.BLL.Facades
     {
         private readonly IInstaImpressionsRepository _impressionsRepository;
         private readonly IInstaUserRepository _instaUserRepository;
+        private readonly IInstaAudienceInsightsRepository _instaAudienceInsightsRepository;
 
         public InstagramFacade(
-            IInstaImpressionsRepository impressionsRepository, IInstaUserRepository instaUserRepository )
+            IInstaImpressionsRepository impressionsRepository, IInstaUserRepository instaUserRepository, IInstaAudienceInsightsRepository instaAudienceInsightsRepository )
         {
             _impressionsRepository = impressionsRepository;
             _instaUserRepository = instaUserRepository;
+            _instaAudienceInsightsRepository = instaAudienceInsightsRepository;
         }
 
-        public OperationResult<IEnumerable<InstaProfileViewsInsight>> GetUserInsights( string id )
+        public OperationResult<IEnumerable<ProfileViewsInsight>> GetMonthlyProfileViews( string id ) => _impressionsRepository.GetImpressions( id );
+
+        //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
+        public OperationResult<IEnumerable<InstaUser>> GetUsers( ) => _instaUserRepository.GetAll( );
+
+        public OperationResult<IEnumerable<AudiencePercentage<CountryProperty>>> GetAudienceCountryInsights( string id )
         {
-            var impressions = _impressionsRepository.GetImpressions( id );
-            if( impressions.Status == OperationResultEnum.Success )
-                return new OperationResult<IEnumerable<InstaProfileViewsInsight>>( impressions.Value, OperationResultEnum.Success );
-            return new OperationResult<IEnumerable<InstaProfileViewsInsight>>( Enumerable.Empty<InstaProfileViewsInsight>( ), OperationResultEnum.Failed );
+            throw new NotImplementedException( );
         }
 
-        public OperationResult<IEnumerable<InstaUser>> GetUsers( )
+        public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
         {
-            var users = _instaUserRepository.GetAll( );
-
-            return new OperationResult<IEnumerable<InstaUser>>( users.Value, users.Status );
+            throw new NotImplementedException( );
+        }
+        
+        public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
+        {
+            throw new NotImplementedException( );
         }
     }
 }

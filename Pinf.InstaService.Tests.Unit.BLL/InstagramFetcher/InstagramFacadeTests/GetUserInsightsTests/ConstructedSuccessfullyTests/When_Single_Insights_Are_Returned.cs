@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
     [ TestFixture ]
     public class When_Single_Insights_Are_Returned : When_Get_User_Insights_Is_Called
     {
-        private OperationResult<IEnumerable<InstaProfileViewsInsight>> _result;
+        private OperationResult<IEnumerable<ProfileViewsInsight>> _result;
 
         protected override void When( )
         {
@@ -22,7 +22,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 
             base.When( );
 
-            _result = Sut.GetUserInsights( TestId );
+            _result = Sut.GetMonthlyProfileViews( TestId );
         }
 
         [ Test ]

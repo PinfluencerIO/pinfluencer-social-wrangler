@@ -27,7 +27,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             _logger = logger;
         }
 
-        public OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry( string instaId )
+        public OperationResult<IEnumerable<FollowersInsight<CountryProperty>>> GetCountry( string instaId )
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
@@ -35,15 +35,15 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
-                return new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
-                    Enumerable.Empty<InstaFollowersInsight<CountryProperty>>( ),
+                return new OperationResult<IEnumerable<FollowersInsight<CountryProperty>>>(
+                    Enumerable.Empty<FollowersInsight<CountryProperty>>( ),
                     OperationResultEnum.Failed );
             }
             var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
                 result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            var outputResult = new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
-                genderAge?.Select( x => new InstaFollowersInsight<CountryProperty>
+            var outputResult = new OperationResult<IEnumerable<FollowersInsight<CountryProperty>>>(
+                genderAge?.Select( x => new FollowersInsight<CountryProperty>
                 {
                     Count = ( int ) x.Value,
                     Property = new CountryProperty
@@ -56,7 +56,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             return outputResult;
         }
 
-        public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
+        public OperationResult<IEnumerable<FollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
@@ -64,14 +64,14 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
-                return new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
-                    Enumerable.Empty<InstaFollowersInsight<GenderAgeProperty>>( ),
+                return new OperationResult<IEnumerable<FollowersInsight<GenderAgeProperty>>>(
+                    Enumerable.Empty<FollowersInsight<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed );
             }
             var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
                 result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            var outputResult = new OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>>(
+            var outputResult = new OperationResult<IEnumerable<FollowersInsight<GenderAgeProperty>>>(
                 genderAge.Select( x =>
                 {
                     var generString = x.Key.Split( "." )[ 0 ];
@@ -88,7 +88,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
                         ageMax = int.Parse( x.Key.Split( "." )[ 1 ].Split( "-" )[ 1 ] );
                     }
 
-                    return new InstaFollowersInsight<GenderAgeProperty>
+                    return new FollowersInsight<GenderAgeProperty>
                     {
                         Count = ( int ) x.Value,
                         Property = new GenderAgeProperty

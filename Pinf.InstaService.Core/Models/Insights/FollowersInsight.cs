@@ -1,6 +1,6 @@
 ﻿namespace Pinf.InstaService.Core.Models.Insights
 {
-    public class InstaFollowersInsight<T>
+    public class FollowersInsight<T>
     {
 
         public T Property { get; set; }

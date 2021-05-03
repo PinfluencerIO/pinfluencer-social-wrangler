@@ -13,14 +13,14 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         protected const string TestId = "";
 
         protected OperationResultEnum ImpressionsOperationResult { get; set; }
-        protected IEnumerable<InstaProfileViewsInsight> ImpressionsColleciton { get; set; }
+        protected IEnumerable<ProfileViewsInsight> ImpressionsColleciton { get; set; }
 
         protected override void When( )
         {
             MockImpressionsInsightsRepository
                 .GetImpressions( Arg.Any<string>( ) )
                 .Returns(
-                    new OperationResult<IEnumerable<InstaProfileViewsInsight>>(
+                    new OperationResult<IEnumerable<ProfileViewsInsight>>(
                         ImpressionsColleciton, ImpressionsOperationResult
                     )
                 );
@@ -42,15 +42,15 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
                 .GetImpressions( Arg.Is( TestId ) );
         }
 
-        protected IEnumerable<InstaProfileViewsInsight> GetSingleImpressionsColleciton( DateTime date, int impressions )
+        protected IEnumerable<ProfileViewsInsight> GetSingleImpressionsColleciton( DateTime date, int impressions )
         {
             return new [ ]
             {
-                new InstaProfileViewsInsight( date, impressions )
+                new ProfileViewsInsight( date, impressions )
             };
         }
 
-        protected IEnumerable<InstaProfileViewsInsight> GetTwoImpressionsColleciton(
+        protected IEnumerable<ProfileViewsInsight> GetTwoImpressionsColleciton(
             DateTime date1,
             int impressions1,
             DateTime date2,
@@ -59,8 +59,8 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             return new [ ]
             {
-                new InstaProfileViewsInsight( date1, impressions1 ),
-                new InstaProfileViewsInsight( date2, impressions2 )
+                new ProfileViewsInsight( date1, impressions1 ),
+                new ProfileViewsInsight( date2, impressions2 )
             };
         }
 
