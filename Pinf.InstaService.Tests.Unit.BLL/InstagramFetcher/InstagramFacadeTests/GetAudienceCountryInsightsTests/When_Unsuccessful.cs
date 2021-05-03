@@ -27,7 +27,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         }
 
         [ Test ]
-        public void Then_Success_Is_Returned( )
+        public void Then_Failiure_Is_Returned( )
         {
             Assert.AreEqual( OperationResultEnum.Failed, _result.Status );
         }

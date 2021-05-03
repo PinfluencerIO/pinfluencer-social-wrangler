@@ -69,7 +69,8 @@ namespace Pinf.InstaService.BLL.Facades
         
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
-            throw new NotImplementedException( );
+            return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
+                Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
         }
     }
 }

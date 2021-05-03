@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
-using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceGenderInsightsTests.Shared;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceAgeInsightsTests.Shared;
 
-namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceGenderInsightsTests
+namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceAgeInsightsTests
 {
     public class When_Unsuccessful : When_Called
     {
-        private OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> _result;
+        private OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> _result;
 
         protected override void When( )
         {
@@ -22,7 +21,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
                     Enumerable.Empty<FollowersInsight<GenderAgeProperty>>(  ), 
                     OperationResultEnum.Failed
                 ) );
-            _result = Sut.GetAudienceGenderInsights( "123" );
+            _result = Sut.GetAudienceAgeInsights( "123" );
         }
 
         [ Test ]
