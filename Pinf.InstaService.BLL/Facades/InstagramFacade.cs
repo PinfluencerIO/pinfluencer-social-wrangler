@@ -84,7 +84,7 @@ namespace Pinf.InstaService.BLL.Facades
                 .GroupBy( x => x.Property.AgeRange )
                 .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
             return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
-                totalFollowersOfGenderType.Select( x => new AudiencePercentage<AgeProperty>{ Percentage =  ( double )x.Item2/totalFollowers, Value = new AgeProperty{ AgeRange = x.Key } } ),
+                totalFollowersOfGenderType.Select( x => new AudiencePercentage<AgeProperty>{ Percentage =  ( double )x.Item2/totalFollowers, Value = new AgeProperty{ Max = x.Key.Item2, Min = x.Key.Item1 } } ),
                 OperationResultEnum.Success );
         }
     }

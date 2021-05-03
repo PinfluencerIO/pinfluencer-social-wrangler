@@ -81,7 +81,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         
         private static double getAgeRangePercentage( IEnumerable<AudiencePercentage<AgeProperty>> collection, int lower, int higher )
         {
-            return collection.First( x => x.Value.AgeRange.Item1 == lower && x.Value.AgeRange.Item2 == higher ).Percentage;
+            return collection.First( x => x.Value.Min == lower && x.Value.Max == higher ).Percentage;
         }
     }
 }
