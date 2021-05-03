@@ -32,8 +32,18 @@ namespace Pinf.InstaService.BLL.Facades
 
         public OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> GetAudienceCountryInsights( string id )
         {
+            var result = _instaAudienceInsightsRepository.GetCountry( id );
+            if( result.Status != OperationResultEnum.Success )
+            {
+                return new OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>>(
+                    Enumerable.Empty<AudiencePercentage<RegionInfo>>( ), OperationResultEnum.Failed );
+            }
+
+            var totalFollowers = result.Value.Sum( x => x.Count );
             return new OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>>(
-                Enumerable.Empty<AudiencePercentage<RegionInfo>>( ), OperationResultEnum.Failed );
+                result.Value.Select( x => new AudiencePercentage<RegionInfo>
+                    { Percentage = ( double )x.Count / ( double )totalFollowers, Value = x.Property } ),
+                OperationResultEnum.Success );
         }
 
         public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
