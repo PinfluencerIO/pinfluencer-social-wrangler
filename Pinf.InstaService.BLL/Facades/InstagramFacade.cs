@@ -58,28 +58,12 @@ namespace Pinf.InstaService.BLL.Facades
             var totalFollowers = result
                 .Value
                 .Sum( x => x.Count );
-            var totalMaleFollowers = result
+            var totalFollowersOfGenderType = result
                 .Value
-                .Where( x => x.Property.Gender == GenderEnum.Male )
-                .Sum( x => x.Count );
-            var totalFemaleFollowers = result
-                .Value
-                .Where( x => x.Property.Gender == GenderEnum.Female )
-                .Sum( x => x.Count );
+                .GroupBy( x => x.Property.Gender )
+                .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
             return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
-                new []
-                {
-                    new AudiencePercentage<GenderEnum>
-                    {
-                        Percentage = ( double )totalMaleFollowers / totalFollowers,
-                        Value = GenderEnum.Male
-                    },
-                    new AudiencePercentage<GenderEnum>
-                    {
-                        Percentage = ( double )totalFemaleFollowers / totalFollowers,
-                        Value = GenderEnum.Female
-                    }
-                },
+                totalFollowersOfGenderType.Select( x => new AudiencePercentage<GenderEnum>{ Percentage =  ( double )x.Item2/totalFollowers, Value = x.Key } ),
                 OperationResultEnum.Success );
         }
         
