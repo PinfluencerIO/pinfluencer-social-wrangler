@@ -42,7 +42,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Valid_FR_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.42, _result.Value.First( x => x.Value.Name == CountryEnum.FR.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.Name == CountryEnum.FR.Stringify( ) ).Percentage );
         }
         
         [ Test ]
