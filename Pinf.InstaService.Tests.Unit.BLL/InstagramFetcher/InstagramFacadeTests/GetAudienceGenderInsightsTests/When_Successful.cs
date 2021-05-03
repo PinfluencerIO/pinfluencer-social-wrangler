@@ -8,10 +8,11 @@ using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.Utils;
+using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceGenderInsightsTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests.GetAudienceGenderInsightsTests
 {
-    public class When_Successful : Given_An_InstagramFacade
+    public class When_Successful : When_Called
     {
         private OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> _result;
 

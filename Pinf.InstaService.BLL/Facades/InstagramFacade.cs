@@ -69,8 +69,16 @@ namespace Pinf.InstaService.BLL.Facades
             return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
                 new []
                 {
-                    new AudiencePercentage<GenderEnum> { Percentage = ( double )totalMaleFollowers / totalFollowers, Value = GenderEnum.Male },
-                    new AudiencePercentage<GenderEnum> { Percentage = ( double )totalFemaleFollowers / totalFollowers, Value = GenderEnum.Female }
+                    new AudiencePercentage<GenderEnum>
+                    {
+                        Percentage = ( double )totalMaleFollowers / totalFollowers,
+                        Value = GenderEnum.Male
+                    },
+                    new AudiencePercentage<GenderEnum>
+                    {
+                        Percentage = ( double )totalFemaleFollowers / totalFollowers,
+                        Value = GenderEnum.Female
+                    }
                 },
                 OperationResultEnum.Success );
         }
