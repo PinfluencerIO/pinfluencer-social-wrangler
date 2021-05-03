@@ -69,8 +69,23 @@ namespace Pinf.InstaService.BLL.Facades
         
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
+            var result = _instaAudienceInsightsRepository.GetGenderAge( id );
+            if( result.Status != OperationResultEnum.Success )
+            {
+                return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
+                    Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
+            }
+
+            var totalFollowers = result
+                .Value
+                .Sum( x => x.Count );
+            var totalFollowersOfGenderType = result
+                .Value
+                .GroupBy( x => x.Property.AgeRange )
+                .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
             return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
-                Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
+                totalFollowersOfGenderType.Select( x => new AudiencePercentage<AgeProperty>{ Percentage =  ( double )x.Item2/totalFollowers, Value = new AgeProperty{ AgeRange = x.Key } } ),
+                OperationResultEnum.Success );
         }
     }
 }
