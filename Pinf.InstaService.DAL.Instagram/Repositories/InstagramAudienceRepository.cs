@@ -27,7 +27,7 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             _logger = logger;
         }
 
-        public OperationResult<IEnumerable<FollowersInsight<CountryProperty>>> GetCountry( string instaId )
+        public OperationResult<IEnumerable<FollowersInsight<RegionInfo>>> GetCountry( string instaId )
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
@@ -35,21 +35,18 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
-                return new OperationResult<IEnumerable<FollowersInsight<CountryProperty>>>(
-                    Enumerable.Empty<FollowersInsight<CountryProperty>>( ),
+                return new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
+                    Enumerable.Empty<FollowersInsight<RegionInfo>>( ),
                     OperationResultEnum.Failed );
             }
             var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
                 result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            var outputResult = new OperationResult<IEnumerable<FollowersInsight<CountryProperty>>>(
-                genderAge?.Select( x => new FollowersInsight<CountryProperty>
+            var outputResult = new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
+                genderAge?.Select( x => new FollowersInsight<RegionInfo>
                 {
                     Count = ( int ) x.Value,
-                    Property = new CountryProperty
-                    {
-                        Country = new RegionInfo( x.Key )
-                    }
+                    Property = new RegionInfo( x.Key )
                 } ),
                 OperationResultEnum.Success );
             _logger.LogInfo( "audience insights fetched successfully" );

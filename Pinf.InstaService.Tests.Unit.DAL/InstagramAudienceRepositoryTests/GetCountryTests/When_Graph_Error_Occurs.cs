@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using Facebook;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -12,7 +13,7 @@ using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
 {
     [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
-    public class When_Graph_Error_Occurs : When_Error_Occurs<CountryProperty>
+    public class When_Graph_Error_Occurs : When_Error_Occurs<RegionInfo>
     {
         public When_Graph_Error_Occurs( FacebookApiException apiException ) : base( apiException )
         {

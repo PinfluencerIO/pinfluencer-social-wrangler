@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Globalization;
 using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
@@ -29,9 +30,10 @@ namespace Pinf.InstaService.BLL.Facades
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
         public OperationResult<IEnumerable<InstaUser>> GetUsers( ) => _instaUserRepository.GetAll( );
 
-        public OperationResult<IEnumerable<AudiencePercentage<CountryProperty>>> GetAudienceCountryInsights( string id )
+        public OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> GetAudienceCountryInsights( string id )
         {
-            throw new NotImplementedException( );
+            return new OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>>(
+                Enumerable.Empty<AudiencePercentage<RegionInfo>>( ), OperationResultEnum.Failed );
         }
 
         public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )

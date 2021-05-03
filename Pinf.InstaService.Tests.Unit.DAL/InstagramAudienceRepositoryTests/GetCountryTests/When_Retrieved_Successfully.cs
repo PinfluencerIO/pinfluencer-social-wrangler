@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Facebook;
 using NSubstitute;
@@ -12,7 +13,7 @@ using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
 {
-    public class When_Retrieved_Successfully : When_Successful<CountryProperty>
+    public class When_Retrieved_Successfully : When_Successful<RegionInfo>
     {
         protected override void When( )
         {
@@ -69,7 +70,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 "Spain",
                 "United States"
             };
-            Assert.True( Result.Value.Select( x => x.Property.Country.EnglishName ).SequenceEqual( countries ) );
+            Assert.True( Result.Value.Select( x => x.Property.EnglishName ).SequenceEqual( countries ) );
         }
         
         [ Test ]

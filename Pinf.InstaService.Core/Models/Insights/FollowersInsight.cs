@@ -2,7 +2,6 @@
 {
     public class FollowersInsight<T>
     {
-
         public T Property { get; set; }
 
         public int Count { get; set; }
