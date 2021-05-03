@@ -48,7 +48,8 @@ namespace Pinf.InstaService.BLL.Facades
 
         public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
         {
-            throw new NotImplementedException( );
+            return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
+                Enumerable.Empty<AudiencePercentage<GenderEnum>>( ), OperationResultEnum.Failed );
         }
         
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
