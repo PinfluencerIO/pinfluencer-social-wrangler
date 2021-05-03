@@ -8,14 +8,12 @@ using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Instagram.Dtos;
-using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests.Shared;
+using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
 {
-    public class When_Retrieved_Successfully : When_Called
+    public class When_Retrieved_Successfully : When_Successful<CountryProperty>
     {
-        private OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> _result;
-
         protected override void When( )
         {
             MockFacebookClient
@@ -53,15 +51,9 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                         }
                     }
                 } );
-            _result = Sut.GetCountry( "123" );
+            Result = Sut.GetCountry( "123" );
         }
 
-        [ Test ]
-        public void Then_Success_Was_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
-        }
-        
         [ Test ]
         public void Then_Correct_Min_Age_Ranges_Were_Returned( )
         {
@@ -77,7 +69,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 "Spain",
                 "United States"
             };
-            Assert.True( _result.Value.Select( x => x.Property.Country.EnglishName ).SequenceEqual( countries ) );
+            Assert.True( Result.Value.Select( x => x.Property.Country.EnglishName ).SequenceEqual( countries ) );
         }
         
         [ Test ]
@@ -95,15 +87,15 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 1,
                 11
             };
-            Assert.True( _result.Value.Select( x => x.Count ).SequenceEqual( followerCounts ) );
+            Assert.True( Result.Value.Select( x => x.Count ).SequenceEqual( followerCounts ) );
         }
 
         [ Test ]
-        public void Then_Success_Event_Is_Logged( )
+        public void Then_Correct_Api_Params_Were_Used( )
         {
-            MockLogger
+            MockFacebookClient
                 .Received( )
-                .LogInfo( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ), Arg.Is<RequestInsightLifetimeParams>( x => x.period == "lifetime" && x.metric == "audience_country" ) );
         }
     }
 }

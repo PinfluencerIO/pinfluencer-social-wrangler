@@ -8,14 +8,12 @@ using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Instagram.Dtos;
-using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GenderAgeTests.Shared;
+using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GenderAgeTests
 {
-    public class When_Retrieved_Successfully : When_Called
+    public class When_Retrieved_Successfully : When_Successful<GenderAgeProperty>
     {
-        private OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> _result;
-
         protected override void When( )
         {
             MockFacebookClient
@@ -53,21 +51,15 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
                         }
                     }
                 } );
-            _result = Sut.GetGenderAge( "123" );
+            Result = Sut.GetGenderAge( "123" );
         }
 
-        [ Test ]
-        public void Then_Success_Was_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
-        }
-        
         [ Test ]
         public void Then_Correct_Min_Age_Ranges_Were_Returned( )
         {
             var minAges = new [ ] { 18, 25, 45, 18, 25, 35, 45, 55, 65 }
                 .OrderBy( x => x );
-            Assert.True( _result.Value
+            Assert.True( Result.Value
                 .Select( x => x.Property.AgeRange.Item1 )
                 .OrderBy( x => x )
                 .SequenceEqual( minAges ) );
@@ -78,7 +70,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
         {
             var maxAges = new int?[ ] { 24, 34, 54, 24, 34, 44, 54, 64, null }
                 .OrderBy( x => x );
-            Assert.True( _result.Value
+            Assert.True( Result.Value
                 .Select( x => x.Property.AgeRange.Item2 )
                 .OrderBy( x => x )
                 .SequenceEqual( maxAges ) );
@@ -99,7 +91,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
                 GenderEnum.Male,
                 GenderEnum.Male
             };
-            Assert.True( _result.Value
+            Assert.True( Result.Value
                 .Select( x => x.Property.Gender )
                 .SequenceEqual( genders ) );
         }
@@ -108,17 +100,17 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Gend
         public void Then_Correct_Follower_Counts_Were_Returned( )
         {
             var folowerCounts = new [ ] { 39, 4, 1, 73, 9, 2, 2, 1, 1 };
-            Assert.True( _result.Value
+            Assert.True( Result.Value
                 .Select( x => x.Count )
                 .SequenceEqual( folowerCounts ) );
         }
 
         [ Test ]
-        public void Then_Success_Event_Is_Logged( )
+        public void Then_Correct_Api_Params_Were_Used( )
         {
-            MockLogger
+            MockFacebookClient
                 .Received( )
-                .LogInfo( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ), Arg.Is<RequestInsightLifetimeParams>( x => x.period == "lifetime" && x.metric == "audience_gender_age" ) );
         }
     }
 }
