@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Facebook;
 using Microsoft.Extensions.Logging;
@@ -28,8 +29,31 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
 
         public OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>> GetCountry( string instaId )
         {
-            return new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
-                Enumerable.Empty<InstaFollowersInsight<CountryProperty>>( ), OperationResultEnum.Failed );
+            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
+                    .Get( $"{instaId}/insights",
+                        new RequestInsightLifetimeParams { metric = "audience_country" } ) );
+            if( !fbValidResult )
+            {
+                _logger.LogError( "audience insights not fetched successfully" );
+                return new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
+                    Enumerable.Empty<InstaFollowersInsight<CountryProperty>>( ),
+                    OperationResultEnum.Failed );
+            }
+            var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
+            var genderAge =
+                result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
+            var outputResult = new OperationResult<IEnumerable<InstaFollowersInsight<CountryProperty>>>(
+                genderAge?.Select( x => new InstaFollowersInsight<CountryProperty>
+                {
+                    Count = ( int ) x.Value,
+                    Property = new CountryProperty
+                    {
+                        Country = new RegionInfo( x.Key )
+                    }
+                } ),
+                OperationResultEnum.Success );
+            _logger.LogInfo( "audience insights fetched successfully" );
+            return outputResult;
         }
 
         public OperationResult<IEnumerable<InstaFollowersInsight<GenderAgeProperty>>> GetGenderAge( string instaId )
