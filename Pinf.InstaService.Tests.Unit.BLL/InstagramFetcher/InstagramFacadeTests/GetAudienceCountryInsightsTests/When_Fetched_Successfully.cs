@@ -54,7 +54,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Valid_GB_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.15, _result.Value.First( x => x.Value.Name == CountryEnum.US.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.15, _result.Value.First( x => x.Value.Name == CountryEnum.GB.Stringify( ) ).Percentage );
         }
     }
 }
