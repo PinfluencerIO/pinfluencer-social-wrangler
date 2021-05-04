@@ -25,7 +25,7 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Wrappers
         {
             using var fs =
                 File.AppendText( $"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.NginxExtensionFile}" );
-            var firstLine = $"location {config.Url} " + "{" + Environment.NewLine;
+            var firstLine = $"{Environment.NewLine}location {config.Url} " + "{" + Environment.NewLine;
             var secondLine = $"    return {config.Status} '{config.Text}';{Environment.NewLine}";
             var thirdLine = "}" + Environment.NewLine;
             fs.Write( $"{firstLine}{secondLine}{thirdLine}" );
