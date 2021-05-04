@@ -21,25 +21,21 @@ using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {
     //TODO: ADD LOGGING !!!
-    public class UserRepository : IUserRepository
+    public class UserRepository : BubbleRepository<UserRepository>, IUserRepository
     {
         private readonly Auth0Context _auth0Context;
-        private readonly IBubbleClient _bubbleClient;
         private readonly FacebookContext _facebookContext;
         private readonly IUser _user;
-        private readonly ILoggerAdapter<UserRepository> _logger;
 
         public UserRepository( Auth0Context auth0Context,
             IBubbleClient bubbleClient,
             FacebookContext facebookContext,
             IUser user,
-            ILoggerAdapter<UserRepository> logger )
+            ILoggerAdapter<UserRepository> logger ) : base( bubbleClient, logger )
         {
             _auth0Context = auth0Context;
-            _bubbleClient = bubbleClient;
             _facebookContext = facebookContext;
             _user = user;
-            _logger = logger;
         }
 
         //TODO: dont swallow all exceptions
@@ -50,19 +46,19 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 var user = _auth0Context.GetUser( id );
                 var result =
                     new OperationResult<string>( user.Identities[ 0 ].AccessToken, OperationResultEnum.Success );
-                _logger.LogInfo( "instagram token fetched successfully" );
+                Logger.LogInfo( "instagram token fetched successfully" );
                 return result;
             }
             catch( Exception )
             {
-                _logger.LogError( "instagram token was not fetched" );
+                Logger.LogError( "instagram token was not fetched" );
                 return new OperationResult<string>( "", OperationResultEnum.Failed );
             }
         }
 
         public OperationResultEnum CreateInfluencer( InfluencerModel influencer )
         {
-            var (validRequest, httpStatusCode) = validateRequestException( ( ) => _bubbleClient.Post( "influencer",
+            var (validRequest, httpStatusCode) = ValidateRequestException( ( ) => BubbleClient.Post( "influencer",
                 new Dtos.Bubble.Influencer
                 {
                     Age = influencer.Age,
@@ -72,12 +68,12 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                     Instagram = influencer.InstagramHandle,
                     Profile = influencer.User.Id
                 } ) );
-            if( validRequest & validateHttpCode( httpStatusCode ) )
+            if( validRequest & ValidateHttpCode( httpStatusCode ) )
             {
-                _logger.LogInfo( "influencer created successfully" );
+                Logger.LogInfo( "influencer created successfully" );
                 return OperationResultEnum.Success;
             }
-            _logger.LogError( "influencer was not created" );
+            Logger.LogError( "influencer was not created" );
             return OperationResultEnum.Failed;
         }
 
@@ -90,35 +86,24 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                     .Get( "me", new RequestFields { fields = "birthday,location,gender" } );
                 var facebookUser = JsonConvert.DeserializeObject<FacebookUser>( facebookUserStr );
                 var (validRequest, (httpStatusCode, typeResponse)) =
-                    validateRequestException( ( ) => _bubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ) );
+                    ValidateRequestException( ( ) => BubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ) );
                 if( validRequest )
-                    if( validateHttpCode( httpStatusCode ) )
+                    if( ValidateHttpCode( httpStatusCode ) )
                     {
                         _user.Id = typeResponse.Type.Id;
                         _user.Name = typeResponse.Type.Name;
                         _user.Birthday = facebookUser.Birthday;
                         _user.Gender = facebookUser.Gender;
                         _user.Location = facebookUser.Location == null ? "Unknown" : facebookUser.Location.Name;
-                        _logger.LogInfo( "user was fetched successfully" );
+                        Logger.LogInfo( "user was fetched successfully" );
                         return new OperationResult<IUser>( _user, OperationResultEnum.Success );
                     }
             }
             catch( FacebookApiException e ) when( e is FacebookApiException || e is FacebookApiLimitException || e is FacebookOAuthException )
             {
             }
-            _logger.LogError( "user was not fetched" );
+            Logger.LogError( "user was not fetched" );
             return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
-        }
-
-        private bool validateHttpCode( HttpStatusCode code ) { return code.GetHashCode( ).ToString( )[0].ToString() == "2"; }
-
-        private( bool, T ) validateRequestException<T>( Func<T> httpFunc )
-        {
-            try { return( true, httpFunc( ) ); }
-            catch( Exception e ) when( e is ArgumentException || e is HttpRequestException )
-            {
-                return( false, default );
-            }
         }
     }
 }
