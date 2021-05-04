@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core.Enum;
@@ -26,7 +27,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_Result_Status_Is_Unauthorized( )
         {
-            Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
+            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ), ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
         }
 
         [ Test ]

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 using NSubstitute;
 
 namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
@@ -30,10 +31,10 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
             return new Dictionary<string, object>( );
         }
 
-        protected TType GetResultObject<TResult, TType>( ) where TResult : ObjectResult where TType : class
+        protected TType GetResultObject<TType>( ) where TType : class
         {
-            var objectResult = MockActionExecutingContext.Result as TResult;
-            return objectResult?.Value as TType;
+            var objectResult = MockActionExecutingContext.Result as ContentResult;
+            return JsonConvert.DeserializeObject<TType>( objectResult?.Content );
         }
 
         protected override void Given( )

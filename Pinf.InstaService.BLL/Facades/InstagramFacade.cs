@@ -30,19 +30,19 @@ namespace Pinf.InstaService.BLL.Facades
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
         public OperationResult<IEnumerable<InstaUser>> GetUsers( ) => _instaUserRepository.GetAll( );
 
-        public OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> GetAudienceCountryInsights( string id )
+        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights( string id )
         {
             var result = _instaAudienceRepository.GetCountry( id );
             if( result.Status != OperationResultEnum.Success )
             {
-                return new OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>>(
-                    Enumerable.Empty<AudiencePercentage<RegionInfo>>( ), OperationResultEnum.Failed );
+                return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
+                    Enumerable.Empty<AudiencePercentage<LocationProperty>>( ), OperationResultEnum.Failed );
             }
 
             var totalFollowers = result.Value.Sum( x => x.Count );
-            return new OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>>(
-                result.Value.Select( x => new AudiencePercentage<RegionInfo>
-                    { Percentage = ( double )x.Count / ( double )totalFollowers, Value = x.Property } ),
+            return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
+                result.Value.Select( x => new AudiencePercentage<LocationProperty>
+                    { Percentage = ( double )x.Count / ( double )totalFollowers, Value = new LocationProperty{ CountryCode = x.Property.Name, Country = x.Property.EnglishName } } ),
                 OperationResultEnum.Success );
         }
 

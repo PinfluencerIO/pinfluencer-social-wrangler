@@ -1,4 +1,5 @@
-﻿using Facebook;
+﻿using System.Net;
+using Facebook;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
@@ -28,7 +29,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_Result_Status_Is_Unauthorized( )
         {
-            Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
+            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ), ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
         }
 
         [ Test ]

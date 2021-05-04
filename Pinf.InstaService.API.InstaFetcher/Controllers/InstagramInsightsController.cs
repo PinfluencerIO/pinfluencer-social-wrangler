@@ -61,5 +61,14 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
             if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
             return MvcExtensions.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
+        
+        [ NonAction ]
+        [ ActionName( "audience_country" ) ]
+        private IActionResult getAudienceCountry( string user )
+        {
+            var insights = _instagramFacade.GetAudienceCountryInsights( user );
+            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
+            return MvcExtensions.BadRequestError( "failed to fetch instagram audience gender insights for user" );
+        }
     }
 }

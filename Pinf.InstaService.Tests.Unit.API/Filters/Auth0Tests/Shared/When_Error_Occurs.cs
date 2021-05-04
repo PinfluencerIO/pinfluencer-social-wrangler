@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests.Shared
@@ -11,7 +12,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests.Shared
         [ Test ]
         public void Then_Result_Status_Is_Unauthorized( )
         {
-            Assert.True( MockActionExecutingContext.Result.GetType( ) == typeof( UnauthorizedObjectResult ) );
+            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ), ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
         }
 
         [ Test ]

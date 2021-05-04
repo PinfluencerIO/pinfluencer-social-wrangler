@@ -6,7 +6,7 @@ using Pinf.InstaService.Crosscutting.Utils;
 namespace Pinf.InstaService.Core.Enum
 {
     //TODO => MAKE DYNAMIC ( REFLECTION )
-    [ JsonConverter( typeof( JsonEnumConverter<GenderEnum> ) ) ]
+    [ JsonConverter( typeof( StringEnumConverter ) ) ]
     public enum GenderEnum
     {
         Male,

@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public class When_Successful : When_Called
     {
-        private OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> _result;
+        private OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
 
         protected override void When( )
         {
@@ -43,19 +43,19 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Valid_FR_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.Name == CountryEnum.FR.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.FR.Stringify( ) ).Percentage );
         }
         
         [ Test ]
         public void Then_Valid_US_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.Name == CountryEnum.US.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.US.Stringify( ) ).Percentage );
         }
         
         [ Test ]
         public void Then_Valid_GB_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.15, _result.Value.First( x => x.Value.Name == CountryEnum.GB.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.15, _result.Value.First( x => x.Value.CountryCode == CountryEnum.GB.Stringify( ) ).Percentage );
         }
     }
 }

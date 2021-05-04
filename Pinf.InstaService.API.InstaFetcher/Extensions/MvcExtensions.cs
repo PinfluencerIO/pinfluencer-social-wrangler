@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Pinf.InstaService.API.InstaFetcher.Configuration;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 
 namespace Pinf.InstaService.API.InstaFetcher.Extensions
@@ -28,9 +27,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Extensions
         [ Description( "newtonsoft json formatter" ) ]
         private static ContentResult ToJson( this object objectValue, HttpStatusCode statusCode )
         {
-            var settings = new JsonSerializerSettings();
-            settings.ContractResolver = new DefaultJsonResolver();
-            var json = JsonConvert.SerializeObject( objectValue, settings );
+            var json = JsonConvert.SerializeObject( objectValue );
             return new ContentResult
             {
                 Content = json,

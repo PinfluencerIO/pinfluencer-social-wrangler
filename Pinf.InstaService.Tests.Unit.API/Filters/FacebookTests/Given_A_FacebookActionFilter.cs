@@ -29,7 +29,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
         protected FacebookClient MockFacebookClient;
         protected IUserRepository MockUserRepository;
 
-        protected string ErrorMessage => GetResultObject<UnauthorizedObjectResult, ErrorDto>( ).ErrorMsg;
+        protected string ErrorMessage => GetResultObject<ErrorDto>( ).ErrorMsg;
 
         protected override void Given( )
         {

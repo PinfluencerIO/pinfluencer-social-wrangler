@@ -13,7 +13,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public class When_Unsuccessful : When_Called
     {
-        private OperationResult<IEnumerable<AudiencePercentage<RegionInfo>>> _result;
+        private OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
 
         protected override void When( )
         {
