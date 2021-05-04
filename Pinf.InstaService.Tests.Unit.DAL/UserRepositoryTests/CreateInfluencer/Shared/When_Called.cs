@@ -38,5 +38,19 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.
                 .Received( )
                 .Post( Arg.Is<string>( uri => uri == "influencer" ), Arg.Any<Influencer>( ) );
         }
+        
+        [ Test ]
+        public void Then_Valid_Influencer_Is_Created( )
+        {
+            MockBubbleClient
+                .Received( )
+                .Post( Arg.Any<string>( ),
+                    Arg.Is<Influencer>(
+                        x => x.Bio == GetDefaultInfluencer().Bio &&
+                             x.Instagram == GetDefaultInfluencer().InstagramHandle &&
+                             x.Profile == GetDefaultInfluencer().User.Id &&
+                             x.Age == GetDefaultInfluencer().Age &&
+                             x.Location == GetDefaultInfluencer().Location ) );
+        }
     }
 }

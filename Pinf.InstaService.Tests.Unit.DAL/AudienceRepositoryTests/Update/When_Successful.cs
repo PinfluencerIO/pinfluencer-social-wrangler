@@ -2,10 +2,12 @@
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
-using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared;
+using Pinf.InstaService.Core.Models.Insights;
+using Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Update.Shared;
+using Audience = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Audience;
+using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 
-namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
+namespace Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Update
 {
     public class When_Successful : When_Called
     {
@@ -14,9 +16,9 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
         protected override void When( )
         {
             MockBubbleClient
-                .Post( Arg.Any<string>( ), Arg.Any<Influencer>( ) )
+                .Post( Arg.Any<string>( ), Arg.Any<Audience>( ) )
                 .Returns( HttpStatusCode.Created );
-            _result = Sut.CreateInfluencer( GetDefaultInfluencer() );
+            _result = Sut.Update( DefaultAudience );
         }
 
         [ Test ]
