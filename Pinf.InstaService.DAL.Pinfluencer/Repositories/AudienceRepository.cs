@@ -9,23 +9,14 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {
     public class AudienceRepository : BubbleRepository<AudienceRepository>, IAudienceRepository
     {
+        protected override string Resource => "audience";
+        
         public AudienceRepository( IBubbleClient bubbleClient, ILoggerAdapter<AudienceRepository> logger ) : base( bubbleClient, logger )
         {
         }
         
-        public OperationResultEnum Create( AudienceModel audience )
-        {
-            var (validRequest, httpStatusCode ) =
-                ValidateRequestException( ( ) => BubbleClient.Post( "audience", new Audience(  ) ) );
-            if( validRequest )
-                if( ValidateHttpCode( httpStatusCode ) )
-                {
-                    Logger.LogInfo( "audience was created successfully" );
-                    return OperationResultEnum.Success;
-                }
-            Logger.LogError( "audience was not created" );
-            return OperationResultEnum.Failed;
-        }
+        public OperationResultEnum Create( AudienceModel audience ) => 
+            BodiedNoResponseRequest( ( ) => BubbleClient.Post( Resource, new Audience( ) ), Resource );
 
         public OperationResultEnum Update( AudienceModel audience )
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Crosscutting.Utils;
 
@@ -10,6 +11,7 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
     {
         protected readonly IBubbleClient BubbleClient;
         protected readonly ILoggerAdapter<TRepo> Logger;
+        protected virtual string Resource => default;
 
         protected BubbleRepository( IBubbleClient bubbleClient, ILoggerAdapter<TRepo> logger )
         {
@@ -27,5 +29,22 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 return( false, default );
             }
         }
+
+        protected OperationResultEnum BodiedNoResponseRequest( Func<HttpStatusCode> call, string action )
+        {
+            var (validRequest, httpStatusCode ) =
+                ValidateRequestException( call );
+            if( validRequest )
+                if( ValidateHttpCode( httpStatusCode ) )
+                {
+                    Logger.LogInfo( $"{Resource} was {action} successfully" );
+                    return OperationResultEnum.Success;
+                }
+            Logger.LogError( $"{Resource} was not {action}" );
+            return OperationResultEnum.Failed;
+        }
+
+        protected OperationResultEnum CreateRequest( Func<HttpStatusCode> call ) =>
+            BodiedNoResponseRequest( call, "created" );
     }
 }

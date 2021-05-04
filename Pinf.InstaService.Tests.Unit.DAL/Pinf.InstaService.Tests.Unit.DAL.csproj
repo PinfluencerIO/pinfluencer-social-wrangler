@@ -20,4 +20,8 @@
       <ProjectReference Include="..\Pinf.InstaService.DAL.Pinfluencer\Pinf.InstaService.DAL.Pinfluencer.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="AudienceRepositoryTests\Update" />
+    </ItemGroup>
+
 </Project>

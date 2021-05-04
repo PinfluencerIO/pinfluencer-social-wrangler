@@ -26,6 +26,7 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         private readonly Auth0Context _auth0Context;
         private readonly FacebookContext _facebookContext;
         private readonly IUser _user;
+        protected override string Resource => "user";
 
         public UserRepository( Auth0Context auth0Context,
             IBubbleClient bubbleClient,
@@ -56,10 +57,9 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
             }
         }
 
-        public OperationResultEnum CreateInfluencer( InfluencerModel influencer )
-        {
-            var (validRequest, httpStatusCode) = ValidateRequestException( ( ) => BubbleClient.Post( "influencer",
-                new Dtos.Bubble.Influencer
+        public OperationResultEnum CreateInfluencer( InfluencerModel influencer ) =>
+            CreateRequest( ( ) => BubbleClient.Post( "influencer",
+                new Influencer
                 {
                     Age = influencer.Age,
                     Bio = influencer.Bio,
@@ -68,16 +68,8 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                     Instagram = influencer.InstagramHandle,
                     Profile = influencer.User.Id
                 } ) );
-            if( validRequest & ValidateHttpCode( httpStatusCode ) )
-            {
-                Logger.LogInfo( "influencer created successfully" );
-                return OperationResultEnum.Success;
-            }
-            Logger.LogError( "influencer was not created" );
-            return OperationResultEnum.Failed;
-        }
 
-        //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
+            //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
         public OperationResult<IUser> Get( string id )
         {
             try
