@@ -78,6 +78,12 @@ namespace Pinf.InstaService.Bootstrapping.DevOps.Facades
                 {
                     Url = PinfluencerHostConstants.ApiUrl,
                     Port = PinfluencerHostConstants.ReverseProxyPort
+                } )
+                .AddTextResponse( new NginxTextResponseDto
+                {
+                    Status = 200,
+                    Text = "cert validated",
+                    Url = PinfluencerHostConstants.CertUrl
                 } );
             return this;
         }
