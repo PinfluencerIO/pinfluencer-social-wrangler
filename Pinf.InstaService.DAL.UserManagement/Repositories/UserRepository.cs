@@ -98,7 +98,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
                         _user.Name = typeResponse.Type.Name;
                         _user.Birthday = facebookUser.Birthday;
                         _user.Gender = facebookUser.Gender;
-                        _user.Location = facebookUser.Location.Name;
+                        _user.Location = facebookUser.Location == null ? "Unknown" : facebookUser.Location.Name;
                         _logger.LogInfo( "user was fetched successfully" );
                         return new OperationResult<IUser>( _user, OperationResultEnum.Success );
                     }
