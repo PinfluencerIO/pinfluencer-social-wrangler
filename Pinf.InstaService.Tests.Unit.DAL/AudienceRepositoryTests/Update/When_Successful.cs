@@ -16,7 +16,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Update
         protected override void When( )
         {
             MockBubbleClient
-                .Post( Arg.Any<string>( ), Arg.Any<Audience>( ) )
+                .Patch( Arg.Any<string>( ), Arg.Any<Audience>( ) )
                 .Returns( HttpStatusCode.Created );
             _result = Sut.Update( DefaultAudience );
         }

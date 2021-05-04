@@ -1,4 +1,5 @@
-﻿using Pinf.InstaService.Core.Enum;
+﻿using System.Linq;
+using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using AudienceModel = Pinf.InstaService.Core.Models.Audience;
@@ -16,11 +17,14 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         }
         
         public OperationResultEnum Create( AudienceModel audience ) => 
-            BodiedNoResponseRequest( ( ) => BubbleClient.Post( Resource, new Audience( ) ), Resource );
+            CreateRequest( ( ) => BubbleClient.Post( Resource, new Audience( ) ) );
 
-        public OperationResultEnum Update( AudienceModel audience )
-        {
-            throw new System.NotImplementedException( );
-        }
+        public OperationResultEnum Update( AudienceModel audience ) =>
+            UpdateRequest( ( ) => BubbleClient.Patch( Resource, new Audience
+            {
+                AudienceAge = audience.AudienceAge.Select( x => x.Id ),
+                AudienceGender = audience.AudienceGender.Select( x => x.Id ),
+                AudienceLocation = audience.AudienceLocation.Select( x => x.Id )
+            } ) );
     }
 }
