@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using NSubstitute;
+using Pinf.InstaService.API.InstaFetcher;
+using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
 {
@@ -15,6 +17,8 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
         private HttpContext _mockHttpContext;
         private HttpRequest _mockHttpRequest;
         protected ActionExecutingContext MockActionExecutingContext;
+        protected MvcAdapter MvcAdapter;
+        protected ISerializer Serializer;
 
         protected virtual Dictionary<string, StringValues> SetupHeaders( )
         {
@@ -34,13 +38,15 @@ namespace Pinf.InstaService.Crosscutting.NUnit.Extensions
         protected TType GetResultObject<TType>( ) where TType : class
         {
             var objectResult = MockActionExecutingContext.Result as ContentResult;
-            return JsonConvert.DeserializeObject<TType>( objectResult?.Content );
+            return Serializer.Deserialize<TType>( objectResult?.Content );
         }
 
         protected override void Given( )
         {
+            Serializer = new JsonSerialzierAdapter( new ClassicJsonResolver( ) );
             _mockHttpContext = Substitute.For<HttpContext>( );
             _mockHttpRequest = Substitute.For<HttpRequest>( );
+            MvcAdapter = new MvcAdapter( Serializer );
         }
 
         protected override void When( )

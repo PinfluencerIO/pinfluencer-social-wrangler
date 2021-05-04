@@ -30,8 +30,6 @@ namespace Pinf.InstaService.Local.Sandbox
     {
         private static void Main( string [ ] args )
         {
-            var regions =
-                new [ ] { "EG", "SG", "AU", "IN", "CI", "PH", "GB", "ES", "US" }.Select( x => new RegionInfo( x ).EnglishName );
         }
     }
 

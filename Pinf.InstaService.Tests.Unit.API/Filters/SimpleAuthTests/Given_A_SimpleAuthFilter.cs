@@ -18,7 +18,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.SimpleAuthTests
 
             MockConfiguration = Substitute.For<IConfiguration>( );
 
-            Sut = new SimpleAuthActionFilter( MockConfiguration );
+            Sut = new SimpleAuthActionFilter( MockConfiguration, MvcAdapter );
         }
     }
 }

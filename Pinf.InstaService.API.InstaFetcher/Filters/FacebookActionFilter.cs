@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Facebook;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.RequestDtos;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.Core.Enum;
@@ -21,16 +20,19 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     public class FacebookActionFilter : ActionFilterAttribute
     {
         private readonly IFacebookClientFactory _facebookClientFactory;
+        private readonly MvcAdapter _mvcAdapter;
         private readonly FacebookContext _facebookContext;
         private readonly IUserRepository _userRepository;
 
         public FacebookActionFilter( IUserRepository userRepository,
             FacebookContext facebookContext,
-            IFacebookClientFactory facebookClientFactory )
+            IFacebookClientFactory facebookClientFactory,
+            MvcAdapter mvcAdapter )
         {
             _userRepository = userRepository;
             _facebookContext = facebookContext;
             _facebookClientFactory = facebookClientFactory;
+            _mvcAdapter = mvcAdapter;
         }
 
         public override void OnActionExecuting( ActionExecutingContext context )
@@ -46,7 +48,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
                 }
                 catch( Exception e ) when ( e is KeyNotFoundException || e is InvalidCastException )
                 {
-                    context.Result = MvcExtensions.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
+                    context.Result = _mvcAdapter.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
                     return;
                 }
             }
@@ -55,7 +57,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
 
             if( tokenResult.Status == OperationResultEnum.Failed )
             {
-                context.Result = MvcExtensions.UnauthorizedError( "auth0 id did not match an existing user" );
+                context.Result = _mvcAdapter.UnauthorizedError( "auth0 id did not match an existing user" );
                 return;
             }
 
@@ -68,7 +70,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             }
             catch( FacebookApiException e )
             {
-                context.Result = MvcExtensions.UnauthorizedError( e.Message );
+                context.Result = _mvcAdapter.UnauthorizedError( e.Message );
             }
         }
     }

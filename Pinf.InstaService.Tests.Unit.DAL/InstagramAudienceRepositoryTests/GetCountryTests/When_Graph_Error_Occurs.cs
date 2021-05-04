@@ -13,7 +13,7 @@ using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
 {
     [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
-    public class When_Graph_Error_Occurs : When_Error_Occurs<RegionInfo>
+    public class When_Graph_Error_Occurs : When_Error_Occurs<LocationProperty>
     {
         public When_Graph_Error_Occurs( FacebookApiException apiException ) : base( apiException )
         {

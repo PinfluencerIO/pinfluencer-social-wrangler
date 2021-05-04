@@ -4,6 +4,7 @@ using Facebook;
 using NSubstitute;
 using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.User;
+using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.UserManagement;
 
@@ -16,10 +17,12 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
         protected FacebookClient MockFacebookClient => FacebookContext.FacebookClient;
         protected IUser User;
         protected IManagementConnection MockAuth0ManagementApiConnection;
+        protected CountryGetter CountryGetter;
 
         protected override void Given( )
         {
             base.Given( );
+            CountryGetter = new CountryGetter( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
             FacebookContext = new FacebookContext { FacebookClient = Substitute.For<FacebookClient>( ) };
             Auth0Context = new Auth0Context( ){ ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };

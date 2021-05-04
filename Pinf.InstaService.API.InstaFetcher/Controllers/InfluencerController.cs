@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.RequestDtos;
 using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {
@@ -13,12 +13,12 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
     {
         private readonly InfluencerFacade _influencerFacade;
         
-        public InfluencerController( InfluencerFacade influencerFacade ) { _influencerFacade = influencerFacade; }
+        public InfluencerController( InfluencerFacade influencerFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _influencerFacade = influencerFacade; }
 
         [ Route( "" ) ]
         [ HttpPost ]
         public IActionResult Create( [ FromBody ] UserDto user ) => 
             _influencerFacade.OnboardInfluencer( user.UserId ) == OperationResultEnum.Success ?
-                MvcExtensions.Success( "influencer created" ) : MvcExtensions.BadRequestError( "influencer not created" ) as IActionResult;
+                MvcAdapter.Success( "influencer created" ) : MvcAdapter.BadRequestError( "influencer not created" ) as IActionResult;
     }
 }

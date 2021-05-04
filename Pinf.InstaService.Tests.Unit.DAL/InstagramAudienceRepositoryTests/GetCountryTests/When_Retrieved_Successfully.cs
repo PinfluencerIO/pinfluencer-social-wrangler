@@ -13,7 +13,7 @@ using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
 {
-    public class When_Retrieved_Successfully : When_Successful<RegionInfo>
+    public class When_Retrieved_Successfully : When_Successful<LocationProperty>
     {
         protected override void When( )
         {
@@ -56,7 +56,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
         }
 
         [ Test ]
-        public void Then_Correct_Min_Age_Ranges_Were_Returned( )
+        public void Then_Correct_Countries_Were_Returned( )
         {
             var countries = new [ ]
             {
@@ -64,13 +64,13 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetC
                 "Singapore",
                 "Australia",
                 "India",
-                "Côte d’Ivoire",
+                "Côte d'Ivoire",
                 "Philippines",
                 "United Kingdom",
                 "Spain",
                 "United States"
             };
-            Assert.True( Result.Value.Select( x => x.Property.EnglishName ).SequenceEqual( countries ) );
+            Assert.True( Result.Value.Select( x => x.Property.Country ).SequenceEqual( countries ) );
         }
         
         [ Test ]

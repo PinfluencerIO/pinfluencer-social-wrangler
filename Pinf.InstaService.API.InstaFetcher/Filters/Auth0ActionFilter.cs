@@ -5,7 +5,6 @@ using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.DAL.UserManagement;
@@ -21,18 +20,21 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
     {
         private readonly Auth0Context _auth0Context;
         private readonly IAuthenticationConnection _authenticationConnection;
+        private readonly MvcAdapter _mvcAdapter;
         private readonly IConfiguration _configuration;
         private readonly IManagementConnection _managementConnection;
 
         public Auth0ActionFilter( Auth0Context auth0Context,
             IConfiguration configuration,
             IManagementConnection managementConnection,
-            IAuthenticationConnection authenticationConnection )
+            IAuthenticationConnection authenticationConnection,
+            MvcAdapter mvcAdapter )
         {
             _auth0Context = auth0Context;
             _configuration = configuration;
             _managementConnection = managementConnection;
             _authenticationConnection = authenticationConnection;
+            _mvcAdapter = mvcAdapter;
         }
 
         public override void OnActionExecuting( ActionExecutingContext context )
@@ -44,7 +46,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
                 auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null ||
                 auth0Settings.ManagementDomain == null )
             {
-                context.Result = MvcExtensions.UnauthorizedError( "auth0 configuration settings are not valid" );
+                context.Result = _mvcAdapter.UnauthorizedError( "auth0 configuration settings are not valid" );
                 return;
             }
 
@@ -65,7 +67,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Filters
             }
             catch( ApiException exception )
             {
-                context.Result = MvcExtensions.UnauthorizedError( exception.Message );
+                context.Result = _mvcAdapter.UnauthorizedError( exception.Message );
             }
         }
     }

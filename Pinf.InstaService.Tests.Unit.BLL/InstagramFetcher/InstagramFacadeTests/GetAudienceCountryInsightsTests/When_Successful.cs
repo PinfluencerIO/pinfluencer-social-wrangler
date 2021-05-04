@@ -19,15 +19,15 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             MockInstaAudienceRepository
                 .GetCountry( Arg.Any<string>(  ) )
-                .Returns( new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
+                .Returns( new OperationResult<IEnumerable<FollowersInsight<LocationProperty>>>(
                     new [ ]
                     {
-                        new FollowersInsight<RegionInfo>
-                            { Count = 39, Property = RegionExtensions.GetRegion( CountryEnum.GB ) },
-                        new FollowersInsight<RegionInfo>
-                            { Count = 113, Property = RegionExtensions.GetRegion( CountryEnum.US ) },
-                        new FollowersInsight<RegionInfo>
-                            { Count = 113, Property = RegionExtensions.GetRegion( CountryEnum.FR ) }
+                        new FollowersInsight<LocationProperty>
+                            { Count = 39, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.GB ], CountryCode = CountryEnum.GB } },
+                        new FollowersInsight<LocationProperty>
+                            { Count = 113, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.US ], CountryCode = CountryEnum.US } },
+                        new FollowersInsight<LocationProperty>
+                            { Count = 113, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.FR ], CountryCode = CountryEnum.FR } }
                     },
                     OperationResultEnum.Success
                 ) );
@@ -43,19 +43,19 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         [ Test ]
         public void Then_Valid_FR_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.FR.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.FR ).Percentage );
         }
         
         [ Test ]
         public void Then_Valid_US_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.US.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.US ).Percentage );
         }
         
         [ Test ]
         public void Then_Valid_GB_Percentage_Is_Returned( )
         {
-            Assert.AreEqual( 0.15, _result.Value.First( x => x.Value.CountryCode == CountryEnum.GB.Stringify( ) ).Percentage );
+            Assert.AreEqual( 0.15, _result.Value.First( x => x.Value.CountryCode == CountryEnum.GB ).Percentage );
         }
     }
 }

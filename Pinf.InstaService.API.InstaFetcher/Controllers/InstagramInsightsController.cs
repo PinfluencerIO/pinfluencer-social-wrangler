@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
-using Pinf.InstaService.API.InstaFetcher.Extensions;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {
@@ -15,7 +15,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
     {
         private readonly InstagramFacade _instagramFacade;
 
-        public InstagramInsightsController( InstagramFacade instagramFacade ) { _instagramFacade = instagramFacade; }
+        public InstagramInsightsController( InstagramFacade instagramFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacade; }
 
         [ Route( "" ) ]
         [ HttpGet ]
@@ -31,7 +31,7 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
             }
             catch( Exception e ) when( e is ArgumentException || e is InvalidOperationException || e is NullReferenceException )
             {
-                return MvcExtensions.NotFoundError( "insight metric was not found" );
+                return MvcAdapter.NotFoundError( "insight metric was not found" );
             }
         }
 
@@ -40,8 +40,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         private IActionResult getImpressions( string user )
         {
             var insights = _instagramFacade.GetMonthlyProfileViews( user );
-            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
-            return MvcExtensions.BadRequestError( "failed to fetch instagram impressions for user" );
+            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
+            return MvcAdapter.BadRequestError( "failed to fetch instagram impressions for user" );
         }
         
         [ NonAction ]
@@ -49,8 +49,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         private IActionResult getAudienceAge( string user )
         {
             var insights = _instagramFacade.GetAudienceAgeInsights( user );
-            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
-            return MvcExtensions.BadRequestError( "failed to fetch instagram audience age insights for user" );
+            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
+            return MvcAdapter.BadRequestError( "failed to fetch instagram audience age insights for user" );
         }
         
         [ NonAction ]
@@ -58,8 +58,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         private IActionResult getAudienceGender( string user )
         {
             var insights = _instagramFacade.GetAudienceGenderInsights( user );
-            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
-            return MvcExtensions.BadRequestError( "failed to fetch instagram audience gender insights for user" );
+            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
+            return MvcAdapter.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
         
         [ NonAction ]
@@ -67,8 +67,8 @@ namespace Pinf.InstaService.API.InstaFetcher.Controllers
         private IActionResult getAudienceCountry( string user )
         {
             var insights = _instagramFacade.GetAudienceCountryInsights( user );
-            if( insights.Status != OperationResultEnum.Failed ) return insights.Value.OkResult( );
-            return MvcExtensions.BadRequestError( "failed to fetch instagram audience gender insights for user" );
+            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
+            return MvcAdapter.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
 
-            Sut = new FacebookActionFilter( MockUserRepository, _facebookContext, _mockFacebookClientFactory );
+            Sut = new FacebookActionFilter( MockUserRepository, _facebookContext, _mockFacebookClientFactory, MvcAdapter );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )

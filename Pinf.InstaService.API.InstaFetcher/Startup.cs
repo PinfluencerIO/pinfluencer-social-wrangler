@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.BLL.Facades;
@@ -32,8 +33,12 @@ namespace Pinf.InstaService.API.InstaFetcher
         public void ConfigureServices( IServiceCollection dependancyCollection )
         {
             dependancyCollection
+                .AddSingleton<CountryGetter>( )
                 .AddScoped<Auth0Context>( )
                 .AddScoped<FacebookContext>( )
+                .AddTransient<IContractResolver, ClassicJsonResolver>( )
+                .AddTransient<ISerializer, JsonSerialzierAdapter>( )
+                .AddTransient<MvcAdapter>( )
                 .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
                 .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
                 .AddTransient<IUserRepository, UserRepository>( )
@@ -50,14 +55,14 @@ namespace Pinf.InstaService.API.InstaFetcher
                 .AddTransient<IBubbleClient>( provider =>
                 {
                     var bubbleSettings = provider.GetService<IConfiguration>( ).Get<AppOptions>( );
-                    return new BubbleClient( provider.GetService<IHttpClient>( ), new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
+                    return new BubbleClient( provider.GetService<IHttpClient>( ),
+                        new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
                 } )
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
                 .AddTransient<IUser, User>( )
                 .AddTransient<InfluencerFacade>( )
-                .AddTransient(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>))
-                .AddControllers( )
-                .AddNewtonsoftJson( );
+                .AddTransient( typeof( ILoggerAdapter<> ), typeof( LoggerAdapter<> ) )
+                .AddControllers( );
         }
 
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )

@@ -7,6 +7,7 @@ using Auth0.AuthenticationApi.Models;
 using Auth0.ManagementApi;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
+using Pinf.InstaService.API.InstaFetcher;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
@@ -51,7 +52,7 @@ namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 
             SetupConfiguration( OverridableAppOptions );
             Sut = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection,
-                MockAuthenticationConnection );
+                MockAuthenticationConnection, MvcAdapter );
         }
 
         private void SetupConfiguration( AppOptions appOptions )

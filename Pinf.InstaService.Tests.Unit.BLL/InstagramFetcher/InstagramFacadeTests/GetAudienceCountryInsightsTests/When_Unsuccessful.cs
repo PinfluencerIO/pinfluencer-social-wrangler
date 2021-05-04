@@ -19,8 +19,8 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             MockInstaAudienceRepository
                 .GetCountry( Arg.Any<string>(  ) )
-                .Returns( new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
-                    Enumerable.Empty<FollowersInsight<RegionInfo>>(  ), 
+                .Returns( new OperationResult<IEnumerable<FollowersInsight<LocationProperty>>>(
+                    Enumerable.Empty<FollowersInsight<LocationProperty>>(  ), 
                     OperationResultEnum.Failed
                 ) );
             _result = Sut.GetAudienceCountryInsights( InstagramId );

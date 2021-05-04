@@ -20,14 +20,16 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
     {
         private readonly FacebookContext _facebookContext;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
+        private readonly CountryGetter _countryGetter;
 
-        public InstagramAudienceRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramAudienceRepository> logger ) : base( logger )
+        public InstagramAudienceRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramAudienceRepository> logger, CountryGetter countryGetter ) : base( logger )
         {
             _facebookContext = facebookContext;
             _logger = logger;
+            _countryGetter = countryGetter;
         }
 
-        public OperationResult<IEnumerable<FollowersInsight<RegionInfo>>> GetCountry( string instaId )
+        public OperationResult<IEnumerable<FollowersInsight<LocationProperty>>> GetCountry( string instaId )
         {
             var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
                     .Get( $"{instaId}/insights",
@@ -35,18 +37,18 @@ namespace Pinf.InstaService.DAL.Instagram.Repositories
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
-                return new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
-                    Enumerable.Empty<FollowersInsight<RegionInfo>>( ),
+                return new OperationResult<IEnumerable<FollowersInsight<LocationProperty>>>(
+                    Enumerable.Empty<FollowersInsight<LocationProperty>>( ),
                     OperationResultEnum.Failed );
             }
             var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
                 result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            var outputResult = new OperationResult<IEnumerable<FollowersInsight<RegionInfo>>>(
-                genderAge?.Select( x => new FollowersInsight<RegionInfo>
+            var outputResult = new OperationResult<IEnumerable<FollowersInsight<LocationProperty>>>(
+                genderAge?.Select( x => new FollowersInsight<LocationProperty>
                 {
                     Count = ( int ) x.Value,
-                    Property = new RegionInfo( x.Key )
+                    Property = new LocationProperty{ CountryCode = x.Key.Enumify<CountryEnum>( ), Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ] }
                 } ),
                 OperationResultEnum.Success );
             _logger.LogInfo( "audience insights fetched successfully" );

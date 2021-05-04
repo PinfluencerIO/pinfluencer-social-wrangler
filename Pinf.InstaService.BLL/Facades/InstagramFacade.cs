@@ -42,7 +42,7 @@ namespace Pinf.InstaService.BLL.Facades
             var totalFollowers = result.Value.Sum( x => x.Count );
             return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
                 result.Value.Select( x => new AudiencePercentage<LocationProperty>
-                    { Percentage = ( double )x.Count / ( double )totalFollowers, Value = new LocationProperty{ CountryCode = x.Property.Name, Country = x.Property.EnglishName } } ),
+                    { Percentage = ( double )x.Count / ( double )totalFollowers, Value = x.Property } ),
                 OperationResultEnum.Success );
         }
 
