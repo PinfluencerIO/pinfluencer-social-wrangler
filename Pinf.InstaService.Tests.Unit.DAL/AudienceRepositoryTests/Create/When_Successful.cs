@@ -5,7 +5,8 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Create.Shared;
-using Audience = Pinf.InstaService.Core.Models.Audience;
+using Audience = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Audience;
+using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Create
 {
@@ -16,9 +17,9 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Create
         protected override void When( )
         {
             MockBubbleClient
-                .Post( Arg.Any<string>( ), Arg.Any<Influencer>( ) )
+                .Post( Arg.Any<string>( ), Arg.Any<Audience>( ) )
                 .Returns( HttpStatusCode.Created );
-            _result = Sut.Create( new Audience( ) );
+            _result = Sut.Create( new AudienceModel( ) );
         }
 
         [ Test ]
