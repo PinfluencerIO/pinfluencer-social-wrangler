@@ -77,25 +77,21 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 var facebookUserStr = _facebookContext
                     .Get( "me", new RequestFields { fields = "birthday,location,gender" } );
                 var facebookUser = JsonConvert.DeserializeObject<FacebookUser>( facebookUserStr );
-                var (validRequest, (httpStatusCode, typeResponse)) =
-                    ValidateRequestException( ( ) => BubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ) );
-                if( validRequest )
-                    if( ValidateHttpCode( httpStatusCode ) )
-                    {
-                        _user.Id = typeResponse.Type.Id;
-                        _user.Name = typeResponse.Type.Name;
-                        _user.Birthday = facebookUser.Birthday;
-                        _user.Gender = facebookUser.Gender;
-                        _user.Location = facebookUser.Location == null ? "Unknown" : facebookUser.Location.Name;
-                        Logger.LogInfo( "user was fetched successfully" );
-                        return new OperationResult<IUser>( _user, OperationResultEnum.Success );
-                    }
+                return GetRequest( ( ) => BubbleClient.Get<TypeResponse<Profile>>( $"profile/{id}" ), x =>
+                {
+                    _user.Id = x.Type.Id;
+                    _user.Name = x.Type.Name;
+                    _user.Birthday = facebookUser.Birthday;
+                    _user.Gender = facebookUser.Gender;
+                    _user.Location = facebookUser.Location == null ? "Unknown" : facebookUser.Location.Name;
+                    return _user;
+                }, _user );
             }
             catch( FacebookApiException e ) when( e is FacebookApiException || e is FacebookApiLimitException || e is FacebookOAuthException )
             {
+                Logger.LogError( "user was not fetched" );
+                return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
             }
-            Logger.LogError( "user was not fetched" );
-            return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
         }
     }
 }
