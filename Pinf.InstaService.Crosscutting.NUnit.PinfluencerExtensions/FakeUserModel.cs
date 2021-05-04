@@ -11,7 +11,6 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
             return new User( dateTimeAdapter )
             {
                 Age = props.Age,
-                Birthday = props.Birthday,
                 Gender = props.Gender,
                 Id = props.Id,
                 Location = props.Location,

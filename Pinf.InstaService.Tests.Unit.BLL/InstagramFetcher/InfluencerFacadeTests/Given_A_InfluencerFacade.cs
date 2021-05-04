@@ -11,7 +11,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
     {
         protected IUserRepository MockUserRepository;
         protected IInstaUserRepository MockInstaUserRepository;
-        protected FakeUserProps DefaultUser = new FakeUserProps
+        protected readonly FakeUserProps DefaultUser = new FakeUserProps
         {
             Age = 21,
             Gender = GenderEnum.Male,
