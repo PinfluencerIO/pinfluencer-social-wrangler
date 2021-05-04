@@ -46,5 +46,8 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 
         protected OperationResultEnum CreateRequest( Func<HttpStatusCode> call ) =>
             BodiedNoResponseRequest( call, "created" );
+        
+        protected OperationResultEnum UpdateRequest( Func<HttpStatusCode> call ) =>
+            BodiedNoResponseRequest( call, "updated" );
     }
 }
