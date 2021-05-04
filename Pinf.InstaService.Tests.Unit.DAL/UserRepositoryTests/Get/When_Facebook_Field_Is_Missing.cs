@@ -93,7 +93,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
                 },
                 -1,
                 "Dorchester, Dorset",
-                GenderEnum.Unknown
+                GenderEnum.Male
             }
         };
     }

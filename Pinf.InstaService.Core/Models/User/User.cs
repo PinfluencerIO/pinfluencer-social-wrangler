@@ -26,6 +26,7 @@ namespace Pinf.InstaService.Core.Models.User
                 if( value == default )
                 {
                     Age = -1;
+                    return;
                 }
                 var now = int.Parse( _dateTimeAdapter.Now( ).ToString( "yyyyMMdd" ) );
                 var dob = int.Parse( value.ToString( "yyyyMMdd" ) );
