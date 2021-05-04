@@ -1,7 +1,7 @@
 ﻿using Auth0.ManagementApi;
 using Auth0.ManagementApi.Models;
 
-namespace Pinf.InstaService.DAL.UserManagement
+namespace Pinf.InstaService.DAL.Pinfluencer
 {
     public class Auth0Context
     {

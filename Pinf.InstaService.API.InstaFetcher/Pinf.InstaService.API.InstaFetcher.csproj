@@ -7,7 +7,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Pinf.InstaService.Core\Pinf.InstaService.Core.csproj" />
       <ProjectReference Include="..\Pinf.InstaService.DAL.Instagram\Pinf.InstaService.DAL.Instagram.csproj" />
-      <ProjectReference Include="..\Pinf.InstaService.DAL.UserManagement\Pinf.InstaService.DAL.UserManagement.csproj" />
+      <ProjectReference Include="..\Pinf.InstaService.DAL.Pinfluencer\Pinf.InstaService.DAL.Pinfluencer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

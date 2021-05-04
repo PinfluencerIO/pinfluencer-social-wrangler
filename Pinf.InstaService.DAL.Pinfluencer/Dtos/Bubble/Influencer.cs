@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using Pinf.InstaService.Core.Enum;
 
-namespace Pinf.InstaService.DAL.UserManagement.Dtos.Bubble
+namespace Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble
 {
     public class Influencer
     {

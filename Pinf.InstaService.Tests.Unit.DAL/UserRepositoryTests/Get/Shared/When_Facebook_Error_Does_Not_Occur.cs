@@ -1,6 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
 {

@@ -15,11 +15,11 @@ using Pinf.InstaService.Crosscutting.Web;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.Instagram.Dtos;
-using Pinf.InstaService.DAL.UserManagement;
-using Pinf.InstaService.DAL.UserManagement.Common;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Pinf.InstaService.DAL.UserManagement.Repositories;
-using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
+using Pinf.InstaService.DAL.Pinfluencer;
+using Pinf.InstaService.DAL.Pinfluencer.Common;
+using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
+using Pinf.InstaService.DAL.Pinfluencer.Repositories;
+using Influencer = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
 using JsonConverter = System.Text.Json.Serialization.JsonConverter;

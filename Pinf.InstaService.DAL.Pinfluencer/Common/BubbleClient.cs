@@ -2,7 +2,7 @@
 using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Crosscutting.Web;
 
-namespace Pinf.InstaService.DAL.UserManagement.Common
+namespace Pinf.InstaService.DAL.Pinfluencer.Common
 {
     public class BubbleClient : ApiClient, IBubbleClient
     {

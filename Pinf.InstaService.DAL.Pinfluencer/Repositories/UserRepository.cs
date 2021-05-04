@@ -14,11 +14,11 @@ using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Common.Dtos;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
-using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
+using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
+using Influencer = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
-namespace Pinf.InstaService.DAL.UserManagement.Repositories
+namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {
     //TODO: ADD LOGGING !!!
     public class UserRepository : IUserRepository
@@ -63,7 +63,7 @@ namespace Pinf.InstaService.DAL.UserManagement.Repositories
         public OperationResultEnum CreateInfluencer( InfluencerModel influencer )
         {
             var (validRequest, httpStatusCode) = validateRequestException( ( ) => _bubbleClient.Post( "influencer",
-                new Influencer
+                new Dtos.Bubble.Influencer
                 {
                     Age = influencer.Age,
                     Bio = influencer.Bio,

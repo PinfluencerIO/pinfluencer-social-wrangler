@@ -8,8 +8,8 @@ using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
-using Pinf.InstaService.DAL.UserManagement;
-using Pinf.InstaService.DAL.UserManagement.Repositories;
+using Pinf.InstaService.DAL.Pinfluencer;
+using Pinf.InstaService.DAL.Pinfluencer.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests
 {

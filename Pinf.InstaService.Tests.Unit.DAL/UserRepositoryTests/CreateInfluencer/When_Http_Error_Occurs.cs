@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using NSubstitute;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer

@@ -6,7 +6,7 @@ using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
-using Pinf.InstaService.DAL.UserManagement;
+using Pinf.InstaService.DAL.Pinfluencer;
 
 namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
 {

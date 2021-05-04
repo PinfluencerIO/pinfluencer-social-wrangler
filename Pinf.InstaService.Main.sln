@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.DAL.Instagram", "Pinf.InstaService.DAL.Instagram\Pinf.InstaService.DAL.Instagram.csproj", "{5A791CB2-B712-4ED4-9B93-71BB264BE6AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.DAL.UserManagement", "Pinf.InstaService.DAL.UserManagement\Pinf.InstaService.DAL.UserManagement.csproj", "{E15A4743-56B4-4A62-B496-4D7AF0B16D75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.DAL.Pinfluencer", "Pinf.InstaService.DAL.Pinfluencer\Pinf.InstaService.DAL.Pinfluencer.csproj", "{E15A4743-56B4-4A62-B496-4D7AF0B16D75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Local.Sandbox", "Pinf.InstaService.Local.Sandbox\Pinf.InstaService.Local.Sandbox.csproj", "{7E7463C9-31E1-47FC-A446-6BEFEB9F3489}"
 EndProject

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.User;
-using Influencer = Pinf.InstaService.DAL.UserManagement.Dtos.Bubble.Influencer;
+using Influencer = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer.Shared

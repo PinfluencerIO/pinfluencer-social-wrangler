@@ -11,7 +11,7 @@ using Pinf.InstaService.API.InstaFetcher;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;
-using Pinf.InstaService.DAL.UserManagement;
+using Pinf.InstaService.DAL.Pinfluencer;
 
 namespace Pinf.InstaService.Tests.Unit.API.Filters.Auth0Tests
 {

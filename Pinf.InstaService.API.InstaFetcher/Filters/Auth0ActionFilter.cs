@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
-using Pinf.InstaService.DAL.UserManagement;
+using Pinf.InstaService.DAL.Pinfluencer;
 
 namespace Pinf.InstaService.API.InstaFetcher.Filters
 {

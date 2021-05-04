@@ -3,7 +3,7 @@ using Auth0.AuthenticationApi;
 using Microsoft.Extensions.Configuration;
 using Pinf.InstaService.Core.Interfaces.Factories;
 
-namespace Pinf.InstaService.DAL.UserManagement.Factories
+namespace Pinf.InstaService.DAL.Pinfluencer.Factories
 {
     public class Auth0AuthenticationApiClientFactory : IAuth0AuthenticationApiClientFactory
     {

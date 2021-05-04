@@ -21,10 +21,10 @@ using Pinf.InstaService.DAL.Common;
 using Pinf.InstaService.DAL.Instagram;
 using Pinf.InstaService.DAL.Instagram.Factories;
 using Pinf.InstaService.DAL.Instagram.Repositories;
-using Pinf.InstaService.DAL.UserManagement;
-using Pinf.InstaService.DAL.UserManagement.Common;
-using Pinf.InstaService.DAL.UserManagement.Factories;
-using Pinf.InstaService.DAL.UserManagement.Repositories;
+using Pinf.InstaService.DAL.Pinfluencer;
+using Pinf.InstaService.DAL.Pinfluencer.Common;
+using Pinf.InstaService.DAL.Pinfluencer.Factories;
+using Pinf.InstaService.DAL.Pinfluencer.Repositories;
 
 namespace Pinf.InstaService.API.InstaFetcher
 {

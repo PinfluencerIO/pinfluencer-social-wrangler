@@ -4,7 +4,7 @@ using System.Net.Http;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Pinf.InstaService.DAL.UserManagement.Dtos.Bubble;
+using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
