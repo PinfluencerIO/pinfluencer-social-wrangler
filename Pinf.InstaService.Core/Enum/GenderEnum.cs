@@ -9,7 +9,8 @@ namespace Pinf.InstaService.Core.Enum
     [ JsonConverter( typeof( StringEnumConverter ) ) ]
     public enum GenderEnum
     {
-        Male,
-        Female
+        Unknown = 0,
+        Male = 1,
+        Female = 2
     }
 }

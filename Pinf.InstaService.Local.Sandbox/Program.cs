@@ -30,6 +30,7 @@ namespace Pinf.InstaService.Local.Sandbox
     {
         private static void Main( string [ ] args )
         {
+            var def = default( GenderEnum );
         }
     }
 
