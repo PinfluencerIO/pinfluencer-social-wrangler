@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Models.Insights;
 
 namespace Pinf.InstaService.Core.Interfaces.Repositories
 {
     public interface IAudienceGenericRepository<T>
     {
-        OperationResult<IEnumerable<T>> GetAll( string audienceId );
+        OperationResult<IEnumerable<AudiencePercentage<T>>> GetAll( string audienceId );
 
-        OperationResultEnum Create( T audience );
+        OperationResultEnum Create( AudiencePercentage<T> audience );
     }
 }
