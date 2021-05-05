@@ -47,7 +47,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
         }
         
         [ Test ]
-        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result ); }
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
         
         [ Test ]
         public void Then_Success_Event_Is_Logged( )
