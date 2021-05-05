@@ -8,6 +8,5 @@ namespace Pinf.InstaService.Core.Interfaces.Repositories
         OperationResult<IEnumerable<T>> GetAll( string audienceId );
 
         OperationResultEnum Create( T audience );
-        
     }
 }
