@@ -5,6 +5,8 @@ namespace Pinf.InstaService.Core.Models.Insights
 {
     public class AudiencePercentage<T>
     {
+        public Audience Audience { get; set; }
+        
         public string Id { get; set; }
         
         private double _percentage;

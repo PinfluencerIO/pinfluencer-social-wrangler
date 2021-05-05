@@ -26,6 +26,12 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
             Enumerable.Empty<AudiencePercentage<GenderEnum>>( ) );
 
         public OperationResultEnum Create( AudiencePercentage<GenderEnum> audience ) =>
-            OperationResultEnum.Failed;
+            CreateRequest( ( ) => BubbleClient.Post( "audiencegender", new AudienceGender
+            {
+                Audience = audience.Id,
+                Id = audience.Id,
+                Name = audience.Value.ToString( ),
+                Percentage = audience.Percentage
+            } ) );
     }
 }
