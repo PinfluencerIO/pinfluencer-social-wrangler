@@ -25,6 +25,7 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
             } ),
             Enumerable.Empty<AudiencePercentage<GenderEnum>>( ) );
 
-        public OperationResultEnum Create( AudiencePercentage<GenderEnum> audience ) { throw new System.NotImplementedException( ); }
+        public OperationResultEnum Create( AudiencePercentage<GenderEnum> audience ) =>
+            OperationResultEnum.Failed;
     }
 }
