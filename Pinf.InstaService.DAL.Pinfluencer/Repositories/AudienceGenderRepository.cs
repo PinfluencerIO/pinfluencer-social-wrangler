@@ -28,7 +28,7 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         public OperationResultEnum Create( AudiencePercentage<GenderEnum> audience ) =>
             CreateRequest( ( ) => BubbleClient.Post( "audiencegender", new AudienceGender
             {
-                Audience = audience.Id,
+                Audience = audience.Audience.Id,
                 Id = audience.Id,
                 Name = audience.Value.ToString( ),
                 Percentage = audience.Percentage
