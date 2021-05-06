@@ -4,8 +4,8 @@ using Pinf.InstaService.Core.Models.Insights;
 namespace Pinf.InstaService.Core.Interfaces.Repositories
 {
     //TODO: add time start and time end inputs
-    public interface IInstaImpressionsRepository
+    public interface ISocialImpressionsRepository
     {
-        OperationResult<IEnumerable<ProfileViewsInsight>> GetImpressions( string instaId );
+        OperationResult<IEnumerable<ContentImpressions>> GetImpressions( string instaId );
     }
 }

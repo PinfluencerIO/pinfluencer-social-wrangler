@@ -13,26 +13,26 @@ namespace Pinf.InstaService.BLL.Facades
 {
     public class InstagramFacade
     {
-        private readonly IInstaImpressionsRepository _impressionsRepository;
-        private readonly IInstaUserRepository _instaUserRepository;
-        private readonly IInstaAudienceRepository _instaAudienceRepository;
+        private readonly ISocialImpressionsRepository _impressionsRepository;
+        private readonly ISocialUserRepository _socialUserRepository;
+        private readonly ISocialAudienceRepository _socialAudienceRepository;
 
         public InstagramFacade(
-            IInstaImpressionsRepository impressionsRepository, IInstaUserRepository instaUserRepository, IInstaAudienceRepository instaAudienceRepository )
+            ISocialImpressionsRepository impressionsRepository, ISocialUserRepository socialUserRepository, ISocialAudienceRepository socialAudienceRepository )
         {
             _impressionsRepository = impressionsRepository;
-            _instaUserRepository = instaUserRepository;
-            _instaAudienceRepository = instaAudienceRepository;
+            _socialUserRepository = socialUserRepository;
+            _socialAudienceRepository = socialAudienceRepository;
         }
 
-        public OperationResult<IEnumerable<ProfileViewsInsight>> GetMonthlyProfileViews( string id ) => _impressionsRepository.GetImpressions( id );
+        public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id ) => _impressionsRepository.GetImpressions( id );
 
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
-        public OperationResult<IEnumerable<InstaUser>> GetUsers( ) => _instaUserRepository.GetAll( );
+        public OperationResult<IEnumerable<InstaUser>> GetUsers( ) => _socialUserRepository.GetAll( );
 
         public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights( string id )
         {
-            var result = _instaAudienceRepository.GetCountry( id );
+            var result = _socialAudienceRepository.GetCountry( id );
             if( result.Status != OperationResultEnum.Success )
             {
                 return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
@@ -48,7 +48,7 @@ namespace Pinf.InstaService.BLL.Facades
 
         public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
         {
-            var result = _instaAudienceRepository.GetGenderAge( id );
+            var result = _socialAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
             {
                 return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
@@ -69,7 +69,7 @@ namespace Pinf.InstaService.BLL.Facades
         
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
-            var result = _instaAudienceRepository.GetGenderAge( id );
+            var result = _socialAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
             {
                 return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(

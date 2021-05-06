@@ -18,26 +18,26 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 
         protected override void When( )
         {
-            MockInstaAudienceRepository
+            MockSocialAudienceRepository
                 .GetGenderAge( Arg.Any<string>(  ) )
-                .Returns( new OperationResult<IEnumerable<FollowersInsight<GenderAgeProperty>>>(
+                .Returns( new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
                     new [ ]
                     {
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 39, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 18, 24 ), Gender = GenderEnum.Female } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 4, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 25, 34 ), Gender = GenderEnum.Female } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 1, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 45, 54 ), Gender = GenderEnum.Female } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 73, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 18, 24 ), Gender = GenderEnum.Male } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 9, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 25, 34 ), Gender = GenderEnum.Male } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 2, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 35, 44 ), Gender = GenderEnum.Male } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 2, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 45, 54 ), Gender = GenderEnum.Male } },
-                        new FollowersInsight<GenderAgeProperty>
+                        new AudienceCount<GenderAgeProperty>
                             { Count = 1, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 55, 64 ), Gender = GenderEnum.Male } }
                     },
                     OperationResultEnum.Success

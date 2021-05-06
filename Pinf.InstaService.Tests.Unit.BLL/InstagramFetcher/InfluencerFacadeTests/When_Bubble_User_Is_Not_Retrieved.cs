@@ -22,7 +22,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         [ Test ]
         public void Then_Get_Instagram_Users_Was_Not_Called( )
         {
-            MockInstaUserRepository
+            MockSocialUserRepository
                 .DidNotReceive( )
                 .GetAll( );
         }

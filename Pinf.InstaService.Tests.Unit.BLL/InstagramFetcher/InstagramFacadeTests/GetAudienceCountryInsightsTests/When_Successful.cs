@@ -17,16 +17,16 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 
         protected override void When( )
         {
-            MockInstaAudienceRepository
+            MockSocialAudienceRepository
                 .GetCountry( Arg.Any<string>(  ) )
-                .Returns( new OperationResult<IEnumerable<FollowersInsight<LocationProperty>>>(
+                .Returns( new OperationResult<IEnumerable<AudienceCount<LocationProperty>>>(
                     new [ ]
                     {
-                        new FollowersInsight<LocationProperty>
+                        new AudienceCount<LocationProperty>
                             { Count = 39, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.GB ], CountryCode = CountryEnum.GB } },
-                        new FollowersInsight<LocationProperty>
+                        new AudienceCount<LocationProperty>
                             { Count = 113, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.US ], CountryCode = CountryEnum.US } },
-                        new FollowersInsight<LocationProperty>
+                        new AudienceCount<LocationProperty>
                             { Count = 113, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.FR ], CountryCode = CountryEnum.FR } }
                     },
                     OperationResultEnum.Success

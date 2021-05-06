@@ -13,14 +13,14 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         protected const string TestId = "";
 
         protected OperationResultEnum ImpressionsOperationResult { get; set; }
-        protected IEnumerable<ProfileViewsInsight> ImpressionsColleciton { get; set; }
+        protected IEnumerable<ContentImpressions> ImpressionsColleciton { get; set; }
 
         protected override void When( )
         {
             MockImpressionsInsightsRepository
                 .GetImpressions( Arg.Any<string>( ) )
                 .Returns(
-                    new OperationResult<IEnumerable<ProfileViewsInsight>>(
+                    new OperationResult<IEnumerable<ContentImpressions>>(
                         ImpressionsColleciton, ImpressionsOperationResult
                     )
                 );
@@ -42,15 +42,15 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
                 .GetImpressions( Arg.Is( TestId ) );
         }
 
-        protected IEnumerable<ProfileViewsInsight> GetSingleImpressionsColleciton( DateTime date, int impressions )
+        protected IEnumerable<ContentImpressions> GetSingleImpressionsColleciton( DateTime date, int impressions )
         {
             return new [ ]
             {
-                new ProfileViewsInsight( date, impressions )
+                new ContentImpressions( date, impressions )
             };
         }
 
-        protected IEnumerable<ProfileViewsInsight> GetTwoImpressionsColleciton(
+        protected IEnumerable<ContentImpressions> GetTwoImpressionsColleciton(
             DateTime date1,
             int impressions1,
             DateTime date2,
@@ -59,8 +59,8 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
         {
             return new [ ]
             {
-                new ProfileViewsInsight( date1, impressions1 ),
-                new ProfileViewsInsight( date2, impressions2 )
+                new ContentImpressions( date1, impressions1 ),
+                new ContentImpressions( date2, impressions2 )
             };
         }
 

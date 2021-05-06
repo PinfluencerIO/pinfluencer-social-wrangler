@@ -10,7 +10,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
     public class Given_A_InfluencerFacade : PinfluencerGivenWhenThen<InfluencerFacade>
     {
         protected IUserRepository MockUserRepository;
-        protected IInstaUserRepository MockInstaUserRepository;
+        protected ISocialUserRepository MockSocialUserRepository;
         protected readonly FakeUserProps DefaultUser = new FakeUserProps
         {
             Age = 21,
@@ -23,9 +23,9 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         protected override void Given( )
         {
             MockUserRepository = Substitute.For<IUserRepository>( );
-            MockInstaUserRepository = Substitute.For<IInstaUserRepository>( );
+            MockSocialUserRepository = Substitute.For<ISocialUserRepository>( );
 
-            Sut = new InfluencerFacade( MockUserRepository, MockInstaUserRepository );
+            Sut = new InfluencerFacade( MockUserRepository, MockSocialUserRepository );
         }
     }
 }

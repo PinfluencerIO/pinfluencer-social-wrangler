@@ -10,12 +10,12 @@ namespace Pinf.InstaService.BLL.Facades
     public class InfluencerFacade
     {
         private readonly IUserRepository _userRepository;
-        private readonly IInstaUserRepository _instaUserRepository;
+        private readonly ISocialUserRepository _socialUserRepository;
 
-        public InfluencerFacade( IUserRepository userRepository, IInstaUserRepository instaUserRepository )
+        public InfluencerFacade( IUserRepository userRepository, ISocialUserRepository socialUserRepository )
         {
             _userRepository = userRepository;
-            _instaUserRepository = instaUserRepository;
+            _socialUserRepository = socialUserRepository;
         }
         
         public OperationResultEnum OnboardInfluencer( string id )
@@ -27,7 +27,7 @@ namespace Pinf.InstaService.BLL.Facades
             }
 
             var user = userResult.Value;
-            var instaUserResult = _instaUserRepository.GetAll(  );
+            var instaUserResult = _socialUserRepository.GetAll(  );
             if( instaUserResult.Status != OperationResultEnum.Success )
             {
                 return OperationResultEnum.Failed;

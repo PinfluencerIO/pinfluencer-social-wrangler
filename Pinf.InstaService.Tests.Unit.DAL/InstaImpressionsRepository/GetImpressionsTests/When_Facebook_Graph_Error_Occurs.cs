@@ -17,7 +17,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.InstaImpressionsRepository.GetImpress
     public class When_Facebook_Graph_Error_Occurs : When_Called
     {
         private readonly FacebookApiException _apiException;
-        private OperationResult<IEnumerable<ProfileViewsInsight>> _result;
+        private OperationResult<IEnumerable<ContentImpressions>> _result;
 
         public When_Facebook_Graph_Error_Occurs( FacebookApiException apiException )
         {

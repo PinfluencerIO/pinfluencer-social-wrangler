@@ -12,7 +12,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public class When_Multiple_Insights_Are_Returned : When_Get_User_Insights_Is_Called
     {
-        private OperationResult<IEnumerable<ProfileViewsInsight>> _result;
+        private OperationResult<IEnumerable<ContentImpressions>> _result;
 
         protected override void When( )
         {

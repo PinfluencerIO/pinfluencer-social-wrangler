@@ -16,7 +16,7 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTest
         protected override void When( )
         {
             base.When( );
-            MockInstaUserRepository
+            MockSocialUserRepository
                 .GetAll( )
                 .Returns( new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>(  ), OperationResultEnum.Failed ) );
             Result = Sut.OnboardInfluencer( "123" );

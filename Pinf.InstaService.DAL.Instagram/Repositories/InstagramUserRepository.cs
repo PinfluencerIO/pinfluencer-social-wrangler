@@ -15,7 +15,7 @@ using InstaUser = Pinf.InstaService.Core.Models.InstaUser.InstaUser;
 
 namespace Pinf.InstaService.DAL.Instagram.Repositories
 {
-    public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, IInstaUserRepository
+    public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, ISocialUserRepository
     {
         private readonly FacebookContext _facebookContext;
         private readonly ILoggerAdapter<InstagramUserRepository> _logger;

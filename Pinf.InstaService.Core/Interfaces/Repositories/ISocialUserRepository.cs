@@ -3,7 +3,7 @@ using Pinf.InstaService.Core.Models.InstaUser;
 
 namespace Pinf.InstaService.Core.Interfaces.Repositories
 {
-    public interface IInstaUserRepository
+    public interface ISocialUserRepository
     {
         OperationResult<InstaUser> Get( string id );
 

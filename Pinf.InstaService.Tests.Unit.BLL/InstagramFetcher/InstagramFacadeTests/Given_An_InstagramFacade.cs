@@ -9,22 +9,22 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
     public abstract class
         Given_An_InstagramFacade : DataGivenWhenThen<InstagramFacade>
     {
-        protected IInstaImpressionsRepository MockImpressionsInsightsRepository;
-        protected IInstaUserRepository MockInstaUserRepository;
-        protected IInstaAudienceRepository MockInstaAudienceRepository;
+        protected ISocialImpressionsRepository MockImpressionsInsightsRepository;
+        protected ISocialUserRepository MockSocialUserRepository;
+        protected ISocialAudienceRepository MockSocialAudienceRepository;
 
         protected override void Given( )
         {
             base.Given( );
             
-            MockImpressionsInsightsRepository = Substitute.For<IInstaImpressionsRepository>( );
-            MockInstaUserRepository = Substitute.For<IInstaUserRepository>( );
-            MockInstaAudienceRepository = Substitute.For<IInstaAudienceRepository>( );
+            MockImpressionsInsightsRepository = Substitute.For<ISocialImpressionsRepository>( );
+            MockSocialUserRepository = Substitute.For<ISocialUserRepository>( );
+            MockSocialAudienceRepository = Substitute.For<ISocialAudienceRepository>( );
 
             Sut = new InstagramFacade(
                 MockImpressionsInsightsRepository,
-                MockInstaUserRepository,
-                MockInstaAudienceRepository
+                MockSocialUserRepository,
+                MockSocialAudienceRepository
             );
         }
     }

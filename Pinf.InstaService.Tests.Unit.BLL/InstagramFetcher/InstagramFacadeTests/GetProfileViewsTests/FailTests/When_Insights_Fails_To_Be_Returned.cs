@@ -11,13 +11,13 @@ namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests
 {
     public class When_Insights_Fails_To_Be_Returned : When_Get_User_Insights_Is_Called
     {
-        private OperationResult<IEnumerable<ProfileViewsInsight>> _result;
+        private OperationResult<IEnumerable<ContentImpressions>> _result;
 
         protected override void When( )
         {
             ImpressionsOperationResult = OperationResultEnum.Failed;
 
-            ImpressionsColleciton = Enumerable.Empty<ProfileViewsInsight>( );
+            ImpressionsColleciton = Enumerable.Empty<ContentImpressions>( );
 
             base.When( );
 
