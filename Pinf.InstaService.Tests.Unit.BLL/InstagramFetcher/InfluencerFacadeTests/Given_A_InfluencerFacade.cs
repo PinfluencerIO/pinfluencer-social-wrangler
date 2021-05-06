@@ -1,6 +1,5 @@
 ﻿using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using NSubstitute;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;

@@ -1,14 +1,8 @@
 ﻿using System;
-using Auth0.ManagementApi;
 using Auth0.ManagementApi.Models;
-using Facebook;
 using NSubstitute;
-using Pinf.InstaService.Core.Interfaces.Clients;
-using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
-using Pinf.InstaService.Crosscutting.Utils;
-using Pinf.InstaService.DAL.Common;
-using Pinf.InstaService.DAL.Pinfluencer;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 using Pinf.InstaService.DAL.Pinfluencer.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests

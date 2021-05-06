@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Newtonsoft.Json;
 using Pinf.InstaService.API.InstaFetcher.Contants;
 
 namespace Pinf.InstaService.API.InstaFetcher.RequestDtos

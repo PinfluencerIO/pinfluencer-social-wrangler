@@ -1,5 +1,5 @@
 ﻿using Facebook;
-using Pinf.InstaService.Core.Interfaces.Factories;
+using Pinf.InstaService.DAL.Core.Interfaces.Factories;
 
 namespace Pinf.InstaService.DAL.Instagram.Factories
 {

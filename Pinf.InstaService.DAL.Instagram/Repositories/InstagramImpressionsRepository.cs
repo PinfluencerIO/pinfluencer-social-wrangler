@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;

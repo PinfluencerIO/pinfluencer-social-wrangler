@@ -1,6 +1,6 @@
 ﻿using Auth0.AuthenticationApi;
 
-namespace Pinf.InstaService.Core.Interfaces.Factories
+namespace Pinf.InstaService.DAL.Core.Interfaces.Factories
 {
     public interface IAuth0AuthenticationApiClientFactory
     {

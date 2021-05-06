@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Facebook;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pinf.InstaService.API.InstaFetcher.RequestDtos;
-using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Interfaces.Factories;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.DAL.Common;
-using Pinf.InstaService.DAL.Instagram;
+using Pinf.InstaService.DAL.Core.Interfaces.Factories;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 
 namespace Pinf.InstaService.API.InstaFetcher.Filters

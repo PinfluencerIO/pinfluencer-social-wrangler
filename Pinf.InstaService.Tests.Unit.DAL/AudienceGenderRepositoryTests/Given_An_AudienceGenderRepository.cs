@@ -1,7 +1,6 @@
 ﻿using NSubstitute;
-using Pinf.InstaService.Core.Interfaces.Clients;
-using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 using Pinf.InstaService.DAL.Pinfluencer.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests

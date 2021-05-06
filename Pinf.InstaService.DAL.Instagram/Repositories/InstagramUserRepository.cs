@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Crosscutting.CodeContracts;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;

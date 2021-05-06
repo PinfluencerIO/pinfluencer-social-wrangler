@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll.Shared

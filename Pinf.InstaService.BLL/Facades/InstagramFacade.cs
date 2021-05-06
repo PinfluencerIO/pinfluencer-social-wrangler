@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;

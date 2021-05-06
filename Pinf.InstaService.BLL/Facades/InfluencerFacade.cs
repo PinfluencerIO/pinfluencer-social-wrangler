@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.User;
 

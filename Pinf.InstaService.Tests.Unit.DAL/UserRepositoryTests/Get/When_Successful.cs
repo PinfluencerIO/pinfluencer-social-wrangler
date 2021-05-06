@@ -1,15 +1,11 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Models;
-using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.DAL.Common.Dtos;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
-using Influencer = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get
 {

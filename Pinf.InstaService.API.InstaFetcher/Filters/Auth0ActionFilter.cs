@@ -2,11 +2,9 @@
 using Auth0.AuthenticationApi.Models;
 using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Pinf.InstaService.API.InstaFetcher.Options;
-using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.DAL.Pinfluencer;
 
 namespace Pinf.InstaService.API.InstaFetcher.Filters

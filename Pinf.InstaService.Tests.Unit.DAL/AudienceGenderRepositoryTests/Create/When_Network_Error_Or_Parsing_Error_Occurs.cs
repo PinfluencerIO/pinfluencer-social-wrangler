@@ -6,7 +6,6 @@ using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 using Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.Create.Shared;
-using Audience = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Audience;
 using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.Create

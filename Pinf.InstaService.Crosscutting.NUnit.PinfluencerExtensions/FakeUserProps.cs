@@ -1,5 +1,4 @@
-﻿using System;
-using Pinf.InstaService.Core.Enum;
+﻿using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
 {

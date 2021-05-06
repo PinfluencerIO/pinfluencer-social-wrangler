@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using Facebook;
+﻿using Facebook;
 using NSubstitute;
-using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Pinf.InstaService.Core;
-using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;

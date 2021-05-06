@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using Microsoft.AspNetCore.Mvc;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Interfaces.Clients;
-using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Crosscutting.Utils;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {

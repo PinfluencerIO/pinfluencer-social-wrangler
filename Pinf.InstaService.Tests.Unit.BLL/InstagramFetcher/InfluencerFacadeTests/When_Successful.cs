@@ -6,7 +6,6 @@ using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.InstaUser;
 using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTests.Shared;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InfluencerFacadeTests

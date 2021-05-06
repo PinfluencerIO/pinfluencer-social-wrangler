@@ -7,7 +7,6 @@ using Auth0.AuthenticationApi.Models;
 using Auth0.ManagementApi;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
-using Pinf.InstaService.API.InstaFetcher;
 using Pinf.InstaService.API.InstaFetcher.Filters;
 using Pinf.InstaService.API.InstaFetcher.Options;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;

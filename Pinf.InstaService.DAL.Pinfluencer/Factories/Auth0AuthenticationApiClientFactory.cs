@@ -1,7 +1,7 @@
 ﻿using System;
 using Auth0.AuthenticationApi;
 using Microsoft.Extensions.Configuration;
-using Pinf.InstaService.Core.Interfaces.Factories;
+using Pinf.InstaService.DAL.Core.Interfaces.Factories;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Factories
 {

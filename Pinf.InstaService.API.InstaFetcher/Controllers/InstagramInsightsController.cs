@@ -2,10 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
-using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
 using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {

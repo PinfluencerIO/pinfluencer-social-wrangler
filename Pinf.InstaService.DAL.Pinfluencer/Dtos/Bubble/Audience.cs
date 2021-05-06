@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Pinf.InstaService.Core.Models.Insights;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble
 {

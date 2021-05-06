@@ -2,11 +2,10 @@
 using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.Core.Models;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.Utils;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories

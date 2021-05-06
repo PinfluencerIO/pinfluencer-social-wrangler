@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Facebook;
+﻿using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.Core;
-using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Instagram.Dtos;
 using Pinf.InstaService.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;

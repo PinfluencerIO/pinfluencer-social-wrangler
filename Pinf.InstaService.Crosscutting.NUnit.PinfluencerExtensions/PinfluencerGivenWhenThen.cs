@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Crosscutting.NUnit.Extensions;

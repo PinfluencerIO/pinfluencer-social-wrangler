@@ -1,7 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Models.User;
 using Influencer = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 

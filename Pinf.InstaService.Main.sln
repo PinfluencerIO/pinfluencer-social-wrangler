@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Crosscutt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions", "Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions\Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions.csproj", "{22DC1930-9A81-4CE8-9122-B4E578A35D76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinf.InstaService.DAL.Core", "Pinf.InstaService.DAL.Core\Pinf.InstaService.DAL.Core.csproj", "{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,7 @@ Global
 		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3} = {260916F1-A6E4-45F1-ADC6-5A3CFA779C38}
 		{23E9B593-9265-46CE-98F5-55FE06C11E74} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
+		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9} = {260916F1-A6E4-45F1-ADC6-5A3CFA779C38}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{035B5433-6EC2-44D1-BF14-27E52B787BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -122,5 +125,9 @@ Global
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

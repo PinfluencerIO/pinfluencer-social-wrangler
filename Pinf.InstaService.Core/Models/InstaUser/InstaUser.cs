@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Pinf.InstaService.Core.Models.InstaUser
+﻿namespace Pinf.InstaService.Core.Models.InstaUser
 {
     public class InstaUser
     {

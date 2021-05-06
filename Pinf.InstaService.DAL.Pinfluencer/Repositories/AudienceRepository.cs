@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Core.Interfaces.Repositories;
 using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 using Pinf.InstaService.Crosscutting.Utils;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories

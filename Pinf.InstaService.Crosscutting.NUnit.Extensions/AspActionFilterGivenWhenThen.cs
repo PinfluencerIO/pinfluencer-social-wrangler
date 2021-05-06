@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
 using NSubstitute;
 using Pinf.InstaService.API.InstaFetcher;
 using Pinf.InstaService.Crosscutting.Utils;

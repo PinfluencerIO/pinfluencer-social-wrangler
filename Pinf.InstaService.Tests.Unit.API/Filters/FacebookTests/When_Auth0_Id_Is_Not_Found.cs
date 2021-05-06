@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
-using Pinf.InstaService.API.InstaFetcher.RequestDtos;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Tests.Unit.API.Filters.FacebookTests.Shared;
 

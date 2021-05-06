@@ -1,7 +1,6 @@
 ﻿using NSubstitute;
 using Pinf.InstaService.BLL.Facades;
 using Pinf.InstaService.Core.Interfaces.Repositories;
-using Pinf.InstaService.Crosscutting.NUnit.Extensions;
 using Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions;
 
 namespace Pinf.InstaService.Tests.Unit.BLL.InstagramFetcher.InstagramFacadeTests

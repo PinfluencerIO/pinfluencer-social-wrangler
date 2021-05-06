@@ -1,28 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Reflection;
-using Facebook;
-using Newtonsoft.Json;
-using Pinf.InstaService.API.InstaFetcher.Filters;
-using Pinf.InstaService.Core.Enum;
-using Pinf.InstaService.Core.Models;
-using Pinf.InstaService.Core.Models.User;
-using Pinf.InstaService.Crosscutting.Utils;
-using Pinf.InstaService.Crosscutting.Web;
-using Pinf.InstaService.DAL.Common;
-using Pinf.InstaService.DAL.Common.Dtos;
-using Pinf.InstaService.DAL.Instagram.Dtos;
-using Pinf.InstaService.DAL.Pinfluencer;
-using Pinf.InstaService.DAL.Pinfluencer.Common;
-using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
-using Pinf.InstaService.DAL.Pinfluencer.Repositories;
-using Influencer = Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble.Influencer;
+﻿using Pinf.InstaService.Core.Enum;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
-
-using JsonConverter = System.Text.Json.Serialization.JsonConverter;
 
 namespace Pinf.InstaService.Local.Sandbox
 {

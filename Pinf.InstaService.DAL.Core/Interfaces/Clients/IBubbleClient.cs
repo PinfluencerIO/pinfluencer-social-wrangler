@@ -1,6 +1,6 @@
 ﻿using Pinf.InstaService.Crosscutting.Web;
 
-namespace Pinf.InstaService.Core.Interfaces.Clients
+namespace Pinf.InstaService.DAL.Core.Interfaces.Clients
 {
     public interface IBubbleClient : IApiClient
     {

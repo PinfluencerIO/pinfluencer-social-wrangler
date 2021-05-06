@@ -1,6 +1,6 @@
 ﻿using System;
-using Pinf.InstaService.Core.Interfaces.Clients;
 using Pinf.InstaService.Crosscutting.Web;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Common
 {

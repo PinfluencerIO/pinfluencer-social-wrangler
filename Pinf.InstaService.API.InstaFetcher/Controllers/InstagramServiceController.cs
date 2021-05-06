@@ -1,13 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net;
-using System.Net.Mime;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pinf.InstaService.API.InstaFetcher.Filters;
-using Pinf.InstaService.API.InstaFetcher.ResponseDtos;
-using Pinf.InstaService.Crosscutting.Utils;
 
 namespace Pinf.InstaService.API.InstaFetcher.Controllers
 {

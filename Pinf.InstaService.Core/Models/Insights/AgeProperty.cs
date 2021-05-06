@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
-
-namespace Pinf.InstaService.Core.Models.Insights
+﻿namespace Pinf.InstaService.Core.Models.Insights
 {
     public class AgeProperty
     {
