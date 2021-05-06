@@ -23,9 +23,8 @@ namespace Pinf.InstaService.DAL.Common.Handlers
         public OperationResultEnum Create<TModel, TDto>( string uri, TModel model, Func<TModel,TDto> mapper ) =>
             bodiedNoResponseRequest<TModel>( ( ) => _bubbleClient.Post( uri, mapper( model ) ), "created" );
 
-        public OperationResult<TModel> Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper,
-            TModel defaultModel ) =>
-            new OperationResult<TModel>( defaultModel, OperationResultEnum.Failed );
+        public OperationResult<TModel>Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper, TModel defaultModel ) =>
+            nonBodiedResponseRequest( ( ) => _bubbleClient.Get<TDto>( uri ), mapper, "fetched", defaultModel );
 
         public OperationResultEnum Update<TModel>( string uri, TModel body )
         {
@@ -58,6 +57,23 @@ namespace Pinf.InstaService.DAL.Common.Handlers
                 }
             _logger.LogError( $"{typeof( T )} was not {action}" );
             return OperationResultEnum.Failed;
+        }
+
+        private OperationResult<TModel> nonBodiedResponseRequest<TModel, TDataDto>( Func<( HttpStatusCode, TDataDto )> call,
+            Func<TDataDto, TModel> mapper,
+            string action,
+            TModel defaultModel )
+        {
+            var (validRequest, ( httpStatusCode, response ) ) =
+                validateRequestException( call );
+            if( validRequest )
+                if( validateHttpCode( httpStatusCode ) )
+                {
+                    _logger.LogInfo( $"{typeof( TModel )} was {action} successfully" );
+                    return new OperationResult<TModel>( mapper( response ), OperationResultEnum.Success );
+                }
+            _logger.LogError( $"{typeof( TModel )} was not {action}" );
+            return new OperationResult<TModel>( defaultModel, OperationResultEnum.Failed );
         }
     }
 }
