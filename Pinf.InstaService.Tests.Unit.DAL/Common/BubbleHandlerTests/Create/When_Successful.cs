@@ -15,9 +15,9 @@ namespace Pinf.InstaService.Tests.Unit.DAL.Common.BubbleHandlerTests.Create
         protected override void When( )
         {
             MockBubbleClient
-                .Post( Arg.Any<string>( ), Arg.Any<TestModel>( ) )
+                .Post( Arg.Any<string>( ), Arg.Any<TestDto>( ) )
                 .Returns( HttpStatusCode.Created );
-            _result = Sut.Create( TestUrl, new TestModel( ) );
+            _result = SutCall( );
         }
 
         [ Test ]

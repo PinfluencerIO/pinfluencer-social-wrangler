@@ -11,6 +11,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.Common.BubbleHandlerTests
 
         protected override void Given( )
         {
+            base.Given( );
             MockBubbleClient = Substitute.For<IBubbleClient>( );
 
             Sut = new BubbleDataHandler( MockBubbleClient, MockLogger );

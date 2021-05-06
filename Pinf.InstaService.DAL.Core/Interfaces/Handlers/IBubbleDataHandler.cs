@@ -7,7 +7,7 @@ namespace Pinf.InstaService.DAL.Core.Interfaces.Handlers
 {
     public interface IBubbleDataHandler
     {
-        OperationResultEnum Create<TModel>( string uri, TModel body );
+        OperationResultEnum Create<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper );
 
         OperationResult<TModel> Read<TModel, TDataDto>( string uri,
             Func<TDataDto, TModel> mapper,
