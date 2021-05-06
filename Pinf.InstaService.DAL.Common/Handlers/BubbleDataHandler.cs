@@ -20,10 +20,8 @@ namespace Pinf.InstaService.DAL.Common.Handlers
             _logger = logger;
         }
 
-        public OperationResultEnum Create<TModel>( string uri, TModel body )
-        {
-            throw new NotImplementedException( );
-        }
+        public OperationResultEnum Create<TModel>( string uri, TModel body ) =>
+            OperationResultEnum.Failed;
 
         public OperationResult<TModel> Read<TModel, TDataDto>( string uri, Func<TDataDto, TModel> mapper,
             TModel defaultModel )
