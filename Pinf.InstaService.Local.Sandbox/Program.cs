@@ -1,4 +1,5 @@
 ﻿using Pinf.InstaService.Core.Enum;
+using Pinf.InstaService.Core.Models.User;
 using InfluencerModel = Pinf.InstaService.Core.Models.User.Influencer;
 
 namespace Pinf.InstaService.Local.Sandbox
@@ -7,7 +8,7 @@ namespace Pinf.InstaService.Local.Sandbox
     {
         private static void Main( string [ ] args )
         {
-            var def = default( GenderEnum );
+            var value = $"{typeof( User )}";
         }
     }
 

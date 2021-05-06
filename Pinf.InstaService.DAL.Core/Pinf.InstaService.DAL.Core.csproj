@@ -5,10 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Interfaces" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\Pinf.InstaService.Core\Pinf.InstaService.Core.csproj" />
       <ProjectReference Include="..\Pinf.InstaService.Crosscutting.Web\Pinf.InstaService.Crosscutting.Web.csproj" />
     </ItemGroup>
 
