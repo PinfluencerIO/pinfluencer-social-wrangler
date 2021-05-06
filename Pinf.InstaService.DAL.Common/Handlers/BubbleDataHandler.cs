@@ -24,10 +24,8 @@ namespace Pinf.InstaService.DAL.Common.Handlers
             bodiedNoResponseRequest<TModel>( ( ) => _bubbleClient.Post( uri, mapper( model ) ), "created" );
 
         public OperationResult<TModel> Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper,
-            TModel defaultModel )
-        {
-            throw new NotImplementedException( );
-        }
+            TModel defaultModel ) =>
+            new OperationResult<TModel>( defaultModel, OperationResultEnum.Failed );
 
         public OperationResultEnum Update<TModel>( string uri, TModel body )
         {
