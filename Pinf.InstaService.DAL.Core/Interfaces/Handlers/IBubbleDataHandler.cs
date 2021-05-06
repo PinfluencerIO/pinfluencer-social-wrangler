@@ -9,8 +9,8 @@ namespace Pinf.InstaService.DAL.Core.Interfaces.Handlers
     {
         OperationResultEnum Create<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper );
 
-        OperationResult<TModel> Read<TModel, TDataDto>( string uri,
-            Func<TDataDto, TModel> mapper,
+        OperationResult<TModel> Read<TModel, TDto>( string uri,
+            Func<TDto, TModel> mapper,
             TModel defaultModel );
 
         OperationResultEnum Update<TModel>( string uri, TModel body );

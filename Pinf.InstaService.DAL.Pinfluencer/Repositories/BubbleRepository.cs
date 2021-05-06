@@ -68,8 +68,8 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         protected OperationResultEnum UpdateRequest( Func<HttpStatusCode> call ) =>
             BodiedNoResponseRequest( call, "updated" );
         
-        protected OperationResult<TModel> GetRequest<TModel, TDataDto>( Func<( HttpStatusCode, TDataDto )> call,
-            Func<TDataDto, TModel> mapper,
+        protected OperationResult<TModel> GetRequest<TModel, TDto>( Func<( HttpStatusCode, TDto )> call,
+            Func<TDto, TModel> mapper,
             TModel defaultModel ) =>
             NonBodiedResponseRequest( call, mapper, "fetched", defaultModel );
     }

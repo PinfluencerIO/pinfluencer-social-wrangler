@@ -23,7 +23,7 @@ namespace Pinf.InstaService.DAL.Common.Handlers
         public OperationResultEnum Create<TModel, TDto>( string uri, TModel model, Func<TModel,TDto> mapper ) =>
             bodiedNoResponseRequest<TModel>( ( ) => _bubbleClient.Post( uri, mapper( model ) ), "created" );
 
-        public OperationResult<TModel> Read<TModel, TDataDto>( string uri, Func<TDataDto, TModel> mapper,
+        public OperationResult<TModel> Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper,
             TModel defaultModel )
         {
             throw new NotImplementedException( );
@@ -34,9 +34,12 @@ namespace Pinf.InstaService.DAL.Common.Handlers
             throw new NotImplementedException( );
         }
         
-        private static bool validateHttpCode( HttpStatusCode code ) { return code.GetHashCode( ).ToString( )[0].ToString() == "2"; }
+        private static bool validateHttpCode( HttpStatusCode code ) => code
+            .GetHashCode( )
+            .ToString( )[0]
+            .ToString() == "2";
 
-        private( bool, T ) validateRequestException<T>( Func<T> httpFunc )
+        private static( bool, T ) validateRequestException<T>( Func<T> httpFunc )
         {
             try { return( true, httpFunc( ) ); }
             catch( Exception e ) when( e is ArgumentException || e is HttpRequestException )
