@@ -13,6 +13,6 @@ namespace Pinf.InstaService.DAL.Core.Interfaces.Handlers
             Func<TDto, TModel> mapper,
             TModel defaultModel );
 
-        OperationResultEnum Update<TModel>( string uri, TModel body );
+        OperationResultEnum Update<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper );
     }
 }

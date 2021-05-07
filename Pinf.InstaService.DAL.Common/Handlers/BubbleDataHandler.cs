@@ -26,7 +26,7 @@ namespace Pinf.InstaService.DAL.Common.Handlers
         public OperationResult<TModel>Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper, TModel defaultModel ) =>
             nonBodiedResponseRequest( ( ) => _bubbleClient.Get<TDto>( uri ), mapper, "fetched", defaultModel );
 
-        public OperationResultEnum Update<TModel>( string uri, TModel body )
+        public OperationResultEnum Update<TModel, TDto>( string uri, TModel model, Func<TModel,TDto> mapper )
         {
             throw new NotImplementedException( );
         }
