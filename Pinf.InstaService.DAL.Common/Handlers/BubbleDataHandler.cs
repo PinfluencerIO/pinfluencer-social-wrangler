@@ -27,7 +27,7 @@ namespace Pinf.InstaService.DAL.Common.Handlers
             nonBodiedResponseRequest( ( ) => _bubbleClient.Get<TDto>( uri ), mapper, "fetched", defaultModel );
 
         public OperationResultEnum Update<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper ) =>
-            OperationResultEnum.Failed;
+            bodiedNoResponseRequest<TModel>( ( ) => _bubbleClient.Patch( uri, mapper( model ) ), "updated" );
         
         private static bool validateHttpCode( HttpStatusCode code ) => code
             .GetHashCode( )
