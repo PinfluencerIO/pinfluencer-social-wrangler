@@ -19,8 +19,4 @@
       <ProjectReference Include="..\Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions\Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="InstagramFetcher\InstagramFacadeTests\GetUsersTests" />
-    </ItemGroup>
-
 </Project>
