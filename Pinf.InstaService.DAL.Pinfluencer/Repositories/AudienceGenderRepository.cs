@@ -23,8 +23,8 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         }
 
         public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAll( string audienceId ) =>
-            _bubbleDataHandler.Read<IEnumerable<AudiencePercentage<GenderEnum>>,IEnumerable<AudienceGender>>( Resource, 
-                x => x.Select( x => new AudiencePercentage<GenderEnum> 
+            _bubbleDataHandler.Read<IEnumerable<AudiencePercentage<GenderEnum>>,TypeResponse<BubbleCollection<AudienceGender>>>( Resource, 
+                x => x.Type.Results.Select( x => new AudiencePercentage<GenderEnum> 
                     { Id = x.Id, Percentage = x.Percentage, Value = x.Name.Enumify<GenderEnum>( ) } ), 
                 Enumerable.Empty<AudiencePercentage<GenderEnum>>( ) );
 

@@ -55,7 +55,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
         {
             MockBubbleDataHandler
                 .Read( Arg.Any<string>( ),
-                    Arg.Any<Func<IEnumerable<AudienceGender>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
+                    Arg.Any<Func<TypeResponse<BubbleCollection<AudienceGender>>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<GenderEnum>>>( ) )
                 .Returns( new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>( _audienceGender, _operationResult ) );
             _result = Sut.GetAll( "123" );
@@ -66,7 +66,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
         {
             MockBubbleDataHandler
                 .Received( 1 )
-                .Read( Arg.Any<string>( ), Arg.Any<Func<IEnumerable<AudienceGender>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
+                .Read( Arg.Any<string>( ), Arg.Any<Func<TypeResponse<BubbleCollection<AudienceGender>>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<GenderEnum>>>( ) );
         }
 
@@ -75,7 +75,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
         {
             MockBubbleDataHandler
                 .Received( )
-                .Read( Arg.Is( "audiencegender" ), Arg.Any<Func<IEnumerable<AudienceGender>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
+                .Read( Arg.Is( "audiencegender" ), Arg.Any<Func<TypeResponse<BubbleCollection<AudienceGender>>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<GenderEnum>>>( ) );
         }
 
