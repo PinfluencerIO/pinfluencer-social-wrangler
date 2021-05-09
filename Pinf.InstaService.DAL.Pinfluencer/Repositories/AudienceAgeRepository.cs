@@ -3,6 +3,8 @@ using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
+using Pinf.InstaService.Core.Models;
+using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Core.Interfaces.Clients;
@@ -22,8 +24,22 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         }
 
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAll( string audienceId ) =>
-            new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
-                Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
+            _bubbleDataHandler.Read<IEnumerable<AudiencePercentage<AgeProperty>>,TypeResponse<BubbleCollection<AudienceAge>>>( Resource,
+            x =>
+                {
+                    return x.Type.Results.Select( y =>
+                    {
+                        var range = y.Range;
+                        var rangeSplit = range.Split( "-" );
+                        return new AudiencePercentage<AgeProperty>
+                        {
+                            Audience = new AudienceModel { Id = y.Audience },
+                            Id = y.Id,
+                            Percentage = y.Percentage,
+                            Value = new AgeProperty { Min = int.Parse( rangeSplit[ 0 ] ), Max = int.Parse( rangeSplit[ 1 ] ) }
+                        };
+                    } );
+                }, Enumerable.Empty<AudiencePercentage<AgeProperty>>(  ) );
 
         public OperationResultEnum Create( AudiencePercentage<AgeProperty> audience ) =>
             _bubbleDataHandler.Create( Resource, audience, ModelMap );
