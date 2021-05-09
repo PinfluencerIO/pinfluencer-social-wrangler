@@ -8,7 +8,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests.Create.Shared
     public abstract class When_Called : Given_An_AudienceRepository
     {
         [ Test ]
-        public void Then_Influencer_Will_Be_Created_Once( )
+        public void Then_Audience_Will_Be_Created_Once( )
         {
             MockBubbleClient
                 .Received( 1 )

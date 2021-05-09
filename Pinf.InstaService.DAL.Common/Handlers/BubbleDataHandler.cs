@@ -9,12 +9,12 @@ using Pinf.InstaService.DAL.Core.Interfaces.Handlers;
 
 namespace Pinf.InstaService.DAL.Common.Handlers
 {
-    public class BubbleDataHandler : IBubbleDataHandler
+    public class BubbleDataHandler<T> : IBubbleDataHandler<T> where T : class
     {
         private readonly IBubbleClient _bubbleClient;
-        private readonly ILoggerAdapter<BubbleDataHandler> _logger;
+        private readonly ILoggerAdapter<T> _logger;
 
-        public BubbleDataHandler( IBubbleClient bubbleClient, ILoggerAdapter<BubbleDataHandler> logger )
+        public BubbleDataHandler( IBubbleClient bubbleClient, ILoggerAdapter<T> logger )
         {
             _bubbleClient = bubbleClient;
             _logger = logger;

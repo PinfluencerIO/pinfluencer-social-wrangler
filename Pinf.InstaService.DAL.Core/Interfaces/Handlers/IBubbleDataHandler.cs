@@ -5,7 +5,7 @@ using Pinf.InstaService.Core.Enum;
 
 namespace Pinf.InstaService.DAL.Core.Interfaces.Handlers
 {
-    public interface IBubbleDataHandler
+    public interface IBubbleDataHandler<T>
     {
         OperationResultEnum Create<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper );
 

@@ -11,23 +11,21 @@ namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests
     {
         protected const string BubbleDomain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj";
         protected const string TestId = "1234";
-        protected IBubbleClient MockBubbleClient;
         protected User TestUser;
 
         //TODO: REFACTOR OUT TIME DEPENDANT TESTS
         protected override void Given( )
         {
             base.Given( );
-            MockBubbleClient = Substitute.For<IBubbleClient>( );
 
             CurrentTime = new DateTime( 2021, 4, 29 );
             
             Sut = new UserRepository(
                 Auth0Context,
-                MockBubbleClient,
                 FacebookContext,
                 User,
-                MockLogger
+                MockLogger,
+                MockBubbleDataHandler
             );
         }
     }

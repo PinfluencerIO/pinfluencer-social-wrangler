@@ -6,6 +6,9 @@ using Pinf.InstaService.Core.Interfaces.Models;
 using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Common;
+using Pinf.InstaService.DAL.Common.Handlers;
+using Pinf.InstaService.DAL.Core.Interfaces.Clients;
+using Pinf.InstaService.DAL.Core.Interfaces.Handlers;
 using Pinf.InstaService.DAL.Pinfluencer;
 
 namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
@@ -18,14 +21,18 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
         protected IUser User;
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected CountryGetter CountryGetter;
+        protected IBubbleDataHandler<T> MockBubbleDataHandler;
+        protected IBubbleClient MockBubbleClient;
 
         protected override void Given( )
         {
             base.Given( );
             CountryGetter = new CountryGetter( );
+            MockBubbleClient = Substitute.For<IBubbleClient>( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
             FacebookContext = new FacebookContext { FacebookClient = Substitute.For<FacebookClient>( ) };
-            Auth0Context = new Auth0Context( ){ ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
+            Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
+            MockBubbleDataHandler = new BubbleDataHandler<T>( MockBubbleClient, MockLogger );
             User = new User( MockDateTime );
         }
 

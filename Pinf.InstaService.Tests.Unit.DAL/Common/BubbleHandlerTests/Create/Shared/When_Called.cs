@@ -37,7 +37,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.Common.BubbleHandlerTests.Create.Shar
         }
 
         protected OperationResultEnum SutCall( ) =>
-            Sut.Create( TestUrl, new TestModel
+            BubbleSut.Create( TestUrl, new TestModel
             {
                 Id = TestId,
                 Value = TestValue

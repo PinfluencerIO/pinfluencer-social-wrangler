@@ -30,7 +30,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.Common.BubbleHandlerTests.Read.Shared
         }
 
         protected OperationResult<TestModel> SutCall( ) =>
-            Sut.Read<TestModel, TestDto>( TestUrl, x => new TestModel
+            BubbleSut.Read<TestModel, TestDto>( TestUrl, x => new TestModel
             {
                 Id = x.Id,
                 Value = x.Value

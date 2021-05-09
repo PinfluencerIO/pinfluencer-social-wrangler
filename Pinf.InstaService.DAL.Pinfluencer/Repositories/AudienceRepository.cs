@@ -4,27 +4,32 @@ using Pinf.InstaService.Core.Interfaces.Repositories;
 using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Core.Interfaces.Clients;
+using Pinf.InstaService.DAL.Core.Interfaces.Handlers;
+using Pinf.InstaService.DAL.Pinfluencer.Common;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {
-    public class AudienceRepository : BubbleRepository<AudienceRepository>, IAudienceRepository
+    public class AudienceRepository : IAudienceRepository
     {
-        protected override string Resource => "audience";
+        private const string Resource = "audience";
         
-        public AudienceRepository( IBubbleClient bubbleClient, ILoggerAdapter<AudienceRepository> logger ) : base( bubbleClient, logger )
+        private readonly IBubbleDataHandler<AudienceRepository> _bubbleDataHandler;
+        public AudienceRepository( IBubbleDataHandler<AudienceRepository> bubbleDataHandler )
         {
+            _bubbleDataHandler = bubbleDataHandler;
         }
-        
-        public OperationResultEnum Create( AudienceModel audience ) => 
-            CreateRequest( ( ) => BubbleClient.Post( Resource, new Audience( ) ) );
 
-        public OperationResultEnum Update( AudienceModel audience ) =>
-            UpdateRequest( ( ) => BubbleClient.Patch( Resource, new Audience
+        public OperationResultEnum Create( AudienceModel audience ) => _bubbleDataHandler.Create( Resource, audience, x => new Audience( ) );
+
+        public OperationResultEnum Update( AudienceModel audience ) => _bubbleDataHandler.Update( Resource, audience, modelMap );
+
+        private static Audience modelMap( AudienceModel model ) =>
+            new Audience
             {
-                AudienceAge = audience.AudienceAge.Select( x => x.Id ),
-                AudienceGender = audience.AudienceGender.Select( x => x.Id ),
-                AudienceLocation = audience.AudienceLocation.Select( x => x.Id )
-            } ) );
+                AudienceAge = model.AudienceAge.Select( x => x.Id ),
+                AudienceGender = model.AudienceGender.Select( x => x.Id ),
+                AudienceLocation = model.AudienceLocation.Select( x => x.Id )
+            };
     }
 }

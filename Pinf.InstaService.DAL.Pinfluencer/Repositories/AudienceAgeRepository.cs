@@ -6,13 +6,16 @@ using Pinf.InstaService.Core.Interfaces.Repositories;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.DAL.Core.Interfaces.Clients;
+using Pinf.InstaService.DAL.Core.Interfaces.Handlers;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {
-    public class AudienceAgeRepository : BubbleRepository<AudienceAgeRepository>, IAudienceAgeRepository
+    public class AudienceAgeRepository : IAudienceAgeRepository
     {
-        public AudienceAgeRepository( IBubbleClient bubbleClient, ILoggerAdapter<AudienceAgeRepository> logger ) : base( bubbleClient, logger )
+        private readonly IBubbleDataHandler<AudienceAgeRepository> _bubbleDataHandler;
+        public AudienceAgeRepository( IBubbleDataHandler<AudienceAgeRepository> bubbleDataHandler )
         {
+            _bubbleDataHandler = bubbleDataHandler;
         }
 
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAll( string audienceId ) =>

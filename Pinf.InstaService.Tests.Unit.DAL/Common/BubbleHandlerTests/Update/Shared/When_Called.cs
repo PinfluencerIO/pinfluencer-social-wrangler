@@ -35,7 +35,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.Common.BubbleHandlerTests.Update.Shar
         }
 
         protected OperationResultEnum SutCall( ) =>
-            Sut.Update( TestUrl, new TestModel
+            BubbleSut.Update( TestUrl, new TestModel
             {
                 Id = TestId,
                 Value = TestValue

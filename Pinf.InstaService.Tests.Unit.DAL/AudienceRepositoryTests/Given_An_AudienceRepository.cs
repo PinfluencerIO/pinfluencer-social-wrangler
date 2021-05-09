@@ -7,13 +7,10 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceRepositoryTests
 {
     public class Given_An_AudienceRepository : DataGivenWhenThen<AudienceRepository>
     {
-        protected IBubbleClient MockBubbleClient;
-
         protected override void Given( )
         {
             base.Given( );
-            MockBubbleClient = Substitute.For<IBubbleClient>( );
-            Sut = new AudienceRepository( MockBubbleClient, MockLogger );
+            Sut = new AudienceRepository( MockBubbleDataHandler );
         }
     }
 }
