@@ -3,9 +3,11 @@ using System.Linq;
 using Pinf.InstaService.Core;
 using Pinf.InstaService.Core.Enum;
 using Pinf.InstaService.Core.Interfaces.Repositories;
+using Pinf.InstaService.Core.Models;
 using Pinf.InstaService.Core.Models.Insights;
 using Pinf.InstaService.DAL.Core.Interfaces.Handlers;
 using Pinf.InstaService.DAL.Pinfluencer.Dtos.Bubble;
+using AudienceModel = Pinf.InstaService.Core.Models.Audience;
 
 namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
 {
@@ -17,10 +19,24 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         {
             _bubbleDataHandler = bubbleDataHandler;
         }
-        
-        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAll( string audienceId ) =>
-            new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
-                Enumerable.Empty<AudiencePercentage<LocationProperty>>( ), OperationResultEnum.Failed );
+
+        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>GetAll( string audienceId ) =>
+            _bubbleDataHandler
+                .Read<IEnumerable<AudiencePercentage<LocationProperty>>,
+                    TypeResponse<BubbleCollection<AudienceLocation>>>( "audiencelocation",
+                    x =>
+                    {
+                        return x.Type.Results.Select( y => new AudiencePercentage<LocationProperty>
+                        {
+                            Audience = new AudienceModel
+                            {
+                                Id = y.Audience
+                            },
+                            Id = y.Id,
+                            Percentage = y.Percentage,
+                            Value = new LocationProperty { Country = y.Place }
+                        } );
+                    }, Enumerable.Empty<AudiencePercentage<LocationProperty>>( ) );
 
         public OperationResultEnum Create( AudiencePercentage<LocationProperty> audience ) =>
             _bubbleDataHandler.Create( "audiencelocation", audience, ModelMap );
