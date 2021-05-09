@@ -59,7 +59,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceLocationRepositoryTests.Creat
                 .Create( Arg.Any<string>( ), Arg.Is<AudiencePercentage<LocationProperty>>( x => x.Audience.Id == DefaultAudienceLocation.Audience.Id &&
                                                                            x.Id == DefaultAudienceLocation.Id &&
                                                                            x.Percentage.Equals( DefaultAudienceLocation.Percentage ) &&
-                                                                           x.Value == DefaultAudienceLocation.Value ), 
+                                                                           x.Value.Country == DefaultAudienceLocation.Value.Country &&
+                                                                           x.Value.CountryCode == DefaultAudienceLocation.Value.CountryCode ), 
                     Arg.Any<Func<AudiencePercentage<LocationProperty>, AudienceLocation>>( ) );
         }
         
@@ -69,7 +70,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceLocationRepositoryTests.Creat
             var mapResult = Sut.ModelMap( DefaultAudienceLocation );
             Assert.True( mapResult.Audience == DefaultAudienceLocation.Audience.Id &&
                          mapResult.Id == DefaultAudienceLocation.Id &&
-                         mapResult.Place == DefaultAudienceLocation.Value.Country &&
+                         mapResult.Place == "" &&
                          mapResult.Percentage.Equals( DefaultAudienceLocation.Percentage ) );
         }
 

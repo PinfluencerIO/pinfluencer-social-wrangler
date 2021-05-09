@@ -23,11 +23,18 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 Enumerable.Empty<AudiencePercentage<LocationProperty>>( ), OperationResultEnum.Failed );
 
         public OperationResultEnum Create( AudiencePercentage<LocationProperty> audience ) =>
-            OperationResultEnum.Failed;
+            _bubbleDataHandler.Create( "audiencelocation", audience, ModelMap );
 
+        //TODO: ADD COUNTRY MAPPING
         public AudienceLocation ModelMap( AudiencePercentage<LocationProperty> audienceLocation )
         {
-            return new AudienceLocation( );
+            return new AudienceLocation
+            {
+                Audience = audienceLocation.Audience.Id,
+                Id = audienceLocation.Id,
+                Percentage = audienceLocation.Percentage,
+                Place = ""
+            };
         }
     }
 }
