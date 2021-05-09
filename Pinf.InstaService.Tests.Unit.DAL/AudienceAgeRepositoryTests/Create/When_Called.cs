@@ -59,7 +59,8 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceAgeRepositoryTests.Create
                 .Create( Arg.Any<string>( ), Arg.Is<AudiencePercentage<AgeProperty>>( x => x.Audience.Id == DefaultAudienceAge.Audience.Id &&
                                                                            x.Id == DefaultAudienceAge.Id &&
                                                                            x.Percentage.Equals( DefaultAudienceAge.Percentage ) &&
-                                                                           x.Value == DefaultAudienceAge.Value ), 
+                                                                           x.Value.Min == DefaultAudienceAge.Value.Min &&
+                                                                           x.Value.Max == DefaultAudienceAge.Value.Max ), 
                     Arg.Any<Func<AudiencePercentage<AgeProperty>, AudienceAge>>( ) );
         }
         

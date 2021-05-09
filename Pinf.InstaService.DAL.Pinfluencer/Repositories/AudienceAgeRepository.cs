@@ -14,6 +14,7 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
     public class AudienceAgeRepository : IAudienceAgeRepository
     {
         private readonly IBubbleDataHandler<AudienceAgeRepository> _bubbleDataHandler;
+        private const string Resource = "audienceage";
 
         public AudienceAgeRepository( IBubbleDataHandler<AudienceAgeRepository> bubbleDataHandler )
         {
@@ -25,11 +26,15 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
 
         public OperationResultEnum Create( AudiencePercentage<AgeProperty> audience ) =>
-            OperationResultEnum.Failed;
+            _bubbleDataHandler.Create( Resource, audience, ModelMap );
 
-        public AudienceAge ModelMap( AudiencePercentage<AgeProperty> audienceAge )
-        {
-            return new AudienceAge( );
-        }
+        public AudienceAge ModelMap( AudiencePercentage<AgeProperty> audienceAge ) =>
+            new AudienceAge
+            {
+                Audience = audienceAge.Audience.Id,
+                Id = audienceAge.Id,
+                Percentage = audienceAge.Percentage,
+                Range = $"{audienceAge.Value.Min}-{audienceAge.Value.Max}"
+            };
     }
 }
