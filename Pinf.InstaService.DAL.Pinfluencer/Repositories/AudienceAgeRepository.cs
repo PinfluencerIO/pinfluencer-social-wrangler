@@ -52,5 +52,19 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 Percentage = audienceAge.Percentage,
                 Range = $"{audienceAge.Value.Min}-{audienceAge.Value.Max}"
             };
+        
+        public IEnumerable<AudiencePercentage<AgeProperty>> DataMap( TypeResponse<BubbleCollection<AudienceAge>> audienceAge ) =>
+            audienceAge.Type.Results.Select( y =>
+            {
+                var range = y.Range;
+                var rangeSplit = range.Split( "-" );
+                return new AudiencePercentage<AgeProperty>
+                {
+                    Audience = new AudienceModel { Id = y.Audience },
+                    Id = y.Id,
+                    Percentage = y.Percentage,
+                    Value = new AgeProperty { Min = int.Parse( rangeSplit[ 0 ] ), Max = int.Parse( rangeSplit[ 1 ] ) }
+                };
+            } );
     }
 }

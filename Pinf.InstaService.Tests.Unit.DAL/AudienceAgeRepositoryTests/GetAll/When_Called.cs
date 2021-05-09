@@ -15,6 +15,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceAgeRepositoryTests.GetAll
     public class When_Called : Given_An_AudienceAgeRepository
     {
         private readonly IEnumerable<AudiencePercentage<AgeProperty>> _audienceAge;
+        private readonly TypeResponse<BubbleCollection<AudienceAge>> _audienceAgeRaw;
         private readonly OperationResultEnum _operationResult;
         private OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> _result;
 
@@ -34,18 +35,43 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceAgeRepositoryTests.GetAll
                         Percentage = 0.25
                     }
                 },
+                new TypeResponse<BubbleCollection<AudienceAge>>
+                {
+                    Type = new BubbleCollection<AudienceAge>
+                    {
+                        Results = new []
+                        {
+                            new AudienceAge
+                            {
+                                Audience = "123",
+                                Id = "1",
+                                Range = "13-17",
+                                Percentage = 0.75
+                            },
+                            new AudienceAge
+                            {
+                                Audience = "123",
+                                Id = "2",
+                                Range = "18-24",
+                                Percentage = 0.25
+                            }
+                        }
+                    }
+                },
                 OperationResultEnum.Success
             },
             new object[ ]
             {
                 Enumerable.Empty<AudiencePercentage<AgeProperty>>( ),
+                new TypeResponse<BubbleCollection<AudienceAge>>{ Type = new BubbleCollection<AudienceAge>{ Results = Enumerable.Empty<AudienceAge>( ) } },
                 OperationResultEnum.Failed
             }
         };
 
-        public When_Called( IEnumerable<AudiencePercentage<AgeProperty>> audienceAge, OperationResultEnum operationResult )
+        public When_Called( IEnumerable<AudiencePercentage<AgeProperty>> audienceAge, TypeResponse<BubbleCollection<AudienceAge>> audienceAgeRaw, OperationResultEnum operationResult )
         {
             _audienceAge = audienceAge;
+            _audienceAgeRaw = audienceAgeRaw;
             _operationResult = operationResult;
         }
 
@@ -75,6 +101,17 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceAgeRepositoryTests.GetAll
                 .Received( )
                 .Read( Arg.Is( "audienceage" ), Arg.Any<Func<TypeResponse<BubbleCollection<AudienceAge>>, IEnumerable<AudiencePercentage<AgeProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<AgeProperty>>>( ) );
+        }
+        
+        [ Test ]
+        public void Then_Mapping_Is_Correct( )
+        {
+            var mapResult = Sut.DataMap( _audienceAgeRaw );
+            Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceAge.Select( x => x.Id ) ) &&
+                         mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceAge.Select( x => x.Percentage ) ) &&
+                         mapResult.Select( x => x.Value.Max ).SequenceEqual( _audienceAge.Select( x => x.Value.Max ) ) &&
+                         mapResult.Select( x => x.Value.Min ).SequenceEqual( _audienceAge.Select( x => x.Value.Min ) ) &&
+                         mapResult.Select( x => x.Audience.Id ).SequenceEqual( _audienceAge.Select( x => x.Audience.Id ) ) );
         }
 
         [ Test ]

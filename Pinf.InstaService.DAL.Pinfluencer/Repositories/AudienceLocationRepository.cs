@@ -24,19 +24,7 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
             _bubbleDataHandler
                 .Read<IEnumerable<AudiencePercentage<LocationProperty>>,
                     TypeResponse<BubbleCollection<AudienceLocation>>>( "audiencelocation",
-                    x =>
-                    {
-                        return x.Type.Results.Select( y => new AudiencePercentage<LocationProperty>
-                        {
-                            Audience = new AudienceModel
-                            {
-                                Id = y.Audience
-                            },
-                            Id = y.Id,
-                            Percentage = y.Percentage,
-                            Value = new LocationProperty { Country = y.Place }
-                        } );
-                    }, Enumerable.Empty<AudiencePercentage<LocationProperty>>( ) );
+                    DataMap, Enumerable.Empty<AudiencePercentage<LocationProperty>>( ) );
 
         public OperationResultEnum Create( AudiencePercentage<LocationProperty> audience ) =>
             _bubbleDataHandler.Create( "audiencelocation", audience, ModelMap );
@@ -51,6 +39,20 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 Percentage = audienceLocation.Percentage,
                 Place = ""
             };
+        }
+
+        public IEnumerable<AudiencePercentage<LocationProperty>> DataMap( TypeResponse<BubbleCollection<AudienceLocation>> audienceLocation )
+        {
+            return audienceLocation.Type.Results.Select( y => new AudiencePercentage<LocationProperty>
+            {
+                Audience = new AudienceModel
+                {
+                    Id = y.Audience
+                },
+                Id = y.Id,
+                Percentage = y.Percentage,
+                Value = new LocationProperty { Country = y.Place }
+            } );
         }
     }
 }

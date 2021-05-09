@@ -16,6 +16,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceLocationRepositoryTests.GetAl
     public class When_Called : Given_An_AudienceLocationRepository
     {
         private readonly IEnumerable<AudiencePercentage<LocationProperty>> _audienceLocation;
+        private readonly TypeResponse<BubbleCollection<AudienceLocation>> _audienceLocationRaw;
         private readonly OperationResultEnum _operationResult;
         private OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
 
@@ -35,18 +36,45 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceLocationRepositoryTests.GetAl
                         Percentage = 0.25
                     }
                 },
+                new TypeResponse<BubbleCollection<AudienceLocation>>
+                {
+                    Type = new BubbleCollection<AudienceLocation>
+                    {
+                        Results = new []
+                        {
+                            new AudienceLocation
+                            {
+                                Audience = "123",
+                                Id = "1",
+                                Place = "United Kingdom",
+                                Percentage = 0.75
+                            },
+                            new AudienceLocation
+                            {
+                                Audience = "123",
+                                Id = "2",
+                                Place = "United States",
+                                Percentage = 0.25
+                            }
+                        }
+                    }
+                },
                 OperationResultEnum.Success
             },
             new object[ ]
             {
                 Enumerable.Empty<AudiencePercentage<LocationProperty>>( ),
+                new TypeResponse<BubbleCollection<AudienceLocation>>{ Type = new BubbleCollection<AudienceLocation>{ Results = Enumerable.Empty<AudienceLocation>(  ) } },
                 OperationResultEnum.Failed
             }
         };
 
-        public When_Called( IEnumerable<AudiencePercentage<LocationProperty>> audienceLocation, OperationResultEnum operationResult )
+        public When_Called( IEnumerable<AudiencePercentage<LocationProperty>> audienceLocation,
+            TypeResponse<BubbleCollection<AudienceLocation>> audienceLocationRaw,
+            OperationResultEnum operationResult )
         {
             _audienceLocation = audienceLocation;
+            _audienceLocationRaw = audienceLocationRaw;
             _operationResult = operationResult;
         }
 
@@ -69,6 +97,15 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceLocationRepositoryTests.GetAl
                     Arg.Any<IEnumerable<AudiencePercentage<LocationProperty>>>( ) );
         }
 
+        [ Test ]
+        public void Then_Mapping_Is_Correct( )
+        {
+            var mapResult = Sut.DataMap( _audienceLocationRaw );
+            Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceLocation.Select( x => x.Id ) ) &&
+                         mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceLocation.Select( x => x.Percentage ) ) &&
+                         mapResult.Select( x => x.Audience.Id ).SequenceEqual( _audienceLocation.Select( x => x.Audience.Id ) ) );
+        }
+        
         [ Test ]
         public void Then_Correct_Resource_Is_Used( )
         {

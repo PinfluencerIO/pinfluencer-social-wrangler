@@ -17,6 +17,7 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
     public class When_Called : Given_An_AudienceGenderRepository
     {
         private readonly IEnumerable<AudiencePercentage<GenderEnum>> _audienceGender;
+        private readonly TypeResponse<BubbleCollection<AudienceGender>> _audienceGenderRaw;
         private readonly OperationResultEnum _operationResult;
         private OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> _result;
 
@@ -36,18 +37,45 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
                         Percentage = 0.25
                     }
                 },
+                new TypeResponse<BubbleCollection<AudienceGender>>
+                {
+                    Type = new BubbleCollection<AudienceGender>
+                    {
+                        Results = new []
+                        {
+                            new AudienceGender
+                            {
+                                Audience = "123",
+                                Id = "1",
+                                Name = "Male",
+                                Percentage = 0.75
+                            },
+                            new AudienceGender
+                            {
+                                Audience = "123",
+                                Id = "2",
+                                Name = "Female",
+                                Percentage = 0.25
+                            }
+                        }
+                    }
+                },
                 OperationResultEnum.Success
             },
             new object[ ]
             {
                 Enumerable.Empty<AudiencePercentage<GenderEnum>>( ),
+                new TypeResponse<BubbleCollection<AudienceGender>>{ Type = new BubbleCollection<AudienceGender>{ Results = Enumerable.Empty<AudienceGender>(  ) } },
                 OperationResultEnum.Failed
             }
         };
 
-        public When_Called( IEnumerable<AudiencePercentage<GenderEnum>> audienceGender, OperationResultEnum operationResult )
+        public When_Called( IEnumerable<AudiencePercentage<GenderEnum>> audienceGender, 
+            TypeResponse<BubbleCollection<AudienceGender>> audienceGenderRaw, 
+            OperationResultEnum operationResult )
         {
             _audienceGender = audienceGender;
+            _audienceGenderRaw = audienceGenderRaw;
             _operationResult = operationResult;
         }
 
@@ -77,6 +105,16 @@ namespace Pinf.InstaService.Tests.Unit.DAL.AudienceGenderRepositoryTests.GetAll
                 .Received( )
                 .Read( Arg.Is( "audiencegender" ), Arg.Any<Func<TypeResponse<BubbleCollection<AudienceGender>>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<GenderEnum>>>( ) );
+        }
+        
+        [ Test ]
+        public void Then_Mapping_Is_Correct( )
+        {
+            var mapResult = Sut.DataMap( _audienceGenderRaw );
+            Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceGender.Select( x => x.Id ) ) &&
+                         mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceGender.Select( x => x.Percentage ) ) &&
+                         mapResult.Select( x => x.Value ).SequenceEqual( _audienceGender.Select( x => x.Value ) ) &&
+                         mapResult.Select( x => x.Audience.Id ).SequenceEqual( _audienceGender.Select( x => x.Audience.Id ) ) );
         }
 
         [ Test ]
