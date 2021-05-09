@@ -32,7 +32,7 @@ namespace Pinf.InstaService.Crosscutting.NUnit.PinfluencerExtensions
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
             FacebookContext = new FacebookContext { FacebookClient = Substitute.For<FacebookClient>( ) };
             Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
-            MockBubbleDataHandler = new BubbleDataHandler<T>( MockBubbleClient, MockLogger );
+            MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
             User = new User( MockDateTime );
         }
 

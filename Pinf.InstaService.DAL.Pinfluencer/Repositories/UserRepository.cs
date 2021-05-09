@@ -61,15 +61,18 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
         }
 
         public OperationResultEnum CreateInfluencer( InfluencerModel influencer ) =>
-            _bubbleDataHandler.Create( "influencer", influencer, x => new Influencer
+            _bubbleDataHandler.Create( "influencer", influencer, MapToInfluencerDto );
+
+        public Influencer MapToInfluencerDto( InfluencerModel influencer ) => 
+            new Influencer
             {
-                Age = x.Age,
-                Bio = x.Bio,
-                Gender = x.Gender,
-                Instagram = x.InstagramHandle,
-                Location = x.Location,
-                Profile = x.User.Id
-            } );
+                Age = influencer.Age,
+                Bio = influencer.Bio,
+                Gender = influencer.Gender,
+                Instagram = influencer.InstagramHandle,
+                Location = influencer.Location,
+                Profile = influencer.User.Id
+            };
 
         //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
         public OperationResult<IUser> Get( string id )

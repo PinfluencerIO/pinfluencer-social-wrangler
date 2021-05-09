@@ -1,11 +1,21 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Pinf.InstaService.DAL.Common.Dtos;
+using Pinf.InstaService.DAL.Common.Handlers;
+using Pinf.InstaService.DAL.Pinfluencer.Repositories;
 
 namespace Pinf.InstaService.Tests.Unit.DAL.UserRepositoryTests.Get.Shared
 {
+    //TODO: REFACTOR INTEGRATION TESTS OUT, USE MOCKED BUBBLE DATA HANDLER
     public abstract class When_Called : Given_A_UserRepository
     {
+        protected override void Given( )
+        {
+            base.Given( );
+            MockBubbleDataHandler = new BubbleDataHandler<UserRepository>( MockBubbleClient, MockLogger );
+            Sut = new UserRepository( Auth0Context, FacebookContext, User, MockLogger, MockBubbleDataHandler );
+        }
+
         [ Test ]
         public void Then_Facebook_User_Will_Be_Fetched_Once( )
         {

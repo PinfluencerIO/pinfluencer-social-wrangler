@@ -29,12 +29,15 @@ namespace Pinf.InstaService.DAL.Pinfluencer.Repositories
                 Enumerable.Empty<AudiencePercentage<GenderEnum>>( ) );
 
         public OperationResultEnum Create( AudiencePercentage<GenderEnum> audience ) =>
-            _bubbleDataHandler.Create( Resource, audience, x => new AudienceGender
+            _bubbleDataHandler.Create( Resource, audience, ModelMap );
+
+        public AudienceGender ModelMap( AudiencePercentage<GenderEnum> model ) =>
+            new AudienceGender
             {
-                Audience = x.Audience.Id,
-                Id = x.Id,
-                Name = x.Value.ToString( ),
-                Percentage = x.Percentage
-            } );
+                Audience = model.Audience.Id,
+                Id = model.Id,
+                Name = model.Value.ToString( ),
+                Percentage = model.Percentage
+            };
     }
 }
