@@ -1,9 +1,9 @@
 ﻿name: Deploy
 on:
   release:
-    branches: [ master ]
+    branches: [ release ]
   push:
-    branches: [ master, develop ]
+    branches: [ release, trunk ]
 jobs:
   compile-and-deploy:
     runs-on: windows-latest

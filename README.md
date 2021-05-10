@@ -10,9 +10,9 @@ _Uses the Auth0 mangement API and Facebook Graph API to collect data from users_
     * open
       * rebuilds the beanstalk, restarts it if its already up, starts it if its not up
 * Build and test
-  * occurs when you push to the develop or master branch or upon a pull request
+  * occurs when you push to the trunk or release branch or upon a pull request
 * Deploy
-  * occurs on push to the master or develop branches
+  * occurs on push to the release or trunk branches
   * to skip deploy put [ nodeploy ] in the commit message
     * example: "this is my commit message [ nodeploy ]"
 ## Configure development locally
