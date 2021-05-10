@@ -2,7 +2,7 @@
 {
     public static class GitConstants
     {
-        public const string ProductionBranch = "master";
-        public const string DevelopmentBranch = "develop";
+        public const string ProductionBranch = "release";
+        public const string DevelopmentBranch = "trunk";
     }
 }
