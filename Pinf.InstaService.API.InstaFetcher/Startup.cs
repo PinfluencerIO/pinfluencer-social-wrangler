@@ -16,8 +16,10 @@ using Pinf.InstaService.Core.Models.User;
 using Pinf.InstaService.Crosscutting.Utils;
 using Pinf.InstaService.Crosscutting.Web;
 using Pinf.InstaService.DAL.Common;
+using Pinf.InstaService.DAL.Common.Handlers;
 using Pinf.InstaService.DAL.Core.Interfaces.Clients;
 using Pinf.InstaService.DAL.Core.Interfaces.Factories;
+using Pinf.InstaService.DAL.Core.Interfaces.Handlers;
 using Pinf.InstaService.DAL.Instagram.Factories;
 using Pinf.InstaService.DAL.Instagram.Repositories;
 using Pinf.InstaService.DAL.Pinfluencer;
@@ -57,6 +59,7 @@ namespace Pinf.InstaService.API.InstaFetcher
                     return new BubbleClient( provider.GetService<IHttpClient>( ),
                         new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
                 } )
+                .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
                 .AddTransient<IUser, User>( )
                 .AddTransient<InfluencerFacade>( )
