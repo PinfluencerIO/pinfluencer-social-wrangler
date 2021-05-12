@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>11</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLSequenceAllInOne</id>
     <coordinates>
-      <x>165</x>
-      <y>0</y>
-      <w>1012</w>
-      <h>506</h>
+      <x>0</x>
+      <y>27</y>
+      <w>720</w>
+      <h>342</h>
     </coordinates>
     <panel_attributes>title=Social Authentication Filter
 obj=User~User ACTOR
 obj=Social Auth Filter~Filter ACTIVE
 obj=Configuration~Config ACTIVE
-obj=Social Auth Manager Factory~SocialAuthManagerFactory ACTIVE
 obj=Social Auth Manager~SocialAuthManager ACTIVE
 
 User-&gt;&gt;&gt;Filter : API Request
 Filter-&gt;&gt;&gt;Config : Get&lt;AppOptions&gt;()
 Config-&gt;&gt;&gt;Filter : AppOptions
-Filter-&gt;&gt;&gt;SocialAuthManagerFactory : Create(AppOptions)
-SocialAuthManagerFactory-&gt;&gt;&gt;Filter : (OperationResult,ErrorMessage)
-Filter-&gt;&gt;&gt;SocialAuthManager : Initialise(Request.AuthServiceUserId)
+Filter-&gt;&gt;&gt;SocialAuthManager : Initialise(Request.AuthServiceUserId,AppOptions)
 SocialAuthManager-&gt;&gt;&gt;Filter : (OperationResult,ErrorMessage)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLSequenceAllInOne</id>
     <coordinates>
-      <x>165</x>
-      <y>528</y>
-      <w>638</w>
-      <h>286</h>
+      <x>0</x>
+      <y>468</y>
+      <w>1467</w>
+      <h>342</h>
     </coordinates>
     <panel_attributes>title=Create Social Auth Manager
-obj=Client~Client ACTOR
-obj=Social Auth Manager Factory~SocialAuthManagerFactory ACTIVE
+obj=Client Caller~ClientCaller ACTOR
 obj=Social Auth Manager~SocialAuthManager ACTIVE
+obj=Authentication APi Client Adapter Factory~AuthenticationApiClientAdapterFactory ACTIVE
+obj=Authentication APi Client Adapter~AuthenticationApiClientAdapter ACTIVE
+obj=Management APi Client Adapter Factory~ManagementApiClientAdapterFactory ACTIVE
 
-Client-&gt;&gt;&gt;SocialAuthManagerFactory : Create(AppOptions)
-Client-&gt;&gt;&gt;SocialAuthManagerFactory : Create(AppOptions)</panel_attributes>
+ClientCaller-&gt;&gt;&gt;SocialAuthManager : Initialise(AppOptions,AuthServiceUserId)
+SocialAuthManager-&gt;&gt;&gt;AuthenticationApiClientAdapterFactory : Create(AuthServiceOptions)
+SocialAuthManager-&gt;&gt;&gt;AuthenticationApiClientAdapter : GetToken(AuthServiceOptions)
+AuthenticationApiClientAdapter-&gt;&gt;&gt;SocialAuthManager : Token
+SocialAuthManager-&gt;&gt;&gt;ManagementApiClientAdapterFactory : Create(AuthServiceOptions,Token)</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
