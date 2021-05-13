@@ -1,0 +1,27 @@
+﻿using System.IO;
+using Pinfluencer.SocialWrangler.Bootstrapping.DevOps.Deploy;
+
+namespace Pinfluencer.SocialWrangler.Bootstrapping.DevOps.Wrappers
+{
+    public class AwsLinxNetCoreProcFileBuilder
+    {
+        private readonly string _path;
+
+        public AwsLinxNetCoreProcFileBuilder( string path ) { _path = path; }
+
+        public AwsLinxNetCoreProcFileBuilder AddLine( ProcLineDto line )
+        {
+            using var fs =
+                File.AppendText( $"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}" );
+            fs.Write(
+                $"{line.Name}: dotnet exec {line.Location}{line.Namespace}.dll --urls http://0.0.0.0:{line.Port}/" );
+            return this;
+        }
+
+        public AwsLinxNetCoreProcFileBuilder Create( )
+        {
+            using var fs = File.Create( $"{_path}{Path.DirectorySeparatorChar}{AwsBeanstalkConstants.LinxProcFile}" );
+            return this;
+        }
+    }
+}

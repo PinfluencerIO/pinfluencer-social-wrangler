@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>720</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>title=Social Authentication Filter
+obj=User~User ACTOR
+obj=Social Auth Filter~Filter ACTIVE
+obj=Configuration~Config ACTIVE
+obj=Social Auth Manager~SocialAuthManager ACTIVE
+
+User-&gt;&gt;&gt;Filter : API Request
+Filter-&gt;&gt;&gt;Config : Get&lt;AppOptions&gt;()
+Config-&gt;&gt;&gt;Filter : AppOptions
+Filter-&gt;&gt;&gt;SocialAuthManager : Initialise(Request.AuthServiceUserId,AppOptions)
+SocialAuthManager-&gt;&gt;&gt;Filter : (OperationResult,ErrorMessage)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>0</x>
+      <y>441</y>
+      <w>1872</w>
+      <h>522</h>
+    </coordinates>
+    <panel_attributes>title=Create Social Auth Manager
+obj=Client Caller~ClientCaller ACTOR
+obj=Social Auth Manager~SocialAuthManager ACTIVE
+obj=Authentication Client Adapter Factory~AuthenticationClientAdapterFactory ACTIVE
+obj=Authentication Client Adapter~AuthenticationClientAdapter ACTIVE
+obj=Management Client Adapter Factory~ManagementClientAdapterFactory ACTIVE
+obj=Management Client Adapter~ManagementClientAdapter ACTIVE
+obj=Social Data Context Factory~SocialDataContextFactory ACTIVE
+obj=Social Data Context~SocialDataContext ACTIVE
+
+ClientCaller-&gt;&gt;&gt;SocialAuthManager : Initialise(AppOptions,AuthUser)
+SocialAuthManager-&gt;&gt;&gt;AuthenticationClientAdapterFactory : Create(AuthServiceOptions)
+SocialAuthManager-&gt;&gt;&gt;AuthenticationClientAdapter : GetToken(AuthServiceOptions)
+AuthenticationClientAdapter-&gt;&gt;&gt;SocialAuthManager : (Token,OperationResult,ErrorMessage)
+SocialAuthManager-&gt;&gt;&gt;ManagementClientAdapterFactory : Create(AuthServiceOptions,Token)
+SocialAuthManager-&gt;&gt;&gt;ManagementClientAdapter : GetSocialDataToken(AuthUser)
+ManagementClientAdapter-&gt;&gt;&gt;SocialAuthManager : (SocialDataToken,OperationResult,ErrorMessage)
+SocialAuthManager-&gt;&gt;&gt;SocialDataContextFactory : Create(SocialDataToken)
+SocialAuthManager-&gt;&gt;&gt;SocialDataContext : Initialise()
+SocialAuthManager&lt;&lt;&lt;-SocialDataContext : (OperationResult,ErrorMessage)</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

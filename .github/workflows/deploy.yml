@@ -1,9 +1,9 @@
 ﻿name: Deploy
 on:
   release:
-    branches: [ master ]
+    branches: [ release ]
   push:
-    branches: [ master, develop ]
+    branches: [ release, trunk ]
 jobs:
   compile-and-deploy:
     runs-on: windows-latest
@@ -14,9 +14,10 @@ jobs:
       SIMPLE_AUTH_KEY: ${{ secrets.SIMPLE_AUTH_KEY }}
       AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      DEVOPS_SLN: Pinf.InstaService.DevOps.sln
+      DEVOPS_SLN: Pinfluencer.SocialWrangler.DevOps.sln
       DEVOPS_EXEC: devops/DevOps.dll
-      API_PROJ: Pinf.InstaService.API.InstaFetcher
+      API_PROJ: Pinfluencer.SocialWrangler.API
+      BUBBLE_TOKEN: ${{ secrets.BUBBLE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set project variables

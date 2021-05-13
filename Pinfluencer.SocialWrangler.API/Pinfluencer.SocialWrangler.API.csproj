@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Instagram\Pinfluencer.SocialWrangler.DAL.Instagram.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Auth0.AuthenticationApi" Version="7.6.1" />
+    </ItemGroup>
+
+</Project>
