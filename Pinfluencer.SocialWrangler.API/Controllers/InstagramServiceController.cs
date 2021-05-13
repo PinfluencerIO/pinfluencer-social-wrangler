@@ -8,7 +8,6 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     public abstract class InstagramServiceController : PinfluencerController
     {
         protected readonly MvcAdapter MvcAdapter;
-
         protected InstagramServiceController( MvcAdapter mvcAdapter ) { MvcAdapter = mvcAdapter; }
     }
 }
