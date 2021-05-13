@@ -27,6 +27,6 @@ _Uses the Auth0 mangement API and Facebook Graph API to collect data from users_
     * Secret: ( Bubble API Token )
    * SimpleAuthKey: ( api key )
  * Run
-   * COMMAND LINE => cd Pinf.InstaService.API.InstaFetcher
+   * COMMAND LINE => cd Pinfluencer.SocialWrangler.API
    * COMMAND LINE => dotnet run
      * runs kestrel web server on port [ http:5000 ] and [ https:5001 ]
