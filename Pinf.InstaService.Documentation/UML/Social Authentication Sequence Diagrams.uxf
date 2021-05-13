@@ -5,7 +5,7 @@
     <id>UMLSequenceAllInOne</id>
     <coordinates>
       <x>0</x>
-      <y>27</y>
+      <y>0</y>
       <w>720</w>
       <h>342</h>
     </coordinates>
@@ -26,22 +26,30 @@ SocialAuthManager-&gt;&gt;&gt;Filter : (OperationResult,ErrorMessage)</panel_att
     <id>UMLSequenceAllInOne</id>
     <coordinates>
       <x>0</x>
-      <y>468</y>
-      <w>1467</w>
-      <h>342</h>
+      <y>441</y>
+      <w>1872</w>
+      <h>522</h>
     </coordinates>
     <panel_attributes>title=Create Social Auth Manager
 obj=Client Caller~ClientCaller ACTOR
 obj=Social Auth Manager~SocialAuthManager ACTIVE
-obj=Authentication APi Client Adapter Factory~AuthenticationApiClientAdapterFactory ACTIVE
-obj=Authentication APi Client Adapter~AuthenticationApiClientAdapter ACTIVE
-obj=Management APi Client Adapter Factory~ManagementApiClientAdapterFactory ACTIVE
+obj=Authentication Client Adapter Factory~AuthenticationClientAdapterFactory ACTIVE
+obj=Authentication Client Adapter~AuthenticationClientAdapter ACTIVE
+obj=Management Client Adapter Factory~ManagementClientAdapterFactory ACTIVE
+obj=Management Client Adapter~ManagementClientAdapter ACTIVE
+obj=Social Data Context Factory~SocialDataContextFactory ACTIVE
+obj=Social Data Context~SocialDataContext ACTIVE
 
-ClientCaller-&gt;&gt;&gt;SocialAuthManager : Initialise(AppOptions,AuthServiceUserId)
-SocialAuthManager-&gt;&gt;&gt;AuthenticationApiClientAdapterFactory : Create(AuthServiceOptions)
-SocialAuthManager-&gt;&gt;&gt;AuthenticationApiClientAdapter : GetToken(AuthServiceOptions)
-AuthenticationApiClientAdapter-&gt;&gt;&gt;SocialAuthManager : Token
-SocialAuthManager-&gt;&gt;&gt;ManagementApiClientAdapterFactory : Create(AuthServiceOptions,Token)</panel_attributes>
+ClientCaller-&gt;&gt;&gt;SocialAuthManager : Initialise(AppOptions,AuthUser)
+SocialAuthManager-&gt;&gt;&gt;AuthenticationClientAdapterFactory : Create(AuthServiceOptions)
+SocialAuthManager-&gt;&gt;&gt;AuthenticationClientAdapter : GetToken(AuthServiceOptions)
+AuthenticationClientAdapter-&gt;&gt;&gt;SocialAuthManager : (Token,OperationResult,ErrorMessage)
+SocialAuthManager-&gt;&gt;&gt;ManagementClientAdapterFactory : Create(AuthServiceOptions,Token)
+SocialAuthManager-&gt;&gt;&gt;ManagementClientAdapter : GetSocialDataToken(AuthUser)
+ManagementClientAdapter-&gt;&gt;&gt;SocialAuthManager : (SocialDataToken,OperationResult,ErrorMessage)
+SocialAuthManager-&gt;&gt;&gt;SocialDataContextFactory : Create(SocialDataToken)
+SocialAuthManager-&gt;&gt;&gt;SocialDataContext : Initialise()
+SocialAuthManager&lt;&lt;&lt;-SocialDataContext : (OperationResult,ErrorMessage)</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
