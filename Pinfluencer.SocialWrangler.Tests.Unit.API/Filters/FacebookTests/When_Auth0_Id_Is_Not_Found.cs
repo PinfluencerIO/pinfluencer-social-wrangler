@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_Error_Message_Is_Valid( )
         {
-            Assert.AreEqual( "'auth0_id' parameter was not present in the request", ErrorMessage );
+            Assert.AreEqual( "'auth-id' parameter was not present in the request", ErrorMessage );
         }
 
         [ Test ]

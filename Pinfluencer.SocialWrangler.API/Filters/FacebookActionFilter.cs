@@ -34,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
 
         public override void OnActionExecuting( ActionExecutingContext context )
         {
-            var auth0Id = context.HttpContext.Request.Query[ "auth0_id" ].ToString( );
+            var auth0Id = context.HttpContext.Request.Query[ "auth-id" ].ToString( );
 
             if( auth0Id == string.Empty )
             {
@@ -45,7 +45,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                 }
                 catch( Exception e ) when ( e is KeyNotFoundException || e is InvalidCastException )
                 {
-                    context.Result = _mvcAdapter.UnauthorizedError( "'auth0_id' parameter was not present in the request" );
+                    context.Result = _mvcAdapter.UnauthorizedError( "'auth-id' parameter was not present in the request" );
                     return;
                 }
             }

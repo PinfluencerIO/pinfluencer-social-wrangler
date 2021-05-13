@@ -8,7 +8,7 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 namespace Pinfluencer.SocialWrangler.API.Controllers
 {
     //TODO: implement auto-mapper
-    [ Route( "instagram_insights" ) ]
+    [ Route( "instagram-insights" ) ]
     public class InstagramInsightsController : InstagramServiceController
     {
         private readonly InstagramFacade _instagramFacade;
@@ -34,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         }
 
         [ NonAction ]
-        [ ActionName( "profile_impressions" ) ]
+        [ ActionName( "impressions" ) ]
         private IActionResult getImpressions( string user )
         {
             var insights = _instagramFacade.GetMonthlyProfileViews( user );
@@ -43,7 +43,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         }
         
         [ NonAction ]
-        [ ActionName( "audience_age" ) ]
+        [ ActionName( "audience-age" ) ]
         private IActionResult getAudienceAge( string user )
         {
             var insights = _instagramFacade.GetAudienceAgeInsights( user );
@@ -52,7 +52,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         }
         
         [ NonAction ]
-        [ ActionName( "audience_gender" ) ]
+        [ ActionName( "audience-gender" ) ]
         private IActionResult getAudienceGender( string user )
         {
             var insights = _instagramFacade.GetAudienceGenderInsights( user );
@@ -61,7 +61,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         }
         
         [ NonAction ]
-        [ ActionName( "audience_country" ) ]
+        [ ActionName( "audience-country" ) ]
         private IActionResult getAudienceCountry( string user )
         {
             var insights = _instagramFacade.GetAudienceCountryInsights( user );

@@ -5,11 +5,11 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 namespace Pinfluencer.SocialWrangler.API.Controllers
 {
     //TODO: implement auto-mapper
-    [ Route( "instagram_user" ) ]
+    [ Route( "instagram-user" ) ]
     public class InstagramUserController : InstagramServiceController
     {
         private readonly InstagramFacade _instagramFacade;
-        public InstagramUserController( InstagramFacade instagramFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacade; }
+        public InstagramUserController( InstagramFacade instagramFacaade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacaade; }
 
         [ Route( "" ) ]
         [ HttpGet ]
