@@ -8,9 +8,9 @@ jobs:
   build_and_test:
     runs-on: windows-latest
     env:
-      MAIN_SLN: Pinf.InstaService.Main.sln
-      DEVOPS_SLN: Pinf.InstaService.DevOps.sln
-      API_PROJ: Pinf.InstaService.API.InstaFetcher
+      MAIN_SLN: Pinfluencer.SocialWrangler.Main.sln
+      DEVOPS_SLN: Pinfluencer.SocialWrangler.DevOps.sln
+      API_PROJ: Pinfluencer.SocialWrangler.API
       DEVOPS_EXEC: devops/DevOps.dll
     steps:
       - uses: actions/checkout@v2

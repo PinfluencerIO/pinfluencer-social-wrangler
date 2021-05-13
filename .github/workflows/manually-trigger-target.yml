@@ -11,12 +11,12 @@ jobs:
     env:
       AWS_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_TOKEN: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      DEVOPS_SLN: Pinf.InstaService.DevOps.sln
+      DEVOPS_SLN: Pinfluencer.SocialWrangler.DevOps.sln
       DEVOPS_EXEC: devops/DevOps.dll
       AUTH0_ID: ${{ secrets.AUTH0_ID }}
       AUTH0_SECRET: ${{ secrets.AUTH0_SECRET }}
       SIMPLE_AUTH_KEY: ${{ secrets.SIMPLE_AUTH_KEY }}
-      API_PROJ: Pinf.InstaService.API.InstaFetcher
+      API_PROJ: Pinfluencer.SocialWrangler.API
       BUBBLE_TOKEN: ${{ secrets.BUBBLE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
