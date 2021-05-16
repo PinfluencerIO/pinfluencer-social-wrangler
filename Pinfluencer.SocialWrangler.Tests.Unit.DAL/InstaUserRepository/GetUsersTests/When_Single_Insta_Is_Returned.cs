@@ -4,13 +4,13 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {
     public class When_Single_Insta_Is_Returned : When_Get_Users_Is_Called
     {
-        private OperationResult<IEnumerable<InstaUser>> _result;
+        private OperationResult<IEnumerable<SocialInsightsUser>> _result;
 
         protected override void When( )
         {
@@ -28,7 +28,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsers
         public void Then_Name_Is_Correct( ) { Assert.AreEqual( "Aidan Gan", _result.Value.First( ).Name ); }
 
         [ Test ]
-        public void Then_Handle_Is_Correct( ) { Assert.AreEqual( "user", _result.Value.First( ).Handle ); }
+        public void Then_Handle_Is_Correct( ) { Assert.AreEqual( "user", _result.Value.First( ).Username ); }
 
         [ Test ]
         public void Then_Bio_Is_Correct( ) { Assert.AreEqual( "this is my bio", _result.Value.First( ).Bio ); }

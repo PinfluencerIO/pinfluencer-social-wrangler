@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
     public class Given_A_InfluencerFacade : PinfluencerGivenWhenThen<InfluencerFacade>
     {
         protected IUserRepository MockUserRepository;
-        protected ISocialUserRepository MockSocialUserRepository;
+        protected IInsightsSocialUserRepository InsightsSocialUserRepository;
         protected readonly FakeUserProps DefaultUser = new FakeUserProps
         {
             Age = 21,
@@ -22,9 +22,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         protected override void Given( )
         {
             MockUserRepository = Substitute.For<IUserRepository>( );
-            MockSocialUserRepository = Substitute.For<ISocialUserRepository>( );
+            InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
 
-            Sut = new InfluencerFacade( MockUserRepository, MockSocialUserRepository );
+            Sut = new InfluencerFacade( MockUserRepository, InsightsSocialUserRepository );
         }
     }
 }

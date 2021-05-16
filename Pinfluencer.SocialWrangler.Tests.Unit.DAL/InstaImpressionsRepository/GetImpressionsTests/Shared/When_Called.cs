@@ -1,6 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests.Shared
 {

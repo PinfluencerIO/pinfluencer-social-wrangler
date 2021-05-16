@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.
@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
     {
         protected override void When( )
         {
-            InstaUserCollection = Enumerable.Empty<InstaUser>( );
+            InstaUserCollection = Enumerable.Empty<SocialInsightsUser>( );
 
             base.When( );
 

@@ -1,7 +1,7 @@
 ﻿using Facebook;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
-namespace Pinfluencer.SocialWrangler.DAL.Instagram.Factories
+namespace Pinfluencer.SocialWrangler.DAL.Facebook.Factories
 {
     public class FacebookClientFactory : IFacebookClientFactory
     {

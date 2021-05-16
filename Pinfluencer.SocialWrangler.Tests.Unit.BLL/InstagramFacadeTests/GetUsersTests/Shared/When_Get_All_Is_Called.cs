@@ -3,20 +3,20 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.Shared
 {
     public abstract class When_Get_All_Is_Called : Given_An_InstagramFacade
     {
         protected OperationResultEnum InstaUsersOperationResult { set; get; }
-        protected IEnumerable<InstaUser> InstaUserCollection { set; get; }
+        protected IEnumerable<SocialInsightsUser> InstaUserCollection { set; get; }
 
         protected override void When( )
         {
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .GetAll( )
-                .Returns( new OperationResult<IEnumerable<InstaUser>>(
+                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>(
                     InstaUserCollection,
                     InstaUsersOperationResult
                 ) );
@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
         [ Test ]
         public void Then_Get_Insta_Users_Was_Called_Once( )
         {
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .Received( 1 )
                 .GetAll( );
         }

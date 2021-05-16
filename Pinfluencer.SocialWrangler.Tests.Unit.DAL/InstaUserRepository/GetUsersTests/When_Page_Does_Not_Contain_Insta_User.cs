@@ -3,13 +3,13 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {
     public class When_Page_Does_Not_Contain_Insta_User : When_Get_Users_Is_Called
     {
-        private OperationResult<IEnumerable<InstaUser>> _result;
+        private OperationResult<IEnumerable<SocialInsightsUser>> _result;
 
         protected override void When( )
         {

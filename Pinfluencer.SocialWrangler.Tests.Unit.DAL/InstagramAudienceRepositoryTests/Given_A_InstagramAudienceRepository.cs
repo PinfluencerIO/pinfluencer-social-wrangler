@@ -1,6 +1,6 @@
 ﻿using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Repositories;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests
 {

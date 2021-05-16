@@ -3,7 +3,7 @@ using System.Linq;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
@@ -13,9 +13,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         protected override void When( )
         {
             base.When( );
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .GetAll( )
-                .Returns( new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>(  ), OperationResultEnum.Failed ) );
+                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>(  ), OperationResultEnum.Failed ) );
             Result = Sut.OnboardInfluencer( "123" );
         }
     }

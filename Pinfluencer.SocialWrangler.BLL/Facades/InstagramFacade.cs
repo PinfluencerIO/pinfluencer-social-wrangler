@@ -4,28 +4,28 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.BLL.Facades
 {
     public class InstagramFacade
     {
         private readonly ISocialImpressionsRepository _impressionsRepository;
-        private readonly ISocialUserRepository _socialUserRepository;
+        private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
         private readonly ISocialAudienceRepository _socialAudienceRepository;
 
         public InstagramFacade(
-            ISocialImpressionsRepository impressionsRepository, ISocialUserRepository socialUserRepository, ISocialAudienceRepository socialAudienceRepository )
+            ISocialImpressionsRepository impressionsRepository, IInsightsSocialUserRepository insightsSocialUserRepository, ISocialAudienceRepository socialAudienceRepository )
         {
             _impressionsRepository = impressionsRepository;
-            _socialUserRepository = socialUserRepository;
+            _insightsSocialUserRepository = insightsSocialUserRepository;
             _socialAudienceRepository = socialAudienceRepository;
         }
 
         public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id ) => _impressionsRepository.GetImpressions( id );
 
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
-        public OperationResult<IEnumerable<InstaUser>> GetUsers( ) => _socialUserRepository.GetAll( );
+        public OperationResult<IEnumerable<SocialInsightsUser>> GetUsers( ) => _insightsSocialUserRepository.GetAll( );
 
         public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights( string id )
         {

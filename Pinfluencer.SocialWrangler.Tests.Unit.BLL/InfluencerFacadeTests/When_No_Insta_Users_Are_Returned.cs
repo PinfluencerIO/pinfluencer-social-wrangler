@@ -4,7 +4,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared;
 
@@ -15,16 +15,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         protected override void When( )
         {
             base.When( );
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .GetAll( )
-                .Returns( new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>(  ), OperationResultEnum.Success ) );
+                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>(  ), OperationResultEnum.Success ) );
             Result = Sut.OnboardInfluencer( "123" );
         }
 
         [ Test ]
         public void Then_Get_Instagram_Users_Was_Called_Once( )
         {
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .Received( 1 )
                 .GetAll( );
         }

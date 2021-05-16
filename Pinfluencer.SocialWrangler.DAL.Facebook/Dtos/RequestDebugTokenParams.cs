@@ -1,4 +1,4 @@
-﻿namespace Pinfluencer.SocialWrangler.DAL.Instagram.Dtos
+﻿namespace Pinfluencer.SocialWrangler.DAL.Facebook.Dtos
 {
     public class RequestDebugTokenParams
     {

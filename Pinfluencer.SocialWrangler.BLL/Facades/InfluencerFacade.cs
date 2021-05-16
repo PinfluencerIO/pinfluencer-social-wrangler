@@ -8,12 +8,12 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
     public class InfluencerFacade
     {
         private readonly IUserRepository _userRepository;
-        private readonly ISocialUserRepository _socialUserRepository;
+        private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
 
-        public InfluencerFacade( IUserRepository userRepository, ISocialUserRepository socialUserRepository )
+        public InfluencerFacade( IUserRepository userRepository, IInsightsSocialUserRepository insightsSocialUserRepository )
         {
             _userRepository = userRepository;
-            _socialUserRepository = socialUserRepository;
+            _insightsSocialUserRepository = insightsSocialUserRepository;
         }
         
         public OperationResultEnum OnboardInfluencer( string id )
@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
             }
 
             var user = userResult.Value;
-            var instaUserResult = _socialUserRepository.GetAll(  );
+            var instaUserResult = _insightsSocialUserRepository.GetAll(  );
             if( instaUserResult.Status != OperationResultEnum.Success )
             {
                 return OperationResultEnum.Failed;
@@ -43,7 +43,7 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
                 Age = user.Age,
                 Bio = instaUser.Bio,
                 Gender = user.Gender,
-                InstagramHandle = instaUser.Handle,
+                InstagramHandle = instaUser.Username,
                 Location = user.Location,
                 User = user
             } );

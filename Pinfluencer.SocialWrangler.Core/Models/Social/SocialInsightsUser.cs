@@ -1,8 +1,8 @@
-﻿namespace Pinfluencer.SocialWrangler.Core.Models.InstaUser
+﻿namespace Pinfluencer.SocialWrangler.Core.Models.Social
 {
-    public class InstaUser
+    public class SocialInsightsUser
     {
-        public string Handle { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 

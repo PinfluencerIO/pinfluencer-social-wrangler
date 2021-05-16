@@ -19,7 +19,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
         [ Test ]
         public void Then_Get_Instagram_Users_Was_Called_Once( )
         {
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .Received( 1 )
                 .GetAll( );
         }

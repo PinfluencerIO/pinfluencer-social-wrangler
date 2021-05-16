@@ -2,22 +2,22 @@
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {
-        protected OperationResult<IEnumerable<InstaUser>> Result;
+        protected OperationResult<IEnumerable<SocialInsightsUser>> Result;
 
         protected void SetSingleUser( string handle, string id, string name, string bio, int followers )
         {
             InstaUserCollection = new [ ] 
             {
-                new InstaUser
+                new SocialInsightsUser
                 {
-                    Handle = handle,
+                    Username = handle,
                     Id = id,
                     Name = name,
                     Bio = bio,
@@ -42,17 +42,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
         {
             InstaUserCollection = new [ ]
             {
-                new InstaUser
+                new SocialInsightsUser
                 {
-                    Handle = handle1,
+                    Username = handle1,
                     Id = id1,
                     Name = name1,
                     Bio = bio1,
                     Followers = followers1
                 } ,
-                new InstaUser
+                new SocialInsightsUser
                 {
-                    Handle = handle2,
+                    Username = handle2,
                     Id = id2,
                     Name = name2,
                     Bio = bio2,

@@ -5,9 +5,9 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
 {
     [ ServiceFilter( typeof( Auth0ActionFilter ), Order = 2 ) ]
     [ ServiceFilter( typeof( FacebookActionFilter ), Order = 3 ) ]
-    public abstract class InstagramServiceController : PinfluencerController
+    public abstract class SocialWranglerController : PinfluencerController
     {
         protected readonly MvcAdapter MvcAdapter;
-        protected InstagramServiceController( MvcAdapter mvcAdapter ) { MvcAdapter = mvcAdapter; }
+        protected SocialWranglerController( MvcAdapter mvcAdapter ) { MvcAdapter = mvcAdapter; }
     }
 }

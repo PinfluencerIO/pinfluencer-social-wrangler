@@ -7,7 +7,7 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.API.Filters
 {

@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared;
 
@@ -19,15 +19,15 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             MockUserRepository
                 .Get( Arg.Any<string>( ) )
                 .Returns( new OperationResult<IUser>( GetUser( DefaultUser ), OperationResultEnum.Success ) );
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .GetAll( )
-                .Returns( new OperationResult<IEnumerable<InstaUser>>( new [ ]
+                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ]
                 {
-                    new InstaUser
+                    new SocialInsightsUser
                     {
                         Bio = "This is an example",
                         Followers = 212,
-                        Handle = "examplehandle",
+                        Username = "examplehandle",
                         Id = "654321",
                         Name = "Aidan Gannon"
                     }
@@ -61,7 +61,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         [ Test ]
         public void Then_Get_Instagram_Users_Was_Called_Once( )
         {
-            MockSocialUserRepository
+            InsightsSocialUserRepository
                 .Received( 1 )
                 .GetAll( );
         }

@@ -9,9 +9,9 @@ using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.CodeContracts;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
-namespace Pinfluencer.SocialWrangler.DAL.Instagram.Repositories
+namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramImpressionsRepository : FacebookRepository<InstagramImpressionsRepository>, ISocialImpressionsRepository
     {

@@ -31,7 +31,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
         {
             Assert.True(
                 new [ ] { "example", "example2" }.SequenceEqual(
-                    Result.Value.Select( x => x.Handle ) ) );
+                    Result.Value.Select( x => x.Username ) ) );
         }
     }
 }

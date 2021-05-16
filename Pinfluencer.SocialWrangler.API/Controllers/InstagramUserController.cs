@@ -6,7 +6,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
 {
     //TODO: implement auto-mapper
     [ Route( "instagram-user" ) ]
-    public class InstagramUserController : InstagramServiceController
+    public class InstagramUserController : SocialWranglerController
     {
         private readonly InstagramFacade _instagramFacade;
         public InstagramUserController( InstagramFacade instagramFacaade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacaade; }

@@ -7,7 +7,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
 {
     //TODO: implement auto-mapper
     [ Route( "influencer" ) ]
-    public class InfluencerController : InstagramServiceController
+    public class InfluencerController : SocialWranglerController
     {
         private readonly InfluencerFacade _influencerFacade;
         

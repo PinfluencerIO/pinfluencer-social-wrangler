@@ -5,16 +5,16 @@ using Newtonsoft.Json;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.CodeContracts;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Dtos;
-using InstaUser = Pinfluencer.SocialWrangler.Core.Models.InstaUser.InstaUser;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
-namespace Pinfluencer.SocialWrangler.DAL.Instagram.Repositories
+namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
-    public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, ISocialUserRepository
+    public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, IInsightsSocialUserRepository
     {
         private readonly FacebookContext _facebookContext;
         private readonly ILoggerAdapter<InstagramUserRepository> _logger;
@@ -25,24 +25,24 @@ namespace Pinfluencer.SocialWrangler.DAL.Instagram.Repositories
             _logger = logger;
         }
 
-        public OperationResult<InstaUser> Get( string id ) { throw new NotImplementedException( ); }
+        public OperationResult<SocialInsightsUser> Get( string id ) { throw new NotImplementedException( ); }
 
-        public OperationResult<IEnumerable<InstaUser>> GetAll( )
+        public OperationResult<IEnumerable<SocialInsightsUser>> GetAll( )
         {
             var ( result, fbResult ) = ValidateFacebookCall( ( ) => _facebookContext.Get( "me/accounts",
                 "instagram_business_account{id,username,name,biography,followers_count}" ) );
             if( !fbResult )
             {
                 _logger.LogError( "instagram users were not fetched" );
-                return new OperationResult<IEnumerable<InstaUser>>( Enumerable.Empty<InstaUser>( ),
+                return new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>( ),
                     OperationResultEnum.Failed );
             }
             var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>( result );
             new PostCondition( ).Evaluate( dataArray != null );
             var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
-            var repositoryResult = new OperationResult<IEnumerable<InstaUser>>( instaAccounts?.Select( x => new InstaUser
+            var repositoryResult = new OperationResult<IEnumerable<SocialInsightsUser>>( instaAccounts?.Select( x => new SocialInsightsUser
             {
-                Handle = x.Username,
+                Username = x.Username,
                 Id = x.Id ,
                 Name = x.Name,
                 Bio = x.Bio,

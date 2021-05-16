@@ -4,13 +4,13 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {
     public class When_Multiple_Users_Are_Returned : When_Get_Users_Is_Called
     {
-        private OperationResult<IEnumerable<InstaUser>> _result;
+        private OperationResult<IEnumerable<SocialInsightsUser>> _result;
 
         protected override void When( )
         {
@@ -40,7 +40,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsers
         public void Then_Handles_Are_Correct( )
         {
             Assert.IsTrue(
-                new [ ] { "user", "user2" }.SequenceEqual( _result.Value.Select( x => x.Handle ) ) );
+                new [ ] { "user", "user2" }.SequenceEqual( _result.Value.Select( x => x.Username ) ) );
         }
 
         [ Test ]

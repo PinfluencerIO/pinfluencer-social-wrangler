@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Pinfluencer.SocialWrangler.DAL.Instagram.Dtos
+namespace Pinfluencer.SocialWrangler.DAL.Facebook.Dtos
 {
     [ DataContract ]
     public class Metric<T>

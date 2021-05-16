@@ -5,14 +5,14 @@ using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.InstaUser;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
 {
     [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
     public class When_Graph_Error_Occurs : When_Get_Users_Is_Called
     {
-        private OperationResult<IEnumerable<InstaUser>> _result;
+        private OperationResult<IEnumerable<SocialInsightsUser>> _result;
         private readonly FacebookApiException _apiException;
         public When_Graph_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
 

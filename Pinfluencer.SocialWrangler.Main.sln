@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{260916F1-A6E4-45F1-ADC6-5A3CFA779C38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.DAL.Instagram", "Pinfluencer.SocialWrangler.DAL.Instagram\Pinfluencer.SocialWrangler.DAL.Instagram.csproj", "{5A791CB2-B712-4ED4-9B93-71BB264BE6AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.DAL.Facebook", "Pinfluencer.SocialWrangler.DAL.Facebook\Pinfluencer.SocialWrangler.DAL.Facebook.csproj", "{5A791CB2-B712-4ED4-9B93-71BB264BE6AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.DAL.Pinfluencer", "Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj", "{E15A4743-56B4-4A62-B496-4D7AF0B16D75}"
 EndProject

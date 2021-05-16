@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
         [ Test ]
         public void Then_Insta_User_Handle_Was_Valid( )
         {
-            Assert.AreEqual( "example", Result.Value.First( ).Handle );
+            Assert.AreEqual( "example", Result.Value.First( ).Username );
         }
     }
 }

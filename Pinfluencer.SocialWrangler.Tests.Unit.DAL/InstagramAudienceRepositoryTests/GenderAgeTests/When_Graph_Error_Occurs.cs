@@ -2,7 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GenderAgeTests

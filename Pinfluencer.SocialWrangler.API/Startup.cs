@@ -20,8 +20,8 @@ using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Factories;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Repositories;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Factories;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Factories;
@@ -45,7 +45,7 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddTransient<IUserRepository, UserRepository>( )
                 .AddTransient<ISocialImpressionsRepository, InstagramImpressionsRepository>( )
                 .AddTransient<ISocialAudienceRepository, InstagramAudienceRepository>( )
-                .AddTransient<ISocialUserRepository, InstagramUserRepository>( )
+                .AddTransient<IInsightsSocialUserRepository, InstagramUserRepository>( )
                 .AddTransient<IManagementConnection, HttpClientManagementConnection>( )
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
                 .AddTransient<InstagramFacade>( )
