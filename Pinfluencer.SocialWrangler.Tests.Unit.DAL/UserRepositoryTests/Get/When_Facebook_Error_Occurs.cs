@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
@@ -14,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
     public class When_Facebook_Error_Occurs : When_Called
     {
         private readonly FacebookApiException _apiException;
-        private OperationResult<IUser> _result;
+        private OperationResult<User> _result;
 
         public When_Facebook_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
         

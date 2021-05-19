@@ -12,6 +12,7 @@ using Pinfluencer.SocialWrangler.API.Options;
 using Pinfluencer.SocialWrangler.BLL.Facades;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.Crosscutting.Web;
@@ -61,7 +62,7 @@ namespace Pinfluencer.SocialWrangler.API
                 } )
                 .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
-                .AddTransient<IUser, User>( )
+                .AddTransient<ISocialInfoUser, SocialInfoUser>( )
                 .AddTransient<InfluencerFacade>( )
                 .AddTransient( typeof( ILoggerAdapter<> ), typeof( LoggerAdapter<> ) )
                 .AddControllers( );

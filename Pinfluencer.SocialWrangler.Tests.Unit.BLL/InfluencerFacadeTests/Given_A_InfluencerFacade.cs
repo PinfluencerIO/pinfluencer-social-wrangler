@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
     {
         protected IUserRepository MockUserRepository;
         protected IInsightsSocialUserRepository InsightsSocialUserRepository;
-        protected readonly FakeUserProps DefaultUser = new FakeUserProps
+        protected readonly FakeSocialInfoUserProps DefaultSocialInfoUser = new FakeSocialInfoUserProps
         {
             Age = 21,
             Gender = GenderEnum.Male,

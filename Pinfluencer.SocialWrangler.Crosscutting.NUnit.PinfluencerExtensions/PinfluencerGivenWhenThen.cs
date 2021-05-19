@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
     public class PinfluencerGivenWhenThen<T> : GivenWhenThen<T> where T : class
     {
-        protected IUser GetUser( FakeUserProps userProps ) => FakeUserModel.GetFake( MockDateTime, userProps );
+        protected ISocialInfoUser GetSocialInfoUser( FakeSocialInfoUserProps socialInfoUserProps ) => FakeSocialInfoUserModel.GetFake( MockDateTime, socialInfoUserProps );
 
         protected ILoggerAdapter<T> MockLogger;
 

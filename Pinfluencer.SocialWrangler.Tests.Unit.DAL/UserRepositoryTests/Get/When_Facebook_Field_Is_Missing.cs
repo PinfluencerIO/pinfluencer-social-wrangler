@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get.Shared;
 
@@ -12,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Facebook_Field_Is_Missing : When_Called
     {
-        private OperationResult<IUser> _result;
+        private OperationResult<User> _result;
         
         private readonly object _rawResponse;
         private readonly int _age;
@@ -43,10 +44,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
         public void Then_Valid_User_Is_Be_Returned( )
         {
             Assert.True( _result.Value.Id == "1234" &&
-                         _result.Value.Name == "ExampleInfluencer" &&
-                         _result.Value.Age == _age &&
-                         _result.Value.Location == _location &&
-                         _result.Value.Gender == _gender );
+                         _result.Value.Name == "ExampleInfluencer" );
         }
         
         private static readonly object [ ] data =

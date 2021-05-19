@@ -1,14 +1,15 @@
 ﻿using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
-    public static class FakeUserModel
+    public static class FakeSocialInfoUserModel
     {
-        public static IUser GetFake( IDateTimeAdapter dateTimeAdapter, FakeUserProps props )
+        public static ISocialInfoUser GetFake( IDateTimeAdapter dateTimeAdapter, FakeSocialInfoUserProps props )
         {
-            return new User( dateTimeAdapter )
+            return new SocialInfoUser( dateTimeAdapter )
             {
                 Age = props.Age,
                 Gender = props.Gender,

@@ -15,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         {
             MockUserRepository
                 .Get( Arg.Any<string>( ) )
-                .Returns( new OperationResult<IUser>( GetUser( new FakeUserProps( ) ), OperationResultEnum.Failed ) );
+                .Returns( new OperationResult<User>( new User( ), OperationResultEnum.Failed ) );
             Result = Sut.OnboardInfluencer( "123" );
         }
 

@@ -16,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         {
             MockUserRepository
                 .Get( Arg.Any<string>( ) )
-                .Returns( new OperationResult<IUser>( GetUser( DefaultUser ), OperationResultEnum.Success ) );
+                .Returns( new OperationResult<User>( new User{ Name = "Aidan", Id = "123" }, OperationResultEnum.Success ) );
             InsightsSocialUserRepository
                 .GetAll( )
                 .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ]

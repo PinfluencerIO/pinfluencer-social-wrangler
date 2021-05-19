@@ -23,7 +23,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests
             Sut = new UserRepository(
                 Auth0Context,
                 FacebookContext,
-                User,
                 MockLogger,
                 MockBubbleDataHandler
             );

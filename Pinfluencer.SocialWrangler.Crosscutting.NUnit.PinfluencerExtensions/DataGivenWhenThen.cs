@@ -3,6 +3,7 @@ using Auth0.ManagementApi;
 using Facebook;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
@@ -18,7 +19,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected FacebookContext FacebookContext;
         protected Auth0Context Auth0Context;
         protected FacebookClient MockFacebookClient => FacebookContext.FacebookClient;
-        protected IUser User;
+        protected ISocialInfoUser SocialInfoUser;
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected CountryGetter CountryGetter;
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
@@ -33,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             FacebookContext = new FacebookContext { FacebookClient = Substitute.For<FacebookClient>( ) };
             Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
-            User = new User( MockDateTime );
+            SocialInfoUser = new SocialInfoUser( MockDateTime );
         }
 
         protected static IEnumerable<FacebookApiException> FacebookExceptionFixture( ) => new [ ]

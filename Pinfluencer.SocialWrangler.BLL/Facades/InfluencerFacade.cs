@@ -38,13 +38,13 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
             }
 
             var instaUser = instaUsers.First( );
+            
+            //TODO: get social info user and put into influencer
+            
             var influnecerStatus = _userRepository.CreateInfluencer( new Influencer
             {
-                Age = user.Age,
                 Bio = instaUser.Bio,
-                Gender = user.Gender,
                 InstagramHandle = instaUser.Username,
-                Location = user.Location,
                 User = user
             } );
             return influnecerStatus;

@@ -2,7 +2,7 @@
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
-    public class FakeUserProps
+    public class FakeSocialInfoUserProps
     {
         public string Id { get; set; }
         public string Name { get; set; }

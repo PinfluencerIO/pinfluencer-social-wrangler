@@ -7,9 +7,10 @@ namespace Pinfluencer.SocialWrangler.Core.Interfaces.Models
 {
     public interface ISocialInfoUser
     {
+        public string Id { get; set; }
         string Name { get; set; }
         int Age { get; set; }
-        LocationProperty Location { get; set; }
+        string Location { get; set; }
         GenderEnum Gender { get; set; }
         DateTime Birthday { set; }
     }

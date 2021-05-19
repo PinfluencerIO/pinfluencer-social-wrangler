@@ -11,10 +11,11 @@ namespace Pinfluencer.SocialWrangler.Core.Models.Social
         private readonly IDateTimeAdapter _dateTimeAdapter;
 
         public SocialInfoUser( IDateTimeAdapter dateTimeAdapter ) { _dateTimeAdapter = dateTimeAdapter; }
-        
+
+        public string Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
-        public LocationProperty Location { get; set; }
+        public string Location { get; set; }
         public GenderEnum Gender { get; set; }
 
         //TODO: ADD LEAP YEAR

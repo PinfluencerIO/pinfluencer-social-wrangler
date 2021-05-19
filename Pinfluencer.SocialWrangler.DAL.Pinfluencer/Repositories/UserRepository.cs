@@ -26,18 +26,15 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
         private readonly Auth0Context _auth0Context;
         private readonly FacebookContext _facebookContext;
         private readonly IBubbleDataHandler<UserRepository> _bubbleDataHandler;
-        private readonly IUser _user;
         private readonly ILoggerAdapter<UserRepository> _logger;
 
         public UserRepository( Auth0Context auth0Context,
             FacebookContext facebookContext,
-            IUser user,
             ILoggerAdapter<UserRepository> logger,
             IBubbleDataHandler<UserRepository> bubbleDataHandler )
         {
             _auth0Context = auth0Context;
             _facebookContext = facebookContext;
-            _user = user;
             _logger = logger;
             _bubbleDataHandler = bubbleDataHandler;
         }
@@ -75,27 +72,24 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             };
 
         //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
-        public OperationResult<IUser> Get( string id )
+        public OperationResult<User> Get( string id )
         {
             try
             {
                 var facebookUserStr = _facebookContext
                     .Get( "me", new RequestFields { fields = "birthday,location,gender" } );
                 var facebookUser = JsonConvert.DeserializeObject<FacebookUser>( facebookUserStr );
-                return _bubbleDataHandler.Read<IUser,TypeResponse<Profile>>( $"profile/{id}", x =>
-                {
-                    _user.Id = x.Type.Id;
-                    _user.Name = x.Type.Name;
-                    _user.Birthday = facebookUser.Birthday;
-                    _user.Gender = facebookUser.Gender;
-                    _user.Location = facebookUser.Location == null ? "Unknown" : facebookUser.Location.Name;
-                    return _user;
-                }, _user );
+                return _bubbleDataHandler.Read<User,TypeResponse<Profile>>( $"profile/{id}", x =>
+                    new User( )
+                    {
+                        Id = x.Type.Id,
+                        Name = x.Type.Name
+                    }, new User() );
             }
             catch( FacebookApiException e ) when( e is FacebookApiException || e is FacebookApiLimitException || e is FacebookOAuthException )
             {
                 _logger.LogError( "user was not fetched" );
-                return new OperationResult<IUser>( _user, OperationResultEnum.Failed );
+                return new OperationResult<User>( new User(), OperationResultEnum.Failed );
             }
         }
     }
