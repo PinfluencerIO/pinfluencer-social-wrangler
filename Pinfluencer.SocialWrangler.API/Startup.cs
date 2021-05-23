@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 using Pinfluencer.SocialWrangler.API.Filters;
 using Pinfluencer.SocialWrangler.API.Options;
 using Pinfluencer.SocialWrangler.BLL.Facades;
+using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
@@ -37,10 +38,11 @@ namespace Pinfluencer.SocialWrangler.API
             dependancyCollection
                 .AddSingleton<CountryGetter>( )
                 .AddScoped<Auth0Context>( )
-                .AddScoped<FacebookContext>( )
+                .AddScoped<IFacebookDecorator,FacebookDecorator>( )
                 .AddTransient<IContractResolver, ClassicJsonResolver>( )
                 .AddTransient<ISerializer, JsonSerialzierAdapter>( )
                 .AddTransient<MvcAdapter>( )
+                .AddTransient<IFacebookClientAdapter,FacebookClientAdapter>( )
                 .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
                 .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
                 .AddTransient<IUserRepository, UserRepository>( )
@@ -61,6 +63,7 @@ namespace Pinfluencer.SocialWrangler.API
                         new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
                 } )
                 .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
+                .AddTransient( typeof( IFacebookDataHandler<> ), typeof( FacebookDataHandler<> ) )
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
                 .AddTransient<ISocialInfoUser, SocialInfoUser>( )
                 .AddTransient<InfluencerFacade>( )

@@ -10,6 +10,7 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
@@ -22,9 +23,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         protected const string Auth0IdParamKey = "auth-id";
         protected const string UserActionArgumentKey = "user";
 
-        private FacebookContext _facebookContext;
+        private FacebookDecorator _facebookDecorator;
         private IFacebookClientFactory _mockFacebookClientFactory;
-        protected FacebookClient MockFacebookClient;
+        protected IFacebookClientAdapter MockFacebookClient;
         protected IUserRepository MockUserRepository;
 
         protected string ErrorMessage => GetResultObject<ErrorDto>( ).ErrorMsg;
@@ -34,15 +35,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
             base.Given( );
 
             MockUserRepository = Substitute.For<IUserRepository>( );
-            _facebookContext = new FacebookContext( );
-            _mockFacebookClientFactory = Substitute.For<IFacebookClientFactory>( );
-            MockFacebookClient = Substitute.For<FacebookClient>( );
-
-            _mockFacebookClientFactory
+            MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
+            var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
+            facebookClientFactory
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
+            _facebookDecorator = new FacebookDecorator( facebookClientFactory );
 
-            Sut = new FacebookActionFilter( MockUserRepository, _facebookContext, _mockFacebookClientFactory, MvcAdapter );
+            SUT = new FacebookActionFilter( MockUserRepository, _facebookDecorator, _mockFacebookClientFactory, MvcAdapter );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )

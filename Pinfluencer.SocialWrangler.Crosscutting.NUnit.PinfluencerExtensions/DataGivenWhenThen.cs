@@ -11,14 +11,15 @@ using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
     public class DataGivenWhenThen<T> : PinfluencerGivenWhenThen<T> where T : class
     {
-        protected FacebookContext FacebookContext;
+        protected FacebookDecorator FacebookDecorator;
         protected Auth0Context Auth0Context;
-        protected FacebookClient MockFacebookClient => FacebookContext.FacebookClient;
+        protected IFacebookClientAdapter MockFacebookClient;
         protected ISocialInfoUser SocialInfoUser;
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected CountryGetter CountryGetter;
@@ -31,7 +32,12 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             CountryGetter = new CountryGetter( );
             MockBubbleClient = Substitute.For<IBubbleClient>( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
-            FacebookContext = new FacebookContext { FacebookClient = Substitute.For<FacebookClient>( ) };
+            MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
+            var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
+            facebookClientFactory
+                .Get( Arg.Any<string>( ) )
+                .Returns( MockFacebookClient );
+            FacebookDecorator = new FacebookDecorator( facebookClientFactory );
             Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
             SocialInfoUser = new SocialInfoUser( MockDateTime );

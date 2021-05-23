@@ -15,19 +15,19 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramImpressionsRepository : FacebookRepository<InstagramImpressionsRepository>, ISocialImpressionsRepository
     {
-        private readonly FacebookContext _facebookContext;
+        private readonly FacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramImpressionsRepository> _logger;
 
-        public InstagramImpressionsRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramImpressionsRepository> logger ) : base( logger )
+        public InstagramImpressionsRepository( FacebookDecorator facebookDecorator, ILoggerAdapter<InstagramImpressionsRepository> logger ) : base( logger )
         {
-            _facebookContext = facebookContext;
+            _facebookDecorator = facebookDecorator;
             _logger = logger;
         }
 
         //TODO: ADD CUSTOM TIMESPAN
         public OperationResult<IEnumerable<ContentImpressions>> GetImpressions( string instaId )
         {
-            var ( impressions, fbResult ) = ValidateFacebookCall( () => _facebookContext.Get( $"{instaId}/insights", new RequestInsightParams
+            var ( impressions, fbResult ) = ValidateFacebookCall( () => _facebookDecorator.Get( $"{instaId}/insights", new RequestInsightParams
             {
                 metric = "impressions",
                 period = "day",

@@ -15,20 +15,20 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, ISocialAudienceRepository
     {
-        private readonly FacebookContext _facebookContext;
+        private readonly FacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
         private readonly CountryGetter _countryGetter;
 
-        public InstagramAudienceRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramAudienceRepository> logger, CountryGetter countryGetter ) : base( logger )
+        public InstagramAudienceRepository( FacebookDecorator facebookDecorator, ILoggerAdapter<InstagramAudienceRepository> logger, CountryGetter countryGetter ) : base( logger )
         {
-            _facebookContext = facebookContext;
+            _facebookDecorator = facebookDecorator;
             _logger = logger;
             _countryGetter = countryGetter;
         }
 
         public OperationResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId )
         {
-            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
+            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookDecorator
                     .Get( $"{instaId}/insights",
                         new BaseRequestInsightParams { metric = "audience_country", period = "lifetime" } ) );
             if( !fbValidResult )
@@ -54,7 +54,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
-            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookContext
+            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookDecorator
                     .Get( $"{instaId}/insights",
                         new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
             if( !fbValidResult )

@@ -28,7 +28,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.SimpleAuthTests.OnAc
         {
             base.When( );
             MockConfiguration[ ApiKeyName ].Returns( _configKey );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

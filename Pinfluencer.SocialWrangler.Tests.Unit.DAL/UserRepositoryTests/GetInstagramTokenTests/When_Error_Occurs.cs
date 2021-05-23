@@ -22,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInsta
                     Arg.Any<JsonConverter [ ]>( ) )
                 .Throws<AggregateException>( );
 
-            _result = Sut.GetInstagramToken( TestId );
+            _result = SUT.GetInstagramToken( TestId );
         }
 
         [ Test ]

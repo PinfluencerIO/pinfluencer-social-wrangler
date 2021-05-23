@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
         protected override void Given( )
         {
             base.Given( );
-            Sut = new AudienceGenderRepository( MockBubbleDataHandler );
+            SUT = new AudienceGenderRepository( MockBubbleDataHandler );
         }
     }
 }

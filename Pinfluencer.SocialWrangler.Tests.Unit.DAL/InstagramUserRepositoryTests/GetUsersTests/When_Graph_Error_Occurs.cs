@@ -7,7 +7,7 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests.GetUsersTests
 {
     [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
     public class When_Graph_Error_Occurs : When_Get_Users_Is_Called
@@ -22,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsers
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _apiException );
 
-            _result = Sut.GetAll( );
+            _result = SUT.GetAll( );
         }
 
         [ Test ]

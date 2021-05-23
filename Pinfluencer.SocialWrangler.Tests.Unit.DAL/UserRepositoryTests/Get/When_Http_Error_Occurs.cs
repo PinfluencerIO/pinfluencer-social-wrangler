@@ -12,7 +12,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
             MockBubbleClient
                 .Get<TypeResponse<Profile>>( Arg.Any<string>( ) )
                 .Returns( ( HttpStatusCode.NotFound, new TypeResponse<Profile> { Type = new Profile( ) } ) );
-            Result = Sut.Get( "1234" );
+            Result = SUT.Get( "1234" );
         }
     }
 }

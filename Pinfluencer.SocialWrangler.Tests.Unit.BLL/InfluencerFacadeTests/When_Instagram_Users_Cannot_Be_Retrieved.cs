@@ -16,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             InsightsSocialUserRepository
                 .GetAll( )
                 .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>(  ), OperationResultEnum.Failed ) );
-            Result = Sut.OnboardInfluencer( "123" );
+            Result = SUT.OnboardInfluencer( "123" );
         }
     }
 }

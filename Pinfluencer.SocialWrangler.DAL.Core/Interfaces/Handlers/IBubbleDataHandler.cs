@@ -5,14 +5,7 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers
 {
-    public interface IBubbleDataHandler<T>
+    public interface IBubbleDataHandler<T> : ICreateable, IReadable, IUpdatable
     {
-        OperationResultEnum Create<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper );
-
-        OperationResult<TModel> Read<TModel, TDto>( string uri,
-            Func<TDto, TModel> mapper,
-            TModel defaultModel );
-
-        OperationResultEnum Update<TModel, TDto>( string uri, TModel model, Func<TModel, TDto> mapper );
     }
 }

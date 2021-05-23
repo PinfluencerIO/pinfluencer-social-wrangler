@@ -13,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get.Shar
         {
             base.Given( );
             MockBubbleDataHandler = new BubbleDataHandler<UserRepository>( MockBubbleClient, MockLogger );
-            Sut = new UserRepository( Auth0Context, FacebookContext, MockLogger, MockBubbleDataHandler );
+            SUT = new UserRepository( Auth0Context, FacebookDecorator, MockLogger, MockBubbleDataHandler );
         }
 
         [ Test ]

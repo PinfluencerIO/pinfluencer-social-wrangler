@@ -30,7 +30,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
                     },
                     OperationResultEnum.Success
                 ) );
-            _result = Sut.GetAudienceCountryInsights( InstagramId );
+            _result = SUT.GetAudienceCountryInsights( InstagramId );
         }
 
         [ Test ]

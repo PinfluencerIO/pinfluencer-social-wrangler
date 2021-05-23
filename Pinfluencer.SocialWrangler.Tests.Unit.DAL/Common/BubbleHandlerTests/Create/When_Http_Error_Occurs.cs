@@ -11,7 +11,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
         protected override void When( )
         {
             MockBubbleClient
-                .Post( Arg.Any<string>( ), Arg.Any<TestDto>( ) )
+                .Post( Arg.Any<string>( ), Arg.Any<Dto>( ) )
                 .Returns( HttpStatusCode.BadRequest );
             Result = SutCall( );
         }

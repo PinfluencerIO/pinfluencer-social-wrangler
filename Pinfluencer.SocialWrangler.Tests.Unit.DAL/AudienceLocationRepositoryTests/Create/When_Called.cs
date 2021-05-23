@@ -32,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<AudiencePercentage<LocationProperty>>( ), Arg.Any<Func<AudiencePercentage<LocationProperty>,AudienceLocation>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.Create( DefaultAudienceLocation );
+            _result = SUT.Create( DefaultAudienceLocation );
         }
 
         [ Test ]
@@ -67,7 +67,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
         [ Test ]
         public void Then_Valid_Influencer_Is_Created( )
         {
-            var mapResult = Sut.ModelMap( DefaultAudienceLocation );
+            var mapResult = SUT.ModelMap( DefaultAudienceLocation );
             Assert.True( mapResult.Audience == DefaultAudienceLocation.Audience.Id &&
                          mapResult.Id == DefaultAudienceLocation.Id &&
                          mapResult.Place == "" &&

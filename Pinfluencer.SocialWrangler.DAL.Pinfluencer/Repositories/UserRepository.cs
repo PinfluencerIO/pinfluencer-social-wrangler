@@ -24,17 +24,17 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly Auth0Context _auth0Context;
-        private readonly FacebookContext _facebookContext;
+        private readonly FacebookDecorator _facebookDecorator;
         private readonly IBubbleDataHandler<UserRepository> _bubbleDataHandler;
         private readonly ILoggerAdapter<UserRepository> _logger;
 
         public UserRepository( Auth0Context auth0Context,
-            FacebookContext facebookContext,
+            FacebookDecorator facebookDecorator,
             ILoggerAdapter<UserRepository> logger,
             IBubbleDataHandler<UserRepository> bubbleDataHandler )
         {
             _auth0Context = auth0Context;
-            _facebookContext = facebookContext;
+            _facebookDecorator = facebookDecorator;
             _logger = logger;
             _bubbleDataHandler = bubbleDataHandler;
         }
@@ -76,11 +76,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
         {
             try
             {
-                var facebookUserStr = _facebookContext
+                var facebookUserStr = _facebookDecorator
                     .Get( "me", new RequestFields { fields = "birthday,location,gender" } );
                 var facebookUser = JsonConvert.DeserializeObject<FacebookUser>( facebookUserStr );
                 return _bubbleDataHandler.Read<User,TypeResponse<Profile>>( $"profile/{id}", x =>
-                    new User( )
+                    new User
                     {
                         Id = x.Type.Id,
                         Name = x.Type.Name

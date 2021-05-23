@@ -6,7 +6,7 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests.GetUsersTests
 {
     public class When_Multiple_Users_Are_Returned : When_Get_Users_Is_Called
     {
@@ -21,7 +21,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsers
 
             base.When( );
 
-            _result = Sut.GetAll( );
+            _result = SUT.GetAll( );
         }
 
         [ Test ]

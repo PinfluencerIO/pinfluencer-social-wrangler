@@ -32,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<AudiencePercentage<GenderEnum>>( ), Arg.Any<Func<AudiencePercentage<GenderEnum>,AudienceGender>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.Create( DefaultAudienceGender );
+            _result = SUT.Create( DefaultAudienceGender );
         }
 
         [ Test ]
@@ -66,7 +66,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
         [ Test ]
         public void Then_Valid_Influencer_Is_Created( )
         {
-            var mapResult = Sut.ModelMap( DefaultAudienceGender );
+            var mapResult = SUT.ModelMap( DefaultAudienceGender );
             Assert.True( mapResult.Audience == DefaultAudienceGender.Audience.Id &&
                          mapResult.Id == DefaultAudienceGender.Id &&
                          mapResult.Name == DefaultAudienceGender.Value.ToString( ) &&

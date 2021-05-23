@@ -11,7 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinf.InstaService.BLL.Models\Pinf.InstaService.BLL.Models.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Web\Pinfluencer.SocialWrangler.Crosscutting.Web.csproj" />
     </ItemGroup>

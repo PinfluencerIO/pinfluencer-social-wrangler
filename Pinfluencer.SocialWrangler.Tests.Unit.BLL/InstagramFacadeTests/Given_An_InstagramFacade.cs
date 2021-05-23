@@ -20,7 +20,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockSocialAudienceRepository = Substitute.For<ISocialAudienceRepository>( );
 
-            Sut = new InstagramFacade(
+            SUT = new InstagramFacade(
                 MockImpressionsInsightsRepository,
                 InsightsSocialUserRepository,
                 MockSocialAudienceRepository

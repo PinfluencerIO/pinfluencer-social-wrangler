@@ -22,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
                     Arg.Any<IDictionary<string, string>>( )
                 )
                 .Returns( Task.FromResult( new AccessTokenResponse { AccessToken = TestToken } ) );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

@@ -6,19 +6,19 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests.GetUsersTests
 {
-    public class When_Single_Insta_Is_Returned : When_Get_Users_Is_Called
+    public class When_Multiple_Pages_Returned_And_One_Does_Not_Have_Insta : When_Get_Users_Is_Called
     {
         private OperationResult<IEnumerable<SocialInsightsUser>> _result;
 
         protected override void When( )
         {
-            SetSingleInsta( "12321", "user", "Aidan Gan", "this is my bio", 121 );
+            SetTwoPagesAndOneInsta( "12321", "user", "Aidan Gan", "this is my bio", 121 );
 
             base.When( );
 
-            _result = Sut.GetAll( );
+            _result = SUT.GetAll( );
         }
 
         [ Test ]
@@ -37,7 +37,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsers
         public void Then_Followers_Are_Correct( ) { Assert.AreEqual( 121, _result.Value.First( ).Followers ); }
 
         [ Test ]
-        public void Then_The_Status_Is_Successful( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+        public void Then_One_Insta_Account_Is_Returned( ) { Assert.AreEqual( 1, _result.Value.Count( ) ); }
+
+        [ Test ]
+        public void Then_The_Status_Is_Success( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
         
         [ Test ]
         public void Then_Success_Is_Logged( )

@@ -16,12 +16,12 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, IInsightsSocialUserRepository
     {
-        private readonly FacebookContext _facebookContext;
+        private readonly FacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramUserRepository> _logger;
 
-        public InstagramUserRepository( FacebookContext facebookContext, ILoggerAdapter<InstagramUserRepository> logger ) : base( logger )
+        public InstagramUserRepository( FacebookDecorator facebookDecorator, ILoggerAdapter<InstagramUserRepository> logger ) : base( logger )
         {
-            _facebookContext = facebookContext;
+            _facebookDecorator = facebookDecorator;
             _logger = logger;
         }
 
@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public OperationResult<IEnumerable<SocialInsightsUser>> GetAll( )
         {
-            var ( result, fbResult ) = ValidateFacebookCall( ( ) => _facebookContext.Get( "me/accounts",
+            var ( result, fbResult ) = ValidateFacebookCall( ( ) => _facebookDecorator.Get( "me/accounts",
                 "instagram_business_account{id,username,name,biography,followers_count}" ) );
             if( !fbResult )
             {

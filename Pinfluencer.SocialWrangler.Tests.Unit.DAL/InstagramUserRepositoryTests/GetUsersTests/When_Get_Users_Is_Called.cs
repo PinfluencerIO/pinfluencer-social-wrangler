@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaUserRepository.GetUsersTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests.GetUsersTests
 {
-    public abstract class When_Get_Users_Is_Called : Given_A_InstaUserRepository
+    public abstract class When_Get_Users_Is_Called : Given_A_InstagramUserRepository
     {
         private dynamic [ ] _response;
 

@@ -10,7 +10,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinf.InstaService.DAL.Core\Pinf.InstaService.DAL.Core.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.BLL\Pinfluencer.SocialWrangler.BLL.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Common\Pinfluencer.SocialWrangler.DAL.Common.csproj" />

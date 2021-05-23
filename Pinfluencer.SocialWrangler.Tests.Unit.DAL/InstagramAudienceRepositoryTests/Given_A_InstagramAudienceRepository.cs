@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         protected override void Given( )
         {
             base.Given( );
-            Sut = new InstagramAudienceRepository( new FacebookContext{ FacebookClient = MockFacebookClient }, MockLogger, CountryGetter );
+            SUT = new InstagramAudienceRepository( FacebookDecorator, MockLogger, CountryGetter );
         }
     }
 }

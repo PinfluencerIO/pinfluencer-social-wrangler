@@ -85,7 +85,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
                     Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>, IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<LocationProperty>>>( ) )
                 .Returns( new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>( _audienceLocation, _operationResult ) );
-            _result = Sut.GetAll( "123" );
+            _result = SUT.GetAll( "123" );
         }
         
         [ Test ]
@@ -100,7 +100,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
         [ Test ]
         public void Then_Mapping_Is_Correct( )
         {
-            var mapResult = Sut.DataMap( _audienceLocationRaw );
+            var mapResult = SUT.DataMap( _audienceLocationRaw );
             Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceLocation.Select( x => x.Id ) ) &&
                          mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceLocation.Select( x => x.Percentage ) ) &&
                          mapResult.Select( x => x.Audience.Id ).SequenceEqual( _audienceLocation.Select( x => x.Audience.Id ) ) );

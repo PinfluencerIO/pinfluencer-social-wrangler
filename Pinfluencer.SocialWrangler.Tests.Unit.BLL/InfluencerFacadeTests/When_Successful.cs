@@ -35,7 +35,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             MockUserRepository
                 .CreateInfluencer( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Success );
-            _result = Sut.OnboardInfluencer( "123" );
+            _result = SUT.OnboardInfluencer( "123" );
         }
 
         [ Test ]

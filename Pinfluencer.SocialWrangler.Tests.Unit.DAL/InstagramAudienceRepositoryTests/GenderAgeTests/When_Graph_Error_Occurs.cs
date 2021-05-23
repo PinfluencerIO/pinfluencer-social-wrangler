@@ -15,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         protected override void When( )
         {
             base.When( );
-            Result = Sut.GetGenderAge( "123" );
+            Result = SUT.GetGenderAge( "123" );
         }
         
         [ Test ]

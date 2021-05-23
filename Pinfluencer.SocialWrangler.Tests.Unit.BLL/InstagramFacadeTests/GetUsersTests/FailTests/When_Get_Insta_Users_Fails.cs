@@ -19,7 +19,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
 
             base.When( );
 
-            _result = Sut.GetUsers( );
+            _result = SUT.GetUsers( );
         }
 
         [ Test ]

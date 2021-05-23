@@ -88,7 +88,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Upda
             MockBubbleDataHandler
                 .Update( Arg.Any<string>( ), Arg.Any<AudienceModel>( ), Arg.Any<Func<AudienceModel, Audience>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.Update( DefaultAudience );
+            _result = SUT.Update( DefaultAudience );
         }
 
         [ Test ]
@@ -114,7 +114,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Upda
         [ Test ]
         public void Then_Correct_Audience_Was_Created( )
         {
-            var mapResult = Sut.ModelMap( DefaultAudience );
+            var mapResult = SUT.ModelMap( DefaultAudience );
             Assert.True( mapResult.AudienceAge.SequenceEqual( DefaultAudience.AudienceAge.Select( x => x.Id ) ) &&
                          mapResult.AudienceGender.SequenceEqual( DefaultAudience.AudienceGender.Select( x => x.Id ) ) &&
                          mapResult.AudienceLocation.SequenceEqual( DefaultAudience.AudienceLocation.Select( x => x.Id ) ) );

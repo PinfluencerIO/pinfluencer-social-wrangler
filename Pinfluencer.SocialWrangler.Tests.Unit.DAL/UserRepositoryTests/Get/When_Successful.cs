@@ -34,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
                     gender = "male",
                     id = "706884236570098"
                 } );
-            _result = Sut.Get( "1234" );
+            _result = SUT.Get( "1234" );
         }
 
         [ Test ]

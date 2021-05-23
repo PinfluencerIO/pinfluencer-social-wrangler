@@ -21,7 +21,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
                     Enumerable.Empty<AudienceCount<GenderAgeProperty>>(  ), 
                     OperationResultEnum.Failed
                 ) );
-            _result = Sut.GetAudienceAgeInsights( "123" );
+            _result = SUT.GetAudienceAgeInsights( "123" );
         }
 
         [ Test ]

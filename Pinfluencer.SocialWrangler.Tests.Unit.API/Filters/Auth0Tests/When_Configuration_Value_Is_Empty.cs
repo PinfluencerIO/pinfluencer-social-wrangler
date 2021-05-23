@@ -46,7 +46,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected override void When( )
         {
             base.When( );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

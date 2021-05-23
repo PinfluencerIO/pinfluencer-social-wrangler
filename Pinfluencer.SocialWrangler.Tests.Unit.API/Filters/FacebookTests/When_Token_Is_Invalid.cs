@@ -20,7 +20,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( new FacebookOAuthException( FacebookErrorMsg ) );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

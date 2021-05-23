@@ -24,7 +24,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetProf
 
             base.When( );
 
-            _result = Sut.GetMonthlyProfileViews( TestId );
+            _result = SUT.GetMonthlyProfileViews( TestId );
         }
 
         [ Test ]

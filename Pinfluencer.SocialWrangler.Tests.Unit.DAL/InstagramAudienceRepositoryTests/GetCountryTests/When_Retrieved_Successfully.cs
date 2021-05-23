@@ -46,7 +46,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                         }
                     }
                 } );
-            Result = Sut.GetCountry( "123" );
+            Result = SUT.GetCountry( "123" );
         }
 
         [ Test ]

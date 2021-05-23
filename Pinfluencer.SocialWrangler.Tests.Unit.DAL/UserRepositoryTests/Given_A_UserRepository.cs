@@ -13,16 +13,19 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests
         protected const string TestId = "1234";
         protected User TestUser;
 
+
         //TODO: REFACTOR OUT TIME DEPENDANT TESTS
+
+
         protected override void Given( )
         {
             base.Given( );
 
             CurrentTime = new DateTime( 2021, 4, 29 );
             
-            Sut = new UserRepository(
+            SUT = new UserRepository(
                 Auth0Context,
-                FacebookContext,
+                FacebookDecorator,
                 MockLogger,
                 MockBubbleDataHandler
             );

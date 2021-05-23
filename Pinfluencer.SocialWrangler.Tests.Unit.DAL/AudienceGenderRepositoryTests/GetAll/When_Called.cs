@@ -86,7 +86,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
                     Arg.Any<Func<TypeResponse<BubbleCollection<AudienceGender>>, IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<GenderEnum>>>( ) )
                 .Returns( new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>( _audienceGender, _operationResult ) );
-            _result = Sut.GetAll( "123" );
+            _result = SUT.GetAll( "123" );
         }
         
         [ Test ]
@@ -110,7 +110,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
         [ Test ]
         public void Then_Mapping_Is_Correct( )
         {
-            var mapResult = Sut.DataMap( _audienceGenderRaw );
+            var mapResult = SUT.DataMap( _audienceGenderRaw );
             Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceGender.Select( x => x.Id ) ) &&
                          mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceGender.Select( x => x.Percentage ) ) &&
                          mapResult.Select( x => x.Value ).SequenceEqual( _audienceGender.Select( x => x.Value ) ) &&

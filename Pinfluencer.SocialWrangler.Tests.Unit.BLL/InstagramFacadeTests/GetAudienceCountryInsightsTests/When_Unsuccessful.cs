@@ -21,7 +21,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
                     Enumerable.Empty<AudienceCount<LocationProperty>>(  ), 
                     OperationResultEnum.Failed
                 ) );
-            _result = Sut.GetAudienceCountryInsights( InstagramId );
+            _result = SUT.GetAudienceCountryInsights( InstagramId );
         }
 
         [ Test ]

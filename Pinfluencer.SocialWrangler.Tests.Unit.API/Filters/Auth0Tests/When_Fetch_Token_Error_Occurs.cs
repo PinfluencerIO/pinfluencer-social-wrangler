@@ -23,7 +23,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
                     Arg.Any<IDictionary<string, string>>( )
                 )
                 .Throws<ErrorApiException>( );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

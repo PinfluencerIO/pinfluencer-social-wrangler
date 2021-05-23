@@ -37,7 +37,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>(  ) )
                 .Returns( _rawResponse );
-            _result = Sut.Get( "1234" );
+            _result = SUT.Get( "1234" );
         }
 
         [ Test ]

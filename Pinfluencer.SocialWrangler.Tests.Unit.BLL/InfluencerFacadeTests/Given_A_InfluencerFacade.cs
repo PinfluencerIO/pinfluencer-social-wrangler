@@ -24,7 +24,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             MockUserRepository = Substitute.For<IUserRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
 
-            Sut = new InfluencerFacade( MockUserRepository, InsightsSocialUserRepository );
+            SUT = new InfluencerFacade( MockUserRepository, InsightsSocialUserRepository );
         }
     }
 }

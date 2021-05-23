@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Middleware.SimpleAuthenticat
             MockHttpResponse = Substitute.For<HttpResponse>( );
             MockHttpRequest = Substitute.For<HttpRequest>( );
 
-            Sut = new SimpleAuthenticationMiddleware( MockNextMiddlware );
+            SUT = new SimpleAuthenticationMiddleware( MockNextMiddlware );
         }
 
         protected override void When( )
@@ -44,7 +44,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Middleware.SimpleAuthenticat
                 .Response
                 .Returns( MockHttpResponse );
 
-            Sut.Invoke(
+            SUT.Invoke(
                 MockHttpContext,
                 MockConfiguration
             );

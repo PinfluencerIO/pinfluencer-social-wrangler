@@ -27,7 +27,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
             MockBubbleClient
                 .Get<TypeResponse<Profile>>( Arg.Any<string>( ) )
                 .Throws( _exception );
-            Result = Sut.Get( "1234" );
+            Result = SUT.Get( "1234" );
         }
     }
 }

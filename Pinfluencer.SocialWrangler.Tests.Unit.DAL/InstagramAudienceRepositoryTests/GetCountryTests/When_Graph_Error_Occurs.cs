@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         protected override void When( )
         {
             base.When( );
-            Result = Sut.GetCountry( "123" );
+            Result = SUT.GetCountry( "123" );
         }
         
         [ Test ]

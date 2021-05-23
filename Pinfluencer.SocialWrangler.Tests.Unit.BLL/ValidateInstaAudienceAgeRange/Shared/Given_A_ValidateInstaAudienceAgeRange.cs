@@ -13,10 +13,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.ValidateInstaAudienceAgeRang
 
         protected override void When( )
         {
-            Sut = new Pinfluencer.SocialWrangler.Core.Models.Validation.ValidateInstaAudienceAgeRange
+            SUT = new Pinfluencer.SocialWrangler.Core.Models.Validation.ValidateInstaAudienceAgeRange
                 { AgeRange = new Tuple<int, int>( AgeMin, AgeMax ) };
 
-            Result = Sut.Validate( );
+            Result = SUT.Validate( );
         }
     }
 }

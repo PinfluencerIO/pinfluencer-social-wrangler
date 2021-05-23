@@ -24,7 +24,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _apiException );
-            _result = Sut.Get( "12345" );
+            _result = SUT.Get( "12345" );
         }
 
         [ Test ]

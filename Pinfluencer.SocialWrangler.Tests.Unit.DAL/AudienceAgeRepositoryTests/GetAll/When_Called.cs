@@ -82,7 +82,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests.G
                     Arg.Any<Func<TypeResponse<BubbleCollection<AudienceAge>>, IEnumerable<AudiencePercentage<AgeProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<AgeProperty>>>( ) )
                 .Returns( new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>( _audienceAge, _operationResult ) );
-            _result = Sut.GetAll( "123" );
+            _result = SUT.GetAll( "123" );
         }
         
         [ Test ]
@@ -106,7 +106,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests.G
         [ Test ]
         public void Then_Mapping_Is_Correct( )
         {
-            var mapResult = Sut.DataMap( _audienceAgeRaw );
+            var mapResult = SUT.DataMap( _audienceAgeRaw );
             Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceAge.Select( x => x.Id ) ) &&
                          mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceAge.Select( x => x.Percentage ) ) &&
                          mapResult.Select( x => x.Value.Max ).SequenceEqual( _audienceAge.Select( x => x.Value.Max ) ) &&

@@ -32,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests.C
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<AudiencePercentage<AgeProperty>>( ), Arg.Any<Func<AudiencePercentage<AgeProperty>,AudienceAge>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.Create( DefaultAudienceAge );
+            _result = SUT.Create( DefaultAudienceAge );
         }
 
         [ Test ]
@@ -67,7 +67,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests.C
         [ Test ]
         public void Then_Valid_Influencer_Is_Created( )
         {
-            var mapResult = Sut.ModelMap( DefaultAudienceAge );
+            var mapResult = SUT.ModelMap( DefaultAudienceAge );
             Assert.True( mapResult.Audience == DefaultAudienceAge.Audience.Id &&
                          mapResult.Id == DefaultAudienceAge.Id &&
                          mapResult.Range == AgeString &&

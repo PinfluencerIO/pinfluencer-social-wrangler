@@ -48,7 +48,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                         }
                     }
                 } );
-            Result = Sut.GetGenderAge( "123" );
+            Result = SUT.GetGenderAge( "123" );
         }
 
         [ Test ]

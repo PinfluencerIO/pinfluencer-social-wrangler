@@ -41,7 +41,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.CreateIn
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<InfluencerModel>( ), Arg.Any<Func<InfluencerModel,Influencer>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.CreateInfluencer( DefaultInfluencer );
+            _result = SUT.CreateInfluencer( DefaultInfluencer );
         }
 
         [ Test ]
@@ -77,7 +77,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.CreateIn
         [ Test ]
         public void Then_Valid_Influencer_Is_Created( )
         {
-            var mapResult = Sut.MapToInfluencerDto( DefaultInfluencer );
+            var mapResult = SUT.MapToInfluencerDto( DefaultInfluencer );
             Assert.True( mapResult.Age == DefaultInfluencer.Age &&
                          mapResult.Bio == DefaultInfluencer.Bio &&
                          mapResult.Gender == DefaultInfluencer.Gender &&

@@ -33,7 +33,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             MockUserRepository
                 .CreateInfluencer( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Failed );
-            Result = Sut.OnboardInfluencer( "123" );
+            Result = SUT.OnboardInfluencer( "123" );
         }
 
         [ Test ]

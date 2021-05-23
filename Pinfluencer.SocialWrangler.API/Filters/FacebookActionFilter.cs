@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Facebook;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Pinfluencer.SocialWrangler.API.RequestDtos;
+using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.DAL.Common;
@@ -18,16 +19,16 @@ namespace Pinfluencer.SocialWrangler.API.Filters
     {
         private readonly IFacebookClientFactory _facebookClientFactory;
         private readonly MvcAdapter _mvcAdapter;
-        private readonly FacebookContext _facebookContext;
+        private readonly IFacebookDecorator _facebookDecorator;
         private readonly IUserRepository _userRepository;
 
         public FacebookActionFilter( IUserRepository userRepository,
-            FacebookContext facebookContext,
+            IFacebookDecorator facebookDecorator,
             IFacebookClientFactory facebookClientFactory,
             MvcAdapter mvcAdapter )
         {
             _userRepository = userRepository;
-            _facebookContext = facebookContext;
+            _facebookDecorator = facebookDecorator;
             _facebookClientFactory = facebookClientFactory;
             _mvcAdapter = mvcAdapter;
         }
@@ -58,11 +59,11 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                 return;
             }
 
-            _facebookContext.FacebookClient = _facebookClientFactory.Get( tokenResult.Value );
+            _facebookDecorator.Token = tokenResult.Value;
 
             try
             {
-                _facebookContext.FacebookClient.Get( "debug_token",
+                _facebookDecorator.Get( "debug_token",
                     new RequestDebugTokenParams { input_token = tokenResult.Value } );
             }
             catch( FacebookApiException e )

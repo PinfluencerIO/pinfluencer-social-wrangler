@@ -26,7 +26,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInsta
 
             base.When( );
 
-            _result = Sut.GetInstagramToken( TestId );
+            _result = SUT.GetInstagramToken( TestId );
         }
 
         [ Test ]

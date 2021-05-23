@@ -50,7 +50,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
             MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
 
             SetupConfiguration( OverridableAppOptions );
-            Sut = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection,
+            SUT = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection,
                 MockAuthenticationConnection, MvcAdapter );
         }
 

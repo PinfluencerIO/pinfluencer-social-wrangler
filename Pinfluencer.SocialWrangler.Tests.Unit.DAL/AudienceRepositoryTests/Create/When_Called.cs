@@ -21,7 +21,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<AudienceModel>( ), Arg.Any<Func<AudienceModel, Audience>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.Create( new AudienceModel( ) );
+            _result = SUT.Create( new AudienceModel( ) );
         }
 
         [ Test ]
@@ -37,7 +37,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
         [ Test ]
         public void Then_Correct_Audience_Was_Created( )
         {
-            var mapResult = Sut.EmptyModelMap( new AudienceModel( ) );
+            var mapResult = SUT.EmptyModelMap( new AudienceModel( ) );
             Assert.True( mapResult.AudienceAge == null &&
                          mapResult.AudienceGender == null &&
                          mapResult.AudienceLocation == null );

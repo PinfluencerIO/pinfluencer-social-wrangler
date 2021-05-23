@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests
         protected override void Given( )
         {
             base.Given( );
-            Sut = new AudienceAgeRepository( MockBubbleDataHandler );
+            SUT = new AudienceAgeRepository( MockBubbleDataHandler );
         }
     }
 }
