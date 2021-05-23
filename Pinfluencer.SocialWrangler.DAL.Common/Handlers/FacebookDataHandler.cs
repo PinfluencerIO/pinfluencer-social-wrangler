@@ -1,6 +1,7 @@
 ﻿using System;
 using Facebook;
 using Pinfluencer.SocialWrangler.Core;
+using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
@@ -12,6 +13,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
 
         public OperationResult<TModel> Read<TModel, TDto>( string resource, Func<TDto, TModel> mapper,
             TModel defaultModel ) =>
-            throw new NotImplementedException( );
+            new OperationResult<TModel>( defaultModel, OperationResultEnum.Failed );
     }
 }
