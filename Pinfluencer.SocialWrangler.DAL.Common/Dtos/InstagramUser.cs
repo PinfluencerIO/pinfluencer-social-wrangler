@@ -2,7 +2,7 @@
 
 namespace Pinfluencer.SocialWrangler.DAL.Common.Dtos
 {
-    public class InstaUser
+    public class InstagramUser
     {
         [ JsonProperty( "id" ) ] public string Id { get; set; }
 

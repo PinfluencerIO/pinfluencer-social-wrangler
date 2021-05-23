@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Auth0.ManagementApi;
 using Facebook;
 using NSubstitute;
@@ -24,6 +25,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected IManagementConnection MockAuth0ManagementApiConnection;
         protected CountryGetter CountryGetter;
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
+        protected IFacebookDataHandler<T> MockFacebookDataHandler;
         protected IBubbleClient MockBubbleClient;
 
         protected override void Given( )
@@ -40,6 +42,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             FacebookDecorator = new FacebookDecorator( facebookClientFactory ) { Token = string.Empty };
             Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
+            MockFacebookDataHandler = Substitute.For<IFacebookDataHandler<T>>( );
             SocialInfoUser = new SocialInfoUser( MockDateTime );
         }
 

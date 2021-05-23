@@ -11,7 +11,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
 
             SUT = new InstagramUserRepository(
                 FacebookDecorator,
-                MockLogger
+                MockFacebookDataHandler
             );
         }
     }

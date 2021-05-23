@@ -1,55 +1,65 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.CodeContracts;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
-    public class InstagramUserRepository : FacebookRepository<InstagramUserRepository>, IInsightsSocialUserRepository
+    public class InstagramUserRepository :
+        IInsightsSocialUserRepository,
+        IDataMappable<SocialInsightsUser, InstagramUser, IEnumerable<SocialInsightsUser>, DataArray<FacebookPage>>
     {
         private readonly FacebookDecorator _facebookDecorator;
-        private readonly ILoggerAdapter<InstagramUserRepository> _logger;
+        private readonly IFacebookDataHandler<InstagramUserRepository> _facebookDataHandler;
 
-        public InstagramUserRepository( FacebookDecorator facebookDecorator, ILoggerAdapter<InstagramUserRepository> logger ) : base( logger )
+        public InstagramUserRepository( FacebookDecorator facebookDecorator, IFacebookDataHandler<InstagramUserRepository> facebookDataHandler )
         {
             _facebookDecorator = facebookDecorator;
-            _logger = logger;
+            _facebookDataHandler = facebookDataHandler;
         }
 
         public OperationResult<SocialInsightsUser> Get( string id ) { throw new NotImplementedException( ); }
 
-        public OperationResult<IEnumerable<SocialInsightsUser>> GetAll( )
-        {
-            var ( result, fbResult ) = ValidateFacebookCall( ( ) => _facebookDecorator.Get( "me/accounts",
-                "instagram_business_account{id,username,name,biography,followers_count}" ) );
-            if( !fbResult )
-            {
-                _logger.LogError( "instagram users were not fetched" );
-                return new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>( ),
-                    OperationResultEnum.Failed );
-            }
-            var dataArray = JsonConvert.DeserializeObject<DataArray<FacebookPage>>( result );
-            new PostCondition( ).Evaluate( dataArray != null );
-            var instaAccounts = dataArray?.Data.Select( x => x.Insta ).Where( x => x != null );
-            var repositoryResult = new OperationResult<IEnumerable<SocialInsightsUser>>( instaAccounts?.Select( x => new SocialInsightsUser
-            {
-                Username = x.Username,
-                Id = x.Id ,
-                Name = x.Name,
-                Bio = x.Bio,
-                Followers = x.Followers
-            } ), OperationResultEnum.Success );
-            _logger.LogInfo( "instagram users were fetched" );
-            return repositoryResult;
-        }
+        public OperationResult<IEnumerable<SocialInsightsUser>> GetAll( ) =>
+            _facebookDataHandler
+                .Read<IEnumerable<SocialInsightsUser>,
+                    DataArray<FacebookPage>>( "me/accounts",
+                    MapMany,
+                    Enumerable.Empty<SocialInsightsUser>( ),
+                    new RequestFields
+                    {
+                        fields = "instagram_business_account{id,username,name,biography,followers_count}"
+                    } );
+
+        public SocialInsightsUser MapOut( InstagramUser dto ) { throw new NotImplementedException( ); }
+
+        public InstagramUser MapIn( SocialInsightsUser model ) { throw new NotImplementedException( ); }
+
+        public IEnumerable<SocialInsightsUser> MapMany( DataArray<FacebookPage> dtoCollection ) =>
+            dtoCollection?
+                .Data
+                .Select( x => x.Instagram )
+                .Where( x => x != null )
+                .Select( x =>
+                    new SocialInsightsUser
+                    {
+                        Username = x.Username,
+                        Id = x.Id,
+                        Name = x.Name,
+                        Bio = x.Bio,
+                        Followers = x.Followers
+                    } );
     }
 }
