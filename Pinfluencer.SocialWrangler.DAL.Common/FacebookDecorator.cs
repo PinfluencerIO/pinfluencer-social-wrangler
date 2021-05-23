@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
         public T Get<T>( string url, string fields ) =>
             JsonConvert.DeserializeObject<T>( Get( url, fields ) );
 
-        public TReturn Get<TReturn, TParams>( string url, TParams parameters ) =>
+        public TReturn Get<TReturn>( string url, object parameters ) =>
             JsonConvert.DeserializeObject<TReturn>( Get( url, parameters ) );
     }
 }

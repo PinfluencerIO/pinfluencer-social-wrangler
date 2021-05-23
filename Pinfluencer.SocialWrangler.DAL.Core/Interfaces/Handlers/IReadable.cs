@@ -7,6 +7,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers
     {
         OperationResult<TModel> Read<TModel, TDto>( string resource,
             Func<TDto, TModel> mapper,
-            TModel defaultModel );
+            TModel defaultModel,
+            object defaultParams = null );
     }
 }

@@ -15,6 +15,6 @@ namespace Pinfluencer.SocialWrangler.Core
         
         public T Get<T>( string url, string fields );
 
-        public TReturn Get<TReturn,TParams>( string url, TParams parameters );
+        public TReturn Get<TReturn>( string url, object parameters );
     }
 }

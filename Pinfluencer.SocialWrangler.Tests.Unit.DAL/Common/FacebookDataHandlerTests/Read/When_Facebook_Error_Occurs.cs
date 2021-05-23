@@ -23,7 +23,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _facebookApiException );
-            _result = SUT.Read<Model, Dto>( "example", MapOut, new Model( ) );
+            _result = FacebookSut.Read<Model, Dto>( "example", MapOut, new Model( ) );
         }
 
         [ Test ]
@@ -33,7 +33,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
         [ Test ]
         public void Then_Error_Was_Logged( ) =>
             MockLogger
-                .Received( 1 )
+                .Received( )
                 .LogError( Arg.Any<string>( ) );
     }
 }

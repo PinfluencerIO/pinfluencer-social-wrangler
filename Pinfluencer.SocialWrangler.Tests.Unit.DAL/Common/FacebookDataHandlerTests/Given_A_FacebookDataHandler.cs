@@ -4,12 +4,14 @@ using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTests
 {
-    public class Given_A_FacebookDataHandler : DataGivenWhenThen<FacebookDataHandler<object>>, IDataMappable<Model,Dto>
+    public abstract class Given_A_FacebookDataHandler : DataGivenWhenThen<object>, IDataMappable<Model,Dto>
     {
+        protected FacebookDataHandler<object> FacebookSut;
+
         protected override void Given( )
         {
             base.Given( );
-            SUT = new FacebookDataHandler<object>( FacebookDecorator );
+            FacebookSut = new FacebookDataHandler<object>( FacebookDecorator, MockLogger );
         }
 
         public Model MapOut( Dto dto ) =>

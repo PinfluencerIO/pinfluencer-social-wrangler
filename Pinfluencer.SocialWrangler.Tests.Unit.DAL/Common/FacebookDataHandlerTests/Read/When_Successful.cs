@@ -16,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
             MockFacebookClient
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Returns( new { id = Id, value = Value } );
-            _result = SUT.Read<Model, Dto>( "example", MapOut, new Model( ) );
+            _result = FacebookSut.Read<Model, Dto>( "example", MapOut, new Model( ) );
         }
 
         [ Test ]
