@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.Core.Interfaces.Models
         public string Id { get; set; }
         string Name { get; set; }
         int Age { get; set; }
-        string Location { get; set; }
+        LocationProperty Location { get; set; }
         GenderEnum Gender { get; set; }
         DateTime Birthday { set; }
     }

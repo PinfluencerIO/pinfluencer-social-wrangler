@@ -58,44 +58,15 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     Arg.Any<IEnumerable<SocialInsightsUser>>( ),
                     Arg.Any<object>( ) );
 
-        [ Test ]
-        public void Then_Valid_Endpoint_Was_Hit( ) =>
+        [ Test ] public void Then_Valid_Call_Was_Made( ) =>
             MockFacebookDataHandler
                 .Received( )
-                .Read( "me/accounts",
-                    Arg.Any<Func<DataArray<FacebookPage>, IEnumerable<SocialInsightsUser>>>( ),
-                    Arg.Any<IEnumerable<SocialInsightsUser>>( ),
-                    Arg.Any<object>( ) );
-
-        [ Test ]
-        public void Then_Valid_Fields_Were_Sent( ) =>
-            MockFacebookDataHandler
-                .Received( )
-                .Read( Arg.Any<string>( ),
-                    Arg.Any<Func<DataArray<FacebookPage>, IEnumerable<SocialInsightsUser>>>( ),
-                    Arg.Any<IEnumerable<SocialInsightsUser>>( ),
+                .Read<IEnumerable<SocialInsightsUser>,DataArray<FacebookPage>>( "me/accounts",
+                    SUT.MapMany,
+                    Arg.Is<IEnumerable<SocialInsightsUser>>( x => !x.Any() ),
                     Arg.Is<RequestFields>( x => x.fields == "instagram_business_account{id,username,name,biography,followers_count}" ) );
 
-        [ Test ]
-        public void Then_Valid_Mapper_Was_Used( ) =>
-            MockFacebookDataHandler
-                .Received( )
-                .Read<IEnumerable<SocialInsightsUser>,DataArray<FacebookPage>>( Arg.Any<string>( ),
-                    SUT.MapMany,
-                    Arg.Any<IEnumerable<SocialInsightsUser>>( ),
-                    Arg.Any<object>( ) );
-
-        [ Test ]
-        public void Then_Default_Model_Was_Used( ) =>
-            MockFacebookDataHandler
-                .Received( )
-                .Read( Arg.Any<string>( ),
-                    Arg.Any<Func<DataArray<FacebookPage>, IEnumerable<SocialInsightsUser>>>( ),
-                    Arg.Is<IEnumerable<SocialInsightsUser>>( x => !x.Any() ),
-                    Arg.Any<object>( ) );
-
-        [ Test ]
-        public void Then_Valid_Response_Was_Returned( ) =>
+        [ Test ] public void Then_Valid_Response_Was_Returned( ) =>
             Assert.AreSame( _operationResult, _result );
     }
 }

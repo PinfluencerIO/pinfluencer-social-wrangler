@@ -2,7 +2,9 @@
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
 {
@@ -15,7 +17,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             Age = 21,
             Gender = GenderEnum.Male,
             Id = "123",
-            Location = "London",
+            Location = new LocationProperty
+            {
+                Country = "United Kingdom",
+                CountryCode = CountryEnum.GB
+            },
             Name = "Aidan"
         };
 

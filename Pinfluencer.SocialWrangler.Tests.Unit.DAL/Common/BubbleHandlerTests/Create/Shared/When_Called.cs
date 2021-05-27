@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
         {
             MockBubbleClient
                 .Received( 1 )
-                .Post( Arg.Any<string>( ), Arg.Any<TestDto>( ) );
+                .Post( Arg.Any<string>( ), Arg.Any<Dto>( ) );
         }
 
         [ Test ]
@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
         {
             MockBubbleClient
                 .Received( )
-                .Post( Arg.Is<string>( uri => uri == TestUrl ), Arg.Any<TestDto>( ) );
+                .Post( Arg.Is<string>( uri => uri == TestUrl ), Arg.Any<Dto>( ) );
         }
 
         [ Test ]
@@ -33,30 +33,18 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
         {
             MockBubbleClient
                 .Received( )
-                .Post( Arg.Any<string>( ), Arg.Is<TestDto>( x => x.Id == TestId && x.Value == TestValue ) );
+                .Post( Arg.Any<string>( ), Arg.Is<Dto>( x => x.Id == TestId && x.Value == TestValue ) );
         }
 
         protected OperationResultEnum SutCall( ) =>
-            BubbleSut.Create( TestUrl, new TestModel
+            BubbleSut.Create( TestUrl, new Model
             {
                 Id = TestId,
                 Value = TestValue
-            }, x => new TestDto
+            }, x => new Dto
             {
                 Id = x.Id,
                 Value = x.Value
             } );
-    }
-
-    public class TestModel
-    {
-        public string Id { get; set; }
-        public string Value { get; set; }
-    }
-    
-    public class TestDto
-    {
-        public string Id { get; set; }
-        public string Value { get; set; }
     }
 }
