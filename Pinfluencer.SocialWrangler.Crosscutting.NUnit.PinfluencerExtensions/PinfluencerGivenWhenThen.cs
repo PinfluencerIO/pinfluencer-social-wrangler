@@ -12,13 +12,18 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 
         protected ILoggerAdapter<T> MockLogger;
 
-        protected override void Given( ) { MockLogger = Substitute.For<ILoggerAdapter<T>>( ); }
+        protected override void Given( )
+        {
+            MockLogger = Substitute.For<ILoggerAdapter<T>>( );
+        }
 
         protected IDateTimeAdapter MockDateTime { get; } = Substitute.For<IDateTimeAdapter>( );
 
         protected DateTime CurrentTime
         {
-            set => MockDateTime.Now( ).Returns( value );
+            set => MockDateTime
+                .Now( )
+                .Returns( value );
         }
         
         

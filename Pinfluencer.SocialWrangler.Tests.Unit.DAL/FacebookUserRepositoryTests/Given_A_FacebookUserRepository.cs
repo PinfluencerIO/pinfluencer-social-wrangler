@@ -11,6 +11,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests
         protected override void Given( )
         {
             base.Given( );
+            CurrentTime = new DateTime( 2021, 5, 28 );
             SUT = new FacebookUserRepository( new SocialInfoUser( MockDateTime ), MockFacebookDataHandler );
         }
     }

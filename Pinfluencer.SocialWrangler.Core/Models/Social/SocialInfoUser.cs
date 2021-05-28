@@ -28,9 +28,7 @@ namespace Pinfluencer.SocialWrangler.Core.Models.Social
                     Age = -1;
                     return;
                 }
-                var now = int.Parse( _dateTimeAdapter.Now( ).ToString( "yyyyMMdd" ) );
-                var dob = int.Parse( value.ToString( "yyyyMMdd" ) );
-                Age = ( now - dob ) / 10000;
+                Age = new DateTime( _dateTimeAdapter.Now( ).Subtract( value ).Ticks ).Year - 1;
             }
         }
     }
