@@ -69,7 +69,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<FacebookUser, ISocialInfoUser>>( ),
-                    Arg.Any<ISocialInfoUser>( ) );
+                    Arg.Any<ISocialInfoUser>( ),
+                    Arg.Any<RequestFields>( ) );
 
         [ Test ] public void Then_Valid_Call_Was_Made( ) =>
             MockFacebookDataHandler
@@ -80,7 +81,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
                                                   x.Gender == default &&
                                                   x.Id == default &&
                                                   x.Location == default &&
-                                                  x.Name == default ) );
+                                                  x.Name == default ),
+                    Arg.Is<RequestFields>( x => x.fields == "birthday,location{location{city,country,country_code}},gender,name" ) );
 
         [ Test ] public void Then_Valid_Response_Was_Returned( ) =>
             Assert.AreSame( _operationResult, _result );

@@ -31,7 +31,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             _facebookDataHandler
                 .Read<ISocialInfoUser,FacebookUser>( "me",
                     MapOut,
-                    _socialInfoUser );
+                    _socialInfoUser,
+                    new RequestFields{ fields = "birthday,location{location{city,country,country_code}},gender,name" } );
 
         public ISocialInfoUser MapOut( FacebookUser dto )
         {
