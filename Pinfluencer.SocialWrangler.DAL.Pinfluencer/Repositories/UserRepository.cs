@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Facebook;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -21,7 +23,12 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
     //TODO: REFACTOR SEPERATE DATA SOURCES INTO SEPERATE REPOSITORIES
     //TODO: ADD LOGGING !!!
-    public class UserRepository : IUserRepository
+    public class UserRepository :
+        IUserRepository,
+        IDataMappable<User,
+            TypeResponse<Profile>,
+            IEnumerable<User>,
+            TypeResponse<BubbleCollection<Profile>>>
     {
         private readonly Auth0Context _auth0Context;
         private readonly FacebookDecorator _facebookDecorator;
@@ -72,25 +79,16 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             };
 
         //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
-        public OperationResult<User> Get( string id )
-        {
-            try
-            {
-                var facebookUserStr = _facebookDecorator
-                    .Get( "me", new RequestFields { fields = "birthday,location,gender" } );
-                var facebookUser = JsonConvert.DeserializeObject<FacebookUser>( facebookUserStr );
-                return _bubbleDataHandler.Read<User,TypeResponse<Profile>>( $"profile/{id}", x =>
-                    new User
-                    {
-                        Id = x.Type.Id,
-                        Name = x.Type.Name
-                    }, new User() );
-            }
-            catch( FacebookApiException e ) when( e is FacebookApiException || e is FacebookApiLimitException || e is FacebookOAuthException )
-            {
-                _logger.LogError( "user was not fetched" );
-                return new OperationResult<User>( new User(), OperationResultEnum.Failed );
-            }
-        }
+        public OperationResult<User> Get( string id ) =>
+            _bubbleDataHandler.Read<User,TypeResponse<Profile>>( $"profile/{id}",
+                MapOut,
+                new User() );
+
+        public User MapOut( TypeResponse<Profile> dto ) =>
+            new User { Id = dto.Type.Id, Name = dto.Type.Name };
+
+        public TypeResponse<Profile> MapIn( User model ) { throw new NotImplementedException( ); }
+
+        public IEnumerable<User> MapMany( TypeResponse<BubbleCollection<Profile>> dtoCollection ) { throw new NotImplementedException( ); }
     }
 }
