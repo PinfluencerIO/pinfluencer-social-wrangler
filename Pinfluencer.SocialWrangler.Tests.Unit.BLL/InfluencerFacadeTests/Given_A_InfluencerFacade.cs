@@ -25,12 +25,15 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             Name = "Aidan"
         };
 
+        protected IInfluencerRepository MockInfluencerRepository;
+
         protected override void Given( )
         {
             MockUserRepository = Substitute.For<IUserRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
+            MockInfluencerRepository = Substitute.For<IInfluencerRepository>( );
 
-            SUT = new InfluencerFacade( MockUserRepository, InsightsSocialUserRepository );
+            SUT = new InfluencerFacade( MockUserRepository, InsightsSocialUserRepository, MockInfluencerRepository );
         }
     }
 }

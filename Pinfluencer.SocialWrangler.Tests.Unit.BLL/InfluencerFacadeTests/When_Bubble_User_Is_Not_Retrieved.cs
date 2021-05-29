@@ -30,9 +30,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         [ Test ]
         public void Then_Create_Influencer_Was_Not_Called( )
         {
-            MockUserRepository
+            MockInfluencerRepository
                 .DidNotReceive( )
-                .CreateInfluencer( Arg.Any<Influencer>( ) );
+                .Create( Arg.Any<Influencer>( ) );
         }
     }
 }

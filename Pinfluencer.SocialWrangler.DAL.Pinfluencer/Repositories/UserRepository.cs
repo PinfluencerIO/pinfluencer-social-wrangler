@@ -64,20 +64,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             }
         }
 
-        public OperationResultEnum CreateInfluencer( InfluencerModel influencer ) =>
-            _bubbleDataHandler.Create( "influencer", influencer, MapToInfluencerDto );
-
-        public Dtos.Bubble.Influencer MapToInfluencerDto( InfluencerModel influencer ) => 
-            new Dtos.Bubble.Influencer
-            {
-                Age = influencer.Age,
-                Bio = influencer.Bio,
-                Gender = influencer.Gender,
-                Instagram = influencer.InstagramHandle,
-                Location = influencer.Location,
-                Profile = influencer.User.Id
-            };
-
         //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
         public OperationResult<User> Get( string id ) =>
             _bubbleDataHandler.Read<User,TypeResponse<Profile>>( $"profile/{id}",

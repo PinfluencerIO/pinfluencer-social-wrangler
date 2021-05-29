@@ -20,21 +20,5 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
                 .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>(  ), OperationResultEnum.Success ) );
             Result = SUT.OnboardInfluencer( "123" );
         }
-
-        [ Test ]
-        public void Then_Get_Instagram_Users_Was_Called_Once( )
-        {
-            InsightsSocialUserRepository
-                .Received( 1 )
-                .GetAll( );
-        }
-        
-        [ Test ]
-        public void Then_Create_Influencer_Was_Not_Called( )
-        {
-            MockUserRepository
-                .DidNotReceive( )
-                .CreateInfluencer( Arg.Any<Influencer>( ) );
-        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
@@ -7,11 +6,11 @@ using Pinfluencer.SocialWrangler.Core.Models.User;
 using Influencer = Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.CreateInfluencer
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Create
 {
     [ TestFixture( OperationResultEnum.Success ) ]
     [ TestFixture( OperationResultEnum.Failed ) ]
-    public class When_Called : Given_A_UserRepository
+    public class When_Called : Given_A_InfluencerRepository
     {
         private readonly OperationResultEnum _operationResult;
         private OperationResultEnum _result;
@@ -41,7 +40,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.CreateIn
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<InfluencerModel>( ), Arg.Any<Func<InfluencerModel,Influencer>>( ) )
                 .Returns( _operationResult );
-            _result = SUT.CreateInfluencer( DefaultInfluencer );
+            _result = SUT.Create( DefaultInfluencer );
         }
 
         [ Test ]
@@ -57,27 +56,21 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.CreateIn
         {
             MockBubbleDataHandler
                 .Received( )
-                .Create( Arg.Is( "influencer" ), Arg.Any<InfluencerModel>( ), Arg.Any<Func<InfluencerModel, Influencer>>( ) );
+                .Create( Arg.Is( "influencer" ),
+                    Arg.Is<InfluencerModel>( x =>
+                        x.Age == DefaultInfluencer.Age &&
+                        x.Bio == DefaultInfluencer.Bio &&
+                        x.Gender == DefaultInfluencer.Gender &&
+                        x.Location == DefaultInfluencer.Location &&
+                        x.User.Id == DefaultInfluencer.User.Id &&
+                        x.InstagramHandle == DefaultInfluencer.InstagramHandle ),
+                        SUT.MapIn );
         }
-        
-        [ Test ]
-        public void Then_Model_Was_Passed_In( )
-        {
-            MockBubbleDataHandler
-                .Received( )
-                .Create( Arg.Any<string>( ), Arg.Is<InfluencerModel>( x => x.Age == DefaultInfluencer.Age &&
-                                                                           x.Bio == DefaultInfluencer.Bio &&
-                                                                           x.Gender == DefaultInfluencer.Gender &&
-                                                                           x.Location == DefaultInfluencer.Location &&
-                                                                           x.User.Id == DefaultInfluencer.User.Id &&
-                                                                           x.InstagramHandle == DefaultInfluencer.InstagramHandle ), 
-                    Arg.Any<Func<InfluencerModel, Influencer>>( ) );
-        }
-        
+
         [ Test ]
         public void Then_Valid_Influencer_Is_Created( )
         {
-            var mapResult = SUT.MapToInfluencerDto( DefaultInfluencer );
+            var mapResult = SUT.MapIn( DefaultInfluencer );
             Assert.True( mapResult.Age == DefaultInfluencer.Age &&
                          mapResult.Bio == DefaultInfluencer.Bio &&
                          mapResult.Gender == DefaultInfluencer.Gender &&

@@ -9,11 +9,13 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
     {
         private readonly IUserRepository _userRepository;
         private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
+        private readonly IInfluencerRepository _influencerRepository;
 
-        public InfluencerFacade( IUserRepository userRepository, IInsightsSocialUserRepository insightsSocialUserRepository )
+        public InfluencerFacade( IUserRepository userRepository, IInsightsSocialUserRepository insightsSocialUserRepository, IInfluencerRepository influencerRepository )
         {
             _userRepository = userRepository;
             _insightsSocialUserRepository = insightsSocialUserRepository;
+            _influencerRepository = influencerRepository;
         }
         
         public OperationResultEnum OnboardInfluencer( string id )
@@ -41,13 +43,13 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
             
             //TODO: get social info user and put into influencer
             
-            var influnecerStatus = _userRepository.CreateInfluencer( new Influencer
-            {
-                Bio = instaUser.Bio,
-                InstagramHandle = instaUser.Username,
-                User = user
-            } );
-            return influnecerStatus;
+                var influnecerStatus = _influencerRepository.Create( new Influencer
+                {
+                    Bio = instaUser.Bio,
+                    InstagramHandle = instaUser.Username,
+                    User = user
+                } );
+                return influnecerStatus;
         }
     }
 }

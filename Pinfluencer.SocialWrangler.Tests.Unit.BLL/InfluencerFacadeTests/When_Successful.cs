@@ -32,8 +32,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
                         Name = "Aidan Gannon"
                     }
                 }, OperationResultEnum.Success ) );
-            MockUserRepository
-                .CreateInfluencer( Arg.Any<Influencer>( ) )
+            MockInfluencerRepository
+                .Create( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Success );
             _result = SUT.OnboardInfluencer( "123" );
         }
@@ -41,9 +41,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         [ Test ]
         public void Then_Valid_Influencer_Was_Created( )
         {
-            MockUserRepository
+            MockInfluencerRepository
                 .Received( )
-                .CreateInfluencer( Arg.Is<Influencer>( x =>
+                .Create( Arg.Is<Influencer>( x =>
                     x.Age == 21 &&
                     x.Bio == "This is an example" &&
                     x.Gender == GenderEnum.Male &&
@@ -69,9 +69,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         [ Test ]
         public void Then_Create_Influencer_Was_Called_Once( )
         {
-            MockUserRepository
+            MockInfluencerRepository
                 .Received( 1 )
-                .CreateInfluencer( Arg.Any<Influencer>( ) );
+                .Create( Arg.Any<Influencer>( ) );
         }
     }
 }
