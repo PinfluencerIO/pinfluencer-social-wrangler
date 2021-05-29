@@ -20,8 +20,4 @@
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="UserRepositoryTests\CreateInfluencer" />
-    </ItemGroup>
-
 </Project>

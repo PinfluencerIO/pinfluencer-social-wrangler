@@ -4,6 +4,7 @@ using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {
+    [ Obsolete ]
     public abstract class FacebookRepository<T> where T : class
     {
         protected readonly ILoggerAdapter<T> Logger;

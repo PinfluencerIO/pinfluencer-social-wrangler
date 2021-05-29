@@ -13,6 +13,7 @@ using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
+    [ Obsolete ]
     public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, ISocialAudienceRepository
     {
         private readonly FacebookDecorator _facebookDecorator;

@@ -3,9 +3,9 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
-using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepositoryTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepositoryTests.Get
 {
     public class When_Retrieved_Successfully : When_Successful<LocationProperty>
     {
@@ -46,7 +46,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                         }
                     }
                 } );
-            Result = SUT.GetCountry( "123" );
+            Result = SUT.Get( "123" );
         }
 
         [ Test ]

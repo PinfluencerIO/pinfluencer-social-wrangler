@@ -3,9 +3,9 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
-using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepositoryTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.GetCountryTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepositoryTests.Get
 {
     [ TestFixtureSource( nameof( FacebookExceptionFixture ) ) ]
     public class When_Graph_Error_Occurs : When_Error_Occurs<LocationProperty>
@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         protected override void When( )
         {
             base.When( );
-            Result = SUT.GetCountry( "123" );
+            Result = SUT.Get( "123" );
         }
         
         [ Test ]
