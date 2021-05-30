@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
         protected override void Given( )
         {
             base.Given( );
-            SUT = new InstagramAudienceCountryRepository( MockFacebookDataHandler, CountryGetter );
+            SUT = new InstagramAudienceCountryRepository( CountryGetter, MockFacebookDataHandler );
         }
     }
 }

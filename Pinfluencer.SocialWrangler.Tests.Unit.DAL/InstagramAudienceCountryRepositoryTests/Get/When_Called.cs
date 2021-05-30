@@ -80,7 +80,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
             _result = SUT.Get( "123" );
         }
         
-        [ Test ] public void Then_Get_Users_Is_Called_Once( ) =>
+        [ Test ] public void Then_Get_Audience_Country_Is_Called_Once( ) =>
             MockFacebookDataHandler
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),

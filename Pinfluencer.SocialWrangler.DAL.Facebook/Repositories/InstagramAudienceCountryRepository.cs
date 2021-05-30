@@ -16,25 +16,23 @@ using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramAudienceCountryRepository :
-        IDataCollectionMappable<IEnumerable<AudienceCount<CountryProperty>>,
-            DataArray<Metric<object>>>
+        InstagramAudienceRepositoryBase<InstagramAudienceCountryRepository,CountryProperty>
     {
-        private readonly IFacebookDataHandler<InstagramAudienceCountryRepository> _facebookDataHandler;
         private readonly CountryGetter _countryGetter;
         
-        public InstagramAudienceCountryRepository( IFacebookDataHandler<InstagramAudienceCountryRepository> facebookDataHandler, CountryGetter countryGetter )
+        public InstagramAudienceCountryRepository( CountryGetter countryGetter,
+            IFacebookDataHandler<InstagramAudienceCountryRepository> facebookDataHandler ) : base( facebookDataHandler )
         {
-            _facebookDataHandler = facebookDataHandler;
             _countryGetter = countryGetter;
         }
 
-        public OperationResult<IEnumerable<AudienceCount<CountryProperty>>> Get( string instaId ) =>
-            _facebookDataHandler
+        public override OperationResult<IEnumerable<AudienceCount<CountryProperty>>> Get( string instaId ) =>
+            FacebookDataHandler
                 .Read<IEnumerable<AudienceCount<CountryProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",
                     MapMany, Enumerable.Empty<AudienceCount<CountryProperty>>( ),
                     new RequestInsightParams { metric = "audience_country", period = "lifetime" } );
 
-        public IEnumerable<AudienceCount<CountryProperty>> MapMany( DataArray<Metric<object>> dtoCollection )
+        public override IEnumerable<AudienceCount<CountryProperty>> MapMany( DataArray<Metric<object>> dtoCollection )
         {
             var countries = dtoCollection.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
             var outputResult = 
