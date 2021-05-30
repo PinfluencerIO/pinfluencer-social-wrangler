@@ -21,11 +21,10 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 
         protected DateTime CurrentTime
         {
+            get => MockDateTime.Now( );
             set => MockDateTime
                 .Now( )
                 .Returns( value );
         }
-        
-        
     }
 }

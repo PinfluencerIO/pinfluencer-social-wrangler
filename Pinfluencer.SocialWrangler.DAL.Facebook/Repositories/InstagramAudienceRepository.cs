@@ -91,7 +91,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                         Count = ( int ) x.Value,
                         Property = new GenderAgeProperty
                         {
-                            Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
+                            Gender = generString == "f" ? GenderEnum.Female : GenderEnum.Male,
                             AgeRange = new Tuple<int, int?>( ageMin, ageMax )
                         }
                     };

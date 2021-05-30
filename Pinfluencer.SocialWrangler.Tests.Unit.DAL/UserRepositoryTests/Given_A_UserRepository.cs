@@ -21,8 +21,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests
         {
             base.Given( );
 
-            CurrentTime = new DateTime( 2021, 4, 29 );
-            
             SUT = new UserRepository(
                 Auth0Context,
                 FacebookDecorator,

@@ -10,8 +10,13 @@ namespace Pinfluencer.SocialWrangler.Core.Models.Insights
             Count = count;
         }
 
-        public DateTime Time { get; }
+        public ContentImpressions( )
+        {
+            
+        }
 
-        public int Count { get; }
+        public DateTime Time { get; set; }
+
+        public int Count { get; set; }
     }
 }

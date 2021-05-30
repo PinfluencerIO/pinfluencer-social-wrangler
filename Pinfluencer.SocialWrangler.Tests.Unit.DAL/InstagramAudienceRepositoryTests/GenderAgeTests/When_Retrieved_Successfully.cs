@@ -88,9 +88,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                 GenderEnum.Male,
                 GenderEnum.Male
             };
-            Assert.True( Result.Value
-                .Select( x => x.Property.Gender )
-                .SequenceEqual( genders ) );
+            CollectionAssert.AreEquivalent( genders, Result.Value
+                .Select( x => x.Property.Gender ) );
         }
         
         [ Test ]

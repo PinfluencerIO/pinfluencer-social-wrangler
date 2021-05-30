@@ -32,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected override void Given( )
         {
             base.Given( );
-            Serializer = Substitute.For<ISerializer>( );
+            Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
             CountryGetter = new CountryGetter( );
             MockBubbleClient = Substitute.For<IBubbleClient>( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
@@ -46,6 +46,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
             MockFacebookDataHandler = Substitute.For<IFacebookDataHandler<T>>( );
             SocialInfoUser = new SocialInfoUser( MockDateTime );
+            CurrentTime = new DateTime( 2021, 5, 28 );
         }
 
         protected static IEnumerable<FacebookApiException> FacebookExceptionFixture( ) => new [ ]
