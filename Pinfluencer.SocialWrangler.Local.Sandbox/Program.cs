@@ -1,6 +1,12 @@
 ﻿using System.Net.Sockets;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.User;
+using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Factories;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
 using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
 namespace Pinfluencer.SocialWrangler.Local.Sandbox
@@ -19,7 +25,15 @@ namespace Pinfluencer.SocialWrangler.Local.Sandbox
 
         private static void Main( string [ ] args )
         {
-            var value = $"{typeof( User )}";
+            var data = new InstagramAudienceRepository(
+                new FacebookDecorator( new FacebookClientFactory( ) )
+                {
+                    Token =
+                        "EAAiW6ZB06aXUBAJEigXWJrG69GoBWwOXcJN7zpItMiYRYhooy8tZByOwvGTVBmsEiur4LGG65FJi57xZBBZBORp9jfPRcxLiU5g5GTyCJ1gGriCixzgAEvJ2sDH0CfmE9sToZCy0uxdxRZAt5hwiYpuXzBEZCwh84b1snW0ZCDGIQzL8eGXKsCSpzrSuzbZBTdY9oZC4tTuW9lCfN4qo4fs8VszK0fIL3NRisZD"
+                },
+                new LoggerAdapter<InstagramAudienceRepository>(
+                    new Logger<InstagramAudienceRepository>( new NullLoggerFactory( ) ) ), new CountryGetter( ) )
+                .GetCountry( "17841405594881885" );
         }
     }
 

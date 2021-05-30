@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -34,17 +35,14 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public IEnumerable<AudienceCount<LocationProperty>> MapMany( DataArray<Metric<object>> dtoCollection )
         {
-            var genderAge =
-                dtoCollection.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            return genderAge?.Select( x => new AudienceCount<LocationProperty>
-            {
-                Count = ( int ) x.Value,
-                Property = new LocationProperty
+            var countries = dtoCollection.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
+            var outputResult = 
+                countries?.Select( x => new AudienceCount<LocationProperty>
                 {
-                    CountryCode = x.Key.Enumify<CountryEnum>( ),
-                    Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ]
-                }
-            } );
+                    Count = ( int ) x.Value,
+                    Property = new LocationProperty{ CountryCode = x.Key.Enumify<CountryEnum>( ), Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ] }
+                } );
+            return outputResult;
         }
     }
 }
