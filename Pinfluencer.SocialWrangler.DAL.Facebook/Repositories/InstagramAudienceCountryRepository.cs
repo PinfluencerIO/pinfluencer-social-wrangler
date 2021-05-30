@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common;
@@ -15,7 +16,7 @@ using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramAudienceCountryRepository :
-        IDataCollectionMappable<IEnumerable<AudienceCount<LocationProperty>>,
+        IDataCollectionMappable<IEnumerable<AudienceCount<CountryProperty>>,
             DataArray<Metric<object>>>
     {
         private readonly IFacebookDataHandler<InstagramAudienceCountryRepository> _facebookDataHandler;
@@ -27,20 +28,20 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             _countryGetter = countryGetter;
         }
 
-        public OperationResult<IEnumerable<AudienceCount<LocationProperty>>> Get( string instaId ) =>
+        public OperationResult<IEnumerable<AudienceCount<CountryProperty>>> Get( string instaId ) =>
             _facebookDataHandler
-                .Read<IEnumerable<AudienceCount<LocationProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",
-                    MapMany, Enumerable.Empty<AudienceCount<LocationProperty>>( ),
+                .Read<IEnumerable<AudienceCount<CountryProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",
+                    MapMany, Enumerable.Empty<AudienceCount<CountryProperty>>( ),
                     new RequestInsightParams { metric = "audience_country", period = "lifetime" } );
 
-        public IEnumerable<AudienceCount<LocationProperty>> MapMany( DataArray<Metric<object>> dtoCollection )
+        public IEnumerable<AudienceCount<CountryProperty>> MapMany( DataArray<Metric<object>> dtoCollection )
         {
             var countries = dtoCollection.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
             var outputResult = 
-                countries?.Select( x => new AudienceCount<LocationProperty>
+                countries?.Select( x => new AudienceCount<CountryProperty>
                 {
                     Count = ( int ) x.Value,
-                    Property = new LocationProperty{ CountryCode = x.Key.Enumify<CountryEnum>( ), Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ] }
+                    Property = new CountryProperty{ CountryCode = x.Key.Enumify<CountryEnum>( ), Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ] }
                 } );
             return outputResult;
         }

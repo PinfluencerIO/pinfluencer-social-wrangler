@@ -2,6 +2,7 @@
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;

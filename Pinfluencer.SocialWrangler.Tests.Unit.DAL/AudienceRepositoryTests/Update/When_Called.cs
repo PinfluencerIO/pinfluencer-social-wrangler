@@ -3,8 +3,9 @@ using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
+using Audience = Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble.Audience;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Update

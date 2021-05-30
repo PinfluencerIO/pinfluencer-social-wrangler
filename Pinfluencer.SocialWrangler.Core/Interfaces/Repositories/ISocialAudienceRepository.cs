@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 
 namespace Pinfluencer.SocialWrangler.Core.Interfaces.Repositories
