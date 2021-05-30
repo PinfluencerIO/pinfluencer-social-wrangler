@@ -16,11 +16,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         {
         }
 
-        public override OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> Get( string instaId )
-        {
-            return new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
-                Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ), OperationResultEnum.Failed );
-        }
+        public override OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> Get( string instaId ) =>
+            FacebookDataHandler
+                .Read<IEnumerable<AudienceCount<GenderAgeProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",
+                    MapMany, Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
+                    new RequestInsightParams { metric = "audience_gender_age", period = "lifetime" } );
 
         public override IEnumerable<AudienceCount<GenderAgeProperty>> MapMany( DataArray<Metric<object>> dtoCollection )
         {
