@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
 
             base.When( );
 
-            _result = SUT.GetImpressions( TestId );
+            _result = SUT.Get( TestId );
         }
 
         [ Test ]

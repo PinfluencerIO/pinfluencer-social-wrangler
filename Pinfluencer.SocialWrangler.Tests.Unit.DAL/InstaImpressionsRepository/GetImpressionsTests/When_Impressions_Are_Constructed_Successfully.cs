@@ -50,7 +50,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
                     }
                 } );
 
-            _result = SUT.GetImpressions( TestId );
+            _result = SUT.Get( TestId );
         }
 
         [ Test ]

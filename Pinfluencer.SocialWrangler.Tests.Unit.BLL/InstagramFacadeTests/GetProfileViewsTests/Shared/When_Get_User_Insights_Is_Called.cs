@@ -17,8 +17,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetProf
 
         protected override void When( )
         {
-            MockImpressionsInsightsRepository
-                .GetImpressions( Arg.Any<string>( ) )
+            ImpressionsInsightsRepository
+                .Get( Arg.Any<string>( ) )
                 .Returns(
                     new OperationResult<IEnumerable<ContentImpressions>>(
                         ImpressionsColleciton, ImpressionsOperationResult
@@ -29,17 +29,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetProf
         [ Test ]
         public void Then_Get_Impressions_Insights_Was_Called_Once( )
         {
-            MockImpressionsInsightsRepository
+            ImpressionsInsightsRepository
                 .Received( 1 )
-                .GetImpressions( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]
         public void Then_Get_Impressions_Insights_Was_Called_With_Correct_Id( )
         {
-            MockImpressionsInsightsRepository
+            ImpressionsInsightsRepository
                 .Received( )
-                .GetImpressions( Arg.Is( TestId ) );
+                .Get( Arg.Is( TestId ) );
         }
 
         protected IEnumerable<ContentImpressions> GetSingleImpressionsColleciton( DateTime date, int impressions )

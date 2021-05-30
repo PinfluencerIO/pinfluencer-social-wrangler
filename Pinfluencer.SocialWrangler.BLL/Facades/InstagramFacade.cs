@@ -23,7 +23,7 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
             _socialAudienceRepository = socialAudienceRepository;
         }
 
-        public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id ) => _impressionsRepository.GetImpressions( id );
+        public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id ) => _impressionsRepository.Get( id );
 
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
         public OperationResult<IEnumerable<SocialInsightsUser>> GetUsers( ) => _insightsSocialUserRepository.GetAll( );

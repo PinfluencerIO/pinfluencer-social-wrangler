@@ -26,7 +26,7 @@ namespace Pinfluencer.SocialWrangler.Local.Sandbox
         private static void Main( string [ ] args )
         {
             var data = new InstagramAudienceRepository(
-                new FacebookDecorator( new FacebookClientFactory( ) )
+                new FacebookDecorator( new FacebookClientFactory( ), new JsonSerialzierAdapter( new PinfluencerJsonResolver(  ) ) )
                 {
                     Token =
                         "EAAiW6ZB06aXUBAJEigXWJrG69GoBWwOXcJN7zpItMiYRYhooy8tZByOwvGTVBmsEiur4LGG65FJi57xZBBZBORp9jfPRcxLiU5g5GTyCJ1gGriCixzgAEvJ2sDH0CfmE9sToZCy0uxdxRZAt5hwiYpuXzBEZCwh84b1snW0ZCDGIQzL8eGXKsCSpzrSuzbZBTdY9oZC4tTuW9lCfN4qo4fs8VszK0fIL3NRisZD"

@@ -2,7 +2,7 @@
 {
     public interface ISerializer
     {
-        string Serialzie( object content );
+        string Serialize( object content );
 
         T Deserialize<T>( string content );
     }

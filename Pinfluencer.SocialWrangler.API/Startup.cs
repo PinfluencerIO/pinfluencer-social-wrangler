@@ -39,7 +39,7 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddSingleton<CountryGetter>( )
                 .AddScoped<Auth0Context>( )
                 .AddScoped<IFacebookDecorator,FacebookDecorator>( )
-                .AddTransient<IContractResolver, ClassicJsonResolver>( )
+                .AddTransient<IContractResolver, PinfluencerJsonResolver>( )
                 .AddTransient<ISerializer, JsonSerialzierAdapter>( )
                 .AddTransient<MvcAdapter>( )
                 .AddTransient<IFacebookClientAdapter,FacebookClientAdapter>( )
@@ -60,7 +60,7 @@ namespace Pinfluencer.SocialWrangler.API
                 {
                     var bubbleSettings = provider.GetService<IConfiguration>( ).Get<AppOptions>( );
                     return new BubbleClient( provider.GetService<IHttpClient>( ),
-                        new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
+                        new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret, provider.GetService<ISerializer>( ) );
                 } )
                 .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
                 .AddTransient( typeof( IFacebookDataHandler<> ), typeof( FacebookDataHandler<> ) )

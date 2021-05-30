@@ -22,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                             new Insight<object>
                             {
                                 Time = "2021-05-30T07:00:00+0000",
-                                Value = JsonConvert.DeserializeObject( "{\"EG\": 1,\"SG\": 1,\"AU\": 1,\"IN\": 1,\"CI\": 1,\"PH\": 1,\"GB\": 125,\"ES\": 1,\"US\": 6}" )
+                                Value = Serializer.Deserialize<object>( "{\"EG\": 1,\"SG\": 1,\"AU\": 1,\"IN\": 1,\"CI\": 1,\"PH\": 1,\"GB\": 125,\"ES\": 1,\"US\": 6}" )
                             }
                         }
                     }

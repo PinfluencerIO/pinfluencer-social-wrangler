@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         }
 
         //TODO: ADD CUSTOM TIMESPAN
-        public OperationResult<IEnumerable<ContentImpressions>> GetImpressions( string instaId )
+        public OperationResult<IEnumerable<ContentImpressions>> Get( string instaId )
         {
             var ( impressions, fbResult ) = ValidateFacebookCall( () => _facebookDecorator.Get( $"{instaId}/insights", new RequestInsightParams
             {

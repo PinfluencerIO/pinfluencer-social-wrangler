@@ -14,7 +14,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
             _settings = new JsonSerializerSettings { ContractResolver = contractResolver };
         }
 
-        public string Serialzie( object content ) => JsonConvert.SerializeObject( content, _settings );
+        public string Serialize( object content ) => JsonConvert.SerializeObject( content, _settings );
 
         public T Deserialize<T>( string content ) => JsonConvert.DeserializeObject<T>( content, _settings );
     }

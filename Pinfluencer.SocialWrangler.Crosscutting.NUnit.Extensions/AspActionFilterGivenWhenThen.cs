@@ -42,7 +42,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
 
         protected override void Given( )
         {
-            Serializer = new JsonSerialzierAdapter( new ClassicJsonResolver( ) );
+            Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
             _mockHttpContext = Substitute.For<HttpContext>( );
             _mockHttpRequest = Substitute.For<HttpRequest>( );
             MvcAdapter = new MvcAdapter( Serializer );

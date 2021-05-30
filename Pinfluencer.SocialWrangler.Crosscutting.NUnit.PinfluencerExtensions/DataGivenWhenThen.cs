@@ -27,10 +27,12 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
         protected IFacebookDataHandler<T> MockFacebookDataHandler;
         protected IBubbleClient MockBubbleClient;
+        protected ISerializer Serializer;
 
         protected override void Given( )
         {
             base.Given( );
+            Serializer = Substitute.For<ISerializer>( );
             CountryGetter = new CountryGetter( );
             MockBubbleClient = Substitute.For<IBubbleClient>( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
@@ -39,7 +41,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             facebookClientFactory
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
-            FacebookDecorator = new FacebookDecorator( facebookClientFactory ) { Token = string.Empty };
+            FacebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer ) { Token = string.Empty };
             Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
             MockFacebookDataHandler = Substitute.For<IFacebookDataHandler<T>>( );

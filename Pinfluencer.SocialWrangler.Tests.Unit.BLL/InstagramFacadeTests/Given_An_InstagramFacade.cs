@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests
     public abstract class
         Given_An_InstagramFacade : DataGivenWhenThen<InstagramFacade>
     {
-        protected ISocialImpressionsRepository MockImpressionsInsightsRepository;
+        protected ISocialImpressionsRepository ImpressionsInsightsRepository;
         protected IInsightsSocialUserRepository InsightsSocialUserRepository;
         protected ISocialAudienceRepository MockSocialAudienceRepository;
 
@@ -16,12 +16,12 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests
         {
             base.Given( );
             
-            MockImpressionsInsightsRepository = Substitute.For<ISocialImpressionsRepository>( );
+            ImpressionsInsightsRepository = Substitute.For<ISocialImpressionsRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockSocialAudienceRepository = Substitute.For<ISocialAudienceRepository>( );
 
             SUT = new InstagramFacade(
-                MockImpressionsInsightsRepository,
+                ImpressionsInsightsRepository,
                 InsightsSocialUserRepository,
                 MockSocialAudienceRepository
             );

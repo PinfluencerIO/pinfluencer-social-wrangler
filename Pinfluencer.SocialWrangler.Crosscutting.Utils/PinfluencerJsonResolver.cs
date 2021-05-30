@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
 {
-    public class ClassicJsonResolver : DefaultContractResolver
+    public class PinfluencerJsonResolver : DefaultContractResolver
     {
         protected override string ResolvePropertyName( string propertyName ) => string.Concat(
                 base.ResolvePropertyName( propertyName )

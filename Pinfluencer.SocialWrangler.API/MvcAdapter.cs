@@ -35,7 +35,7 @@ namespace Pinfluencer.SocialWrangler.API
 
         private ContentResult ToJson( object objectValue, HttpStatusCode statusCode )
         {
-            var json = _serializer.Serialzie( objectValue );
+            var json = _serializer.Serialize( objectValue );
             return new ContentResult
             {
                 Content = json,

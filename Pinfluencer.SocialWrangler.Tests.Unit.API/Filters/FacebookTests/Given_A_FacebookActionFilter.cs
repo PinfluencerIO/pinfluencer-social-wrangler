@@ -40,7 +40,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
             facebookClientFactory
                 .Get( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
-            _facebookDecorator = new FacebookDecorator( facebookClientFactory );
+            _facebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer );
 
             SUT = new FacebookActionFilter( MockUserRepository, _facebookDecorator, _mockFacebookClientFactory, MvcAdapter );
         }
