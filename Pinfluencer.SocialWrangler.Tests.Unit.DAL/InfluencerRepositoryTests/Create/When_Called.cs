@@ -15,24 +15,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Cr
         private readonly OperationResultEnum _operationResult;
         private OperationResultEnum _result;
 
-        private InfluencerModel DefaultInfluencer
-        {
-            get
-            {
-                
-                SocialInfoUser.Id = "12345678";
-                return new InfluencerModel
-                {
-                    InstagramHandle = "example",
-                    Age = 24,
-                    Bio = "this an example bio",
-                    Gender = GenderEnum.Male,
-                    Location = "Uxbridge, West London",
-                    User = new User{ Id = "12345678" }
-                };
-            }
-        }
-
         public When_Called( OperationResultEnum operationResult ) { _operationResult = operationResult; }
 
         protected override void When( )
@@ -65,18 +47,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Cr
                         x.User.Id == DefaultInfluencer.User.Id &&
                         x.InstagramHandle == DefaultInfluencer.InstagramHandle ),
                         SUT.MapIn );
-        }
-
-        [ Test ]
-        public void Then_Valid_Influencer_Is_Created( )
-        {
-            var mapResult = SUT.MapIn( DefaultInfluencer );
-            Assert.True( mapResult.Age == DefaultInfluencer.Age &&
-                         mapResult.Bio == DefaultInfluencer.Bio &&
-                         mapResult.Gender == DefaultInfluencer.Gender &&
-                         mapResult.Instagram == DefaultInfluencer.InstagramHandle &&
-                         mapResult.Location == DefaultInfluencer.Location &&
-                         mapResult.Profile == DefaultInfluencer.User.Id );
         }
 
         [ Test ]

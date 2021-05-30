@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using Facebook;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -26,9 +25,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
     public class UserRepository :
         IUserRepository,
         IDataMappable<User,
-            TypeResponse<Profile>,
-            IEnumerable<User>,
-            TypeResponse<BubbleCollection<Profile>>>
+            TypeResponse<Profile>>
     {
         private readonly Auth0Context _auth0Context;
         private readonly FacebookDecorator _facebookDecorator;
@@ -74,7 +71,5 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             new User { Id = dto.Type.Id, Name = dto.Type.Name };
 
         public TypeResponse<Profile> MapIn( User model ) { throw new NotImplementedException( ); }
-
-        public IEnumerable<User> MapMany( TypeResponse<BubbleCollection<Profile>> dtoCollection ) { throw new NotImplementedException( ); }
     }
 }

@@ -10,9 +10,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
     public class InfluencerRepository :
         IDataMappable<InfluencerModel,
-            Influencer,
-            IEnumerable<InfluencerModel>,
-            TypeResponse<BubbleCollection<Influencer>>>, IInfluencerRepository
+            Influencer>, IInfluencerRepository
     {
         private IBubbleDataHandler<InfluencerRepository> _bubbleDataHandler;
         public InfluencerRepository( IBubbleDataHandler<InfluencerRepository> bubbleDataHandler )
@@ -35,7 +33,5 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
                 Location = model.Location,
                 Profile = model.User.Id
             };
-
-        public IEnumerable<InfluencerModel> MapMany( TypeResponse<BubbleCollection<Influencer>> dtoCollection ) { throw new System.NotImplementedException( ); }
     }
 }

@@ -19,7 +19,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramUserRepository :
         IInsightsSocialUserRepository,
-        IDataMappable<SocialInsightsUser, InstagramUser, IEnumerable<SocialInsightsUser>, DataArray<FacebookPage>>
+        IDataCollectionMappable<IEnumerable<SocialInsightsUser>, DataArray<FacebookPage>>
     {
         private readonly FacebookDecorator _facebookDecorator;
         private readonly IFacebookDataHandler<InstagramUserRepository> _facebookDataHandler;
@@ -42,10 +42,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     {
                         fields = "instagram_business_account{id,username,name,biography,followers_count}"
                     } );
-
-        public SocialInsightsUser MapOut( InstagramUser dto ) { throw new NotImplementedException( ); }
-
-        public InstagramUser MapIn( SocialInsightsUser model ) { throw new NotImplementedException( ); }
 
         public IEnumerable<SocialInsightsUser> MapMany( DataArray<FacebookPage> dtoCollection ) =>
             dtoCollection?

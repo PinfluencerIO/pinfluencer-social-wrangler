@@ -14,9 +14,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
     public class FacebookUserRepository :
         ISocialInfoUserRepository,
         IDataMappable<ISocialInfoUser,
-            FacebookUser,
-            IEnumerable<ISocialInfoUser>,
-            IEnumerable<FacebookUser>>
+            FacebookUser>
     {
         private readonly ISocialInfoUser _socialInfoUser;
         private readonly IFacebookDataHandler<FacebookUserRepository> _facebookDataHandler;
@@ -51,6 +49,5 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public FacebookUser MapIn( ISocialInfoUser model ) { throw new System.NotImplementedException( ); }
 
-        public IEnumerable<ISocialInfoUser> MapMany( IEnumerable<FacebookUser> dtoCollection ) { throw new System.NotImplementedException( ); }
     }
 }

@@ -6,7 +6,7 @@ using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTests
 {
-    public abstract class Given_A_FacebookDataHandler : DataGivenWhenThen<object>, IDataMappable<Model,Dto,IEnumerable<Model>,IEnumerable<Dto>>
+    public abstract class Given_A_FacebookDataHandler : DataGivenWhenThen<object>, IDataMappable<Model,Dto>
     {
         protected FacebookDataHandler<object> FacebookSut;
 
@@ -29,7 +29,5 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
                 Id = model.Id,
                 Value = model.Value
             };
-
-        public IEnumerable<Model> MapMany( IEnumerable<Dto> dtoCollection ) { throw new System.NotImplementedException( ); }
     }
 }
