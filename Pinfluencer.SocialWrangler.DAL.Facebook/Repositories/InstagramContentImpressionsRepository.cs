@@ -31,8 +31,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         {
             var startUnix = ( ( DateTimeOffset ) capturePeriod.start ).ToUnixTimeSeconds( );
             var endUnix = ( ( DateTimeOffset ) capturePeriod.end ).ToUnixTimeSeconds( );
-            _logger.LogInfo( $"START:{startUnix}" );
-            _logger.LogInfo( $"END:{endUnix}" );
+            _logger.LogError( $"START:{startUnix}" );
+            _logger.LogError( $"END:{endUnix}" );
             return _facebookDataHandler
                 .Read<IEnumerable<ContentImpressions>, DataArray<Metric<int>>>( $"{instaId}/insights",
                     MapMany,
