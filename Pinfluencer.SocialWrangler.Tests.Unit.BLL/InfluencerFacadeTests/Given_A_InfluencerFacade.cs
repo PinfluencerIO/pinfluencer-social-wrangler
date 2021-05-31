@@ -13,6 +13,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
     {
         protected IUserRepository MockUserRepository;
         protected IInsightsSocialUserRepository InsightsSocialUserRepository;
+        protected ISocialInfoUserRepository SocialInfoUserRepository;
+
         protected readonly FakeSocialInfoUserProps DefaultSocialInfoUser = new FakeSocialInfoUserProps
         {
             Age = 21,
@@ -33,8 +35,12 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             MockUserRepository = Substitute.For<IUserRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockInfluencerRepository = Substitute.For<IInfluencerRepository>( );
+            SocialInfoUserRepository = Substitute.For<ISocialInfoUserRepository>( );
 
-            SUT = new InfluencerFacade( MockUserRepository, InsightsSocialUserRepository, MockInfluencerRepository );
+            SUT = new InfluencerFacade( MockUserRepository,
+                InsightsSocialUserRepository,
+                MockInfluencerRepository,
+                SocialInfoUserRepository );
         }
     }
 }

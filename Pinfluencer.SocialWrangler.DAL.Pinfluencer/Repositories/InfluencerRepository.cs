@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
                 Age = model.Age,
                 Bio = model.Bio,
                 Gender = model.Gender,
-                Instagram = model.InstagramHandle,
+                Instagram = model.SocialUsername,
                 Location = model.Location,
                 Profile = model.User.Id
             };

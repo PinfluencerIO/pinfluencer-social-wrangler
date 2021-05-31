@@ -4,8 +4,11 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
+using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
@@ -18,20 +21,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         {
             MockUserRepository
                 .Get( Arg.Any<string>( ) )
-                .Returns( new OperationResult<User>( new User{ Name = "Aidan", Id = "123" }, OperationResultEnum.Success ) );
+                .Returns( new OperationResult<User>( DefaultUser, OperationResultEnum.Success ) );
             InsightsSocialUserRepository
                 .GetAll( )
-                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ]
-                {
-                    new SocialInsightsUser
-                    {
-                        Bio = "This is an example",
-                        Followers = 212,
-                        Username = "examplehandle",
-                        Id = "654321",
-                        Name = "Aidan Gannon"
-                    }
-                }, OperationResultEnum.Success ) );
+                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ] { DefaultSocialInsightsUser }, OperationResultEnum.Success ) );
+            SocialInfoUserRepository
+                .Get( )
+                .Returns( new OperationResult<ISocialInfoUser>( DefaultSocialInfoUser, OperationResultEnum.Success ) );
             MockInfluencerRepository
                 .Create( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Success );
@@ -47,9 +43,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
                     x.Age == 21 &&
                     x.Bio == "This is an example" &&
                     x.Gender == GenderEnum.Male &&
-                    x.Location == "London" &&
+                    x.Location == "United Kingdom" &&
                     x.User.Id == "123" &&
-                    x.InstagramHandle == "examplehandle" ) );
+                    x.SocialUsername == "examplehandle" ) );
         }
 
         [ Test ]
@@ -58,14 +54,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             Assert.AreEqual( OperationResultEnum.Success, _result );
         }
 
-        [ Test ]
-        public void Then_Get_Instagram_Users_Was_Called_Once( )
-        {
-            InsightsSocialUserRepository
-                .Received( 1 )
-                .GetAll( );
-        }
-        
         [ Test ]
         public void Then_Create_Influencer_Was_Called_Once( )
         {

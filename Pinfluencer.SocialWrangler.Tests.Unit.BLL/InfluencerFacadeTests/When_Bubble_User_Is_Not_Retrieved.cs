@@ -20,14 +20,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         }
 
         [ Test ]
-        public void Then_Get_Instagram_Users_Was_Not_Called( )
-        {
-            InsightsSocialUserRepository
-                .DidNotReceive( )
-                .GetAll( );
-        }
-        
-        [ Test ]
         public void Then_Create_Influencer_Was_Not_Called( )
         {
             MockInfluencerRepository

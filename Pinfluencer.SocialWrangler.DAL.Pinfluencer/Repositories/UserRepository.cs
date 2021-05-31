@@ -28,12 +28,12 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             TypeResponse<Profile>>
     {
         private readonly Auth0Context _auth0Context;
-        private readonly FacebookDecorator _facebookDecorator;
+        private readonly IFacebookDecorator _facebookDecorator;
         private readonly IBubbleDataHandler<UserRepository> _bubbleDataHandler;
         private readonly ILoggerAdapter<UserRepository> _logger;
 
         public UserRepository( Auth0Context auth0Context,
-            FacebookDecorator facebookDecorator,
+            IFacebookDecorator facebookDecorator,
             ILoggerAdapter<UserRepository> logger,
             IBubbleDataHandler<UserRepository> bubbleDataHandler )
         {

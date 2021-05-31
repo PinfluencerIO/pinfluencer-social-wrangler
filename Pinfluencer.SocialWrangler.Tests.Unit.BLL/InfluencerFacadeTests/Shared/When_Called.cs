@@ -1,15 +1,48 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
+using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Core.Models;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
+using Pinfluencer.SocialWrangler.Core.Models.User;
+using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
 {
     public abstract class When_Called : Given_A_InfluencerFacade
     {
+        protected SocialInsightsUser DefaultSocialInsightsUser = new SocialInsightsUser
+        {
+            Bio = "This is an example",
+            Followers = 212,
+            Username = "examplehandle",
+            Id = "654321",
+            Name = "Aidan Gannon"
+        };
+
+        protected new ISocialInfoUser DefaultSocialInfoUser => GetSocialInfoUser( new FakeSocialInfoUserProps
+        {
+            Age = 21,
+            Gender = GenderEnum.Male,
+            Id = "123",
+            Location = new LocationProperty
+            {
+                City = "London",
+                Country = "United Kingdom",
+                CountryCode = CountryEnum.GB
+            },
+            Name = "Aidan Gannon"
+        } );
+
+        protected User DefaultUser => new User { Name = "Aidan", Id = "123" };
+        
         [ Test ]
         public void Then_Correct_User_Was_Called( )
         {
             MockUserRepository
-                .Received()
+                .Received( )
                 .Get( Arg.Is( "123" ) );
         }
 

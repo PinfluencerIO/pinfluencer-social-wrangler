@@ -8,14 +8,16 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
     public class InfluencerFacade
     {
         private readonly IUserRepository _userRepository;
+        private readonly ISocialInfoUserRepository _socialInfoUserRepository;
         private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
         private readonly IInfluencerRepository _influencerRepository;
 
-        public InfluencerFacade( IUserRepository userRepository, IInsightsSocialUserRepository insightsSocialUserRepository, IInfluencerRepository influencerRepository )
+        public InfluencerFacade( IUserRepository userRepository, IInsightsSocialUserRepository insightsSocialUserRepository, IInfluencerRepository influencerRepository, ISocialInfoUserRepository socialInfoUserRepository )
         {
             _userRepository = userRepository;
             _insightsSocialUserRepository = insightsSocialUserRepository;
             _influencerRepository = influencerRepository;
+            _socialInfoUserRepository = socialInfoUserRepository;
         }
         
         public OperationResultEnum OnboardInfluencer( string id )
@@ -27,29 +29,38 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
             }
 
             var user = userResult.Value;
-            var instaUserResult = _insightsSocialUserRepository.GetAll(  );
-            if( instaUserResult.Status != OperationResultEnum.Success )
+            var socialInsightUserResult = _insightsSocialUserRepository.GetAll(  );
+            if( socialInsightUserResult.Status != OperationResultEnum.Success )
             {
                 return OperationResultEnum.Failed;
             }
             
-            var instaUsers = instaUserResult.Value;
-            if( !instaUsers.Any() )
+            var socialInsightUsers = socialInsightUserResult.Value;
+            if( !socialInsightUsers.Any() )
             {
                 return OperationResultEnum.Failed;
             }
 
-            var instaUser = instaUsers.First( );
+            var socialInsightsUser = socialInsightUsers.First( );
+
+            var socialInfoUserResult = _socialInfoUserRepository.Get( );
+            if( socialInfoUserResult.Status == OperationResultEnum.Failed )
+            {
+                return OperationResultEnum.Failed;
+            }
             
-            //TODO: get social info user and put into influencer
-            
-                var influnecerStatus = _influencerRepository.Create( new Influencer
-                {
-                    Bio = instaUser.Bio,
-                    InstagramHandle = instaUser.Username,
-                    User = user
-                } );
-                return influnecerStatus;
+            var socialInfoUser = socialInfoUserResult.Value;
+
+            var influnecerStatus = _influencerRepository.Create( new Influencer
+            {
+                Bio = socialInsightsUser.Bio,
+                SocialUsername = socialInsightsUser.Username,
+                User = user,
+                Age = socialInfoUser.Age,
+                Gender = socialInfoUser.Gender,
+                Location = socialInfoUser.Location.Country
+            } );
+            return influnecerStatus;
         }
     }
 }

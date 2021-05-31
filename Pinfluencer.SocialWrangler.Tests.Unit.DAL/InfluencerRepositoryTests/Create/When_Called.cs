@@ -45,7 +45,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Cr
                         x.Gender == DefaultInfluencer.Gender &&
                         x.Location == DefaultInfluencer.Location &&
                         x.User.Id == DefaultInfluencer.User.Id &&
-                        x.InstagramHandle == DefaultInfluencer.InstagramHandle ),
+                        x.SocialUsername == DefaultInfluencer.SocialUsername ),
                         SUT.MapIn );
         }
 

@@ -15,10 +15,10 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramImpressionsRepository : FacebookRepository<InstagramImpressionsRepository>, ISocialImpressionsRepository
     {
-        private readonly FacebookDecorator _facebookDecorator;
+        private readonly IFacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramImpressionsRepository> _logger;
 
-        public InstagramImpressionsRepository( FacebookDecorator facebookDecorator, ILoggerAdapter<InstagramImpressionsRepository> logger ) : base( logger )
+        public InstagramImpressionsRepository( IFacebookDecorator facebookDecorator, ILoggerAdapter<InstagramImpressionsRepository> logger ) : base( logger )
         {
             _facebookDecorator = facebookDecorator;
             _logger = logger;

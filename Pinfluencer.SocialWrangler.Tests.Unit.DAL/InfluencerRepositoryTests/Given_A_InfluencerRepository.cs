@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests
                 SocialInfoUser.Id = "12345678";
                 return new InfluencerModel
                 {
-                    InstagramHandle = "example",
+                    SocialUsername = "example",
                     Age = 24,
                     Bio = "this an example bio",
                     Gender = GenderEnum.Male,

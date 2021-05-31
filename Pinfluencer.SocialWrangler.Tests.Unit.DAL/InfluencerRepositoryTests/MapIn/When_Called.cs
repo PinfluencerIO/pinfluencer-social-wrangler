@@ -18,7 +18,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Ma
             Assert.AreEqual( DefaultInfluencer.Age, _result.Age );
             Assert.AreEqual( DefaultInfluencer.Bio, _result.Bio );
             Assert.AreEqual( DefaultInfluencer.Gender, _result.Gender );
-            Assert.AreEqual( DefaultInfluencer.InstagramHandle, _result.Instagram );
+            Assert.AreEqual( DefaultInfluencer.SocialUsername, _result.Instagram );
             Assert.AreEqual( DefaultInfluencer.Location, _result.Location );
             Assert.AreEqual( DefaultInfluencer.User.Id, _result.Profile );
         }
