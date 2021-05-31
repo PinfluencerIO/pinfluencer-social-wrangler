@@ -84,8 +84,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
                     Arg.Is<IEnumerable<ContentImpressions>>( x => !x.Any( ) ),
                     Arg.Is<RequestInsightParams>( x => x.metric == "impressions"
                                                        && x.period == "day"
-                                                       && x.since == 1622156400
-                                                       && x.until == 1622242800 ) );
+                                                       && x.since == 1622160000
+                                                       && x.until == 1622246400 ) );
 
         [ Test ]
         public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
