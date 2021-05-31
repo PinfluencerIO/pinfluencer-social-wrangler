@@ -27,8 +27,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         
         public OperationResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution, ( DateTime start, DateTime end ) capturePeriod )
         {
-            var startUnix = ( int ) capturePeriod.start.ToUniversalTime( ).Subtract( new DateTime( 1970, 1, 1 ) ).TotalSeconds;
-            var endUnix = ( int ) capturePeriod.end.ToUniversalTime( ).Subtract( new DateTime( 1970, 1, 1 ) ).TotalSeconds;
+            var startUnix = ( ( DateTimeOffset ) capturePeriod.start ).ToUnixTimeSeconds( );
+            var endUnix = ( ( DateTimeOffset ) capturePeriod.end ).ToUnixTimeSeconds( );
             return _facebookDataHandler
                 .Read<IEnumerable<ContentImpressions>, DataArray<Metric<int>>>( $"{instaId}/insights",
                     MapMany,
@@ -37,8 +37,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     {
                         metric = "impressions",
                         period = "day",
-                        since = startUnix,
-                        until = endUnix
+                        since = ( int )startUnix,
+                        until = ( int )endUnix
                     } );
         }
         
