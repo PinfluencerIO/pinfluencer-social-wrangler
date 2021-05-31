@@ -63,7 +63,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
                     Arg.Any<IEnumerable<ContentImpressions>>( ),
                     Arg.Any<RequestInsightParams>( ) )
                 .Returns( _operationResult );
-            _result = SUT.Get( "123", PeriodEnum.Day, ( CurrentTime, CurrentTime.Add( new TimeSpan( 1,0, 0, 0 ) ) ) );
+            _result = SUT.Get( "123", PeriodEnum.Day, ( new DateTime( 2021, 5, 28 ), new DateTime( 2021, 5, 29 ) ) );
         }
 
         [ Test ]
