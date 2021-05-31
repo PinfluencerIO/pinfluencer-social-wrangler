@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
         protected override void Given( )
         {
             base.Given( );
-            SUT = new InstagramContentImpressionsRepository( MockDateTime, MockFacebookDataHandler, MockLogger );
+            SUT = new InstagramContentImpressionsRepository(  MockFacebookDataHandler );
         }
     }
 }

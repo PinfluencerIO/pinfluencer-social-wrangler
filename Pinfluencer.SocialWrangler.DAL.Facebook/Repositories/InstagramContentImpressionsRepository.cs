@@ -16,23 +16,19 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         IDataCollectionMappable<IEnumerable<ContentImpressions>,
             DataArray<Metric<int>>>
     {
-        private readonly IDateTimeAdapter _dateTimeAdapter;
         private readonly IFacebookDataHandler<InstagramContentImpressionsRepository> _facebookDataHandler;
-        private readonly ILoggerAdapter<InstagramContentImpressionsRepository> _logger;
 
-        public InstagramContentImpressionsRepository( IDateTimeAdapter dateTimeAdapter, IFacebookDataHandler<InstagramContentImpressionsRepository> facebookDataHandler, ILoggerAdapter<InstagramContentImpressionsRepository> logger )
+        public InstagramContentImpressionsRepository( IFacebookDataHandler<InstagramContentImpressionsRepository> facebookDataHandler )
         {
-            _dateTimeAdapter = dateTimeAdapter;
             _facebookDataHandler = facebookDataHandler;
-            _logger = logger;
         }
         
         public OperationResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution, ( DateTime start, DateTime end ) capturePeriod )
         {
             var startUnix = ( ( DateTimeOffset ) capturePeriod.start ).ToUnixTimeSeconds( );
             var endUnix = ( ( DateTimeOffset ) capturePeriod.end ).ToUnixTimeSeconds( );
-            _logger.LogError( $"START:{startUnix}" );
-            _logger.LogError( $"END:{endUnix}" );
+            Console.WriteLine( $"START:{startUnix}" );
+            Console.WriteLine( $"END:{endUnix}" );
             return _facebookDataHandler
                 .Read<IEnumerable<ContentImpressions>, DataArray<Metric<int>>>( $"{instaId}/insights",
                     MapMany,
