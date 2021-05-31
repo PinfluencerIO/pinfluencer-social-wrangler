@@ -27,8 +27,12 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         {
             Console.WriteLine( $"START_TIME:{capturePeriod.start.ToString("MM/dd/yyyy")}" );
             Console.WriteLine( $"START_TIME:{capturePeriod.end.ToString("MM/dd/yyyy")}" );
-            var startUnix = ( capturePeriod.start - new DateTime( 1970, 1, 1 ) ).TotalSeconds;
-            var endUnix = ( capturePeriod.end - new DateTime( 1970, 1, 1 ) ).TotalSeconds;
+            var startMinsEpoch = capturePeriod.start.ToUniversalTime( ) - new DateTime( 1970, 1, 1 );
+            var endMinsEpoch = capturePeriod.end.ToUniversalTime( ) - new DateTime( 1970, 1, 1 );
+            var startUnix = startMinsEpoch.TotalSeconds;
+            var endUnix = endMinsEpoch.TotalSeconds;
+            Console.WriteLine( $"START_TIME:{startMinsEpoch.ToString("c")}" );
+            Console.WriteLine( $"START_TIME:{endMinsEpoch.ToString("c")}" );
             Console.WriteLine( $"START:{startUnix}" );
             Console.WriteLine( $"END:{endUnix}" );
             return _facebookDataHandler
