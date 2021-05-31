@@ -29,6 +29,25 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             var endMinsEpoch = capturePeriod.end - new DateTime( 1970, 1, 1 );
             var startUnix = startMinsEpoch.TotalSeconds;
             var endUnix = endMinsEpoch.TotalSeconds;
+
+            string periodString;
+            switch( resolution )
+            {
+                case PeriodEnum.Day:
+                    periodString = "day";
+                    break;
+                case PeriodEnum.Day28:
+                    periodString = "days_28";
+                    break;
+                case PeriodEnum.Week:
+                    periodString = "week";
+                    break;
+                default:
+                    return new OperationResult<IEnumerable<ContentImpressions>>(
+                        Enumerable.Empty<ContentImpressions>( ),
+                        OperationResultEnum.Failed );
+            }
+            
             return _facebookDataHandler
                 .Read<IEnumerable<ContentImpressions>, DataArray<Metric<int>>>( $"{instaId}/insights",
                     MapMany,
@@ -36,7 +55,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     new RequestInsightParams
                     {
                         metric = "impressions",
-                        period = "day",
+                        period = periodString,
                         since = ( int )startUnix,
                         until = ( int )endUnix
                     } );
