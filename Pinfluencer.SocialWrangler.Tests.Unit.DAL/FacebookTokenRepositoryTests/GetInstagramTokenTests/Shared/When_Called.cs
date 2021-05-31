@@ -5,17 +5,21 @@ using Auth0.ManagementApi.Models;
 using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
+using Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests.Shared
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests.GetInstagramTokenTests.Shared
 {
-    public abstract class When_Called : Given_A_UserRepository
+    public abstract class When_Called : Given_A_FacebookTokenRepository
     {
+        protected const string Id = "1234";
+        protected User User;
+        
         protected override void When( )
         {
             MockAuth0ManagementApiConnection
                 .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
                     Arg.Any<JsonConverter [ ]>( ) )
-                .Returns( Task.FromResult( TestUser ) );
+                .Returns( Task.FromResult( User ) );
         }
 
         [ Test ]
@@ -33,7 +37,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInsta
         {
             MockAuth0ManagementApiConnection
                 .Received( )
-                .GetAsync<User>( Arg.Is<Uri>( x => x.AbsolutePath.Contains( TestId ) ),
+                .GetAsync<User>( Arg.Is<Uri>( x => x.AbsolutePath.Contains( Id ) ),
                     Arg.Any<IDictionary<string, string>>( ), Arg.Any<JsonConverter [ ]>( ) );
         }
     }

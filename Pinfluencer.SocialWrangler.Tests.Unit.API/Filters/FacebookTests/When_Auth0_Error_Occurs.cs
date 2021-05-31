@@ -33,17 +33,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_User_Repository_Was_Fetched_From_Once( )
         {
-            MockUserRepository
+            MockTokenRepository
                 .Received( 1 )
-                .GetInstagramToken( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]
         public void Then_Valid_Auth0_Id_Was_Used( )
         {
-            MockUserRepository
+            MockTokenRepository
                 .Received( )
-                .GetInstagramToken( Arg.Is( TestAuth0Id ) );
+                .Get( Arg.Is( TestAuth0Id ) );
         }
 
         [ Test ]

@@ -17,9 +17,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared
         [ Test ]
         public void Then_User_Repository_Was_Fetched_From_Once( )
         {
-            MockUserRepository
+            MockTokenRepository
                 .Received( 1 )
-                .GetInstagramToken( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]
@@ -27,9 +27,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared
         {
             Received.InOrder( ( ) =>
             {
-                MockUserRepository
+                MockTokenRepository
                     .Received( )
-                    .GetInstagramToken( Arg.Is( TestAuth0Id ) );
+                    .Get( Arg.Is( TestAuth0Id ) );
                 MockFacebookClient
                     .Received( )
                     .Get( "debug_token", Arg.Is<RequestDebugTokenParams>( x => x.input_token.Equals( TestToken ) ) );

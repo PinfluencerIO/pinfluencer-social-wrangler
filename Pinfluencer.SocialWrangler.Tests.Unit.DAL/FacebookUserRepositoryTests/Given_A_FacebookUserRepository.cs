@@ -1,5 +1,4 @@
 ﻿using System;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
@@ -11,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests
         protected override void Given( )
         {
             base.Given( );
-            SUT = new FacebookUserRepository( new SocialInfoUser( MockDateTime ), MockFacebookDataHandler );
+            SUT = new FacebookUserRepository( MockFacebookDataHandler, MockDateTime );
         }
     }
 }

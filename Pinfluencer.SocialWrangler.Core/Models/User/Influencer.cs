@@ -1,5 +1,4 @@
 ﻿using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 
 namespace Pinfluencer.SocialWrangler.Core.Models.User
 {

@@ -9,8 +9,9 @@ using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
     public class InfluencerRepository :
-        IDataMappable<InfluencerModel,
-            Influencer>, IInfluencerRepository
+        IDataMappableIn<InfluencerModel,
+            Influencer>,
+        IInfluencerRepository
     {
         private IBubbleDataHandler<InfluencerRepository> _bubbleDataHandler;
         public InfluencerRepository( IBubbleDataHandler<InfluencerRepository> bubbleDataHandler )
@@ -20,8 +21,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 
         public OperationResultEnum Create( InfluencerModel influencer ) =>
             _bubbleDataHandler.Create( "influencer", influencer, MapIn );
-
-        public InfluencerModel MapOut( Influencer dto ) { throw new System.NotImplementedException( ); }
 
         public Influencer MapIn( InfluencerModel model ) =>
             new Influencer

@@ -7,6 +7,7 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
@@ -20,17 +21,16 @@ namespace Pinfluencer.SocialWrangler.API.Filters
         private readonly IFacebookClientFactory _facebookClientFactory;
         private readonly MvcAdapter _mvcAdapter;
         private readonly IFacebookDecorator _facebookDecorator;
-        private readonly IUserRepository _userRepository;
+        private readonly ITokenRepository _tokenRepository;
 
-        public FacebookActionFilter( IUserRepository userRepository,
-            IFacebookDecorator facebookDecorator,
+        public FacebookActionFilter( IFacebookDecorator facebookDecorator,
             IFacebookClientFactory facebookClientFactory,
-            MvcAdapter mvcAdapter )
+            MvcAdapter mvcAdapter, ITokenRepository tokenRepository )
         {
-            _userRepository = userRepository;
             _facebookDecorator = facebookDecorator;
             _facebookClientFactory = facebookClientFactory;
             _mvcAdapter = mvcAdapter;
+            _tokenRepository = tokenRepository;
         }
 
         public override void OnActionExecuting( ActionExecutingContext context )
@@ -51,7 +51,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                 }
             }
 
-            var tokenResult = _userRepository.GetInstagramToken( auth0Id );
+            var tokenResult = _tokenRepository.Get( auth0Id );
 
             if( tokenResult.Status == OperationResultEnum.Failed )
             {

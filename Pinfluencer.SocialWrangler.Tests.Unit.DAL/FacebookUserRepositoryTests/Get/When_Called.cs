@@ -1,38 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Models;
-using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.Get
 {
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Called : Given_A_FacebookUserRepository
     {
-        private readonly OperationResult<ISocialInfoUser> _operationResult;
+        private readonly OperationResult<SocialInfoUser> _operationResult;
 
-        private OperationResult<ISocialInfoUser> _result;
+        private OperationResult<SocialInfoUser> _result;
 
-        public When_Called( Func<ISocialInfoUser,ISocialInfoUser> func, OperationResultEnum operationResultEnum )
+        public When_Called( Func<SocialInfoUser,SocialInfoUser> func, OperationResultEnum operationResultEnum )
         {
             base.Given( );
-            _operationResult = new OperationResult<ISocialInfoUser>( func( SocialInfoUser ), operationResultEnum );
+            _operationResult = new OperationResult<SocialInfoUser>( func( new SocialInfoUser( ) ), operationResultEnum );
         }
 
         private static readonly object [ ] data =
         {
             new object[ ]
             {
-                ( Func<ISocialInfoUser,ISocialInfoUser> )( x =>
+                ( Func<SocialInfoUser,SocialInfoUser> )( x =>
                 {
                     x.Age = 21;
                     x.Gender = GenderEnum.Male;
@@ -49,7 +44,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
             },
             new object[ ]
             {
-                ( Func<ISocialInfoUser,ISocialInfoUser> )( x => x),
+                ( Func<SocialInfoUser,SocialInfoUser> )( x => x),
                 OperationResultEnum.Failed
             }
         };
@@ -58,8 +53,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
         {
             MockFacebookDataHandler
                 .Read( Arg.Any<string>( ),
-                    Arg.Any<Func<FacebookUser, ISocialInfoUser>>( ),
-                    Arg.Any<ISocialInfoUser>( ),
+                    Arg.Any<Func<FacebookUser, SocialInfoUser>>( ),
+                    Arg.Any<SocialInfoUser>( ),
                     Arg.Any<object>( ) )
                 .Returns( _operationResult );
             _result = SUT.Get( );
@@ -69,16 +64,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
             MockFacebookDataHandler
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),
-                    Arg.Any<Func<FacebookUser, ISocialInfoUser>>( ),
-                    Arg.Any<ISocialInfoUser>( ),
+                    Arg.Any<Func<FacebookUser, SocialInfoUser>>( ),
+                    Arg.Any<SocialInfoUser>( ),
                     Arg.Any<RequestFields>( ) );
 
         [ Test ] public void Then_Valid_Call_Was_Made( ) =>
             MockFacebookDataHandler
                 .Received( )
-                .Read<ISocialInfoUser,FacebookUser>( "me",
+                .Read<SocialInfoUser,FacebookUser>( "me",
                     SUT.MapOut,
-                    Arg.Is<ISocialInfoUser>( x => x.Age == default &&
+                    Arg.Is<SocialInfoUser>( x => x.Age == default &&
                                                   x.Gender == default &&
                                                   x.Id == default &&
                                                   x.Location == default &&

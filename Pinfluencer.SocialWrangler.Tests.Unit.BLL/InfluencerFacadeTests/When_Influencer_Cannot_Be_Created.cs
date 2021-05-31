@@ -3,7 +3,6 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
@@ -28,7 +27,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
                 }, OperationResultEnum.Success ) );
             SocialInfoUserRepository
                 .Get( )
-                .Returns( new OperationResult<ISocialInfoUser>( DefaultSocialInfoUser,
+                .Returns( new OperationResult<SocialInfoUser>( DefaultSocialInfoUser,
                     OperationResultEnum.Success ) );
             MockInfluencerRepository
                 .Create( Arg.Any<Influencer>( ) )

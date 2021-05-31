@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Auth0.AuthenticationApi;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +12,6 @@ using Pinfluencer.SocialWrangler.API.Filters;
 using Pinfluencer.SocialWrangler.API.Options;
 using Pinfluencer.SocialWrangler.BLL.Facades;
 using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
@@ -19,6 +19,7 @@ using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.Crosscutting.Web;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
@@ -52,6 +53,7 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddTransient<ISocialInfoUserRepository, FacebookUserRepository>( )
                 .AddTransient<IManagementConnection, HttpClientManagementConnection>( )
                 .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
+                .AddTransient<ITokenRepository, FacebookTokenRepository>()
                 .AddTransient<InstagramFacade>( )
                 .AddTransient<SimpleAuthActionFilter>( )
                 .AddTransient<FacebookActionFilter>( )
@@ -66,7 +68,6 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
                 .AddTransient( typeof( IFacebookDataHandler<> ), typeof( FacebookDataHandler<> ) )
                 .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
-                .AddTransient<ISocialInfoUser, SocialInfoUser>( )
                 .AddTransient<InfluencerFacade>( )
                 .AddTransient( typeof( ILoggerAdapter<> ), typeof( LoggerAdapter<> ) )
                 .AddControllers( );

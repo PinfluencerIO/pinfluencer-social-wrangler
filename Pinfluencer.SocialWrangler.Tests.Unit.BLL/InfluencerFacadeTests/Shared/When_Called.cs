@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
@@ -22,7 +21,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
             Name = "Aidan Gannon"
         };
 
-        protected new ISocialInfoUser DefaultSocialInfoUser => GetSocialInfoUser( new FakeSocialInfoUserProps
+        protected new SocialInfoUser DefaultSocialInfoUser => new SocialInfoUser
         {
             Age = 21,
             Gender = GenderEnum.Male,
@@ -34,7 +33,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
                 CountryCode = CountryEnum.GB
             },
             Name = "Aidan Gannon"
-        } );
+        };
 
         protected User DefaultUser => new User { Name = "Aidan", Id = "123" };
         

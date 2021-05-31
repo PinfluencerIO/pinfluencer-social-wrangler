@@ -9,24 +9,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests
 {
     public class Given_A_InfluencerRepository : DataGivenWhenThen<InfluencerRepository>
     {
-        protected InfluencerModel DefaultInfluencer
-        {
-            get
+        protected InfluencerModel DefaultInfluencer =>
+            new InfluencerModel
             {
-                
-                SocialInfoUser.Id = "12345678";
-                return new InfluencerModel
-                {
-                    SocialUsername = "example",
-                    Age = 24,
-                    Bio = "this an example bio",
-                    Gender = GenderEnum.Male,
-                    Location = "Uxbridge, West London",
-                    User = new User{ Id = "12345678" }
-                };
-            }
-        }
-        
+                SocialUsername = "example",
+                Age = 24,
+                Bio = "this an example bio",
+                Gender = GenderEnum.Male,
+                Location = "Uxbridge, West London",
+                User = new User{ Id = "12345678" }
+            };
+
         protected override void Given( )
         {
             base.Given( );

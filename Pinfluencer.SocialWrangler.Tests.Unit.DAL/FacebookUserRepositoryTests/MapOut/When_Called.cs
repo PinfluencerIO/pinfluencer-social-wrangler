@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 
@@ -12,7 +12,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
 {
     public class When_Called : Given_A_FacebookUserRepository
     {
-        private ISocialInfoUser _result;
+        private SocialInfoUser _result;
 
         protected override void When( )
         {

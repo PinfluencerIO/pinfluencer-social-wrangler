@@ -24,8 +24,12 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             if( !fbResult )
             {
                 _logger.LogError( $"{nameof( TModel )} were not fetched" );
-                return new OperationResult<TModel>( defaultModel,
-                    OperationResultEnum.Failed );
+                return new OperationResult<TModel>
+                {
+                    Value = defaultModel,
+                    Status = OperationResultEnum.Failed,
+                    Msg = $"{nameof( TModel )} were not fetched"
+                };
             }
             else
             {

@@ -4,6 +4,7 @@ using NSubstitute;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
@@ -15,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         protected IInsightsSocialUserRepository InsightsSocialUserRepository;
         protected ISocialInfoUserRepository SocialInfoUserRepository;
 
-        protected readonly FakeSocialInfoUserProps DefaultSocialInfoUser = new FakeSocialInfoUserProps
+        protected readonly SocialInfoUser DefaultSocialInfoUser = new SocialInfoUser
         {
             Age = 21,
             Gender = GenderEnum.Male,

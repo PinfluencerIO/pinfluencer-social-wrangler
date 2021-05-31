@@ -35,9 +35,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_Instagram_Api_Is_Not_Called( )
         {
-            MockUserRepository
+            MockTokenRepository
                 .DidNotReceive( )
-                .GetInstagramToken( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]

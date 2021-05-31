@@ -3,9 +3,9 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests.GetInstagramTokenTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests.GetInstagramTokenTests
 {
     public class When_Token_Returned_Successfully : When_Called
     {
@@ -13,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInsta
 
         protected override void When( )
         {
-            TestUser = new User
+            User = new User
             {
                 Identities = new [ ]
                 {
@@ -26,7 +26,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInsta
 
             base.When( );
 
-            _result = SUT.GetInstagramToken( TestId );
+            _result = SUT.Get( Id );
         }
 
         [ Test ]

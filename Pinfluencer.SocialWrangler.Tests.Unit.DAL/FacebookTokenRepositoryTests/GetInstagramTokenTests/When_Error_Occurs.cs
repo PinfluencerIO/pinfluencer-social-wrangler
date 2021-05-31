@@ -7,22 +7,23 @@ using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests.GetInstagramTokenTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.GetInstagramTokenTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests.GetInstagramTokenTests
 {
     public class When_Error_Occurs : When_Called
     {
         private OperationResult<string> _result;
 
         protected override void When( )
+        
         {
             MockAuth0ManagementApiConnection
                 .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
                     Arg.Any<JsonConverter [ ]>( ) )
                 .Throws<AggregateException>( );
 
-            _result = SUT.GetInstagramToken( TestId );
+            _result = SUT.Get( Id );
         }
 
         [ Test ]

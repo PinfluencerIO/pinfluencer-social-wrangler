@@ -2,7 +2,6 @@
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
@@ -23,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
                 .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ] { DefaultSocialInsightsUser }, OperationResultEnum.Success ) );
             SocialInfoUserRepository
                 .Get( )
-                .Returns( new OperationResult<ISocialInfoUser>( GetSocialInfoUser( new FakeSocialInfoUserProps( ) ),
+                .Returns( new OperationResult<SocialInfoUser>( new SocialInfoUser( ),
                     OperationResultEnum.Failed ) );
             Result = SUT.OnboardInfluencer( "123" );
         }

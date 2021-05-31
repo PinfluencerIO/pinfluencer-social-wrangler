@@ -10,6 +10,7 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
@@ -26,15 +27,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         private FacebookDecorator _facebookDecorator;
         private IFacebookClientFactory _mockFacebookClientFactory;
         protected IFacebookClientAdapter MockFacebookClient;
-        protected IUserRepository MockUserRepository;
+        protected ITokenRepository MockTokenRepository;
 
         protected string ErrorMessage => GetResultObject<ErrorDto>( ).ErrorMsg;
 
         protected override void Given( )
         {
             base.Given( );
-
-            MockUserRepository = Substitute.For<IUserRepository>( );
+            MockTokenRepository = Substitute.For<ITokenRepository>( );
             MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
             var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
             facebookClientFactory
@@ -42,13 +42,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
                 .Returns( MockFacebookClient );
             _facebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer );
 
-            SUT = new FacebookActionFilter( MockUserRepository, _facebookDecorator, _mockFacebookClientFactory, MvcAdapter );
+            SUT = new FacebookActionFilter( _facebookDecorator, _mockFacebookClientFactory, MvcAdapter, MockTokenRepository );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )
         {
-            MockUserRepository
-                .GetInstagramToken( Arg.Any<string>( ) )
+            MockTokenRepository
+                .Get( Arg.Any<string>( ) )
                 .Returns( new OperationResult<string>( value, resultEnum ) );
         }
 
