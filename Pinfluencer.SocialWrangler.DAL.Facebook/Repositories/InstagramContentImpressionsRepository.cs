@@ -25,8 +25,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         
         public OperationResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution, ( DateTime start, DateTime end ) capturePeriod )
         {
-            var startUnix = ( ( DateTimeOffset ) capturePeriod.start ).ToUnixTimeSeconds( );
-            var endUnix = ( ( DateTimeOffset ) capturePeriod.end ).ToUnixTimeSeconds( );
+            var startUnix = ( capturePeriod.start - new DateTime( 1970, 1, 1 ) ).TotalSeconds;
+            var endUnix = ( capturePeriod.end - new DateTime( 1970, 1, 1 ) ).TotalSeconds;
             Console.WriteLine( $"START:{startUnix}" );
             Console.WriteLine( $"END:{endUnix}" );
             return _facebookDataHandler
