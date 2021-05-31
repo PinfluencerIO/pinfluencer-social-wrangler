@@ -17,11 +17,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
     [ Obsolete ]
     public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, ISocialAudienceRepository
     {
-        private readonly FacebookDecorator _facebookDecorator;
+        private readonly IFacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
         private readonly CountryGetter _countryGetter;
 
-        public InstagramAudienceRepository( FacebookDecorator facebookDecorator, ILoggerAdapter<InstagramAudienceRepository> logger, CountryGetter countryGetter ) : base( logger )
+        public InstagramAudienceRepository( IFacebookDecorator facebookDecorator, ILoggerAdapter<InstagramAudienceRepository> logger, CountryGetter countryGetter ) : base( logger )
         {
             _facebookDecorator = facebookDecorator;
             _logger = logger;

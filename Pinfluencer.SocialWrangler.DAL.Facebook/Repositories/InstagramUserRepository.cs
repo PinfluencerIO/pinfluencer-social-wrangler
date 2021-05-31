@@ -21,10 +21,10 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         IInsightsSocialUserRepository,
         IDataCollectionMappable<IEnumerable<SocialInsightsUser>, DataArray<FacebookPage>>
     {
-        private readonly FacebookDecorator _facebookDecorator;
+        private readonly IFacebookDecorator _facebookDecorator;
         private readonly IFacebookDataHandler<InstagramUserRepository> _facebookDataHandler;
 
-        public InstagramUserRepository( FacebookDecorator facebookDecorator, IFacebookDataHandler<InstagramUserRepository> facebookDataHandler )
+        public InstagramUserRepository( IFacebookDecorator facebookDecorator, IFacebookDataHandler<InstagramUserRepository> facebookDataHandler )
         {
             _facebookDecorator = facebookDecorator;
             _facebookDataHandler = facebookDataHandler;

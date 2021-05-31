@@ -7,6 +7,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
     {
         private readonly FacebookClient _facebookClient;
 
+        public FacebookClientAdapter( )
+        {
+            _facebookClient = new FacebookClient( );
+        }
+        
         public FacebookClientAdapter( string token )
         {
             _facebookClient = new FacebookClient( token );
