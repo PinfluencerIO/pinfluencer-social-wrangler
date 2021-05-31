@@ -15,7 +15,24 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
     {
         private OperationResult<IEnumerable<ContentImpressions>> _result;
         private OperationResult<IEnumerable<ContentImpressions>> _operationResult;
-
+        public static readonly IEnumerable<ContentImpressions> DefaultContentImpressions = new [ ]
+        {
+            new ContentImpressions
+            {
+                Count = 6,
+                Time = new DateTime( 2021, 11, 26 )
+            },
+            new ContentImpressions
+            {
+                Count = 54,
+                Time = new DateTime( 2021, 11, 26 )
+            },
+            new ContentImpressions
+            {
+                Count = 65,
+                Time = new DateTime( 2021, 11, 26 )
+            }
+        };
 
         public When_Called( IEnumerable<ContentImpressions> audienceCountries, OperationResultEnum operationResultEnum )
         {
@@ -28,24 +45,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
         {
             new object [ ]
             {
-                new [ ]
-                {
-                    new ContentImpressions
-                    {
-                        Count = 6,
-                        Time = new DateTime( 2021, 11, 26 )
-                    },
-                    new ContentImpressions
-                    {
-                        Count = 54,
-                        Time = new DateTime( 2021, 11, 26 )
-                    },
-                    new ContentImpressions
-                    {
-                        Count = 65,
-                        Time = new DateTime( 2021, 11, 26 )
-                    }
-                },
+                DefaultContentImpressions,
                 OperationResultEnum.Success
             },
             new object [ ]
