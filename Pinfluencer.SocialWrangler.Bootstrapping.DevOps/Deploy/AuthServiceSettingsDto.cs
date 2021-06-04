@@ -1,6 +1,6 @@
 ﻿namespace Pinfluencer.SocialWrangler.Bootstrapping.DevOps.Deploy
 {
-    public class Auth0SettingsDto
+    public class AuthServiceSettingsDto
     {
         public string Domain { get; set; }
         public string ManagementDomain { get; set; }

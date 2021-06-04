@@ -12,12 +12,12 @@ _Uses the Auth0 mangement API and Facebook Graph API to collect data from users_
     * example: "this is my commit message [ nodeploy ]"
 ## Configure development locally
 ### App Settings ( appsettings.json )
-  * Auth0: ( Auth0 app settings )
+  * AuthService: ( Auth0 app settings )
     * Domain: ( absolute path to Auth0 domain )
     * ManagementDomain: ( absolute uri to Auth0 domain with management api )
     * Id: ( Auth0 OAuth app id )
     * Secret: ( Auth0 OAuth app secret )
-  * Bubble: ( Bubble app settings )
+  * PinfluencerData: ( Bubble app settings )
     * Domain: ( absolute path to Bubble data api )
     * Secret: ( Bubble API Token )
    * SimpleAuthKey: ( api key )

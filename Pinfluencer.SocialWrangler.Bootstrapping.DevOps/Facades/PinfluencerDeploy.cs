@@ -15,14 +15,14 @@ namespace Pinfluencer.SocialWrangler.Bootstrapping.DevOps.Facades
             new PinfluencerBeanstalkBuilder( )
                 .CreateAppsettings( new AppsettingsDto
                 {
-                    Auth0 = new Auth0SettingsDto
+                    AuthService = new AuthServiceSettingsDto
                     {
                         Domain = "pinfluencer.eu.auth0.com",
                         Id = Environment.GetEnvironmentVariable( "AUTH0_ID" ),
                         Secret = Environment.GetEnvironmentVariable( "AUTH0_SECRET" ),
                         ManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/"
                     },
-                    Bubble = new BubbleSettingsDto
+                    PinfluencerData = new PinfluencerDataSettingsDto
                     {
                         Domain = "https://mobile-pinfluencer.bubbleapps.io/version-test/api/1.1/obj/",
                         Secret = Environment.GetEnvironmentVariable( "BUBBLE_TOKEN" )
