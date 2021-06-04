@@ -12,8 +12,6 @@ jobs:
       DEVOPS_EXEC: devops/DevOps.dll
     steps:
       - uses: actions/checkout@v2
-      - name: Set project variables
-        run: .\set_envs.bat
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
