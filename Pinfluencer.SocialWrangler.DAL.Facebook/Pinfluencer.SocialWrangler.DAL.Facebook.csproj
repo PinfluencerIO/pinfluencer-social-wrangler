@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.BLL\Pinfluencer.SocialWrangler.BLL.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Common\Pinfluencer.SocialWrangler.DAL.Common.csproj" />
