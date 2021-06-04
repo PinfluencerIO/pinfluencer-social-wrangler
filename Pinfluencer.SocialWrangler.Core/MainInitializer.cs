@@ -1,4 +1,6 @@
-﻿namespace Pinfluencer.SocialWrangler.Core
+﻿using Pinfluencer.SocialWrangler.Core.Options;
+
+namespace Pinfluencer.SocialWrangler.Core
 {
     public static class MainInitializer
     {

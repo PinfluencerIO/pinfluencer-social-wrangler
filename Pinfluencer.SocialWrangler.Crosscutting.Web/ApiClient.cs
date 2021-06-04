@@ -8,10 +8,6 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Web
 {
     public class ApiClient : ApiClientBase, IApiClient
     {
-        private ApiClient( IHttpClient httpClient, ISerializer serializer ) : base( httpClient, serializer )
-        {
-        }
-
         public ApiClient( Uri uri, string token, ISerializer serializer, IHttpClient httpClient ) : base( uri, token, serializer, httpClient )
         {
         }

@@ -1,6 +1,6 @@
-﻿namespace Pinfluencer.SocialWrangler.Configuration.Options
+﻿namespace Pinfluencer.SocialWrangler.Core.Options
 {
-    public class Auth0Options
+    public class AuthServiceOptions
     {
         public string Domain { get; set; }
         public string ManagementDomain { get; set; }

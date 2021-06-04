@@ -29,7 +29,38 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
         }
 
         public static IServiceCollection Replace<TService>( this IServiceCollection sc,
-            Func<IServiceProvider, TService> implementationFactory ) where TService : class => 
-            sc.Replace( new ServiceDescriptor( typeof( TService ), sc ) );
+            Func<IServiceProvider, TService> implementationFactory ) where TService : class
+        {
+            if (sc == null)
+            {
+                throw new ArgumentNullException(nameof(sc));
+            }
+
+            var lifetime = ServiceLifetime.Transient;
+            // Remove existing
+            var count = sc.Count;
+            for (var i = 0; i < count; i++)
+            {
+                var service = sc[ i ];
+                if( service.ServiceType != typeof( TService ) ) continue;
+                lifetime = service.Lifetime; 
+                sc.RemoveAt( i );
+                break;
+            }
+
+            switch( lifetime )
+            {
+                case ServiceLifetime.Scoped:
+                    sc.AddScoped<TService>( implementationFactory );
+                    break;
+                case ServiceLifetime.Transient:
+                    sc.AddTransient<TService>( implementationFactory );
+                    break;
+                case ServiceLifetime.Singleton:
+                    sc.AddSingleton<TService>( implementationFactory );
+                    break;
+            }
+            return sc;
+        }
     }
 }

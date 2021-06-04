@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json.Serialization;
 using Pinfluencer.SocialWrangler.BLL;
 using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Configuration.Options;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;

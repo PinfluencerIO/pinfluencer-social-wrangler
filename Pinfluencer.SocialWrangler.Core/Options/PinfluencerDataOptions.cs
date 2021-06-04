@@ -1,6 +1,6 @@
-﻿namespace Pinfluencer.SocialWrangler.Configuration.Options
+﻿namespace Pinfluencer.SocialWrangler.Core.Options
 {
-    public class BubbleOptions
+    public class PinfluencerDataOptions
     {
         public string Domain { get; set; }
         public string Secret { get; set; }

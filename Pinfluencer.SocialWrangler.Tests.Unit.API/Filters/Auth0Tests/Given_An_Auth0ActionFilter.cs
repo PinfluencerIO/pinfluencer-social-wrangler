@@ -8,7 +8,7 @@ using Auth0.ManagementApi;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.Configuration.Options;
+using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
@@ -31,7 +31,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
 
         private static AppOptions DefaultAppOptions => new AppOptions
         {
-            Auth0 = new Auth0Options
+            AuthService = new AuthServiceOptions
             {
                 Domain = TestDomain,
                 Id = TestId,

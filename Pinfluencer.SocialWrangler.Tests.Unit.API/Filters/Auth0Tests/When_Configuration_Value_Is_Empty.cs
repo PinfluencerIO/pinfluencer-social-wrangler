@@ -4,7 +4,7 @@ using System.Net.Http;
 using Auth0.AuthenticationApi.Models;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Configuration.Options;
+using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
@@ -18,22 +18,22 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
             {
                 ModifyDefaultAppOptions( options =>
                 {
-                    options.Auth0.Domain = default;
+                    options.AuthService.Domain = default;
                     return options;
                 } ),
                 ModifyDefaultAppOptions( options =>
                 {
-                    options.Auth0.Id = default;
+                    options.AuthService.Id = default;
                     return options;
                 } ),
                 ModifyDefaultAppOptions( options =>
                 {
-                    options.Auth0.Secret = default;
+                    options.AuthService.Secret = default;
                     return options;
                 } ),
                 ModifyDefaultAppOptions( options =>
                 {
-                    options.Auth0.ManagementDomain = default;
+                    options.AuthService.ManagementDomain = default;
                     return options;
                 } )
             };

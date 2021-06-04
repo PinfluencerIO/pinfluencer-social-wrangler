@@ -4,7 +4,7 @@ using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Pinfluencer.SocialWrangler.Configuration.Options;
+using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
 namespace Pinfluencer.SocialWrangler.API.Filters
@@ -37,7 +37,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
 
         public override void OnActionExecuting( ActionExecutingContext context )
         {
-            var auth0Settings = _configuration.Get<AppOptions>( ).Auth0;
+            var auth0Settings = _configuration.Get<AppOptions>( ).AuthService;
 
             if( auth0Settings.Domain == "" || auth0Settings.Id == "" || auth0Settings.Secret == "" ||
                 auth0Settings.ManagementDomain == "" ||
