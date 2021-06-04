@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using Pinfluencer.SocialWrangler.Core.Attributes;
+using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
 {
-    public class CountryGetter
+    public class CountryGetter : ICountryGetter
     {
-        public ReadOnlyDictionary<CountryEnum, string> Countries;
+        public ReadOnlyDictionary<CountryEnum, string> Countries { get; }
 
         public CountryGetter( )
         {

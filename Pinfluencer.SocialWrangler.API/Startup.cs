@@ -1,75 +1,27 @@
 using System;
-using System.Collections;
-using Auth0.AuthenticationApi;
-using Auth0.ManagementApi;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.API.Options;
-using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
-using Pinfluencer.SocialWrangler.Core.Models.Social;
-using Pinfluencer.SocialWrangler.Core.Models.User;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-using Pinfluencer.SocialWrangler.Crosscutting.Web;
-using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Factories;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Factories;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories;
+using Pinfluencer.SocialWrangler.Configuration;
+using Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions;
 
 namespace Pinfluencer.SocialWrangler.API
 {
     public class Startup
     {
-        public void ConfigureServices( IServiceCollection dependancyCollection )
+        public void ConfigureServices( IServiceCollection services )
         {
-            dependancyCollection
-                .AddSingleton<CountryGetter>( )
-                .AddScoped<Auth0Context>( )
-                .AddScoped<IFacebookDecorator,FacebookDecorator>( )
-                .AddTransient<IContractResolver, PinfluencerJsonResolver>( )
-                .AddTransient<ISerializer, JsonSerialzierAdapter>( )
-                .AddTransient<MvcAdapter>( )
-                .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
-                .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
-                .AddTransient<IUserRepository, UserRepository>( )
-                .AddTransient<ISocialImpressionsRepository, InstagramImpressionsRepository>( )
-                .AddTransient<ISocialAudienceRepository, InstagramAudienceRepository>( )
-                .AddTransient<IInfluencerRepository,InfluencerRepository>( )
-                .AddTransient<IInsightsSocialUserRepository, InstagramUserRepository>( )
-                .AddTransient<ISocialInfoUserRepository, FacebookUserRepository>( )
-                .AddTransient<IManagementConnection, HttpClientManagementConnection>( )
-                .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
-                .AddTransient<ITokenRepository, FacebookTokenRepository>()
-                .AddTransient<InstagramFacade>( )
-                .AddTransient<SimpleAuthActionFilter>( )
-                .AddTransient<FacebookActionFilter>( )
+            services
+                .BindSocialWrangler( )
                 .AddTransient<Auth0ActionFilter>( )
-                .AddTransient<IHttpClient, HttpClientAdapter>( )
-                .AddTransient<IBubbleClient>( provider =>
-                {
-                    var bubbleSettings = provider.GetService<IConfiguration>( ).Get<AppOptions>( );
-                    return new BubbleClient( provider.GetService<IHttpClient>( ),
-                        new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret, provider.GetService<ISerializer>( ) );
-                } )
-                .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
-                .AddTransient( typeof( IFacebookDataHandler<> ), typeof( FacebookDataHandler<> ) )
-                .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
-                .AddTransient<InfluencerFacade>( )
-                .AddTransient( typeof( ILoggerAdapter<> ), typeof( LoggerAdapter<> ) )
+                .AddTransient<FacebookActionFilter>( )
+                .AddTransient<SimpleAuthActionFilter>( )
+                .AddTransient<MvcAdapter>( )
                 .AddControllers( );
         }
 

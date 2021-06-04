@@ -5,7 +5,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
@@ -19,9 +23,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
     {
         private readonly IFacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
-        private readonly CountryGetter _countryGetter;
+        private readonly ICountryGetter _countryGetter;
 
-        public InstagramAudienceRepository( IFacebookDecorator facebookDecorator, ILoggerAdapter<InstagramAudienceRepository> logger, CountryGetter countryGetter ) : base( logger )
+        public InstagramAudienceRepository( IFacebookDecorator facebookDecorator, ILoggerAdapter<InstagramAudienceRepository> logger, ICountryGetter countryGetter ) : base( logger )
         {
             _facebookDecorator = facebookDecorator;
             _logger = logger;

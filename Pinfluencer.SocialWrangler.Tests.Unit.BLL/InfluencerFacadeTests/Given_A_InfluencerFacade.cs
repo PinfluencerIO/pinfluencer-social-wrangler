@@ -1,7 +1,10 @@
 ﻿using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Core.Models.Social;

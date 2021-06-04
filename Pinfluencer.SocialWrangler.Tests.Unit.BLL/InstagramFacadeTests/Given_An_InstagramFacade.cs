@@ -1,6 +1,8 @@
 ﻿using NSubstitute;
 using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests

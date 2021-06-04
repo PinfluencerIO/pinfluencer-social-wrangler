@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 

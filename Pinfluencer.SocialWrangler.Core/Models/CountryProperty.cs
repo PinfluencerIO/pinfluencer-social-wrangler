@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+﻿using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Core.Models
 {

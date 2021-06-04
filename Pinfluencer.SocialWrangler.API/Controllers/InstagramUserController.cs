@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pinfluencer.SocialWrangler.BLL.Facades;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.BuisnessLayer;
 
 namespace Pinfluencer.SocialWrangler.API.Controllers
 {
@@ -8,8 +9,8 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     [ Route( "instagram-user" ) ]
     public class InstagramUserController : SocialWranglerController
     {
-        private readonly InstagramFacade _instagramFacade;
-        public InstagramUserController( InstagramFacade instagramFacaade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacaade; }
+        private readonly IInstagramFacade _instagramFacade;
+        public InstagramUserController( IInstagramFacade instagramFacaade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacaade; }
 
         [ Route( "" ) ]
         [ HttpGet ]

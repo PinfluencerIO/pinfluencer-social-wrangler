@@ -1,10 +1,14 @@
 ﻿using Facebook;
 using Newtonsoft.Json;
 using Pinfluencer.SocialWrangler.Core;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {
@@ -21,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
             _serializer = serializer;
         }
 
-        public string Token { set => _facebookClient = _facebookClientFactory.Get( value ); }
+        public string Token { set => _facebookClient = _facebookClientFactory.Factory( value ); }
         
         public string Get( string url, string fields ) =>
             _serializer.Serialize( _facebookClient.Get( url, new RequestFields { fields = fields } ) );

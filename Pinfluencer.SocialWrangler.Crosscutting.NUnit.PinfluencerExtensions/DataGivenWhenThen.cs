@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using Auth0.ManagementApi;
 using Facebook;
 using NSubstitute;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
@@ -37,7 +38,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
             var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
             facebookClientFactory
-                .Get( Arg.Any<string>( ) )
+                .Factory( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
             FacebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer ) { Token = string.Empty };
             Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };

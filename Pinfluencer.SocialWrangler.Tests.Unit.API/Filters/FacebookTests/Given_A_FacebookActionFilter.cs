@@ -7,12 +7,11 @@ using Pinfluencer.SocialWrangler.API.RequestDtos;
 using Pinfluencer.SocialWrangler.API.ResponseDtos;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
 {
@@ -38,7 +37,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
             MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
             var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
             facebookClientFactory
-                .Get( Arg.Any<string>( ) )
+                .Factory( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
             _facebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer );
 

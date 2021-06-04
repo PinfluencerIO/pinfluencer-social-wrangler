@@ -2,13 +2,14 @@
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
 using Pinfluencer.SocialWrangler.Core.Models;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories

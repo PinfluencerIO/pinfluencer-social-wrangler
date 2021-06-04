@@ -1,5 +1,5 @@
 ﻿using Facebook;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {
@@ -7,11 +7,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
     {
         private readonly FacebookClient _facebookClient;
 
-        public FacebookClientAdapter( )
-        {
-            _facebookClient = new FacebookClient( );
-        }
-        
         public FacebookClientAdapter( string token )
         {
             _facebookClient = new FacebookClient( token );

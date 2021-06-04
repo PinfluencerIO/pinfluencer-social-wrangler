@@ -1,0 +1,14 @@
+﻿using System;
+
+namespace Pinfluencer.SocialWrangler.Core.Attributes
+{
+    public class CountryAttribute : Attribute
+    {
+        public string Name { get; }
+
+        public CountryAttribute( string name )
+        {
+            Name = name;
+        }
+    }
+}

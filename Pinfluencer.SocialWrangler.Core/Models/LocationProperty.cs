@@ -1,6 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-
-namespace Pinfluencer.SocialWrangler.Core.Models
+﻿namespace Pinfluencer.SocialWrangler.Core.Models
 {
     public class LocationProperty : CountryProperty
     {

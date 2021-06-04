@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
 using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories

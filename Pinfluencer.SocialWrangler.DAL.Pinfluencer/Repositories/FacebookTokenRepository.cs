@@ -1,8 +1,9 @@
 ﻿using System;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
@@ -20,9 +21,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
         {
             try
             {
-                var user = _auth0Context.GetUser( authId );
+                var token = _auth0Context.GetIdentityToken( authId );
                 var result =
-                    new OperationResult<string>( user.Identities[ 0 ].AccessToken, OperationResultEnum.Success );
+                    new OperationResult<string>( token, OperationResultEnum.Success );
                 _logger.LogInfo( "instagram token fetched successfully" );
                 return result;
             }

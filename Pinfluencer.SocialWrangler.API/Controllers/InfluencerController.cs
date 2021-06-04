@@ -2,6 +2,7 @@
 using Pinfluencer.SocialWrangler.API.RequestDtos;
 using Pinfluencer.SocialWrangler.BLL.Facades;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.BuisnessLayer;
 
 namespace Pinfluencer.SocialWrangler.API.Controllers
 {
@@ -9,9 +10,9 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     [ Route( "influencer" ) ]
     public class InfluencerController : SocialWranglerController
     {
-        private readonly InfluencerFacade _influencerFacade;
+        private readonly IInfluencerFacade _influencerFacade;
         
-        public InfluencerController( InfluencerFacade influencerFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _influencerFacade = influencerFacade; }
+        public InfluencerController( IInfluencerFacade influencerFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _influencerFacade = influencerFacade; }
 
         [ Route( "" ) ]
         [ HttpPost ]

@@ -4,7 +4,7 @@ using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Pinfluencer.SocialWrangler.API.Options;
+using Pinfluencer.SocialWrangler.Configuration.Options;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
 namespace Pinfluencer.SocialWrangler.API.Filters

@@ -8,7 +8,7 @@ using Auth0.ManagementApi;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.API.Options;
+using Pinfluencer.SocialWrangler.Configuration.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 

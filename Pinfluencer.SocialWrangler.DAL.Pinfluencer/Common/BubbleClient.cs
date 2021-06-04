@@ -1,12 +1,14 @@
 ﻿using System;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.Crosscutting.Web;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common
 {
-    public class BubbleClient : ApiClient, IBubbleClient
+    public class BubbleClient : ApiClientBase, IBubbleClient
     {
-        public BubbleClient( IHttpClient httpClient, Uri uri, string token, ISerializer serializer ) : base( httpClient, uri, token, serializer ) { }
+        public BubbleClient( string uri, string token, ISerializer serializer, IHttpClient httpClient ) :
+            base( new Uri( uri ), token, serializer, httpClient ) { }
     }
 }

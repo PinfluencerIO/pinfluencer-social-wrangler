@@ -1,11 +1,15 @@
 ﻿using System.Linq;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.BuisnessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 
 namespace Pinfluencer.SocialWrangler.BLL.Facades
 {
-    public class InfluencerFacade
+    public class InfluencerFacade : IInfluencerFacade
     {
         private readonly IUserRepository _userRepository;
         private readonly ISocialInfoUserRepository _socialInfoUserRepository;

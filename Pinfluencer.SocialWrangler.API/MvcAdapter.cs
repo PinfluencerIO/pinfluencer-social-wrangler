@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
 using Pinfluencer.SocialWrangler.API.ResponseDtos;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.API

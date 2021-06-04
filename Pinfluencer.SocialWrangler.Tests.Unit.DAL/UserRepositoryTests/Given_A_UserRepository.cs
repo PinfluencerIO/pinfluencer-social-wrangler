@@ -2,7 +2,6 @@
 using Auth0.ManagementApi.Models;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests

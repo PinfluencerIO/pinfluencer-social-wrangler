@@ -1,5 +1,6 @@
 ﻿using System;
 using NSubstitute;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 

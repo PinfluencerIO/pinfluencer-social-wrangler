@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTests
 {

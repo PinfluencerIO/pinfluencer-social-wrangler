@@ -1,12 +1,12 @@
 ﻿using Facebook;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Factories
 {
     public class FacebookClientFactory : IFacebookClientFactory
     {
-        public IFacebookClientAdapter Get( string token ) { return new FacebookClientAdapter( token ); }
+        public IFacebookClientAdapter Factory( string token ) { return new FacebookClientAdapter( token ); }
     }
 }

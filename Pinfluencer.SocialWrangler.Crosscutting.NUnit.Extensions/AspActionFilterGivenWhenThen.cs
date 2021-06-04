@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions

@@ -40,7 +40,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions", "Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions.csproj", "{22DC1930-9A81-4CE8-9122-B4E578A35D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.DAL.Core", "Pinfluencer.SocialWrangler.DAL.Core\Pinfluencer.SocialWrangler.DAL.Core.csproj", "{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Configuration", "Pinfluencer.SocialWrangler.Configuration\Pinfluencer.SocialWrangler.Configuration.csproj", "{26CD1481-E0DC-4EDE-8E68-F4D6A7A41788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions", "Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions\Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions.csproj", "{1BC38664-23F4-4AE9-B008-DFE4511AA44B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrapping", "Bootstrapping", "{ECC5C3BC-7FE7-4D74-B39E-AECF09E48950}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Configuration.Core", "Pinfluencer.SocialWrangler.Configuration.Core\Pinfluencer.SocialWrangler.Configuration.Core.csproj", "{5875A6F7-BDC2-4887-BA95-CDAAA3E45923}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,7 +68,9 @@ Global
 		{2CD2322B-E4ED-4303-B9B5-071A05BFB8F3} = {260916F1-A6E4-45F1-ADC6-5A3CFA779C38}
 		{23E9B593-9265-46CE-98F5-55FE06C11E74} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
-		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9} = {260916F1-A6E4-45F1-ADC6-5A3CFA779C38}
+		{1BC38664-23F4-4AE9-B008-DFE4511AA44B} = {A314F08B-12DF-4C23-AE06-8F238FE89CF8}
+		{26CD1481-E0DC-4EDE-8E68-F4D6A7A41788} = {ECC5C3BC-7FE7-4D74-B39E-AECF09E48950}
+		{5875A6F7-BDC2-4887-BA95-CDAAA3E45923} = {ECC5C3BC-7FE7-4D74-B39E-AECF09E48950}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{035B5433-6EC2-44D1-BF14-27E52B787BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -125,9 +133,17 @@ Global
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DC1930-9A81-4CE8-9122-B4E578A35D76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{046E9E04-5E9C-45A3-8C9C-BB70CF134FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CD1481-E0DC-4EDE-8E68-F4D6A7A41788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CD1481-E0DC-4EDE-8E68-F4D6A7A41788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CD1481-E0DC-4EDE-8E68-F4D6A7A41788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CD1481-E0DC-4EDE-8E68-F4D6A7A41788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BC38664-23F4-4AE9-B008-DFE4511AA44B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BC38664-23F4-4AE9-B008-DFE4511AA44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BC38664-23F4-4AE9-B008-DFE4511AA44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BC38664-23F4-4AE9-B008-DFE4511AA44B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5875A6F7-BDC2-4887-BA95-CDAAA3E45923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5875A6F7-BDC2-4887-BA95-CDAAA3E45923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5875A6F7-BDC2-4887-BA95-CDAAA3E45923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5875A6F7-BDC2-4887-BA95-CDAAA3E45923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

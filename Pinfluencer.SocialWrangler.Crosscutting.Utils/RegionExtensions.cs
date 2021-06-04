@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
 {

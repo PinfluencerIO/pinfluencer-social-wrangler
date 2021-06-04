@@ -9,4 +9,8 @@
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
+    </ItemGroup>
+
 </Project>

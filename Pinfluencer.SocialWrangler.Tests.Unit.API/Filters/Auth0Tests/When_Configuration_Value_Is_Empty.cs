@@ -4,7 +4,7 @@ using System.Net.Http;
 using Auth0.AuthenticationApi.Models;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.API.Options;
+using Pinfluencer.SocialWrangler.Configuration.Options;
 using Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
