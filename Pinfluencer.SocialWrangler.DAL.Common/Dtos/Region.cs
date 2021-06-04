@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common.Dtos
 {

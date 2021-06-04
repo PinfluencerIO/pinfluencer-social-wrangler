@@ -1,7 +1,6 @@
 ﻿using System;
 using Facebook;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {

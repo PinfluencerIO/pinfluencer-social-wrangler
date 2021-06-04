@@ -7,7 +7,6 @@ using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
