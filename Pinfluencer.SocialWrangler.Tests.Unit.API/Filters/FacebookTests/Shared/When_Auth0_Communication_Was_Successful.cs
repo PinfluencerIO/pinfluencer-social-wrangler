@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared
         [ Test ]
         public void Then_Graph_Api_Was_Called_Once( )
         {
-            MockFacebookClient
+            FacebookDecorator
                 .Received( 1 )
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
         }
@@ -30,7 +30,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared
                 MockTokenRepository
                     .Received( )
                     .Get( Arg.Is( TestAuth0Id ) );
-                MockFacebookClient
+                FacebookDecorator
                     .Received( )
                     .Get( "debug_token", Arg.Is<RequestDebugTokenParams>( x => x.input_token.Equals( TestToken ) ) );
             } );

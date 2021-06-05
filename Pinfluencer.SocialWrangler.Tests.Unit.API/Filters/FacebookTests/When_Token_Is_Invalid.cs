@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         {
             base.When( );
             SetUpUserRepository( TestToken, OperationResultEnum.Success );
-            MockFacebookClient
+            FacebookDecorator
                 .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( new FacebookOAuthException( FacebookErrorMsg ) );
             SUT.OnActionExecuting( MockActionExecutingContext );

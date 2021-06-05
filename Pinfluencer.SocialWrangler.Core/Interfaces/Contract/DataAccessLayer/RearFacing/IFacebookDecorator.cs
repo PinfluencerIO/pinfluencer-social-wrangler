@@ -7,8 +7,6 @@ namespace Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.Re
     [ Service( Scope = ServiceLifetimeEnum.Scoped ) ]
     public interface IFacebookDecorator
     {
-        public string Token { set; }
-
         [ Obsolete ]
         public string Get( string url, string fields );
 

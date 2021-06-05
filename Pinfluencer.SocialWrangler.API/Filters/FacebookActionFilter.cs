@@ -15,17 +15,15 @@ namespace Pinfluencer.SocialWrangler.API.Filters
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class FacebookActionFilter : ActionFilterAttribute
     {
-        private readonly IFacebookClientFactory _facebookClientFactory;
-        private readonly IFacebookDecorator _facebookDecorator;
+        private readonly IFacebookDecoratorFactory _facebookDecoratorFactory;
         private readonly MvcAdapter _mvcAdapter;
         private readonly ITokenRepository _tokenRepository;
 
-        public FacebookActionFilter( IFacebookDecorator facebookDecorator,
-            IFacebookClientFactory facebookClientFactory,
-            MvcAdapter mvcAdapter, ITokenRepository tokenRepository )
+        public FacebookActionFilter( IFacebookDecoratorFactory facebookDecoratorFactory,
+            MvcAdapter mvcAdapter,
+            ITokenRepository tokenRepository )
         {
-            _facebookDecorator = facebookDecorator;
-            _facebookClientFactory = facebookClientFactory;
+            _facebookDecoratorFactory = facebookDecoratorFactory;
             _mvcAdapter = mvcAdapter;
             _tokenRepository = tokenRepository;
         }
@@ -55,11 +53,12 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                 return;
             }
 
-            _facebookDecorator.Token = tokenResult.Value;
+            var facebookDecorator = _facebookDecoratorFactory
+                .Factory( tokenResult.Value );
 
             try
             {
-                _facebookDecorator.Get( "debug_token",
+                facebookDecorator.Get( "debug_token",
                     new RequestDebugTokenParams { input_token = tokenResult.Value } );
             }
             catch( FacebookApiException e ) { context.Result = _mvcAdapter.UnauthorizedError( e.Message ); }

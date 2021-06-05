@@ -37,7 +37,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             facebookClientFactory
                 .Factory( Arg.Any<string>( ) )
                 .Returns( MockFacebookClient );
-            FacebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer ) { Token = string.Empty };
+            FacebookDecorator = new FacebookDecorator( string.Empty, facebookClientFactory, Serializer );
             Auth0Context = new Auth0Context
             {
                 ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )

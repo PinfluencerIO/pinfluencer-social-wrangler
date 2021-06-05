@@ -22,10 +22,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         protected const string Auth0IdParamKey = "auth-id";
         protected const string UserActionArgumentKey = "user";
 
-        private FacebookDecorator _facebookDecorator;
+        private IFacebookDecorator _mockFacebookDecorator;
         private IFacebookClientFactory _mockFacebookClientFactory;
-        protected IFacebookClientAdapter MockFacebookClient;
         protected ITokenRepository MockTokenRepository;
+        protected IFacebookDecoratorFactory FacebookDecoratorFactory;
+        protected IFacebookDecorator FacebookDecorator;
 
         protected string ErrorMessage => GetResultObject<ErrorDto>( ).ErrorMsg;
 
@@ -33,14 +34,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         {
             base.Given( );
             MockTokenRepository = Substitute.For<ITokenRepository>( );
-            MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
-            var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
-            facebookClientFactory
+            FacebookDecoratorFactory = Substitute.For<IFacebookDecoratorFactory>( );
+            FacebookDecorator = Substitute.For<IFacebookDecorator>( );
+            FacebookDecoratorFactory
                 .Factory( Arg.Any<string>( ) )
-                .Returns( MockFacebookClient );
-            _facebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer );
+                .Returns( FacebookDecorator );
 
-            SUT = new FacebookActionFilter( _facebookDecorator, _mockFacebookClientFactory, MvcAdapter,
+            SUT = new FacebookActionFilter( FacebookDecoratorFactory,
+                MvcAdapter,
                 MockTokenRepository );
         }
 
