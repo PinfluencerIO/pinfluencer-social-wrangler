@@ -43,9 +43,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_Graph_Api_Was_Not_Called( )
         {
-            FacebookDecorator
+            MockFacebookDecorator
                 .DidNotReceive( )
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
+                .Get<object>( Arg.Any<string>( ), Arg.Any<object>( ) );
         }
     }
 }

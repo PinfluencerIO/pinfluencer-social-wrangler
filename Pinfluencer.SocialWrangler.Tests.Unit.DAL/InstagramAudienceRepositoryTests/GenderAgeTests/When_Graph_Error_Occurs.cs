@@ -21,9 +21,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         [ Test ]
         public void Then_Correct_Api_Params_Were_Used( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( )
-                .Get( Arg.Any<string>( ),
+                .Get<DataArray<Metric<object>>>( Arg.Any<string>( ),
                     Arg.Is<BaseRequestInsightParams>( x =>
                         x.period == "lifetime" && x.metric == "audience_gender_age" ) );
         }

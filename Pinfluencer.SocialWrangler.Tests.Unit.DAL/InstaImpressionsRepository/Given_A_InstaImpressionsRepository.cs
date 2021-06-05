@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository
             base.Given( );
 
             SUT = new InstagramImpressionsRepository(
-                FacebookDecorator,
+                MockFacebookDecorator,
                 MockLogger
             );
         }

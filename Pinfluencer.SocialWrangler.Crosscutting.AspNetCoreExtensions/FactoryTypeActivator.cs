@@ -13,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
         {
             var ctor = facType.GetConstructors( ).FirstOrDefault( );
             var ctorParams = ctor?.GetParameters( );
-
+            
             return ctor?
                 .Invoke( ( from ctorParam in ctorParams
                         select sp

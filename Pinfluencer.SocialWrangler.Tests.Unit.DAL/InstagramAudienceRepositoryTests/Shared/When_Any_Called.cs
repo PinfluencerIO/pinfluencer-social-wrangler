@@ -3,6 +3,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared
 {
@@ -13,17 +14,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         [ Test ]
         public void Then_Graph_Api_Was_Called_Once( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( 1 )
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
+                .Get<DataArray<Metric<object>>>( Arg.Any<string>( ), Arg.Any<object>( ) );
         }
 
         [ Test ]
         public void Then_Correct_Api_Endpoint_Was_Called( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( )
-                .Get( "123/insights", Arg.Any<object>( ) );
+                .Get<DataArray<Metric<object>>>( "123/insights", Arg.Any<object>( ) );
         }
     }
 }

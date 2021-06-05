@@ -24,7 +24,21 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
             }
 
             return errorReturn;
-            ;
+        }
+        
+        protected( T, bool ) ValidateFacebookCall<T>( Func<T> facebookCall )
+        {
+            var errorReturn = ( default( T ), false );
+            try { return( facebookCall( ), true ); }
+            catch( FacebookApiLimitException ) { Logger.LogError( "facebook api limit error occured" ); }
+            catch( FacebookOAuthException ) { Logger.LogError( "facebook oauth error occured" ); }
+            catch( FacebookApiException e )
+            {
+                Logger.LogError( "facebook api error occured" );
+                Logger.LogError( e.Message );
+            }
+
+            return errorReturn;
         }
     }
 }

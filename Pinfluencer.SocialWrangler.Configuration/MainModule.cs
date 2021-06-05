@@ -7,13 +7,10 @@ namespace Pinfluencer.SocialWrangler.Configuration
 {
     public static class MainModule
     {
-        public static IServiceCollection BindSocialWrangler( this IServiceCollection services )
+        public static IServiceCollection BindApplicationServices( this IServiceCollection services )
         {
             return ModuleExtensions
-                .GetMainServiceCollection( services )
-                .AddScoped<Auth0Context>( )
-                .AddTransient<IManagementConnection, HttpClientManagementConnection>( )
-                .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( );
+                .GetMainServiceCollection( services );
         }
     }
 }

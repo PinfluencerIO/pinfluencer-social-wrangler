@@ -20,8 +20,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
 
         protected override void When( )
         {
-            MockFacebookClient
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
+            MockFacebookDecorator
+                .Get<Dto>( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _facebookApiException );
             _result = FacebookSut.Read<Model, Dto>( "example", MapOut, new Model( ) );
         }

@@ -15,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
 
         protected override string ResolvePropertyName( string propertyName )
         {
-            if( propertyName.Count( ) == 2 ) return propertyName;
+            if( ! propertyName.Any( char.IsLower ) ) return propertyName;
             return string.Concat(
                     base.ResolvePropertyName( propertyName )
                         .Select( ( x, i ) => i > 0 && char.IsUpper( x ) ? "_" + x : x.ToString( ) ) )

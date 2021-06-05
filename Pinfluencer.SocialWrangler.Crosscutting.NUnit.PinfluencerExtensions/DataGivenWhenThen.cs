@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using Auth0.ManagementApi;
 using Facebook;
+using Newtonsoft.Json;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
@@ -17,11 +19,9 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
     {
         protected Auth0Context Auth0Context;
         protected CountryGetter CountryGetter;
-        protected FacebookDecorator FacebookDecorator;
+        protected IFacebookDecorator MockFacebookDecorator;
         protected IManagementConnection MockAuth0ManagementApiConnection;
-        protected IBubbleClient MockBubbleClient;
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
-        protected IFacebookClientAdapter MockFacebookClient;
         protected IFacebookDataHandler<T> MockFacebookDataHandler;
         protected ISerializer Serializer;
 
@@ -30,14 +30,8 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             base.Given( );
             Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
             CountryGetter = new CountryGetter( );
-            MockBubbleClient = Substitute.For<IBubbleClient>( );
             MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
-            MockFacebookClient = Substitute.For<IFacebookClientAdapter>( );
-            var facebookClientFactory = Substitute.For<IFacebookClientFactory>( );
-            facebookClientFactory
-                .Factory( Arg.Any<string>( ) )
-                .Returns( MockFacebookClient );
-            FacebookDecorator = new FacebookDecorator( string.Empty, facebookClientFactory, Serializer );
+            MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
             Auth0Context = new Auth0Context
             {
                 ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )
@@ -56,5 +50,9 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
                 new FacebookOAuthException( "oauth error" )
             };
         }
+
+        protected static object ToJsonObject( object content ) =>
+            JsonConvert.DeserializeObject( JsonConvert
+                .SerializeObject( content ) );
     }
 }

@@ -3,6 +3,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryTests.Shared
 {
@@ -14,8 +15,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
 
         protected override void When( )
         {
-            MockFacebookClient
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
+            MockFacebookDecorator
+                .Get<DataArray<Metric<object>>>( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( ApiException );
         }
 

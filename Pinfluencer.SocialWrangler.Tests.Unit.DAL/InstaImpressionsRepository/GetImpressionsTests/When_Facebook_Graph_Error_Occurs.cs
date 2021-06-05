@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
@@ -20,8 +21,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
 
         protected override void When( )
         {
-            MockFacebookClient
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
+            MockFacebookDecorator
+                .Get<DataArray<Metric<int>>>( Arg.Any<string>( ), Arg.Any<object>( ) )
                 .Throws( _apiException );
 
             base.When( );

@@ -35,7 +35,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         public OperationResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId )
         {
             var (fbResult, fbValidResult) = ValidateFacebookCall( ( ) => _facebookDecorator
-                .Get( $"{instaId}/insights",
+                .Get<DataArray<Metric<object>>>( $"{instaId}/insights",
                     new BaseRequestInsightParams { metric = "audience_country", period = "lifetime" } ) );
             if( !fbValidResult )
             {
@@ -44,10 +44,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     Enumerable.Empty<AudienceCount<LocationProperty>>( ),
                     OperationResultEnum.Failed );
             }
-
-            var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
-                result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
+                fbResult.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
             var outputResult = new OperationResult<IEnumerable<AudienceCount<LocationProperty>>>(
                 genderAge?.Select( x => new AudienceCount<LocationProperty>
                 {
@@ -66,7 +64,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         public OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
             var (fbResult, fbValidResult) = ValidateFacebookCall( ( ) => _facebookDecorator
-                .Get( $"{instaId}/insights",
+                .Get<DataArray<Metric<object>>>( $"{instaId}/insights",
                     new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
             if( !fbValidResult )
             {
@@ -75,10 +73,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed );
             }
-
-            var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
-                result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
+                fbResult.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
             var outputResult = new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
                 genderAge.Select( x =>
                 {
@@ -101,7 +97,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                         Count = ( int ) x.Value,
                         Property = new GenderAgeProperty
                         {
-                            Gender = generString == "f" ? GenderEnum.Female : GenderEnum.Male,
+                            Gender = generString == "F" ? GenderEnum.Female : GenderEnum.Male,
                             AgeRange = new Tuple<int, int?>( ageMin, ageMax )
                         }
                     };

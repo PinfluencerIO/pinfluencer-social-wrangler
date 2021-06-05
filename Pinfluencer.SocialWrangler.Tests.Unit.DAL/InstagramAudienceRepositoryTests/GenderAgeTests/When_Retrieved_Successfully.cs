@@ -13,21 +13,20 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
     {
         protected override void When( )
         {
-            MockFacebookClient
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
-                .Returns( new
+            MockFacebookDecorator
+                .Get<DataArray<Metric<object>>>( Arg.Any<string>( ), Arg.Any<object>( ) )
+                .Returns( new DataArray<Metric<object>>
                 {
-                    data = new dynamic [ ]
+                    Data = new []
                     {
-                        new
+                        new Metric<object>
                         {
-                            name = "audience_gender_age",
-                            period = "lifetime",
-                            values = new dynamic [ ]
+                            Insights = new []
                             {
-                                new
+                                new Insight<object>
                                 {
-                                    value = new Dictionary<string, int>
+                                    Time = "2020-12-19T08:00:00+0000",
+                                    Value = ToJsonObject( new Dictionary<string, int>
                                     {
                                         { "F.18-24", 39 },
                                         { "F.25-34", 4 },
@@ -38,13 +37,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                                         { "M.45-54", 2 },
                                         { "M.55-64", 1 },
                                         { "M.65+", 1 }
-                                    },
-                                    end_time = "2020-12-19T08:00:00+0000"
+                                    } )
                                 }
-                            },
-                            title = "Gender and age",
-                            description = "The gender and age distribution of this profile's followers",
-                            id = "17841405594881885/insights/audience_gender_age/lifetime"
+                            }
                         }
                     }
                 } );
@@ -104,9 +99,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         [ Test ]
         public void Then_Correct_Api_Params_Were_Used( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( )
-                .Get( Arg.Any<string>( ),
+                .Get<DataArray<Metric<object>>>( Arg.Any<string>( ),
                     Arg.Is<BaseRequestInsightParams>( x =>
                         x.period == "lifetime" && x.metric == "audience_gender_age" ) );
         }

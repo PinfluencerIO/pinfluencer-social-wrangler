@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.GetImpressionsTests
@@ -15,37 +16,32 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
 
         protected override void When( )
         {
-            MockFacebookClient
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) )
-                .Returns( new
+            MockFacebookDecorator
+                .Get<DataArray<Metric<int>>>( Arg.Any<string>( ), Arg.Any<object>( ) )
+                .Returns( new DataArray<Metric<int>>
                 {
-                    data = new dynamic [ ]
+                    Data = new []
                     {
-                        new
+                        new Metric<int>
                         {
-                            name = "impressions",
-                            period = "day",
-                            values = new dynamic [ ]
+                            Insights = new []
                             {
-                                new
+                                new Insight<int>
                                 {
-                                    value = 4,
-                                    end_time = "2017-05-04T07:00:00+0000"
+                                    Time = "2017-05-04T07:00:00+0000",
+                                    Value = 4
                                 },
-                                new
+                                new Insight<int>
                                 {
-                                    value = 66,
-                                    end_time = "2017-05-05T07:00:00+0000"
+                                    Time = "2017-05-05T07:00:00+0000",
+                                    Value = 66
                                 },
-                                new
+                                new Insight<int>
                                 {
-                                    value = 123,
-                                    end_time = "2017-05-06T07:00:00+0000"
+                                    Time = "2017-05-06T07:00:00+0000",
+                                    Value = 123
                                 }
-                            },
-                            title = "Impressions",
-                            description = "Total number of times this profile has been seen",
-                            id = "17841400008460056/insights/impressions/day"
+                            }
                         }
                     }
                 } );

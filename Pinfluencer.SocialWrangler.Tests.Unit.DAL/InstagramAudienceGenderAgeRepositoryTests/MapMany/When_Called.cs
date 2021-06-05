@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
@@ -22,8 +23,20 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                             new Insight<object>
                             {
                                 Time = "2021-05-30T07:00:00+0000",
-                                Value = JsonConvert.DeserializeObject(
-                                    "{\"F.18-24\": 36,\"F.25-34\": 4,\"F.45-54\": 1,\"M.18-24\": 75,\"M.25-34\": 9,\"M.35-44\": 1,\"M.45-54\": 2,\"M.55-64\": 1,\"M.65+\": 1,\"U.18-24\": 7,\"U.25-34\": 1}" )
+                                Value = ToJsonObject( new Dictionary<string,int>
+                                {
+                                    { "F.18-24", 36 },
+                                    { "F.25-34", 4 },
+                                    { "F.45-54", 1 },
+                                    { "M.18-24", 75 },
+                                    { "M.25-34", 9 },
+                                    { "M.35-44", 1 },
+                                    { "M.45-54", 2 },
+                                    { "M.55-64", 1 },
+                                    { "M.65+", 1 },
+                                    { "U.18-24", 7 },
+                                    { "U.25-34", 1 }
+                                } )
                             }
                         }
                     }

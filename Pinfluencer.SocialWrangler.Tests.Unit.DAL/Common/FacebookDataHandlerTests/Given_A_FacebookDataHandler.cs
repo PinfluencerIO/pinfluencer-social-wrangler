@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
         protected override void Given( )
         {
             base.Given( );
-            FacebookSut = new FacebookDataHandler<object>( FacebookDecorator, MockLogger );
+            FacebookSut = new FacebookDataHandler<object>( MockFacebookDecorator, MockLogger );
         }
     }
 }

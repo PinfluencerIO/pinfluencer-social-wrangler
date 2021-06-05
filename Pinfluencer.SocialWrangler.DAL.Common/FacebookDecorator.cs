@@ -13,11 +13,15 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
         private readonly ISerializer _serializer;
         private IFacebookClientAdapter _facebookClient;
 
-        public FacebookDecorator( string token, IFacebookClientFactory facebookClientFactory, ISerializer serializer )
+        public string Token
+        {
+            set => _facebookClient = _facebookClientFactory.Factory( value );
+        }
+        
+        public FacebookDecorator( IFacebookClientFactory facebookClientFactory, ISerializer serializer )
         {
             _facebookClientFactory = facebookClientFactory;
             _serializer = serializer;
-            _facebookClient = _facebookClientFactory.Factory( token );
         }
 
         public string Get( string url, string fields )

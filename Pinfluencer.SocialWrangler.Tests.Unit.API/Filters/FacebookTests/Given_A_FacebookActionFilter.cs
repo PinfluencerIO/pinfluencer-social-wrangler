@@ -25,8 +25,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         private IFacebookDecorator _mockFacebookDecorator;
         private IFacebookClientFactory _mockFacebookClientFactory;
         protected ITokenRepository MockTokenRepository;
-        protected IFacebookDecoratorFactory FacebookDecoratorFactory;
-        protected IFacebookDecorator FacebookDecorator;
+        protected IFacebookDecorator MockFacebookDecorator;
 
         protected string ErrorMessage => GetResultObject<ErrorDto>( ).ErrorMsg;
 
@@ -34,13 +33,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         {
             base.Given( );
             MockTokenRepository = Substitute.For<ITokenRepository>( );
-            FacebookDecoratorFactory = Substitute.For<IFacebookDecoratorFactory>( );
-            FacebookDecorator = Substitute.For<IFacebookDecorator>( );
-            FacebookDecoratorFactory
-                .Factory( Arg.Any<string>( ) )
-                .Returns( FacebookDecorator );
+            MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
+            MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
 
-            SUT = new FacebookActionFilter( FacebookDecoratorFactory,
+            SUT = new FacebookActionFilter( MockFacebookDecorator,
                 MvcAdapter,
                 MockTokenRepository );
         }

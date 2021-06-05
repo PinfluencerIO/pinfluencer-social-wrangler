@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,28 +7,23 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
 {
     public static class AddFactoryServiceCollectionExtensions
     {
-        private static IServiceCollection AddFactory( this IServiceCollection sc, Type factory,
-            ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, params Assembly [ ] scanAssemblies )
+        public static IServiceCollection AddFactory( this IServiceCollection sc, Type factory,
+            ServiceLifetime serviceLifetime = ServiceLifetime.Singleton )
         {
             var facClsBuilder = FactoryClassBuilder.CreateFactoryClassBuilder( sc, factory );
 
             sc.Add( new ServiceDescriptor( factory, sp =>
             {
                 var facType = IlFactoryTypeCreator.CreateType( facClsBuilder, factory );
-                return FactoryTypeActivator.Activate( sp, facType );
+                var factoryGeneratedService = FactoryTypeActivator.Activate( sp, facType );
+                return factoryGeneratedService;
             }, serviceLifetime ) );
 
             return sc;
         }
 
-        public static IServiceCollection AddFactory( this IServiceCollection sc, Type factory,
-            ServiceLifetime serviceLifetime = ServiceLifetime.Singleton )
-        {
-            return AddFactory( sc, factory, serviceLifetime, factory.Assembly );
-        }
-
-        public static IServiceCollection Replace<TService>( this IServiceCollection sc,
-            Func<IServiceProvider, TService> implementationFactory ) where TService : class
+        public static IServiceCollection Replace( this IServiceCollection sc,
+            Func<IServiceProvider, object> implementationFactory, Type serviceType )
         {
             if( sc == null ) throw new ArgumentNullException( nameof( sc ) );
 
@@ -37,7 +33,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
             for( var i = 0; i < count; i++ )
             {
                 var service = sc[ i ];
-                if( service.ServiceType != typeof( TService ) ) continue;
+                if( service.ServiceType != serviceType ) continue;
                 lifetime = service.Lifetime;
                 sc.RemoveAt( i );
                 break;
@@ -46,13 +42,13 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
             switch( lifetime )
             {
                 case ServiceLifetime.Scoped:
-                    sc.AddScoped( implementationFactory );
+                    sc.AddScoped( serviceType, implementationFactory );
                     break;
                 case ServiceLifetime.Transient:
-                    sc.AddTransient( implementationFactory );
+                    sc.AddTransient( serviceType, implementationFactory );
                     break;
                 case ServiceLifetime.Singleton:
-                    sc.AddSingleton( implementationFactory );
+                    sc.AddSingleton( serviceType, implementationFactory );
                     break;
             }
 

@@ -16,5 +16,7 @@ namespace Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.Re
         public T Get<T>( string url, string fields );
 
         public TReturn Get<TReturn>( string url, object parameters );
+        
+        public string Token { set; }
     }
 }

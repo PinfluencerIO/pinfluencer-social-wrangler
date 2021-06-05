@@ -11,17 +11,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
         [ Test ]
         public void Then_Correct_Url_Was_Hit( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( )
-                .Get( Arg.Is( $"{TestId}/insights" ), Arg.Any<object>( ) );
+                .Get<DataArray<Metric<int>>>( Arg.Is( $"{TestId}/insights" ), Arg.Any<object>( ) );
         }
 
         [ Test ]
         public void Then_Correct_Metric_Query_Params_Were_Used( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( )
-                .Get( Arg.Any<string>( ), Arg.Is<RequestInsightParams>(
+                .Get<DataArray<Metric<int>>>( Arg.Any<string>( ), Arg.Is<RequestInsightParams>(
                     x =>
                         x.metric == "impressions" &&
                         x.period == "day" &&
@@ -33,9 +33,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
         [ Test ]
         public void Then_Get_Impressions_Was_Called_Once( )
         {
-            MockFacebookClient
+            MockFacebookDecorator
                 .Received( 1 )
-                .Get( Arg.Any<string>( ), Arg.Any<object>( ) );
+                .Get<DataArray<Metric<int>>>( Arg.Any<string>( ), Arg.Any<object>( ) );
         }
     }
 }
