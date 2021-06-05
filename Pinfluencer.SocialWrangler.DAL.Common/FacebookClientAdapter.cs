@@ -1,5 +1,5 @@
 ﻿using Facebook;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {

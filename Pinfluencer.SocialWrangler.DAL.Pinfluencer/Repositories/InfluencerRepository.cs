@@ -1,7 +1,7 @@
 ﻿using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 

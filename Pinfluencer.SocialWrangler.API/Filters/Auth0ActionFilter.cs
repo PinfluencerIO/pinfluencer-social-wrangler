@@ -4,9 +4,9 @@ using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
 namespace Pinfluencer.SocialWrangler.API.Filters
@@ -16,6 +16,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
     //TODO: use transient auth0 context for thread safety, refresh token if expired
     //TODO: validate scopes
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
+
     public class Auth0ActionFilter : ActionFilterAttribute
     {
         private readonly IAuthServiceManagementClientDecorator _auth0ManagementClientDecorator;

@@ -1,8 +1,8 @@
 ﻿using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Microsoft.Extensions.Configuration;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {

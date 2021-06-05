@@ -11,8 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Extensions" />
-      <Folder Include="Interfaces\Contract" />
+      <Folder Include="Interfaces" />
     </ItemGroup>
 
 </Project>

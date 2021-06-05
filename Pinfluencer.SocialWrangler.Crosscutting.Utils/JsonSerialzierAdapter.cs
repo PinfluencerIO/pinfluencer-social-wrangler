@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
 {

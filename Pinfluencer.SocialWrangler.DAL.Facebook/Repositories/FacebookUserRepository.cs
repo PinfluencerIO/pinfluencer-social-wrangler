@@ -1,12 +1,12 @@
 ﻿using System;
 using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {

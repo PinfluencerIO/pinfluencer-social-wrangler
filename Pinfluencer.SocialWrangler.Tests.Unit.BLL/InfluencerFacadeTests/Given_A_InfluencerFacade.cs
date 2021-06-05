@@ -1,11 +1,11 @@
 ﻿using NSubstitute;
-using Pinfluencer.SocialWrangler.BLL.Facades;
+using Pinfluencer.SocialWrangler.DL.Facades;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
 {

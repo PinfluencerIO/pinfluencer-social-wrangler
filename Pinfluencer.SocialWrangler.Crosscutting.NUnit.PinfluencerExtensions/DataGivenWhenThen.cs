@@ -4,13 +4,12 @@ using Auth0.ManagementApi;
 using Facebook;
 using Newtonsoft.Json;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions

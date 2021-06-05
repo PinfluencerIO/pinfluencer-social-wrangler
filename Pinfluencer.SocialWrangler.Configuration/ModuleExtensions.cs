@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Mono.Cecil;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Attributes;
+using Pinfluencer.SocialWrangler.Core.Constants;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions;
 
@@ -12,13 +14,10 @@ namespace Pinfluencer.SocialWrangler.Configuration
 {
     public static class ModuleExtensions
     {
-        private const string RootNamespace = "Pinfluencer.SocialWrangler";
-        private const string ContractNamespace = "Core.Interfaces.Contract";
-
-        public static IServiceCollection Bind( IServiceCollection services, Type [ ] types )
+        private static IServiceCollection Bind( IServiceCollection services, Type [ ] types, string layer )
         {
-            RegisterServices( services, GetServiceTypes( GetInterfaces( types ), types ) );
-            RegisterFactories( services, GetFactories( GetInterfaces( types ) ) );
+            RegisterServices( services, GetServiceTypes( GetInterfaces( types, layer ), types ) );
+            RegisterFactories( services, GetFactories( GetInterfaces( types, layer ) ) );
             return services;
         }
 
@@ -101,14 +100,14 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return factories;
         }
 
-        private static Type [ ] GetInterfaces( Type [ ] types )
+        private static Type [ ] GetInterfaces( Type [ ] types, string layer )
         {
             var interfaces = types
                 .Where( type =>
                 {
                     try
                     {
-                        return type.Namespace.Contains( $"{RootNamespace}.{ContractNamespace}" ) &&
+                        return type.Namespace.Contains( $"{ApplicationConstants.RootNamespace}.{layer}.{ApplicationConstants.ContractNamespace}" ) &&
                                type.IsInterface;
                     }
                     catch( Exception ) { return false; }
@@ -117,7 +116,7 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return interfaces;
         }
 
-        public static Type [ ] GetTypes( )
+        public static Type [ ] GetTypes( string layer )
         {
             var types = AppDomain
                 .CurrentDomain
@@ -125,27 +124,14 @@ namespace Pinfluencer.SocialWrangler.Configuration
                 .SelectMany( x => x.GetTypes( ) )
                 .Where( x =>
                 {
-                    try { return x.Namespace.Contains( $"{RootNamespace}" ); }
+                    try { return x.Namespace.Contains( $"{ApplicationConstants.RootNamespace}.{layer}" ); }
                     catch( Exception ) { return false; }
                 } )
                 .ToArray( );
             return types;
         }
 
-        public static IServiceCollection GetMainServiceCollection( IServiceCollection services )
-        {
-            var methods = GetTypes( )
-                .SelectMany( x => x
-                    .GetMethods( )
-                    .Where( y => y
-                        .GetCustomAttributes( false )
-                        .Any( z => z
-                            .GetType( ) == typeof( BindingAttribute ) ) ) )
-                .Where( x => x != null );
-            foreach( var method in methods )
-                services = method?
-                    .Invoke( null, new object [ ] { services } ) as IServiceCollection;
-            return Bind( services, GetTypes( ) );
-        }
+        public static IServiceCollection BindServices( this IServiceCollection serviceCollection, ApplicationLayerEnum applicationLayer, Action[] initializers ) => 
+            Bind( serviceCollection, GetTypes( applicationLayer.ToString( ) ), applicationLayer.ToString( ) );
     }
 }

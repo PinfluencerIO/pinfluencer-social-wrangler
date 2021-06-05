@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.Crosscutting;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Excluded;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Web
 {

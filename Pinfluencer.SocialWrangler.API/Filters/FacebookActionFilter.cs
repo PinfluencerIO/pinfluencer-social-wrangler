@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using Facebook;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Pinfluencer.SocialWrangler.API.RequestDtos;
+using Pinfluencer.SocialWrangler.API.Core.Dtos.Request;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.API.Filters

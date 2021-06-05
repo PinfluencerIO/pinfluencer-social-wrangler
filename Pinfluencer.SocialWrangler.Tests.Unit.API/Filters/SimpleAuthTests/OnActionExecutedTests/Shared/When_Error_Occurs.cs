@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.API.ResponseDtos;
+using Pinfluencer.SocialWrangler.API.Core.Dtos.Response;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecutedTests.Shared
 {

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.BuisnessLayer;
+using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.API.Controllers
 {

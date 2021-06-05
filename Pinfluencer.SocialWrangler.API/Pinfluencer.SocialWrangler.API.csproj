@@ -5,11 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.API.Core\Pinfluencer.SocialWrangler.API.Core.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Configuration\Pinfluencer.SocialWrangler.Configuration.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.DIModule\Pinfluencer.SocialWrangler.Crosscutting.DIModule.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.DIModule\Pinfluencer.SocialWrangler.DAL.DIModule.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Facebook\Pinfluencer.SocialWrangler.DAL.Facebook.csproj" />
         <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Common\Pinfluencer.SocialWrangler.DAL.Common.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL.DIModule\Pinfluencer.SocialWrangler.DL.DIModule.csproj" />
     </ItemGroup>
 
     <ItemGroup>

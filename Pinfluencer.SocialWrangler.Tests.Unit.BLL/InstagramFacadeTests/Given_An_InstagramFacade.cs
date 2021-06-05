@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
-using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.DL.Facades;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests
 {

@@ -1,6 +1,6 @@
-﻿using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
-using Pinfluencer.SocialWrangler.DAL.Common;
+﻿using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Factories
 {

@@ -14,9 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.BLL\Pinfluencer.SocialWrangler.BLL.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL\Pinfluencer.SocialWrangler.DL.csproj" />
     </ItemGroup>
 
 </Project>

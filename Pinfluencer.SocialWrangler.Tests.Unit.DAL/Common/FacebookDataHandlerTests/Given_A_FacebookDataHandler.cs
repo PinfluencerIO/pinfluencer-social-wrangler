@@ -1,6 +1,6 @@
-﻿using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+﻿using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTests
 {

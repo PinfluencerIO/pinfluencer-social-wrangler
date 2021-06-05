@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
 namespace Pinfluencer.SocialWrangler.Local.Sandbox
 {

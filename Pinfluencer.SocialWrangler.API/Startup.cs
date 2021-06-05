@@ -6,7 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pinfluencer.SocialWrangler.API.Filters;
 using Pinfluencer.SocialWrangler.Configuration;
+using Pinfluencer.SocialWrangler.Crosscutting.DIModule;
+using Pinfluencer.SocialWrangler.DAL.DIModule;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
+using Pinfluencer.SocialWrangler.DL.DIModule;
 
 namespace Pinfluencer.SocialWrangler.API
 {
@@ -15,7 +18,9 @@ namespace Pinfluencer.SocialWrangler.API
         public void ConfigureServices( IServiceCollection services )
         {
             services
-                .BindApplicationServices( )
+                .BindCrosscuttingLayer( )
+                .BindDomainLayer( )
+                .BindDataAcessLayer( )
                 .AddTransient<Auth0ActionFilter>( )
                 .AddTransient<FacebookActionFilter>( )
                 .AddTransient<SimpleAuthActionFilter>( )

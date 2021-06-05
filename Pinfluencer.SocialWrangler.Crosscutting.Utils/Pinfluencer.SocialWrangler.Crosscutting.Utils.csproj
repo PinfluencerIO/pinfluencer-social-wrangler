@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Core\Pinfluencer.SocialWrangler.Crosscutting.Core.csproj" />
     </ItemGroup>
 
 </Project>

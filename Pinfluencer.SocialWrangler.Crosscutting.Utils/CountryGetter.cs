@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Pinfluencer.SocialWrangler.Core.Attributes;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
 {

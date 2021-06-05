@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 

@@ -8,11 +8,10 @@ using Auth0.ManagementApi;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
