@@ -6,7 +6,6 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRepositoryTests.Get
@@ -15,20 +14,22 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
     public class When_Called : Given_An_InstagramGenderAgeRepository
     {
         private OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> _result;
-        private OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> _operationResult;
+        private readonly OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> _operationResult;
 
 
-        public When_Called( IEnumerable<AudienceCount<GenderAgeProperty>> audienceCountries, OperationResultEnum operationResultEnum )
+        public When_Called( IEnumerable<AudienceCount<GenderAgeProperty>> audienceCountries,
+            OperationResultEnum operationResultEnum )
         {
             _operationResult =
                 new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>( audienceCountries,
                     operationResultEnum );
         }
 
-        private static readonly object [ ] data = {
-            new object[]
+        private static readonly object [ ] data =
+        {
+            new object [ ]
             {
-                new []
+                new [ ]
                 {
                     new AudienceCount<GenderAgeProperty>
                     {
@@ -60,7 +61,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                 },
                 OperationResultEnum.Success
             },
-            new object[]
+            new object [ ]
             {
                 Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
                 OperationResultEnum.Failed
@@ -77,27 +78,30 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                 .Returns( _operationResult );
             _result = SUT.Get( "123" );
         }
-        
-        [ Test ] public void Then_Get_Audience_Gender_Age_Is_Called_Once( ) =>
+
+        [ Test ]
+        public void Then_Get_Audience_Gender_Age_Is_Called_Once( )
+        {
             MockFacebookDataHandler
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<Metric<object>>, IEnumerable<AudienceCount<GenderAgeProperty>>>>( ),
                     Arg.Any<IEnumerable<AudienceCount<GenderAgeProperty>>>( ),
                     Arg.Any<RequestInsightParams>( ) );
+        }
 
         [ Test ]
-        public void Then_Valid_Call_Was_Made( ) =>
+        public void Then_Valid_Call_Was_Made( )
+        {
             MockFacebookDataHandler
                 .Received( )
                 .Read<IEnumerable<AudienceCount<GenderAgeProperty>>, DataArray<Metric<object>>>( "123/insights",
                     SUT.MapMany,
                     Arg.Is<IEnumerable<AudienceCount<GenderAgeProperty>>>( x => !x.Any( ) ),
                     Arg.Is<RequestInsightParams>( x => x.metric == "audience_gender_age" && x.period == "lifetime" ) );
-
-        [ Test ] public void Then_Valid_Response_Was_Returned( )
-        {
-            Assert.AreSame( _operationResult, _result );
         }
+
+        [ Test ]
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
     }
 }

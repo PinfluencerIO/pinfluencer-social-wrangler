@@ -7,10 +7,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Ma
     {
         private Influencer _result;
 
-        protected override void When( )
-        {
-            _result = SUT.MapIn( DefaultInfluencer );
-        }
+        protected override void When( ) { _result = SUT.MapIn( DefaultInfluencer ); }
 
         [ Test ]
         public void Then_Valid_Influencer_Is_Created( )

@@ -16,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
         private OperationResult<string> _result;
 
         protected override void When( )
-        
+
         {
             MockAuth0ManagementApiConnection
                 .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
@@ -31,7 +31,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
 
         [ Test ]
         public void Then_Response_Is_Fail( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
-        
+
         [ Test ]
         public void Then_Error_Is_Logged( )
         {

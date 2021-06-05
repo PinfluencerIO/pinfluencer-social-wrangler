@@ -2,8 +2,6 @@
 {
     public static class WebUtilsInitializer
     {
-        public static void Initialize( )
-        {
-        }
+        public static void Initialize( ) { }
     }
 }

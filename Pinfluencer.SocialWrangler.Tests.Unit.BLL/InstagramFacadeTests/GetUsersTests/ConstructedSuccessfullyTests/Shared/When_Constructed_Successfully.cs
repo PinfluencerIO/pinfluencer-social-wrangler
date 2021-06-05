@@ -5,7 +5,8 @@ using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.Shared
+namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUsersTests.ConstructedSuccessfullyTests.
+    Shared
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {
@@ -13,7 +14,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
 
         protected void SetSingleUser( string handle, string id, string name, string bio, int followers )
         {
-            InstaUserCollection = new [ ] 
+            InstaUserCollection = new [ ]
             {
                 new SocialInsightsUser
                 {
@@ -22,7 +23,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
                     Name = name,
                     Bio = bio,
                     Followers = followers
-                } 
+                }
             };
             InstaUsersOperationResult = OperationResultEnum.Success;
         }
@@ -49,7 +50,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
                     Name = name1,
                     Bio = bio1,
                     Followers = followers1
-                } ,
+                },
                 new SocialInsightsUser
                 {
                     Username = handle2,
@@ -57,7 +58,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
                     Name = name2,
                     Bio = bio2,
                     Followers = followers2
-                } 
+                }
             };
             InstaUsersOperationResult = OperationResultEnum.Success;
         }

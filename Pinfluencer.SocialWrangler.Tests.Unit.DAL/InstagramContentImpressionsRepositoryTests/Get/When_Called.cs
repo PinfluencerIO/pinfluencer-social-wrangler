@@ -14,7 +14,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
     public class When_Called : Given_An_InstagramContentImpressionsRepository
     {
         private OperationResult<IEnumerable<ContentImpressions>> _result;
-        private OperationResult<IEnumerable<ContentImpressions>> _operationResult;
+        private readonly OperationResult<IEnumerable<ContentImpressions>> _operationResult;
+
         public static readonly IEnumerable<ContentImpressions> DefaultContentImpressions = new [ ]
         {
             new ContentImpressions
@@ -67,16 +68,19 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
         }
 
         [ Test ]
-        public void Then_Get_Audience_Gender_Age_Is_Called_Once( ) =>
+        public void Then_Get_Audience_Gender_Age_Is_Called_Once( )
+        {
             MockFacebookDataHandler
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<Metric<int>>, IEnumerable<ContentImpressions>>>( ),
                     Arg.Any<IEnumerable<ContentImpressions>>( ),
                     Arg.Any<RequestInsightParams>( ) );
+        }
 
         [ Test ]
-        public void Then_Valid_Call_Was_Made( ) =>
+        public void Then_Valid_Call_Was_Made( )
+        {
             MockFacebookDataHandler
                 .Received( )
                 .Read<IEnumerable<ContentImpressions>, DataArray<Metric<int>>>( "123/insights",
@@ -86,6 +90,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
                                                        && x.period == "day"
                                                        && x.since == 1622160000
                                                        && x.until == 1622246400 ) );
+        }
 
         [ Test ]
         public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }

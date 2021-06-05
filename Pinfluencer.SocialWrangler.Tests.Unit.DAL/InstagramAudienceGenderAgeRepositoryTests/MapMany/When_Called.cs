@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRepositoryTests.MapMany
@@ -24,13 +22,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                             new Insight<object>
                             {
                                 Time = "2021-05-30T07:00:00+0000",
-                                Value = JsonConvert.DeserializeObject( "{\"F.18-24\": 36,\"F.25-34\": 4,\"F.45-54\": 1,\"M.18-24\": 75,\"M.25-34\": 9,\"M.35-44\": 1,\"M.45-54\": 2,\"M.55-64\": 1,\"M.65+\": 1,\"U.18-24\": 7,\"U.25-34\": 1}" )
+                                Value = JsonConvert.DeserializeObject(
+                                    "{\"F.18-24\": 36,\"F.25-34\": 4,\"F.45-54\": 1,\"M.18-24\": 75,\"M.25-34\": 9,\"M.35-44\": 1,\"M.45-54\": 2,\"M.55-64\": 1,\"M.65+\": 1,\"U.18-24\": 7,\"U.25-34\": 1}" )
                             }
                         }
                     }
                 }
             } );
-            CollectionAssert.AreEquivalent( new (GenderEnum Male, int, int?, int)[]
+            CollectionAssert.AreEquivalent( new (GenderEnum Male, int, int?, int) [ ]
             {
                 ( GenderEnum.Female, 18, 24, 36 ),
                 ( GenderEnum.Female, 25, 34, 4 ),
@@ -47,7 +46,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                 .Select( x => ( x.Property.Gender,
                     x.Property.AgeRange.Item1,
                     x.Property.AgeRange.Item2,
-                    x.Count ) ));
+                    x.Count ) ) );
         }
     }
 }

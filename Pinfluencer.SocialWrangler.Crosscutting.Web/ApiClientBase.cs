@@ -15,8 +15,9 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Web
             HttpClient = httpClient;
             Serializer = serializer;
         }
-        
-        protected ApiClientBase( Uri uri, string token, ISerializer serializer, IHttpClient httpClient ) : this( httpClient, serializer )
+
+        protected ApiClientBase( Uri uri, string token, ISerializer serializer, IHttpClient httpClient ) : this(
+            httpClient, serializer )
         {
             SetBaseUrl( uri );
             SetBearerToken( token );

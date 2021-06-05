@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
@@ -14,10 +13,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
         private readonly IEnumerable<SocialInsightsUser> _socialInsightsUsers;
         private readonly DataArray<FacebookPage> _facebookPages;
 
-        private static object [ ] data = {
-            new object[ ]
+        private static object [ ] data =
+        {
+            new object [ ]
             {
-                new []
+                new [ ]
                 {
                     new SocialInsightsUser
                     {
@@ -30,7 +30,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                 },
                 new DataArray<FacebookPage>
                 {
-                    Data = new []
+                    Data = new [ ]
                     {
                         new FacebookPage
                         {
@@ -48,9 +48,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     }
                 }
             },
-            new object[]
+            new object [ ]
             {
-                new []
+                new [ ]
                 {
                     new SocialInsightsUser
                     {
@@ -63,7 +63,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                 },
                 new DataArray<FacebookPage>
                 {
-                    Data = new []
+                    Data = new [ ]
                     {
                         new FacebookPage
                         {
@@ -86,9 +86,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     }
                 }
             },
-            new object[]
+            new object [ ]
             {
-                new []
+                new [ ]
                 {
                     new SocialInsightsUser
                     {
@@ -109,7 +109,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                 },
                 new DataArray<FacebookPage>
                 {
-                    Data = new []
+                    Data = new [ ]
                     {
                         new FacebookPage
                         {
@@ -140,12 +140,12 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     }
                 }
             },
-            new object[]
+            new object [ ]
             {
                 Enumerable.Empty<SocialInsightsUser>( ),
                 new DataArray<FacebookPage>
                 {
-                    Data = new []
+                    Data = new [ ]
                     {
                         new FacebookPage
                         {
@@ -160,7 +160,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     }
                 }
             },
-            new object[]
+            new object [ ]
             {
                 Enumerable.Empty<SocialInsightsUser>( ),
                 new DataArray<FacebookPage>
@@ -178,44 +178,52 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
             _facebookPages = facebookPages;
         }
 
-        protected override void When( )
-        {
-            _result = SUT.MapMany( _facebookPages );
-        }
+        protected override void When( ) { _result = SUT.MapMany( _facebookPages ); }
 
         [ Test ]
-        public void Then_Bios_Are_Correct( ) =>
+        public void Then_Bios_Are_Correct( )
+        {
             Assert.True( _result
                 .Select( x => x.Bio )
                 .SequenceEqual( _socialInsightsUsers.Select( x => x.Bio ) ) );
-        
+        }
+
         [ Test ]
-        public void Then_Ids_Are_Correct( ) =>
+        public void Then_Ids_Are_Correct( )
+        {
             Assert.True( _result
                 .Select( x => x.Id )
                 .SequenceEqual( _socialInsightsUsers.Select( x => x.Id ) ) );
-        
+        }
+
         [ Test ]
-        public void Then_Followers_Are_Correct( ) =>
+        public void Then_Followers_Are_Correct( )
+        {
             Assert.True( _result
                 .Select( x => x.Followers )
                 .SequenceEqual( _socialInsightsUsers.Select( x => x.Followers ) ) );
-        
+        }
+
         [ Test ]
-        public void Then_Names_Are_Correct( ) =>
+        public void Then_Names_Are_Correct( )
+        {
             Assert.True( _result
                 .Select( x => x.Name )
                 .SequenceEqual( _socialInsightsUsers.Select( x => x.Name ) ) );
-        
+        }
+
         [ Test ]
-        public void Then_Usernames_Are_Correct( ) =>
+        public void Then_Usernames_Are_Correct( )
+        {
             Assert.True( _result
                 .Select( x => x.Username )
                 .SequenceEqual( _socialInsightsUsers.Select( x => x.Username ) ) );
-        
-        [ Test ]
-        public void Then_Array_Length_Are_Correct( ) =>
-            Assert.AreEqual( _socialInsightsUsers.Count( ), _result.Count( ) );
+        }
 
+        [ Test ]
+        public void Then_Array_Length_Are_Correct( )
+        {
+            Assert.AreEqual( _socialInsightsUsers.Count( ), _result.Count( ) );
+        }
     }
 }

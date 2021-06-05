@@ -5,7 +5,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.ValidateInstaAudienceAgeRang
 {
     public abstract class
         Given_A_ValidateInstaAudienceAgeRange : GivenWhenThen<
-            Pinfluencer.SocialWrangler.Core.Models.Validation.ValidateInstaAudienceAgeRange>
+            Core.Models.Validation.ValidateInstaAudienceAgeRange>
     {
         protected int AgeMax;
         protected int AgeMin;
@@ -13,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.ValidateInstaAudienceAgeRang
 
         protected override void When( )
         {
-            SUT = new Pinfluencer.SocialWrangler.Core.Models.Validation.ValidateInstaAudienceAgeRange
+            SUT = new Core.Models.Validation.ValidateInstaAudienceAgeRange
                 { AgeRange = new Tuple<int, int>( AgeMin, AgeMax ) };
 
             Result = SUT.Validate( );

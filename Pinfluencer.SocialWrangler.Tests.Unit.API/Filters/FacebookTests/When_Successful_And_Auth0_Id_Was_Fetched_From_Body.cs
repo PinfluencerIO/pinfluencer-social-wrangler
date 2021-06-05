@@ -12,7 +12,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         {
             return new Dictionary<string, StringValues> { { Auth0IdParamKey, "" } };
         }
-        
+
         protected override void When( )
         {
             base.When( );

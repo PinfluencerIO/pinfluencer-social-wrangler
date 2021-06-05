@@ -2,7 +2,6 @@
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories;
-using Influencer = Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble.Influencer;
 using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests
@@ -17,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests
                 Bio = "this an example bio",
                 Gender = GenderEnum.Male,
                 Location = "Uxbridge, West London",
-                User = new User{ Id = "12345678" }
+                User = new User { Id = "12345678" }
             };
 
         protected override void Given( )

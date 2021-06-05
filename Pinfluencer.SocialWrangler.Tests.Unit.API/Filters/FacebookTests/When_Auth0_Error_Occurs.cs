@@ -27,7 +27,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         [ Test ]
         public void Then_Result_Status_Is_Unauthorized( )
         {
-            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ), ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
+            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ),
+                ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
         }
 
         [ Test ]

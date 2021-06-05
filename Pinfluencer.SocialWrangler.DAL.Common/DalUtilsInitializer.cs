@@ -2,8 +2,6 @@
 {
     public static class DalUtilsInitializer
     {
-        public static void Initialize( )
-        {
-        }
+        public static void Initialize( ) { }
     }
 }

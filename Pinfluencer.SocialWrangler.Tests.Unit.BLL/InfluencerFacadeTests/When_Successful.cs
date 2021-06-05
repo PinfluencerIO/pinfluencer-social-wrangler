@@ -20,7 +20,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
                 .Returns( new OperationResult<User>( DefaultUser, OperationResultEnum.Success ) );
             InsightsSocialUserRepository
                 .GetAll( )
-                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ] { DefaultSocialInsightsUser }, OperationResultEnum.Success ) );
+                .Returns( new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ] { DefaultSocialInsightsUser },
+                    OperationResultEnum.Success ) );
             SocialInfoUserRepository
                 .Get( )
                 .Returns( new OperationResult<SocialInfoUser>( DefaultSocialInfoUser, OperationResultEnum.Success ) );
@@ -45,10 +46,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
         }
 
         [ Test ]
-        public void Then_Success_Was_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result );
-        }
+        public void Then_Success_Was_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result ); }
 
         [ Test ]
         public void Then_Create_Influencer_Was_Called_Once( )

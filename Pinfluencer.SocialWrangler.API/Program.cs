@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.API
         {
             Host.CreateDefaultBuilder( args )
                 .ConfigureWebHostDefaults( webBuilder => { webBuilder.UseStartup<Startup>( ); } )
-                .UseServiceProviderFactory( new DefaultServiceProviderFactory() )
+                .UseServiceProviderFactory( new DefaultServiceProviderFactory( ) )
                 .Build( )
                 .Run( );
         }

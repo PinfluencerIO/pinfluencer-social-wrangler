@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
@@ -36,7 +35,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
 
         private OperationResult<IEnumerable<SocialInsightsUser>> _result;
 
-        public When_Called( OperationResult<IEnumerable<SocialInsightsUser>> operationResult ) { _operationResult = operationResult; }
+        public When_Called( OperationResult<IEnumerable<SocialInsightsUser>> operationResult )
+        {
+            _operationResult = operationResult;
+        }
 
         protected override void When( )
         {
@@ -48,25 +50,31 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                 .Returns( _operationResult );
             _result = SUT.GetAll( );
         }
-        
+
         [ Test ]
-        public void Then_Get_Users_Is_Called_Once( ) =>
+        public void Then_Get_Users_Is_Called_Once( )
+        {
             MockFacebookDataHandler
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<FacebookPage>, IEnumerable<SocialInsightsUser>>>( ),
                     Arg.Any<IEnumerable<SocialInsightsUser>>( ),
                     Arg.Any<object>( ) );
+        }
 
-        [ Test ] public void Then_Valid_Call_Was_Made( ) =>
+        [ Test ]
+        public void Then_Valid_Call_Was_Made( )
+        {
             MockFacebookDataHandler
                 .Received( )
-                .Read<IEnumerable<SocialInsightsUser>,DataArray<FacebookPage>>( "me/accounts",
+                .Read<IEnumerable<SocialInsightsUser>, DataArray<FacebookPage>>( "me/accounts",
                     SUT.MapMany,
-                    Arg.Is<IEnumerable<SocialInsightsUser>>( x => !x.Any() ),
-                    Arg.Is<RequestFields>( x => x.fields == "instagram_business_account{id,username,name,biography,followers_count}" ) );
+                    Arg.Is<IEnumerable<SocialInsightsUser>>( x => !x.Any( ) ),
+                    Arg.Is<RequestFields>( x =>
+                        x.fields == "instagram_business_account{id,username,name,biography,followers_count}" ) );
+        }
 
-        [ Test ] public void Then_Valid_Response_Was_Returned( ) =>
-            Assert.AreSame( _operationResult, _result );
+        [ Test ]
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
     }
 }

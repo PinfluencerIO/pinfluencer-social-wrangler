@@ -1,12 +1,9 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
 {
@@ -36,7 +33,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
         };
 
         protected User DefaultUser => new User { Name = "Aidan", Id = "123" };
-        
+
         [ Test ]
         public void Then_Correct_User_Was_Called( )
         {

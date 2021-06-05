@@ -1,6 +1,4 @@
-﻿using System;
-using Pinfluencer.SocialWrangler.Core.Models.Social;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
+﻿using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests

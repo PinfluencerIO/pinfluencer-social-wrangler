@@ -6,7 +6,7 @@ namespace Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.Fr
     public interface IAudienceRepository
     {
         OperationResultEnum Create( Audience audience );
-        
+
         OperationResultEnum Update( Audience audience );
     }
 }

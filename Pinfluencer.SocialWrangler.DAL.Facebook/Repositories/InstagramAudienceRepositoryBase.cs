@@ -7,7 +7,7 @@ using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
-    public abstract class InstagramAudienceRepositoryBase<TRepository,TProperty> :
+    public abstract class InstagramAudienceRepositoryBase<TRepository, TProperty> :
         IDataCollectionMappable<IEnumerable<AudienceCount<TProperty>>,
             DataArray<Metric<object>>>
     {
@@ -17,8 +17,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         {
             FacebookDataHandler = facebookDataHandler;
         }
-        
-        public abstract OperationResult<IEnumerable<AudienceCount<TProperty>>> Get( string instaId );
+
         public abstract IEnumerable<AudienceCount<TProperty>> MapMany( DataArray<Metric<object>> dtoCollection );
+
+        public abstract OperationResult<IEnumerable<AudienceCount<TProperty>>> Get( string instaId );
     }
 }

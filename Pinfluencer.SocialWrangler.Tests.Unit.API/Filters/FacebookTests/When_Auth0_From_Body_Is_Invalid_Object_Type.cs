@@ -13,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         {
             return new Dictionary<string, StringValues>( );
         }
-        
+
         protected override Dictionary<string, object> SetupActionArguments( )
         {
             return new Dictionary<string, object> { { UserActionArgumentKey, new { Auth0User = Auth0IdParamKey } } };

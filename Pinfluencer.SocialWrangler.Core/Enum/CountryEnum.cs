@@ -17,8 +17,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Anguilla" ) ] AI = 8,
         [ Country( "Antarctica" ) ] AQ = 9,
 
-        [ Country( "Antigua and Barbuda" ) ]
-        AG = 10,
+        [ Country( "Antigua and Barbuda" ) ] AG = 10,
         [ Country( "Argentina" ) ] AR = 11,
         [ Country( "Armenia" ) ] AM = 12,
         [ Country( "Aruba" ) ] AW = 13,
@@ -36,8 +35,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Bermuda" ) ] BM = 25,
         [ Country( "Bhutan" ) ] BT = 26,
 
-        [ Country( "Bolivia" ) ]
-        BO = 27,
+        [ Country( "Bolivia" ) ] BO = 27,
 
         [ Country( "Bonaire, Sint Eustatius and Saba" ) ]
         BQ = 28,
@@ -87,8 +85,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Djibouti" ) ] DJ = 62,
         [ Country( "Dominica" ) ] DM = 63,
 
-        [ Country( "Dominican Republic" ) ]
-        DO = 64,
+        [ Country( "Dominican Republic" ) ] DO = 64,
         [ Country( "Ecuador" ) ] EC = 65,
         [ Country( "Egypt" ) ] EG = 66,
         [ Country( "El Salvador" ) ] SV = 67,
@@ -136,8 +133,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "India" ) ] IN = 103,
         [ Country( "Indonesia" ) ] ID = 104,
 
-        [ Country( "Iran" ) ]
-        IR = 105,
+        [ Country( "Iran" ) ] IR = 105,
         [ Country( "Iraq" ) ] IQ = 106,
         [ Country( "Ireland" ) ] IE = 107,
         [ Country( "Isle of Man" ) ] IM = 108,
@@ -151,11 +147,9 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Kenya" ) ] KE = 116,
         [ Country( "Kiribati" ) ] KI = 117,
 
-        [ Country( "North Korea" ) ]
-        KP = 118,
+        [ Country( "North Korea" ) ] KP = 118,
 
-        [ Country( "South Korea" ) ]
-        KR = 119,
+        [ Country( "South Korea" ) ] KR = 119,
         [ Country( "Kuwait" ) ] KW = 120,
         [ Country( "Kyrgyzstan" ) ] KG = 121,
 
@@ -171,8 +165,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Luxembourg" ) ] LU = 130,
         [ Country( "Macao" ) ] MO = 131,
 
-        [ Country( "Macedonia" ) ]
-        MK = 132,
+        [ Country( "Macedonia" ) ] MK = 132,
         [ Country( "Madagascar" ) ] MG = 133,
         [ Country( "Malawi" ) ] MW = 134,
         [ Country( "Malaysia" ) ] MY = 135,
@@ -186,11 +179,9 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Mayotte" ) ] YT = 143,
         [ Country( "Mexico" ) ] MX = 144,
 
-        [ Country( "Micronesia" ) ]
-        FM = 145,
+        [ Country( "Micronesia" ) ] FM = 145,
 
-        [ Country( "Moldova" ) ]
-        MD = 146,
+        [ Country( "Moldova" ) ] MD = 146,
         [ Country( "Monaco" ) ] MC = 147,
         [ Country( "Mongolia" ) ] MN = 148,
         [ Country( "Montenegro" ) ] ME = 149,
@@ -217,8 +208,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Pakistan" ) ] PK = 168,
         [ Country( "Palau" ) ] PW = 169,
 
-        [ Country( "Palestine" ) ]
-        PS = 170,
+        [ Country( "Palestine" ) ] PS = 170,
         [ Country( "Panama" ) ] PA = 171,
         [ Country( "Papua New Guinea" ) ] PG = 172,
         [ Country( "Paraguay" ) ] PY = 173,
@@ -232,20 +222,17 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Réunion" ) ] RE = 181,
         [ Country( "Romania" ) ] RO = 182,
 
-        [ Country( "Russian Federation" ) ]
-        RU = 183,
+        [ Country( "Russian Federation" ) ] RU = 183,
         [ Country( "Rwanda" ) ] RW = 184,
         [ Country( "Saint Barthélemy" ) ] BL = 185,
 
         [ Country( "Saint Helena, Ascension and Tristan da Cunha" ) ]
         SH = 186,
 
-        [ Country( "Saint Kitts and Nevis" ) ]
-        KN = 187,
+        [ Country( "Saint Kitts and Nevis" ) ] KN = 187,
         [ Country( "Saint Lucia" ) ] LC = 188,
 
-        [ Country( "Saint Martin" ) ]
-        MF = 189,
+        [ Country( "Saint Martin" ) ] MF = 189,
 
         [ Country( "Saint Pierre and Miquelon" ) ]
         PM = 190,
@@ -255,8 +242,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Samoa" ) ] WS = 192,
         [ Country( "San Marino" ) ] SM = 193,
 
-        [ Country( "Sao Tome and Principe" ) ]
-        ST = 194,
+        [ Country( "Sao Tome and Principe" ) ] ST = 194,
         [ Country( "Saudi Arabia" ) ] SA = 195,
         [ Country( "Senegal" ) ] SN = 196,
         [ Country( "Serbia" ) ] RS = 197,
@@ -264,8 +250,7 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Sierra Leone" ) ] SL = 199,
         [ Country( "Singapore" ) ] SG = 200,
 
-        [ Country( "Sint Maarten" ) ]
-        SX = 201,
+        [ Country( "Sint Maarten" ) ] SX = 201,
         [ Country( "Slovakia" ) ] SK = 202,
         [ Country( "Slovenia" ) ] SI = 203,
         [ Country( "Solomon Islands" ) ] SB = 204,
@@ -286,23 +271,19 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Sweden" ) ] SE = 215,
         [ Country( "Switzerland" ) ] CH = 216,
 
-        [ Country( "Syrian Arab Republic" ) ]
-        SY = 217,
+        [ Country( "Syrian Arab Republic" ) ] SY = 217,
 
-        [ Country( "Taiwan" ) ]
-        TW = 218,
+        [ Country( "Taiwan" ) ] TW = 218,
         [ Country( "Tajikistan" ) ] TJ = 219,
 
-        [ Country( "Tanzania" ) ]
-        TZ = 220,
+        [ Country( "Tanzania" ) ] TZ = 220,
         [ Country( "Thailand" ) ] TH = 221,
         [ Country( "Timor-Leste" ) ] TL = 222,
         [ Country( "Togo" ) ] TG = 223,
         [ Country( "Tokelau" ) ] TK = 224,
         [ Country( "Tonga" ) ] TO = 225,
 
-        [ Country( "Trinidad and Tobago" ) ]
-        TT = 226,
+        [ Country( "Trinidad and Tobago" ) ] TT = 226,
         [ Country( "Tunisia" ) ] TN = 227,
         [ Country( "Turkey" ) ] TR = 228,
         [ Country( "Turkmenistan" ) ] TM = 229,
@@ -313,14 +294,11 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Uganda" ) ] UG = 232,
         [ Country( "Ukraine" ) ] UA = 233,
 
-        [ Country( "United Arab Emirates" ) ]
-        AE = 234,
+        [ Country( "United Arab Emirates" ) ] AE = 234,
 
-        [ Country( "United Kingdom" ) ]
-        GB = 235,
+        [ Country( "United Kingdom" ) ] GB = 235,
 
-        [ Country( "United States" ) ]
-        US = 236,
+        [ Country( "United States" ) ] US = 236,
 
         [ Country( "United States Minor Outlying Islands" ) ]
         UM = 237,
@@ -328,15 +306,12 @@ namespace Pinfluencer.SocialWrangler.Core.Enum
         [ Country( "Uzbekistan" ) ] UZ = 239,
         [ Country( "Vanuatu" ) ] VU = 240,
 
-        [ Country( "Venezuela" ) ]
-        VE = 241,
+        [ Country( "Venezuela" ) ] VE = 241,
         [ Country( "Viet Nam" ) ] VN = 242,
 
-        [ Country( "Virgin Islands" ) ]
-        VG = 243,
+        [ Country( "Virgin Islands" ) ] VG = 243,
 
-        [ Country( "Virgin Islands" ) ]
-        VI = 244,
+        [ Country( "Virgin Islands" ) ] VI = 244,
         [ Country( "Wallis and Futuna" ) ] WF = 245,
         [ Country( "Western Sahara" ) ] EH = 246,
         [ Country( "Yemen" ) ] YE = 247,

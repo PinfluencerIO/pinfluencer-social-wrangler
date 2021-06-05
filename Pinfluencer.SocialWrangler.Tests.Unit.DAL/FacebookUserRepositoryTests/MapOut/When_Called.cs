@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.MapOut
@@ -35,9 +31,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
             };
             _result = SUT.MapOut( facebookUser );
         }
-        
+
         [ Test ]
-        public void Then_Mapping_Is_Correct()
+        public void Then_Mapping_Is_Correct( )
         {
             Assert.AreEqual( "123", _result.Id );
             Assert.AreEqual( 21, _result.Age );

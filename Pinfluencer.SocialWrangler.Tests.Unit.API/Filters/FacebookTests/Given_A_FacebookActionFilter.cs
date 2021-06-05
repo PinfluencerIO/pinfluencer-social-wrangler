@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Facebook;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
@@ -41,7 +40,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
                 .Returns( MockFacebookClient );
             _facebookDecorator = new FacebookDecorator( facebookClientFactory, Serializer );
 
-            SUT = new FacebookActionFilter( _facebookDecorator, _mockFacebookClientFactory, MvcAdapter, MockTokenRepository );
+            SUT = new FacebookActionFilter( _facebookDecorator, _mockFacebookClientFactory, MvcAdapter,
+                MockTokenRepository );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )
@@ -58,7 +58,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
 
         protected override Dictionary<string, object> SetupActionArguments( )
         {
-            return new Dictionary<string, object> { { UserActionArgumentKey, new UserDto{ Auth0Id = TestAuth0Id } } };
+            return new Dictionary<string, object> { { UserActionArgumentKey, new UserDto { Auth0Id = TestAuth0Id } } };
         }
     }
 }

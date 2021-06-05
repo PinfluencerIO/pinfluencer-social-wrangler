@@ -2,9 +2,7 @@
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.BuisnessLayer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
@@ -19,31 +17,38 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
         private readonly ISocialAudienceRepository _socialAudienceRepository;
 
         public InstagramFacade(
-            ISocialImpressionsRepository impressionsRepository, IInsightsSocialUserRepository insightsSocialUserRepository, ISocialAudienceRepository socialAudienceRepository )
+            ISocialImpressionsRepository impressionsRepository,
+            IInsightsSocialUserRepository insightsSocialUserRepository,
+            ISocialAudienceRepository socialAudienceRepository )
         {
             _impressionsRepository = impressionsRepository;
             _insightsSocialUserRepository = insightsSocialUserRepository;
             _socialAudienceRepository = socialAudienceRepository;
         }
 
-        public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id ) => _impressionsRepository.Get( id );
+        public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id )
+        {
+            return _impressionsRepository.Get( id );
+        }
 
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
-        public OperationResult<IEnumerable<SocialInsightsUser>> GetUsers( ) => _insightsSocialUserRepository.GetAll( );
+        public OperationResult<IEnumerable<SocialInsightsUser>> GetUsers( )
+        {
+            return _insightsSocialUserRepository.GetAll( );
+        }
 
-        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights( string id )
+        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights(
+            string id )
         {
             var result = _socialAudienceRepository.GetCountry( id );
             if( result.Status != OperationResultEnum.Success )
-            {
                 return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
                     Enumerable.Empty<AudiencePercentage<LocationProperty>>( ), OperationResultEnum.Failed );
-            }
 
             var totalFollowers = result.Value.Sum( x => x.Count );
             return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
                 result.Value.Select( x => new AudiencePercentage<LocationProperty>
-                    { Percentage = ( double )x.Count / ( double )totalFollowers, Value = x.Property } ),
+                    { Percentage = ( double ) x.Count / ( double ) totalFollowers, Value = x.Property } ),
                 OperationResultEnum.Success );
         }
 
@@ -51,10 +56,8 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
         {
             var result = _socialAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
-            {
                 return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
                     Enumerable.Empty<AudiencePercentage<GenderEnum>>( ), OperationResultEnum.Failed );
-            }
 
             var totalFollowers = result
                 .Value
@@ -64,18 +67,17 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
                 .GroupBy( x => x.Property.Gender )
                 .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
             return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
-                totalFollowersOfGenderType.Select( x => new AudiencePercentage<GenderEnum>{ Percentage =  ( double )x.Item2/totalFollowers, Value = x.Key } ),
+                totalFollowersOfGenderType.Select( x => new AudiencePercentage<GenderEnum>
+                    { Percentage = ( double ) x.Item2 / totalFollowers, Value = x.Key } ),
                 OperationResultEnum.Success );
         }
-        
+
         public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
             var result = _socialAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
-            {
                 return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
                     Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
-            }
 
             var totalFollowers = result
                 .Value
@@ -85,7 +87,11 @@ namespace Pinfluencer.SocialWrangler.BLL.Facades
                 .GroupBy( x => x.Property.AgeRange )
                 .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
             return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
-                totalFollowersOfGenderType.Select( x => new AudiencePercentage<AgeProperty>{ Percentage =  ( double )x.Item2/totalFollowers, Value = new AgeProperty{ Max = x.Key.Item2, Min = x.Key.Item1 } } ),
+                totalFollowersOfGenderType.Select( x => new AudiencePercentage<AgeProperty>
+                {
+                    Percentage = ( double ) x.Item2 / totalFollowers,
+                    Value = new AgeProperty { Max = x.Key.Item2, Min = x.Key.Item1 }
+                } ),
                 OperationResultEnum.Success );
         }
     }

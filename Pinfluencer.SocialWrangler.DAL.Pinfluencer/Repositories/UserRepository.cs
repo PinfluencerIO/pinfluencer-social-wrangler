@@ -1,9 +1,6 @@
-﻿
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+﻿using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
@@ -26,13 +23,14 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             _bubbleDataHandler = bubbleDataHandler;
         }
 
-        //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
-        public OperationResult<User> Get( string id ) =>
-            _bubbleDataHandler.Read<User,TypeResponse<Profile>>( $"profile/{id}",
-                MapOut,
-                new User() );
+        public User MapOut( TypeResponse<Profile> dto ) { return new User { Id = dto.Type.Id, Name = dto.Type.Name }; }
 
-        public User MapOut( TypeResponse<Profile> dto ) =>
-            new User { Id = dto.Type.Id, Name = dto.Type.Name };
+        //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
+        public OperationResult<User> Get( string id )
+        {
+            return _bubbleDataHandler.Read<User, TypeResponse<Profile>>( $"profile/{id}",
+                MapOut,
+                new User( ) );
+        }
     }
 }

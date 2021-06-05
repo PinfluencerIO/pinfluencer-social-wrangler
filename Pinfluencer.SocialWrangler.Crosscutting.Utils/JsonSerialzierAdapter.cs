@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
@@ -15,8 +14,8 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
             _settings = new JsonSerializerSettings { ContractResolver = contractResolver.Resolver };
         }
 
-        public string Serialize( object content ) => JsonConvert.SerializeObject( content, _settings );
+        public string Serialize( object content ) { return JsonConvert.SerializeObject( content, _settings ); }
 
-        public T Deserialize<T>( string content ) => JsonConvert.DeserializeObject<T>( content, _settings );
+        public T Deserialize<T>( string content ) { return JsonConvert.DeserializeObject<T>( content, _settings ); }
     }
 }

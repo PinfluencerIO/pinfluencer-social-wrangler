@@ -5,11 +5,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
@@ -19,13 +17,15 @@ using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     [ Obsolete ]
-    public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>, ISocialAudienceRepository
+    public class InstagramAudienceRepository : FacebookRepository<InstagramAudienceRepository>,
+        ISocialAudienceRepository
     {
+        private readonly ICountryGetter _countryGetter;
         private readonly IFacebookDecorator _facebookDecorator;
         private readonly ILoggerAdapter<InstagramAudienceRepository> _logger;
-        private readonly ICountryGetter _countryGetter;
 
-        public InstagramAudienceRepository( IFacebookDecorator facebookDecorator, ILoggerAdapter<InstagramAudienceRepository> logger, ICountryGetter countryGetter ) : base( logger )
+        public InstagramAudienceRepository( IFacebookDecorator facebookDecorator,
+            ILoggerAdapter<InstagramAudienceRepository> logger, ICountryGetter countryGetter ) : base( logger )
         {
             _facebookDecorator = facebookDecorator;
             _logger = logger;
@@ -34,9 +34,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public OperationResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId )
         {
-            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookDecorator
-                    .Get( $"{instaId}/insights",
-                        new BaseRequestInsightParams { metric = "audience_country", period = "lifetime" } ) );
+            var (fbResult, fbValidResult) = ValidateFacebookCall( ( ) => _facebookDecorator
+                .Get( $"{instaId}/insights",
+                    new BaseRequestInsightParams { metric = "audience_country", period = "lifetime" } ) );
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
@@ -44,6 +44,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     Enumerable.Empty<AudienceCount<LocationProperty>>( ),
                     OperationResultEnum.Failed );
             }
+
             var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
                 result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
@@ -51,7 +52,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                 genderAge?.Select( x => new AudienceCount<LocationProperty>
                 {
                     Count = ( int ) x.Value,
-                    Property = new LocationProperty{ CountryCode = x.Key.Enumify<CountryEnum>( ), Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ] }
+                    Property = new LocationProperty
+                    {
+                        CountryCode = x.Key.Enumify<CountryEnum>( ),
+                        Country = _countryGetter.Countries[ x.Key.Enumify<CountryEnum>( ) ]
+                    }
                 } ),
                 OperationResultEnum.Success );
             _logger.LogInfo( "audience insights fetched successfully" );
@@ -60,9 +65,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
-            var ( fbResult, fbValidResult ) = ValidateFacebookCall( ( ) => _facebookDecorator
-                    .Get( $"{instaId}/insights",
-                        new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
+            var (fbResult, fbValidResult) = ValidateFacebookCall( ( ) => _facebookDecorator
+                .Get( $"{instaId}/insights",
+                    new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } ) );
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
@@ -70,6 +75,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed );
             }
+
             var result = JsonConvert.DeserializeObject<DataArray<Metric<object>>>( fbResult );
             var genderAge =
                 result.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;

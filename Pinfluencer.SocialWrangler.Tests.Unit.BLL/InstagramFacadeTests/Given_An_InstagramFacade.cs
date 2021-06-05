@@ -1,7 +1,5 @@
 ﻿using NSubstitute;
 using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 
@@ -17,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests
         protected override void Given( )
         {
             base.Given( );
-            
+
             ImpressionsInsightsRepository = Substitute.For<ISocialImpressionsRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockSocialAudienceRepository = Substitute.For<ISocialAudienceRepository>( );

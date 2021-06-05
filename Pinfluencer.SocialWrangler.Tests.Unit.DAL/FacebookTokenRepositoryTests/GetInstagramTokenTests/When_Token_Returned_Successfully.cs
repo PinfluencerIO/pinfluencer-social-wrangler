@@ -34,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
 
         [ Test ]
         public void Then_Response_Is_Successful( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
-        
+
         [ Test ]
         public void Then_Success_Event_Is_Logged( )
         {

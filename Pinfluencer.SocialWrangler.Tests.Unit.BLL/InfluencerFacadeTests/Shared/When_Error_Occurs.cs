@@ -8,9 +8,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests.Shared
         protected OperationResultEnum Result;
 
         [ Test ]
-        public void Then_Failiure_Was_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Failed, Result );
-        }
+        public void Then_Failiure_Was_Returned( ) { Assert.AreEqual( OperationResultEnum.Failed, Result ); }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
-using Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Create.Shared
 {
@@ -11,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
         protected const string TestUrl = "test";
         protected const string TestId = "123";
         protected const string TestValue = "value";
-        
+
         [ Test ]
         public void Then_Data_Will_Be_Created_Once( )
         {
@@ -36,8 +34,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
                 .Post( Arg.Any<string>( ), Arg.Is<Dto>( x => x.Id == TestId && x.Value == TestValue ) );
         }
 
-        protected OperationResultEnum SutCall( ) =>
-            BubbleSut.Create( TestUrl, new Model
+        protected OperationResultEnum SutCall( )
+        {
+            return BubbleSut.Create( TestUrl, new Model
             {
                 Id = TestId,
                 Value = TestValue
@@ -46,5 +45,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Cr
                 Id = x.Id,
                 Value = x.Value
             } );
+        }
     }
 }

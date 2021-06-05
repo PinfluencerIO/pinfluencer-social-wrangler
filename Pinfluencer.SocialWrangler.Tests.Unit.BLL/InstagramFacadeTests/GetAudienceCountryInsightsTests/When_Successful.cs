@@ -6,7 +6,6 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudienceCountryInsightsTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudienceCountryInsightsTests
@@ -18,16 +17,28 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
         protected override void When( )
         {
             MockSocialAudienceRepository
-                .GetCountry( Arg.Any<string>(  ) )
+                .GetCountry( Arg.Any<string>( ) )
                 .Returns( new OperationResult<IEnumerable<AudienceCount<LocationProperty>>>(
                     new [ ]
                     {
                         new AudienceCount<LocationProperty>
-                            { Count = 39, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.GB ], CountryCode = CountryEnum.GB } },
+                        {
+                            Count = 39,
+                            Property = new LocationProperty
+                                { Country = CountryGetter.Countries[ CountryEnum.GB ], CountryCode = CountryEnum.GB }
+                        },
                         new AudienceCount<LocationProperty>
-                            { Count = 113, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.US ], CountryCode = CountryEnum.US } },
+                        {
+                            Count = 113,
+                            Property = new LocationProperty
+                                { Country = CountryGetter.Countries[ CountryEnum.US ], CountryCode = CountryEnum.US }
+                        },
                         new AudienceCount<LocationProperty>
-                            { Count = 113, Property = new LocationProperty{ Country = CountryGetter.Countries[ CountryEnum.FR ], CountryCode = CountryEnum.FR } }
+                        {
+                            Count = 113,
+                            Property = new LocationProperty
+                                { Country = CountryGetter.Countries[ CountryEnum.FR ], CountryCode = CountryEnum.FR }
+                        }
                     },
                     OperationResultEnum.Success
                 ) );
@@ -35,23 +46,20 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
         }
 
         [ Test ]
-        public void Then_Success_Is_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
-        }
-        
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+
         [ Test ]
         public void Then_Valid_FR_Percentage_Is_Returned( )
         {
             Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.FR ).Percentage );
         }
-        
+
         [ Test ]
         public void Then_Valid_US_Percentage_Is_Returned( )
         {
             Assert.AreEqual( 0.43, _result.Value.First( x => x.Value.CountryCode == CountryEnum.US ).Percentage );
         }
-        
+
         [ Test ]
         public void Then_Valid_GB_Percentage_Is_Returned( )
         {

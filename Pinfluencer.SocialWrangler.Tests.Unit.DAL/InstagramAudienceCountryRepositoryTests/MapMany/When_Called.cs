@@ -1,8 +1,6 @@
 ﻿using System.Linq;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepositoryTests.MapMany
@@ -23,13 +21,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                             new Insight<object>
                             {
                                 Time = "2021-05-30T07:00:00+0000",
-                                Value = Serializer.Deserialize<object>( "{\"EG\": 1,\"SG\": 1,\"AU\": 1,\"IN\": 1,\"CI\": 1,\"PH\": 1,\"GB\": 125,\"ES\": 1,\"US\": 6}" )
+                                Value = Serializer.Deserialize<object>(
+                                    "{\"EG\": 1,\"SG\": 1,\"AU\": 1,\"IN\": 1,\"CI\": 1,\"PH\": 1,\"GB\": 125,\"ES\": 1,\"US\": 6}" )
                             }
                         }
                     }
                 }
             } );
-            CollectionAssert.AreEquivalent( new[]
+            CollectionAssert.AreEquivalent( new [ ]
             {
                 ( CountryEnum.EG, 1 ),
                 ( CountryEnum.SG, 1 ),
@@ -41,7 +40,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                 ( CountryEnum.ES, 1 ),
                 ( CountryEnum.US, 6 )
             }, result
-                .Select( x => ( x.Property.CountryCode, x.Count ) ));
+                .Select( x => ( x.Property.CountryCode, x.Count ) ) );
         }
     }
 }

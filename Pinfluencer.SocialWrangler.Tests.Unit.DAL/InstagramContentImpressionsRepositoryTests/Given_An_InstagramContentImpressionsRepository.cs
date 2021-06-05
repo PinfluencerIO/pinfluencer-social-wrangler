@@ -3,7 +3,8 @@ using Pinfluencer.SocialWrangler.DAL.Facebook.Repositories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsRepositoryTests
 {
-    public class Given_An_InstagramContentImpressionsRepository : DataGivenWhenThen<InstagramContentImpressionsRepository>
+    public class
+        Given_An_InstagramContentImpressionsRepository : DataGivenWhenThen<InstagramContentImpressionsRepository>
     {
         protected override void Given( )
         {

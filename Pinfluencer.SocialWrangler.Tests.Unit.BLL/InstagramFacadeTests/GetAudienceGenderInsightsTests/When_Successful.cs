@@ -17,26 +17,58 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
         protected override void When( )
         {
             MockSocialAudienceRepository
-                .GetGenderAge( Arg.Any<string>(  ) )
+                .GetGenderAge( Arg.Any<string>( ) )
                 .Returns( new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
                     new [ ]
                     {
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 39, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 18, 24 ), Gender = GenderEnum.Female } },
+                        {
+                            Count = 39,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 18, 24 ), Gender = GenderEnum.Female }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 4, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 25, 34 ), Gender = GenderEnum.Female } },
+                        {
+                            Count = 4,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 25, 34 ), Gender = GenderEnum.Female }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 1, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 45, 54 ), Gender = GenderEnum.Female } },
+                        {
+                            Count = 1,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 45, 54 ), Gender = GenderEnum.Female }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 73, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 18, 24 ), Gender = GenderEnum.Male } },
+                        {
+                            Count = 73,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 18, 24 ), Gender = GenderEnum.Male }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 9, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 25, 34 ), Gender = GenderEnum.Male } },
+                        {
+                            Count = 9,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 25, 34 ), Gender = GenderEnum.Male }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 2, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 35, 44 ), Gender = GenderEnum.Male } },
+                        {
+                            Count = 2,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 35, 44 ), Gender = GenderEnum.Male }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 2, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 45, 54 ), Gender = GenderEnum.Male } },
+                        {
+                            Count = 2,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 45, 54 ), Gender = GenderEnum.Male }
+                        },
                         new AudienceCount<GenderAgeProperty>
-                            { Count = 1, Property = new GenderAgeProperty{ AgeRange = new Tuple<int, int?>( 55, 64 ), Gender = GenderEnum.Male } }
+                        {
+                            Count = 1,
+                            Property = new GenderAgeProperty
+                                { AgeRange = new Tuple<int, int?>( 55, 64 ), Gender = GenderEnum.Male }
+                        }
                     },
                     OperationResultEnum.Success
                 ) );
@@ -44,17 +76,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
         }
 
         [ Test ]
-        public void Then_Success_Is_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
-        }
-        
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
+
         [ Test ]
         public void Then_Valid_Female_Percentage_Is_Returned( )
         {
             Assert.AreEqual( 0.34, _result.Value.First( x => x.Value == GenderEnum.Female ).Percentage );
         }
-        
+
         [ Test ]
         public void Then_Valid_Male_Percentage_Is_Returned( )
         {

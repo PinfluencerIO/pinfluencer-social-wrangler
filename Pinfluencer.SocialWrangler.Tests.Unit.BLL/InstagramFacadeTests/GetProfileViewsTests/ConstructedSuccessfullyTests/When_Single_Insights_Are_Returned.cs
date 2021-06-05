@@ -26,28 +26,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetProf
         }
 
         [ Test ]
-        public void Then_Impressions_Count_Are_Correct( )
-        {
-            Assert.AreEqual( 5, _result.Value.First( ).Count );
-        }
+        public void Then_Impressions_Count_Are_Correct( ) { Assert.AreEqual( 5, _result.Value.First( ).Count ); }
 
         [ Test ]
-        public void Then_Impressions_Day_Is_Correct( )
-        {
-            Assert.AreEqual( 1, _result.Value.First( ).Time.Day );
-        }
+        public void Then_Impressions_Day_Is_Correct( ) { Assert.AreEqual( 1, _result.Value.First( ).Time.Day ); }
 
         [ Test ]
-        public void Then_Impressions_Month_Is_Correct( )
-        {
-            Assert.AreEqual( 1, _result.Value.First( ).Time.Month );
-        }
+        public void Then_Impressions_Month_Is_Correct( ) { Assert.AreEqual( 1, _result.Value.First( ).Time.Month ); }
 
         [ Test ]
-        public void Then_Impressions_Year_Is_Correct( )
-        {
-            Assert.AreEqual( 2000, _result.Value.First( ).Time.Year );
-        }
+        public void Then_Impressions_Year_Is_Correct( ) { Assert.AreEqual( 2000, _result.Value.First( ).Time.Year ); }
 
         [ Test ]
         public void Then_Result_Status_Is_Success( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }

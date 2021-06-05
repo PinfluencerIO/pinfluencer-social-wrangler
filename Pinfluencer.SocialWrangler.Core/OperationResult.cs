@@ -14,12 +14,10 @@ namespace Pinfluencer.SocialWrangler.Core
             Msg = msg;
         }
 
-        public OperationResult( )
-        {
-        }
+        public OperationResult( ) { }
 
         public string Msg { get; set; }
-        
+
         public T Value { get; set; }
 
         public OperationResultEnum Status { get; set; }

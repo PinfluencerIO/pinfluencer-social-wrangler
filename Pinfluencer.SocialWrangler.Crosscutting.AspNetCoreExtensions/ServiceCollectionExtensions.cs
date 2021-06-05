@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using System.Xml.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
 {
@@ -31,19 +29,16 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
         public static IServiceCollection Replace<TService>( this IServiceCollection sc,
             Func<IServiceProvider, TService> implementationFactory ) where TService : class
         {
-            if (sc == null)
-            {
-                throw new ArgumentNullException(nameof(sc));
-            }
+            if( sc == null ) throw new ArgumentNullException( nameof( sc ) );
 
             var lifetime = ServiceLifetime.Transient;
             // Remove existing
             var count = sc.Count;
-            for (var i = 0; i < count; i++)
+            for( var i = 0; i < count; i++ )
             {
                 var service = sc[ i ];
                 if( service.ServiceType != typeof( TService ) ) continue;
-                lifetime = service.Lifetime; 
+                lifetime = service.Lifetime;
                 sc.RemoveAt( i );
                 break;
             }
@@ -51,15 +46,16 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
             switch( lifetime )
             {
                 case ServiceLifetime.Scoped:
-                    sc.AddScoped<TService>( implementationFactory );
+                    sc.AddScoped( implementationFactory );
                     break;
                 case ServiceLifetime.Transient:
-                    sc.AddTransient<TService>( implementationFactory );
+                    sc.AddTransient( implementationFactory );
                     break;
                 case ServiceLifetime.Singleton:
-                    sc.AddSingleton<TService>( implementationFactory );
+                    sc.AddSingleton( implementationFactory );
                     break;
             }
+
             return sc;
         }
     }

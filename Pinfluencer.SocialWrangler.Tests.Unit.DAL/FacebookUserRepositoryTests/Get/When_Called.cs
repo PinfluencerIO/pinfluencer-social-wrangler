@@ -5,7 +5,6 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.Get
@@ -17,17 +16,18 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
 
         private OperationResult<SocialInfoUser> _result;
 
-        public When_Called( Func<SocialInfoUser,SocialInfoUser> func, OperationResultEnum operationResultEnum )
+        public When_Called( Func<SocialInfoUser, SocialInfoUser> func, OperationResultEnum operationResultEnum )
         {
             base.Given( );
-            _operationResult = new OperationResult<SocialInfoUser>( func( new SocialInfoUser( ) ), operationResultEnum );
+            _operationResult =
+                new OperationResult<SocialInfoUser>( func( new SocialInfoUser( ) ), operationResultEnum );
         }
 
         private static readonly object [ ] data =
         {
-            new object[ ]
+            new object [ ]
             {
-                ( Func<SocialInfoUser,SocialInfoUser> )( x =>
+                ( Func<SocialInfoUser, SocialInfoUser> ) ( x =>
                 {
                     x.Age = 21;
                     x.Gender = GenderEnum.Male;
@@ -42,9 +42,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
                 } ),
                 OperationResultEnum.Success
             },
-            new object[ ]
+            new object [ ]
             {
-                ( Func<SocialInfoUser,SocialInfoUser> )( x => x),
+                ( Func<SocialInfoUser, SocialInfoUser> ) ( x => x ),
                 OperationResultEnum.Failed
             }
         };
@@ -59,28 +59,35 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
                 .Returns( _operationResult );
             _result = SUT.Get( );
         }
-        
-        [ Test ] public void Then_Get_Users_Is_Called_Once( ) =>
+
+        [ Test ]
+        public void Then_Get_Users_Is_Called_Once( )
+        {
             MockFacebookDataHandler
                 .Received( 1 )
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<FacebookUser, SocialInfoUser>>( ),
                     Arg.Any<SocialInfoUser>( ),
                     Arg.Any<RequestFields>( ) );
+        }
 
-        [ Test ] public void Then_Valid_Call_Was_Made( ) =>
+        [ Test ]
+        public void Then_Valid_Call_Was_Made( )
+        {
             MockFacebookDataHandler
                 .Received( )
-                .Read<SocialInfoUser,FacebookUser>( "me",
+                .Read<SocialInfoUser, FacebookUser>( "me",
                     SUT.MapOut,
                     Arg.Is<SocialInfoUser>( x => x.Age == default &&
-                                                  x.Gender == default &&
-                                                  x.Id == default &&
-                                                  x.Location == default &&
-                                                  x.Name == default ),
-                    Arg.Is<RequestFields>( x => x.fields == "birthday,location{location{city,country,country_code}},gender,name" ) );
+                                                 x.Gender == default &&
+                                                 x.Id == default &&
+                                                 x.Location == default &&
+                                                 x.Name == default ),
+                    Arg.Is<RequestFields>( x =>
+                        x.fields == "birthday,location{location{city,country,country_code}},gender,name" ) );
+        }
 
-        [ Test ] public void Then_Valid_Response_Was_Returned( ) =>
-            Assert.AreSame( _operationResult, _result );
+        [ Test ]
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
     }
 }

@@ -7,7 +7,6 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 
@@ -21,19 +20,22 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
         private readonly OperationResultEnum _operationResult;
         private OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
 
-        private static object [ ] data = {
+        private static object [ ] data =
+        {
             new object [ ]
             {
                 new [ ]
                 {
                     new AudiencePercentage<LocationProperty>
                     {
-                        Audience = new AudienceModel { Id = "123" }, Id = "1", Value = new LocationProperty{ Country = "United Kingdom", CountryCode = CountryEnum.GB },
+                        Audience = new AudienceModel { Id = "123" }, Id = "1",
+                        Value = new LocationProperty { Country = "United Kingdom", CountryCode = CountryEnum.GB },
                         Percentage = 0.75
                     },
                     new AudiencePercentage<LocationProperty>
                     {
-                        Audience = new AudienceModel { Id = "123" }, Id = "2", Value = new LocationProperty{ Country = "United States", CountryCode = CountryEnum.US },
+                        Audience = new AudienceModel { Id = "123" }, Id = "2",
+                        Value = new LocationProperty { Country = "United States", CountryCode = CountryEnum.US },
                         Percentage = 0.25
                     }
                 },
@@ -41,7 +43,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
                 {
                     Type = new BubbleCollection<AudienceLocation>
                     {
-                        Results = new []
+                        Results = new [ ]
                         {
                             new AudienceLocation
                             {
@@ -62,10 +64,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
                 },
                 OperationResultEnum.Success
             },
-            new object[ ]
+            new object [ ]
             {
                 Enumerable.Empty<AudiencePercentage<LocationProperty>>( ),
-                new TypeResponse<BubbleCollection<AudienceLocation>>{ Type = new BubbleCollection<AudienceLocation>{ Results = Enumerable.Empty<AudienceLocation>(  ) } },
+                new TypeResponse<BubbleCollection<AudienceLocation>>
+                {
+                    Type = new BubbleCollection<AudienceLocation> { Results = Enumerable.Empty<AudienceLocation>( ) }
+                },
                 OperationResultEnum.Failed
             }
         };
@@ -83,18 +88,22 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
         {
             MockBubbleDataHandler
                 .Read( Arg.Any<string>( ),
-                    Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>, IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
+                    Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>,
+                        IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<LocationProperty>>>( ) )
-                .Returns( new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>( _audienceLocation, _operationResult ) );
+                .Returns( new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>( _audienceLocation,
+                    _operationResult ) );
             _result = SUT.GetAll( "123" );
         }
-        
+
         [ Test ]
         public void Then_Data_Is_Read_Once( )
         {
             MockBubbleDataHandler
                 .Received( 1 )
-                .Read( Arg.Any<string>( ), Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>, IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
+                .Read( Arg.Any<string>( ),
+                    Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>,
+                        IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<LocationProperty>>>( ) );
         }
 
@@ -103,29 +112,27 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
         {
             var mapResult = SUT.DataMap( _audienceLocationRaw );
             Assert.True( mapResult.Select( x => x.Id ).SequenceEqual( _audienceLocation.Select( x => x.Id ) ) &&
-                         mapResult.Select( x => x.Percentage ).SequenceEqual( _audienceLocation.Select( x => x.Percentage ) ) &&
-                         mapResult.Select( x => x.Audience.Id ).SequenceEqual( _audienceLocation.Select( x => x.Audience.Id ) ) );
+                         mapResult.Select( x => x.Percentage )
+                             .SequenceEqual( _audienceLocation.Select( x => x.Percentage ) ) &&
+                         mapResult.Select( x => x.Audience.Id )
+                             .SequenceEqual( _audienceLocation.Select( x => x.Audience.Id ) ) );
         }
-        
+
         [ Test ]
         public void Then_Correct_Resource_Is_Used( )
         {
             MockBubbleDataHandler
                 .Received( )
-                .Read( Arg.Is( "audiencelocation" ), Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>, IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
+                .Read( Arg.Is( "audiencelocation" ),
+                    Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>,
+                        IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<LocationProperty>>>( ) );
         }
 
         [ Test ]
-        public void Then_Correct_Status_Is_Returned( )
-        {
-            Assert.AreEqual( _operationResult, _result.Status );
-        }
-        
+        public void Then_Correct_Status_Is_Returned( ) { Assert.AreEqual( _operationResult, _result.Status ); }
+
         [ Test ]
-        public void Then_Correct_Model_Is_Returned( )
-        {
-            Assert.AreSame( _audienceLocation, _result.Value );
-        }
+        public void Then_Correct_Model_Is_Returned( ) { Assert.AreSame( _audienceLocation, _result.Value ); }
     }
 }

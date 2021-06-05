@@ -17,24 +17,18 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
         protected override void When( )
         {
             MockSocialAudienceRepository
-                .GetCountry( Arg.Any<string>(  ) )
+                .GetCountry( Arg.Any<string>( ) )
                 .Returns( new OperationResult<IEnumerable<AudienceCount<LocationProperty>>>(
-                    Enumerable.Empty<AudienceCount<LocationProperty>>(  ), 
+                    Enumerable.Empty<AudienceCount<LocationProperty>>( ),
                     OperationResultEnum.Failed
                 ) );
             _result = SUT.GetAudienceCountryInsights( InstagramId );
         }
 
         [ Test ]
-        public void Then_Failiure_Is_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Failed, _result.Status );
-        }
-        
+        public void Then_Failiure_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
+
         [ Test ]
-        public void Then_Empty_Collection_Is_Returned( )
-        {
-            Assert.IsEmpty( _result.Value );
-        }
+        public void Then_Empty_Collection_Is_Returned( ) { Assert.IsEmpty( _result.Value ); }
     }
 }

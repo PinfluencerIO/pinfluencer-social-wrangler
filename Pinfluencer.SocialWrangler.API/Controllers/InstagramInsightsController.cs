@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
-using Pinfluencer.SocialWrangler.BLL.Facades;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.BuisnessLayer;
 
@@ -14,7 +13,11 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     {
         private readonly IInstagramFacade _instagramFacade;
 
-        public InstagramInsightsController( IInstagramFacade instagramFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _instagramFacade = instagramFacade; }
+        public InstagramInsightsController( IInstagramFacade instagramFacade, MvcAdapter mvcAdapter ) :
+            base( mvcAdapter )
+        {
+            _instagramFacade = instagramFacade;
+        }
 
         [ Route( "" ) ]
         [ HttpGet ]
@@ -25,10 +28,11 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
             {
                 var method = GetType( )
                     .GetMethods( BindingFlags.NonPublic | BindingFlags.Instance )
-                    .First( x => x.GetCustomAttribute<ActionNameAttribute>()?.Name.ToLower( ) == metric );
+                    .First( x => x.GetCustomAttribute<ActionNameAttribute>( )?.Name.ToLower( ) == metric );
                 return method.Invoke( this, new object [ ] { user } ) as IActionResult;
             }
-            catch( Exception e ) when( e is ArgumentException || e is InvalidOperationException || e is NullReferenceException )
+            catch( Exception e ) when( e is ArgumentException || e is InvalidOperationException ||
+                                       e is NullReferenceException )
             {
                 return MvcAdapter.NotFoundError( "insight metric was not found" );
             }
@@ -42,7 +46,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram impressions for user" );
         }
-        
+
         [ NonAction ]
         [ ActionName( "audience-age" ) ]
         private IActionResult getAudienceAge( string user )
@@ -51,7 +55,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram audience age insights for user" );
         }
-        
+
         [ NonAction ]
         [ ActionName( "audience-gender" ) ]
         private IActionResult getAudienceGender( string user )
@@ -60,7 +64,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
-        
+
         [ NonAction ]
         [ ActionName( "audience-country" ) ]
         private IActionResult getAudienceCountry( string user )

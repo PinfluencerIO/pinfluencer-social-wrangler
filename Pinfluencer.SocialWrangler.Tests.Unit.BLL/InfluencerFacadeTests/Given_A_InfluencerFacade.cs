@@ -1,24 +1,16 @@
-﻿using Pinfluencer.SocialWrangler.BLL.Facades;
-using NSubstitute;
+﻿using NSubstitute;
+using Pinfluencer.SocialWrangler.BLL.Facades;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.Core.Models;
-using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
 {
     public class Given_A_InfluencerFacade : PinfluencerGivenWhenThen<InfluencerFacade>
     {
-        protected IUserRepository MockUserRepository;
-        protected IInsightsSocialUserRepository InsightsSocialUserRepository;
-        protected ISocialInfoUserRepository SocialInfoUserRepository;
-
         protected readonly SocialInfoUser DefaultSocialInfoUser = new SocialInfoUser
         {
             Age = 21,
@@ -32,7 +24,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InfluencerFacadeTests
             Name = "Aidan"
         };
 
+        protected IInsightsSocialUserRepository InsightsSocialUserRepository;
+
         protected IInfluencerRepository MockInfluencerRepository;
+        protected IUserRepository MockUserRepository;
+        protected ISocialInfoUserRepository SocialInfoUserRepository;
 
         protected override void Given( )
         {

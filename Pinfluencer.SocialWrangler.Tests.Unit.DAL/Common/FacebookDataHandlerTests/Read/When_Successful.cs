@@ -7,10 +7,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
 {
     public class When_Successful : Given_A_FacebookDataHandler
     {
-        private OperationResult<Model> _result;
         private const string Id = "123";
         private const string Value = "321";
-        
+        private OperationResult<Model> _result;
+
         protected override void When( )
         {
             MockFacebookClient
@@ -20,13 +20,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
         }
 
         [ Test ]
-        public void Then_Success_Is_Returned( ) =>
-            Assert.AreEqual( OperationResultEnum.Success, _result.Status );
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result.Status ); }
 
         [ Test ]
-        public void Then_Success_Was_Logged( ) =>
+        public void Then_Success_Was_Logged( )
+        {
             MockLogger
                 .Received( 1 )
                 .LogInfo( Arg.Any<string>( ) );
+        }
     }
 }

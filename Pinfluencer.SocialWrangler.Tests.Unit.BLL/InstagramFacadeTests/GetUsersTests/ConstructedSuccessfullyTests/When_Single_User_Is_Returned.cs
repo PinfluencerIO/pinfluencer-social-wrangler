@@ -17,10 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetUser
         }
 
         [ Test ]
-        public void Then_Insta_User_Id_Was_Valid( )
-        {
-            Assert.AreEqual( "123213", Result.Value.First( ).Id );
-        }
+        public void Then_Insta_User_Id_Was_Valid( ) { Assert.AreEqual( "123213", Result.Value.First( ).Id ); }
 
         [ Test ]
         public void Then_Insta_User_Handle_Was_Valid( )

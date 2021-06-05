@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
+﻿using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Excluded.DataAccess;
-using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
+using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
@@ -16,17 +12,16 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             Influencer>,
         IInfluencerRepository
     {
-        private IBubbleDataHandler<InfluencerRepository> _bubbleDataHandler;
+        private readonly IBubbleDataHandler<InfluencerRepository> _bubbleDataHandler;
+
         public InfluencerRepository( IBubbleDataHandler<InfluencerRepository> bubbleDataHandler )
         {
             _bubbleDataHandler = bubbleDataHandler;
         }
 
-        public OperationResultEnum Create( InfluencerModel influencer ) =>
-            _bubbleDataHandler.Create( "influencer", influencer, MapIn );
-
-        public Influencer MapIn( InfluencerModel model ) =>
-            new Influencer
+        public Influencer MapIn( InfluencerModel model )
+        {
+            return new Influencer
             {
                 Age = model.Age,
                 Bio = model.Bio,
@@ -35,5 +30,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
                 Location = model.Location,
                 Profile = model.User.Id
             };
+        }
+
+        public OperationResultEnum Create( InfluencerModel influencer )
+        {
+            return _bubbleDataHandler.Create( "influencer", influencer, MapIn );
+        }
     }
 }

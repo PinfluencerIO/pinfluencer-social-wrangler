@@ -18,7 +18,8 @@ namespace Pinfluencer.SocialWrangler.API.Filters
         public override void OnActionExecuting( ActionExecutingContext context )
         {
             var confKey = _configuration[ "Simple-Auth-Key" ];
-            var isHeaderKeyPresent = context.HttpContext.Request.Headers.TryGetValue( SimpleKeyName, out var headerKey );
+            var isHeaderKeyPresent =
+                context.HttpContext.Request.Headers.TryGetValue( SimpleKeyName, out var headerKey );
             if( confKey == null ) context.Result = _mvcAdapter.UnauthorizedError( "api key is not present in server" );
             else if( !isHeaderKeyPresent ) context.Result = _mvcAdapter.UnauthorizedError( "api key was not received" );
             else if( confKey != headerKey ) context.Result = _mvcAdapter.UnauthorizedError( "api keys do not match" );

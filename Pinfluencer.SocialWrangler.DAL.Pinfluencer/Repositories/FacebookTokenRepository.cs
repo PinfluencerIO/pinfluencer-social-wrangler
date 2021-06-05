@@ -3,7 +3,6 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
@@ -11,6 +10,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
     {
         private readonly Auth0Context _auth0Context;
         private readonly ILoggerAdapter<FacebookTokenRepository> _logger;
+
         public FacebookTokenRepository( ILoggerAdapter<FacebookTokenRepository> logger, Auth0Context auth0Context )
         {
             _logger = logger;

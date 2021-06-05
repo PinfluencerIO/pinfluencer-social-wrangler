@@ -15,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
         private OperationResultEnum _result;
 
         public When_Called( OperationResultEnum operationResult ) { _operationResult = operationResult; }
-        
+
         protected override void When( )
         {
             MockBubbleDataHandler
@@ -31,9 +31,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
                 .Create( Arg.Any<string>( ), Arg.Is<AudienceModel>( x => x.Id == null &&
                                                                          x.AudienceAge == null &&
                                                                          x.AudienceGender == null &&
-                                                                         x.AudienceLocation == null ), Arg.Any<Func<AudienceModel, Audience>>( ) );
+                                                                         x.AudienceLocation == null ),
+                    Arg.Any<Func<AudienceModel, Audience>>( ) );
         }
-        
+
         [ Test ]
         public void Then_Correct_Audience_Was_Created( )
         {
@@ -42,14 +43,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
                          mapResult.AudienceGender == null &&
                          mapResult.AudienceLocation == null );
         }
-        
+
         [ Test ]
         public void Then_Correct_Resource_Is_Used( )
         {
             MockBubbleDataHandler
                 .Create( Arg.Is( "audience" ), Arg.Any<AudienceModel>( ), Arg.Any<Func<AudienceModel, Audience>>( ) );
         }
-        
+
         [ Test ]
         public void Then_Valid_Status_Is_Returned( ) { Assert.AreEqual( _operationResult, _result ); }
     }

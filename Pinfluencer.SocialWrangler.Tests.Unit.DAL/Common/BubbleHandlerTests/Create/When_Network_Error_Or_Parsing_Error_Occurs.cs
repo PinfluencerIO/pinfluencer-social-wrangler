@@ -5,7 +5,6 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Create.Shared;
-using Audience = Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble.Audience;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Create

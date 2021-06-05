@@ -29,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
         {
             return new Dictionary<string, StringValues>( );
         }
-        
+
         protected virtual Dictionary<string, object> SetupActionArguments( )
         {
             return new Dictionary<string, object>( );

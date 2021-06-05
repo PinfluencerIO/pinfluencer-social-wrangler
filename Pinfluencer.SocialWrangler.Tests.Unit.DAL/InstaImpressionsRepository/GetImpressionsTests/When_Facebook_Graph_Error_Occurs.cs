@@ -16,11 +16,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
         private readonly FacebookApiException _apiException;
         private OperationResult<IEnumerable<ContentImpressions>> _result;
 
-        public When_Facebook_Graph_Error_Occurs( FacebookApiException apiException )
-        {
-            _apiException = apiException;
-        }
-        
+        public When_Facebook_Graph_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
+
         protected override void When( )
         {
             MockFacebookClient

@@ -5,8 +5,7 @@ namespace Pinfluencer.SocialWrangler.Core.Interfaces.Contract.Crosscutting
 {
     public interface IContractResolverAdapter
     {
-        JsonContract ResolveContract( Type type );
-
         IContractResolver Resolver { get; set; }
+        JsonContract ResolveContract( Type type );
     }
 }

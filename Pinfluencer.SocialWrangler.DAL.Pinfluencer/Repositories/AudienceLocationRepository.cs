@@ -2,10 +2,8 @@
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.FrontFacing.Pinfluencer;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
@@ -22,14 +20,18 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             _bubbleDataHandler = bubbleDataHandler;
         }
 
-        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>GetAll( string audienceId ) =>
-            _bubbleDataHandler
+        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAll( string audienceId )
+        {
+            return _bubbleDataHandler
                 .Read<IEnumerable<AudiencePercentage<LocationProperty>>,
                     TypeResponse<BubbleCollection<AudienceLocation>>>( "audiencelocation",
                     DataMap, Enumerable.Empty<AudiencePercentage<LocationProperty>>( ) );
+        }
 
-        public OperationResultEnum Create( AudiencePercentage<LocationProperty> audience ) =>
-            _bubbleDataHandler.Create( "audiencelocation", audience, ModelMap );
+        public OperationResultEnum Create( AudiencePercentage<LocationProperty> audience )
+        {
+            return _bubbleDataHandler.Create( "audiencelocation", audience, ModelMap );
+        }
 
         //TODO: ADD COUNTRY MAPPING
         public AudienceLocation ModelMap( AudiencePercentage<LocationProperty> audienceLocation )
@@ -43,7 +45,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             };
         }
 
-        public IEnumerable<AudiencePercentage<LocationProperty>> DataMap( TypeResponse<BubbleCollection<AudienceLocation>> audienceLocation )
+        public IEnumerable<AudiencePercentage<LocationProperty>>
+            DataMap( TypeResponse<BubbleCollection<AudienceLocation>> audienceLocation )
         {
             return audienceLocation.Type.Results.Select( y => new AudiencePercentage<LocationProperty>
             {

@@ -20,7 +20,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Up
 
         [ Test ]
         public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result ); }
-        
+
         [ Test ]
         public void Then_Success_Event_Is_Logged( )
         {

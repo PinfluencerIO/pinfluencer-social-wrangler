@@ -2,8 +2,6 @@
 {
     public static class DalFacebookInitializer
     {
-        public static void Initialize( )
-        {
-        }
+        public static void Initialize( ) { }
     }
 }

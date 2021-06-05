@@ -18,9 +18,9 @@ namespace Pinfluencer.SocialWrangler.API.Filters
     {
         private readonly Auth0Context _auth0Context;
         private readonly IAuthenticationConnection _authenticationConnection;
-        private readonly MvcAdapter _mvcAdapter;
         private readonly IConfiguration _configuration;
         private readonly IManagementConnection _managementConnection;
+        private readonly MvcAdapter _mvcAdapter;
 
         public Auth0ActionFilter( Auth0Context auth0Context,
             IConfiguration configuration,
@@ -63,10 +63,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                 _auth0Context.ManagementApiClient =
                     new ManagementApiClient( token.AccessToken, auth0Settings.Domain, _managementConnection );
             }
-            catch( ApiException exception )
-            {
-                context.Result = _mvcAdapter.UnauthorizedError( exception.Message );
-            }
+            catch( ApiException exception ) { context.Result = _mvcAdapter.UnauthorizedError( exception.Message ); }
         }
     }
 }

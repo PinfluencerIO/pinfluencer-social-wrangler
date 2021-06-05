@@ -18,7 +18,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
             MockSocialAudienceRepository
                 .GetGenderAge( Arg.Any<string>( ) )
                 .Returns( new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
-                    Enumerable.Empty<AudienceCount<GenderAgeProperty>>(  ), 
+                    Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed
                 ) );
             _result = SUT.GetAudienceAgeInsights( "123" );
@@ -28,9 +28,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.BLL.InstagramFacadeTests.GetAudi
         public void Then_Failiure_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
 
         [ Test ]
-        public void Then_Empty_Collection_Is_Returned( )
-        {
-            Assert.IsEmpty( _result.Value );
-        }
+        public void Then_Empty_Collection_Is_Returned( ) { Assert.IsEmpty( _result.Value ); }
     }
 }

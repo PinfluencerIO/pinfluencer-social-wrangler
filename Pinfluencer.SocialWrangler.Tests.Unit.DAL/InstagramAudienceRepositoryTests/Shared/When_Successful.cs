@@ -13,11 +13,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                 .Received( )
                 .LogInfo( Arg.Any<string>( ) );
         }
-        
+
         [ Test ]
-        public void Then_Success_Was_Returned( )
-        {
-            Assert.AreEqual( OperationResultEnum.Success, Result.Status );
-        }
+        public void Then_Success_Was_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, Result.Status ); }
     }
 }

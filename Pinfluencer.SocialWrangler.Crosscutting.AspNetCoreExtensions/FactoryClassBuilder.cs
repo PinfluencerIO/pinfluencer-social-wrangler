@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions.Exceptions;
 using Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions.Models;
@@ -37,10 +36,11 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
             return CreateFactoryClassBuilder( assemblies, typeof( TFactory ) );
         }
 
-        public static FactoryClassBuilder CreateFactoryClassBuilder( IEnumerable<ServiceDescriptor> assemblies, Type factory )
+        public static FactoryClassBuilder CreateFactoryClassBuilder( IEnumerable<ServiceDescriptor> assemblies,
+            Type factory )
         {
             var facClsBuilder = new FactoryClassBuilder( );
-            var allTypes = assemblies.SelectMany( t => new [] { t.ImplementationType, t.ServiceType } );
+            var allTypes = assemblies.SelectMany( t => new [ ] { t.ImplementationType, t.ServiceType } );
             var factoryMethods = factory.GetMethods( ).Where( m => m.Name == "Factory" );
 
             foreach( var factoryMethod in factoryMethods )

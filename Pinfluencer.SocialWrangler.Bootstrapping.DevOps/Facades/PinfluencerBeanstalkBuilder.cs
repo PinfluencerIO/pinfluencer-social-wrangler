@@ -83,7 +83,8 @@ namespace Pinfluencer.SocialWrangler.Bootstrapping.DevOps.Facades
                 .AddTextResponse( new NginxTextResponseDto
                 {
                     Status = 200,
-                    Text = $"CE25270538476DA20B01286EE2BB6BDA2D359F3EC3C0B47BD23775E55564DA83{Environment.NewLine}comodoca.com{Environment.NewLine}c9f70a60c6898f0",
+                    Text =
+                        $"CE25270538476DA20B01286EE2BB6BDA2D359F3EC3C0B47BD23775E55564DA83{Environment.NewLine}comodoca.com{Environment.NewLine}c9f70a60c6898f0",
                     Url = PinfluencerHostConstants.CertUrl
                 } );
             return this;

@@ -5,7 +5,6 @@ using Auth0.ManagementApi.Models;
 using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests.GetInstagramTokenTests.Shared
 {
@@ -13,7 +12,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
     {
         protected const string Id = "1234";
         protected User User;
-        
+
         protected override void When( )
         {
             MockAuth0ManagementApiConnection

@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
         {
             _facebookApiException = facebookApiException;
         }
-        
+
         protected override void When( )
         {
             MockFacebookClient
@@ -27,13 +27,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
         }
 
         [ Test ]
-        public void Then_Failiure_Is_Returned( ) =>
-            Assert.AreEqual( OperationResultEnum.Failed, _result.Status );
+        public void Then_Failiure_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
 
         [ Test ]
-        public void Then_Error_Was_Logged( ) =>
+        public void Then_Error_Was_Logged( )
+        {
             MockLogger
                 .Received( )
                 .LogError( Arg.Any<string>( ) );
+        }
     }
 }

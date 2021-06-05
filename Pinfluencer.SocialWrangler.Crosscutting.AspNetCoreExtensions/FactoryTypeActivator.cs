@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,8 +15,9 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions
             var ctorParams = ctor?.GetParameters( );
 
             return ctor?
-                .Invoke( ( from ctorParam in ctorParams select sp
-                    .GetRequiredService( ctorParam.ParameterType ) )
+                .Invoke( ( from ctorParam in ctorParams
+                        select sp
+                            .GetRequiredService( ctorParam.ParameterType ) )
                     .ToArray( ) );
         }
     }

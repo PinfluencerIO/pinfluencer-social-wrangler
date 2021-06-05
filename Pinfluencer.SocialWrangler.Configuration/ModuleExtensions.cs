@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Configuration
         private const string RootNamespace = "Pinfluencer.SocialWrangler";
         private const string ContractNamespace = "Core.Interfaces.Contract";
 
-        public static IServiceCollection Bind( IServiceCollection services, Type[] types )
+        public static IServiceCollection Bind( IServiceCollection services, Type [ ] types )
         {
             RegisterServices( services, GetServiceTypes( GetInterfaces( types ), types ) );
             RegisterFactories( services, GetFactories( GetInterfaces( types ) ) );
@@ -25,30 +24,24 @@ namespace Pinfluencer.SocialWrangler.Configuration
 
         private static void RegisterFactories( IServiceCollection services, Type [ ] factories )
         {
-            foreach( var factory in factories )
-            {
-                services.AddFactory( factory );
-            }
+            foreach( var factory in factories ) services.AddFactory( factory );
         }
 
-        private static void RegisterServices( IServiceCollection services, List<((Type contract, ServiceLifetime scope), Type implementation)> serviceTypes )
+        private static void RegisterServices( IServiceCollection services,
+            List<((Type contract, ServiceLifetime scope), Type implementation)> serviceTypes )
         {
             foreach( var ((contract, scope), implementation) in serviceTypes )
-            {
                 services.Add( new ServiceDescriptor( contract, implementation, scope ) );
-            }
         }
 
-        private static List<((Type contract, ServiceLifetime scope), Type implementation)> GetServiceTypes( Type[ ] interfaces, Type [ ] types )
+        private static List<((Type contract, ServiceLifetime scope), Type implementation)> GetServiceTypes(
+            Type [ ] interfaces, Type [ ] types )
         {
             var serviceTypes = new List<((Type contract, ServiceLifetime scope), Type implementation)>( );
             foreach( var iInterface in interfaces )
             {
                 var lifetime = ServiceLifetime.Transient;
-                try
-                {
-                    AddService( types, iInterface, lifetime, serviceTypes );
-                }
+                try { AddService( types, iInterface, lifetime, serviceTypes ); }
                 catch( Exception )
                 {
                     // service not found
@@ -58,11 +51,13 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return serviceTypes;
         }
 
-        private static void AddService( Type [ ] types, Type iInterface, ServiceLifetime lifetime, List<((Type contract, ServiceLifetime scope), Type implementation)> serviceTypes )
+        private static void AddService( Type [ ] types, Type iInterface, ServiceLifetime lifetime,
+            List<((Type contract, ServiceLifetime scope), Type implementation)> serviceTypes )
         {
             var service = types
                 .First( x =>
-                    x.GetInterfaces( ).Any( type => $"{type.Namespace}.{type.Name}" == $"{iInterface.Namespace}.{iInterface.Name}" ) &&
+                    x.GetInterfaces( ).Any( type =>
+                        $"{type.Namespace}.{type.Name}" == $"{iInterface.Namespace}.{iInterface.Name}" ) &&
                     x.IsClass );
             try
             {
@@ -98,7 +93,7 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return lifetime;
         }
 
-        private static Type [ ] GetFactories( Type[ ] interfaces )
+        private static Type [ ] GetFactories( Type [ ] interfaces )
         {
             var factories = interfaces
                 .Where( x => x.GetInterfaces( ).Any( subType => subType == typeof( IFactory ) ) )
@@ -106,7 +101,7 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return factories;
         }
 
-        private static Type[ ] GetInterfaces( Type [ ] types )
+        private static Type [ ] GetInterfaces( Type [ ] types )
         {
             var interfaces = types
                 .Where( type =>
@@ -139,8 +134,7 @@ namespace Pinfluencer.SocialWrangler.Configuration
 
         public static IServiceCollection GetMainServiceCollection( IServiceCollection services )
         {
-            var methods = ModuleExtensions
-                .GetTypes( )
+            var methods = GetTypes( )
                 .SelectMany( x => x
                     .GetMethods( )
                     .Where( y => y
@@ -149,10 +143,8 @@ namespace Pinfluencer.SocialWrangler.Configuration
                             .GetType( ) == typeof( BindingAttribute ) ) ) )
                 .Where( x => x != null );
             foreach( var method in methods )
-            {
                 services = method?
                     .Invoke( null, new object [ ] { services } ) as IServiceCollection;
-            }
             return Bind( services, GetTypes( ) );
         }
     }

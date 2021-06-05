@@ -1,7 +1,4 @@
-﻿using System;
-using Pinfluencer.SocialWrangler.Core.Enum;
-
-namespace Pinfluencer.SocialWrangler.Core.Models.User
+﻿namespace Pinfluencer.SocialWrangler.Core.Models.User
 {
     public class User
     {

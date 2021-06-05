@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Pinfluencer.SocialWrangler.Core.Enum
+﻿namespace Pinfluencer.SocialWrangler.Core.Enum
 {
     public enum PeriodEnum
     {

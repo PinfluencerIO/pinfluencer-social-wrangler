@@ -61,37 +61,37 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
                 .OrderBy( x => x )
                 .SequenceEqual( minAges ) );
         }
-        
+
         [ Test ]
         public void Then_Correct_Max_Age_Ranges_Were_Returned( )
         {
-            var maxAges = new int?[ ] { 24, 34, 54, 24, 34, 44, 54, 64, null }
+            var maxAges = new int? [ ] { 24, 34, 54, 24, 34, 44, 54, 64, null }
                 .OrderBy( x => x );
             Assert.True( Result.Value
                 .Select( x => x.Property.AgeRange.Item2 )
                 .OrderBy( x => x )
                 .SequenceEqual( maxAges ) );
         }
-        
+
         [ Test ]
         public void Then_Correct_Genders_Were_Returned( )
         {
-            var genders = new [ ] 
-            { 
+            var genders = new [ ]
+            {
                 GenderEnum.Female,
-                GenderEnum.Female, 
-                GenderEnum.Female, 
+                GenderEnum.Female,
+                GenderEnum.Female,
                 GenderEnum.Male,
-                GenderEnum.Male, 
-                GenderEnum.Male, 
-                GenderEnum.Male, 
+                GenderEnum.Male,
+                GenderEnum.Male,
+                GenderEnum.Male,
                 GenderEnum.Male,
                 GenderEnum.Male
             };
             CollectionAssert.AreEquivalent( genders, Result.Value
                 .Select( x => x.Property.Gender ) );
         }
-        
+
         [ Test ]
         public void Then_Correct_Follower_Counts_Were_Returned( )
         {
@@ -106,7 +106,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
         {
             MockFacebookClient
                 .Received( )
-                .Get( Arg.Any<string>( ), Arg.Is<BaseRequestInsightParams>( x => x.period == "lifetime" && x.metric == "audience_gender_age" ) );
+                .Get( Arg.Any<string>( ),
+                    Arg.Is<BaseRequestInsightParams>( x =>
+                        x.period == "lifetime" && x.metric == "audience_gender_age" ) );
         }
     }
 }
