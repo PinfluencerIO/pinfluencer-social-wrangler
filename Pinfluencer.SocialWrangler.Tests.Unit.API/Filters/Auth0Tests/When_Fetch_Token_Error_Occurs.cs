@@ -15,13 +15,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected override void When( )
         {
             base.When( );
-            MockAuthenticationConnection
-                .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>( ),
-                    Arg.Any<Uri>( ),
-                    Arg.Any<object>( ),
-                    Arg.Any<IDictionary<string, string>>( )
-                )
+            MockAuth0AuthenticationClient
+                .GetToken( Arg.Any< ( string, string, string )>( ) )
                 .Throws<ErrorApiException>( );
             SUT.OnActionExecuting( MockActionExecutingContext );
         }

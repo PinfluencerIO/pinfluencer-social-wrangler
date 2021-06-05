@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
@@ -26,8 +27,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected const string TestSecret = "test_secret";
         private IConfiguration _mockConfiguration;
 
-        protected IAuthServiceManagementClientDecorator Auth0ManagementClientDecorator;
-        protected IAuthenticationConnection MockAuthenticationConnection;
+        protected IAuthServiceManagementClientDecorator MockAuth0ManagementClientDecorator;
+        protected IAuthServiceAuthenticationClientDecoratorFactory MockAuth0AuthenticationFactory;
+        protected IAuthServiceAuthenticationClientDecorator MockAuth0AuthenticationClient;
 
         private static AppOptions DefaultAppOptions => new AppOptions
         {
@@ -45,12 +47,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected override void Given( )
         {
             base.Given( );
-            Auth0ManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );
-            MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
+            MockAuth0ManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );
+            MockAuth0AuthenticationFactory = Substitute.For<IAuthServiceAuthenticationClientDecoratorFactory>( );
+            MockAuth0AuthenticationClient = Substitute.For<IAuthServiceAuthenticationClientDecorator>( );
+            MockAuth0AuthenticationFactory
+                .Factory( Arg.Any<string>( ) )
+                .Returns( MockAuth0AuthenticationClient );
 
             SetupConfiguration( OverridableAppOptions );
-            SUT = new Auth0ActionFilter( Auth0ManagementClientDecorator, _mockConfiguration,
-                MockAuthenticationConnection, MvcAdapter );
+            SUT = new Auth0ActionFilter( MockAuth0ManagementClientDecorator, _mockConfiguration,
+                MockAuth0AuthenticationFactory, MvcAdapter );
         }
 
         private void SetupConfiguration( AppOptions appOptions )
@@ -65,32 +71,22 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
 
         protected void TokenWasFetchedOnce( )
         {
-            MockAuthenticationConnection
+            MockAuth0AuthenticationFactory
                 .Received( 1 )
-                .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>( ),
-                    Arg.Any<Uri>( ),
-                    Arg.Any<object>( ),
-                    Arg.Any<IDictionary<string, string>>( )
-                );
+                .Factory( Arg.Any<string>( ) );
+            MockAuth0AuthenticationClient
+                .Received( 1 )
+                .GetToken( Arg.Any<( string, string, string )>( ) );
         }
 
         protected void TokenWasFetchedWithValidBody( )
         {
-            MockAuthenticationConnection
+            MockAuth0AuthenticationFactory
                 .Received( )
-                .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>( ),
-                    Arg.Any<Uri>( ),
-                    Arg.Is<Dictionary<string, string>>( o => o.SequenceEqual( new Dictionary<string, string>
-                    {
-                        { "grant_type", "client_credentials" },
-                        { "client_id", TestId },
-                        { "client_secret", TestSecret },
-                        { "audience", TestManagementDomain }
-                    } ) ),
-                    Arg.Any<IDictionary<string, string>>( )
-                );
+                .Factory( TestDomain );
+            MockAuth0AuthenticationClient
+                .Received( )
+                .GetToken( ( TestId, TestSecret, TestManagementDomain ) );
         }
     }
 }

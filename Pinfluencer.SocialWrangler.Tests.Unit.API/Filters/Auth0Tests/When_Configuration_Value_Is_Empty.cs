@@ -52,14 +52,12 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         [ Test ]
         public void Then_Token_Is_Not_Fetched( )
         {
-            MockAuthenticationConnection
+            MockAuth0AuthenticationFactory
                 .DidNotReceive( )
-                .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>( ),
-                    Arg.Any<Uri>( ),
-                    Arg.Any<object>( ),
-                    Arg.Any<IDictionary<string, string>>( )
-                );
+                .Factory( Arg.Any<string>( ) );
+            MockAuth0AuthenticationClient
+                .DidNotReceive( )
+                .GetToken( Arg.Any< ( string, string, string )>( ) );
         }
     }
 }

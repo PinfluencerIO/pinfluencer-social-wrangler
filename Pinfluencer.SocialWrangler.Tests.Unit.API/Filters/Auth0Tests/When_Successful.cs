@@ -13,15 +13,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected override void When( )
         {
             base.When( );
-
-            MockAuthenticationConnection
-                .SendAsync<AccessTokenResponse>(
-                    Arg.Any<HttpMethod>( ),
-                    Arg.Any<Uri>( ),
-                    Arg.Any<object>( ),
-                    Arg.Any<IDictionary<string, string>>( )
-                )
-                .Returns( Task.FromResult( new AccessTokenResponse { AccessToken = TestToken } ) );
+            
+            MockAuth0AuthenticationClient
+                .GetToken( Arg.Any< ( string, string, string )>( ) )
+                .Returns( TestToken );
             SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
@@ -37,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         [ Test ]
         public void Then_Management_Api_Client_Was_Set( )
         { 
-            Auth0ManagementClientDecorator
+            MockAuth0ManagementClientDecorator
                 .Received( )
                 .Secret = Arg.Any<string>( ); 
         }

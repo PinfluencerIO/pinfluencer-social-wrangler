@@ -5,6 +5,7 @@ using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
@@ -18,18 +19,18 @@ namespace Pinfluencer.SocialWrangler.API.Filters
     public class Auth0ActionFilter : ActionFilterAttribute
     {
         private readonly IAuthServiceManagementClientDecorator _auth0ManagementClientDecorator;
-        private readonly IAuthenticationConnection _authenticationConnection;
+        private readonly IAuthServiceAuthenticationClientDecoratorFactory _authenticationClientFactory;
         private readonly IConfiguration _configuration;
         private readonly MvcAdapter _mvcAdapter;
 
         public Auth0ActionFilter( IAuthServiceManagementClientDecorator auth0ManagementClientDecorator,
             IConfiguration configuration,
-            IAuthenticationConnection authenticationConnection,
+            IAuthServiceAuthenticationClientDecoratorFactory authenticationClientFactory,
             MvcAdapter mvcAdapter )
         {
             _auth0ManagementClientDecorator = auth0ManagementClientDecorator;
             _configuration = configuration;
-            _authenticationConnection = authenticationConnection;
+            _authenticationClientFactory = authenticationClientFactory;
             _mvcAdapter = mvcAdapter;
         }
 
@@ -46,19 +47,15 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                 return;
             }
 
-            var authenticationApiClient =
-                new AuthenticationApiClient( auth0Settings.Domain, _authenticationConnection );
+            var authenticationApiClient = _authenticationClientFactory.Factory( auth0Settings.Domain );
 
             try
             {
-                var token = authenticationApiClient.GetTokenAsync( new ClientCredentialsTokenRequest
-                {
-                    ClientId = auth0Settings.Id,
-                    ClientSecret = auth0Settings.Secret,
-                    Audience = auth0Settings.ManagementDomain
-                } ).Result;
+                var token = authenticationApiClient.GetToken( ( auth0Settings.Id,
+                    auth0Settings.Secret,
+                    auth0Settings.ManagementDomain ) );
 
-                _auth0ManagementClientDecorator.Secret = token.AccessToken;
+                _auth0ManagementClientDecorator.Secret = token;
             }
             catch( ApiException exception ) { context.Result = _mvcAdapter.UnauthorizedError( exception.Message ); }
         }

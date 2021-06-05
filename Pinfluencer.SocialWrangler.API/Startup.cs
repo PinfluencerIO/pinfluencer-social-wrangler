@@ -20,7 +20,6 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddTransient<FacebookActionFilter>( )
                 .AddTransient<SimpleAuthActionFilter>( )
                 .AddTransient<MvcAdapter>( )
-                .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
                 .AddControllers( );
         }
 

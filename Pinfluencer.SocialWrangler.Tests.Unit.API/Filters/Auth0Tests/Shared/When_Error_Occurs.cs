@@ -20,7 +20,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests.Shared
         [ Test ]
         public void Then_Management_Api_Client_Was_Not_Set( )
         { 
-            Auth0ManagementClientDecorator
+            MockAuth0ManagementClientDecorator
                 .DidNotReceive( )
                 .Secret = Arg.Any<string>( ); 
         }
