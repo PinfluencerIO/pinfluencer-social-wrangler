@@ -16,11 +16,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
         private OperationResult<string> _result;
 
         protected override void When( )
-
         {
-            MockAuth0ManagementApiConnection
-                .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
-                    Arg.Any<JsonConverter [ ]>( ) )
+            MockAuthServiceManagementClientDecorator
+                .GetIdentityToken( Arg.Any<string>( ) )
                 .Throws<AggregateException>( );
 
             _result = SUT.Get( Id );

@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
         protected override void Given( )
         {
             base.Given( );
-            SUT = new FacebookTokenRepository( MockLogger, Auth0Context );
+            SUT = new FacebookTokenRepository( MockLogger, MockAuthServiceManagementClientDecorator );
         }
     }
 }

@@ -17,10 +17,9 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
     public class DataGivenWhenThen<T> : PinfluencerGivenWhenThen<T> where T : class
     {
-        protected Auth0Context Auth0Context;
+        protected IAuthServiceManagementClientDecorator MockAuthServiceManagementClientDecorator;
         protected CountryGetter CountryGetter;
         protected IFacebookDecorator MockFacebookDecorator;
-        protected IManagementConnection MockAuth0ManagementApiConnection;
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
         protected IFacebookDataHandler<T> MockFacebookDataHandler;
         protected ISerializer Serializer;
@@ -30,12 +29,8 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
             base.Given( );
             Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
             CountryGetter = new CountryGetter( );
-            MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
             MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
-            Auth0Context = new Auth0Context
-            {
-                ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection )
-            };
+            MockAuthServiceManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
             MockFacebookDataHandler = Substitute.For<IFacebookDataHandler<T>>( );
             CurrentTime = new DateTime( 2021, 5, 28 );

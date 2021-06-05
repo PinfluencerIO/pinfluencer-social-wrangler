@@ -8,6 +8,7 @@ using Auth0.ManagementApi;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
@@ -24,9 +25,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected const string TestManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/";
         protected const string TestSecret = "test_secret";
         private IConfiguration _mockConfiguration;
-        private IManagementConnection _mockManagementConnection;
 
-        protected Auth0Context MockAuth0Context;
+        protected IAuthServiceManagementClientDecorator Auth0ManagementClientDecorator;
         protected IAuthenticationConnection MockAuthenticationConnection;
 
         private static AppOptions DefaultAppOptions => new AppOptions
@@ -45,12 +45,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         protected override void Given( )
         {
             base.Given( );
-            MockAuth0Context = new Auth0Context( );
-            _mockManagementConnection = Substitute.For<IManagementConnection>( );
+            Auth0ManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );
             MockAuthenticationConnection = Substitute.For<IAuthenticationConnection>( );
 
             SetupConfiguration( OverridableAppOptions );
-            SUT = new Auth0ActionFilter( MockAuth0Context, _mockConfiguration, _mockManagementConnection,
+            SUT = new Auth0ActionFilter( Auth0ManagementClientDecorator, _mockConfiguration,
                 MockAuthenticationConnection, MvcAdapter );
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests.Shared
@@ -17,6 +18,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests.Shared
         }
 
         [ Test ]
-        public void Then_Management_Api_Client_Was_Not_Set( ) { Assert.Null( MockAuth0Context.ManagementApiClient ); }
+        public void Then_Management_Api_Client_Was_Not_Set( )
+        { 
+            Auth0ManagementClientDecorator
+                .DidNotReceive( )
+                .Secret = Arg.Any<string>( ); 
+        }
     }
 }

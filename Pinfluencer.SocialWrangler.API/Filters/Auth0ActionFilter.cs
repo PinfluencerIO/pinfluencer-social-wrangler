@@ -4,6 +4,7 @@ using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
+using Pinfluencer.SocialWrangler.Core.Interfaces.Contract.DataAccessLayer.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
 
@@ -16,21 +17,18 @@ namespace Pinfluencer.SocialWrangler.API.Filters
     //TODO: middleware should just deal with persisting things to files and validating incoming request!!!!
     public class Auth0ActionFilter : ActionFilterAttribute
     {
-        private readonly Auth0Context _auth0Context;
+        private readonly IAuthServiceManagementClientDecorator _auth0ManagementClientDecorator;
         private readonly IAuthenticationConnection _authenticationConnection;
         private readonly IConfiguration _configuration;
-        private readonly IManagementConnection _managementConnection;
         private readonly MvcAdapter _mvcAdapter;
 
-        public Auth0ActionFilter( Auth0Context auth0Context,
+        public Auth0ActionFilter( IAuthServiceManagementClientDecorator auth0ManagementClientDecorator,
             IConfiguration configuration,
-            IManagementConnection managementConnection,
             IAuthenticationConnection authenticationConnection,
             MvcAdapter mvcAdapter )
         {
-            _auth0Context = auth0Context;
+            _auth0ManagementClientDecorator = auth0ManagementClientDecorator;
             _configuration = configuration;
-            _managementConnection = managementConnection;
             _authenticationConnection = authenticationConnection;
             _mvcAdapter = mvcAdapter;
         }
@@ -60,8 +58,7 @@ namespace Pinfluencer.SocialWrangler.API.Filters
                     Audience = auth0Settings.ManagementDomain
                 } ).Result;
 
-                _auth0Context.ManagementApiClient =
-                    new ManagementApiClient( token.AccessToken, auth0Settings.Domain, _managementConnection );
+                _auth0ManagementClientDecorator.Secret = token.AccessToken;
             }
             catch( ApiException exception ) { context.Result = _mvcAdapter.UnauthorizedError( exception.Message ); }
         }

@@ -35,6 +35,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
         public void Then_Token_Is_Fetched_With_Valid_Body( ) { TokenWasFetchedWithValidBody( ); }
 
         [ Test ]
-        public void Then_Management_Api_Client_Was_Set( ) { Assert.NotNull( MockAuth0Context.ManagementApiClient ); }
+        public void Then_Management_Api_Client_Was_Set( )
+        { 
+            Auth0ManagementClientDecorator
+                .Received( )
+                .Secret = Arg.Any<string>( ); 
+        }
     }
 }

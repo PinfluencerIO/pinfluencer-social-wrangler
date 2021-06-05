@@ -11,33 +11,29 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
     public abstract class When_Called : Given_A_FacebookTokenRepository
     {
         protected const string Id = "1234";
-        protected User User;
+        protected const string Token = "1234567";
 
         protected override void When( )
         {
-            MockAuth0ManagementApiConnection
-                .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
-                    Arg.Any<JsonConverter [ ]>( ) )
-                .Returns( Task.FromResult( User ) );
+            MockAuthServiceManagementClientDecorator
+                .GetIdentityToken( Arg.Any<string>( ) )
+                .Returns( Token );
         }
 
         [ Test ]
-        public void Then_Get_User_Is_Called_Once( )
+        public void Then_Get_Token_Is_Called_Once( )
         {
-            MockAuth0ManagementApiConnection
+            MockAuthServiceManagementClientDecorator
                 .Received( 1 )
-                .GetAsync<User>( Arg.Any<Uri>( ), Arg.Any<IDictionary<string, string>>( ),
-                    Arg.Any<JsonConverter [ ]>( ) );
+                .GetIdentityToken( Arg.Any<string>( ) );
         }
 
         [ Test ]
-        //TODO: flaky test
         public void Then_Valid_User_Is_Retrieved( )
         {
-            MockAuth0ManagementApiConnection
+            MockAuthServiceManagementClientDecorator
                 .Received( )
-                .GetAsync<User>( Arg.Is<Uri>( x => x.AbsolutePath.Contains( Id ) ),
-                    Arg.Any<IDictionary<string, string>>( ), Arg.Any<JsonConverter [ ]>( ) );
+                .GetIdentityToken( Id );
         }
     }
 }

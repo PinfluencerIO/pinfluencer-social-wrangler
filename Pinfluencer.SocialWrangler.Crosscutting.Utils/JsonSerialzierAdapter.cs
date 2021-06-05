@@ -11,7 +11,11 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
         public JsonSerialzierAdapter( IContractResolverAdapter contractResolver )
         {
             _contractResolver = contractResolver;
-            _settings = new JsonSerializerSettings { ContractResolver = contractResolver.Resolver };
+            _settings = new JsonSerializerSettings
+            {
+                ContractResolver = contractResolver.Resolver,
+                NullValueHandling = NullValueHandling.Ignore
+            };
         }
 
         public string Serialize( object content ) { return JsonConvert.SerializeObject( content, _settings ); }
