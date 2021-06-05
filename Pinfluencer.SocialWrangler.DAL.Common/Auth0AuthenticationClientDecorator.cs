@@ -6,11 +6,11 @@ using Pinfluencer.SocialWrangler.Core.Options;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {
-    class AuthServiceAuthenticationClientDecorator : IAuthServiceAuthenticationClientDecorator
+    public class Auth0AuthenticationClientDecorator : IAuthServiceAuthenticationClientDecorator
     {
         private readonly IAuthenticationApiClient _authenticationApiClient;
 
-        public AuthServiceAuthenticationClientDecorator( string domain )
+        public Auth0AuthenticationClientDecorator( string domain )
         {
             _authenticationApiClient = new AuthenticationApiClient( domain, new HttpClientAuthenticationConnection(  ) );
         }
