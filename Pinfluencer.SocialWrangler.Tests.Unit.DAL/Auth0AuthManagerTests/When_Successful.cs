@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Auth0.AuthenticationApi.Models;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
+using Pinfluencer.SocialWrangler.Core.Enum;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Auth0AuthManagerTests
 {
-    public class When_Successful : Given_An_Auth0ActionFilter
+    public class When_Successful : Given_An_Auth0AuthManager
     {
         protected override void When( )
         {
@@ -17,11 +13,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.Auth0Tests
             MockAuth0AuthenticationClient
                 .GetToken( Arg.Any< ( string, string, string )>( ) )
                 .Returns( TestToken );
-            SUT.OnActionExecuting( MockActionExecutingContext );
+            Result = SUT.Initialize( );
         }
 
         [ Test ]
-        public void Then_Next_Middlware_Is_Executed( ) { Assert.Null( MockActionExecutingContext.Result ); }
+        public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, Result.Status ); }
 
         [ Test ]
         public void Then_Token_Is_Fetched_Once( ) { TokenWasFetchedOnce( ); }
