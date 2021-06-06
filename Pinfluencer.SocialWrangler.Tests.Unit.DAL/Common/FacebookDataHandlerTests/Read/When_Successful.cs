@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
     {
         private const string Id = "123";
         private const string Value = "321";
-        private OperationResult<Model> _result;
+        private ObjectResult<Model> _result;
 
         protected override void When( )
         {

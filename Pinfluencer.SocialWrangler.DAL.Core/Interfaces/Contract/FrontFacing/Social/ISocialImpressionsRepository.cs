@@ -7,6 +7,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.So
     //TODO: add time start and time end inputs
     public interface ISocialImpressionsRepository
     {
-        OperationResult<IEnumerable<ContentImpressions>> Get( string instaId );
+        ObjectResult<IEnumerable<ContentImpressions>> Get( string instaId );
     }
 }

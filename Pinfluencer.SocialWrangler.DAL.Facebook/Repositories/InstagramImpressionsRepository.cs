@@ -28,7 +28,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         }
 
         //TODO: ADD CUSTOM TIMESPAN
-        public OperationResult<IEnumerable<ContentImpressions>> Get( string instaId )
+        public ObjectResult<IEnumerable<ContentImpressions>> Get( string instaId )
         {
             var (impressions, fbResult) = ValidateFacebookCall( ( ) => _facebookDecorator.Get<DataArray<Metric<int>>>( $"{instaId}/insights",
                 new RequestInsightParams
@@ -41,11 +41,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             if( !fbResult )
             {
                 _logger.LogError( "instagram profile impressions were not fetched" );
-                return new OperationResult<IEnumerable<ContentImpressions>>( Enumerable.Empty<ContentImpressions>( ),
+                return new ObjectResult<IEnumerable<ContentImpressions>>( Enumerable.Empty<ContentImpressions>( ),
                     OperationResultEnum.Failed );
             }
             new PostCondition( ).Evaluate( impressions != null );
-            var result = new OperationResult<IEnumerable<ContentImpressions>>(
+            var result = new ObjectResult<IEnumerable<ContentImpressions>>(
                 impressions.Data.First( ).Insights
                     .Select( x => new ContentImpressions( DateTime.Parse( x.Time ), x.Value ) ),
                 OperationResultEnum.Success );

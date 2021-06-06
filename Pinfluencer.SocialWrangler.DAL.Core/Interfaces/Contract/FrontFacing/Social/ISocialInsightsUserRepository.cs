@@ -6,8 +6,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.So
 {
     public interface IInsightsSocialUserRepository
     {
-        OperationResult<SocialInsightsUser> Get( string id );
+        ObjectResult<SocialInsightsUser> Get( string id );
 
-        OperationResult<IEnumerable<SocialInsightsUser>> GetAll( );
+        ObjectResult<IEnumerable<SocialInsightsUser>> GetAll( );
     }
 }

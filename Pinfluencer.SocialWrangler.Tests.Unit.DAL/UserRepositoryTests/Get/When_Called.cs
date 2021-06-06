@@ -11,13 +11,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Called : Given_A_UserRepository
     {
-        private readonly OperationResult<User> _operationResult;
+        private readonly ObjectResult<User> _objectResult;
 
-        private OperationResult<User> _result;
+        private ObjectResult<User> _result;
 
         public When_Called( User user, OperationResultEnum operationResultEnum )
         {
-            _operationResult = new OperationResult<User>( user, operationResultEnum );
+            _objectResult = new ObjectResult<User>( user, operationResultEnum );
         }
 
         private static readonly object [ ] data =
@@ -44,7 +44,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<TypeResponse<Profile>, User>>( ),
                     Arg.Any<User>( ) )
-                .Returns( _operationResult );
+                .Returns( _objectResult );
             _result = SUT.Get( "54321" );
         }
 
@@ -71,6 +71,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.UserRepositoryTests.Get
         }
 
         [ Test ]
-        public void Then_Response_Was_Valid( ) { Assert.AreSame( _operationResult, _result ); }
+        public void Then_Response_Was_Valid( ) { Assert.AreSame( _objectResult, _result ); }
     }
 }

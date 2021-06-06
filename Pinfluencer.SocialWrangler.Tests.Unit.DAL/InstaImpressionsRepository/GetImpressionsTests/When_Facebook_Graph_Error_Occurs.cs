@@ -15,7 +15,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
     public class When_Facebook_Graph_Error_Occurs : When_Called
     {
         private readonly FacebookApiException _apiException;
-        private OperationResult<IEnumerable<ContentImpressions>> _result;
+        private ObjectResult<IEnumerable<ContentImpressions>> _result;
 
         public When_Facebook_Graph_Error_Occurs( FacebookApiException apiException ) { _apiException = apiException; }
 

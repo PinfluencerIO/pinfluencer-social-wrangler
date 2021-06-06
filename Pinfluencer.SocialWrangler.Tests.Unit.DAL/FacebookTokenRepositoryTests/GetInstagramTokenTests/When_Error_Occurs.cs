@@ -13,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
 {
     public class When_Error_Occurs : When_Called
     {
-        private OperationResult<string> _result;
+        private ObjectResult<string> _result;
 
         protected override void When( )
         {

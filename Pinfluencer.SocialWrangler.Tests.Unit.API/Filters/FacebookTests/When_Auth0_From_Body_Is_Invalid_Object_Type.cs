@@ -22,7 +22,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         protected override void When( )
         {
             base.When( );
-            SetUpUserRepository( TestToken, OperationResultEnum.Success );
             SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
@@ -33,19 +32,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         }
 
         [ Test ]
-        public void Then_Instagram_Api_Is_Not_Called( )
+        public void Then_Social_Was_Not_Authenticated( )
         {
-            MockTokenRepository
+            MockSocialAuthManager
                 .DidNotReceive( )
-                .Get( Arg.Any<string>( ) );
-        }
-
-        [ Test ]
-        public void Then_Graph_Api_Was_Not_Called( )
-        {
-            MockFacebookDecorator
-                .DidNotReceive( )
-                .Get<object>( Arg.Any<string>( ), Arg.Any<object>( ) );
+                .Initialize( Arg.Any<string>(  ) );
         }
     }
 }

@@ -9,8 +9,8 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.So
     [ Obsolete ]
     public interface ISocialAudienceRepository
     {
-        OperationResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId );
+        ObjectResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId );
 
-        OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId );
+        ObjectResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId );
     }
 }

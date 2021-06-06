@@ -7,7 +7,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded
 {
     public interface IAudienceGenericRepository<T>
     {
-        OperationResult<IEnumerable<AudiencePercentage<T>>> GetAll( string audienceId );
+        ObjectResult<IEnumerable<AudiencePercentage<T>>> GetAll( string audienceId );
 
         OperationResultEnum Create( AudiencePercentage<T> audience );
     }

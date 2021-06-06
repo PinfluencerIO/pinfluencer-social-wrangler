@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
         private readonly IEnumerable<AudiencePercentage<GenderEnum>> _audienceGender;
         private readonly TypeResponse<BubbleCollection<AudienceGender>> _audienceGenderRaw;
         private readonly OperationResultEnum _operationResult;
-        private OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> _result;
+        private ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>> _result;
 
         private static object [ ] data =
         {
@@ -88,7 +88,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTest
                     Arg.Any<Func<TypeResponse<BubbleCollection<AudienceGender>>,
                         IEnumerable<AudiencePercentage<GenderEnum>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<GenderEnum>>>( ) )
-                .Returns( new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>( _audienceGender,
+                .Returns( new ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>>( _audienceGender,
                     _operationResult ) );
             _result = SUT.GetAll( "123" );
         }

@@ -22,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             _countryGetter = countryGetter;
         }
 
-        public override OperationResult<IEnumerable<AudienceCount<CountryProperty>>> Get( string instaId )
+        public override ObjectResult<IEnumerable<AudienceCount<CountryProperty>>> Get( string instaId )
         {
             return FacebookDataHandler
                 .Read<IEnumerable<AudienceCount<CountryProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",

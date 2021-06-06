@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookTokenRepositoryTests
 {
     public class When_Token_Returned_Successfully : When_Called
     {
-        private OperationResult<string> _result;
+        private ObjectResult<string> _result;
 
         protected override void When( )
         {

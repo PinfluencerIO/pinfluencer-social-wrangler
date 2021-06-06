@@ -42,7 +42,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             };
         }
 
-        public OperationResult<SocialInfoUser> Get( )
+        public ObjectResult<SocialInfoUser> Get( )
         {
             return _facebookDataHandler
                 .Read<SocialInfoUser, FacebookUser>( "me",

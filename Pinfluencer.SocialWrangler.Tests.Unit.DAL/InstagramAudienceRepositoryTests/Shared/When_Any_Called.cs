@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceRepositoryT
 {
     public abstract class When_Any_Called<T> : Given_A_InstagramAudienceRepository
     {
-        protected OperationResult<IEnumerable<AudienceCount<T>>> Result;
+        protected ObjectResult<IEnumerable<AudienceCount<T>>> Result;
 
         [ Test ]
         public void Then_Graph_Api_Was_Called_Once( )

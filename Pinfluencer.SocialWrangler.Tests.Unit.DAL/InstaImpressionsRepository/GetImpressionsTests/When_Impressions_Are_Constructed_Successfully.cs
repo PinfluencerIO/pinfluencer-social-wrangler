@@ -12,7 +12,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstaImpressionsRepository.G
 {
     public class When_Impressions_Are_Constructed_Successfully : When_Called
     {
-        private OperationResult<IEnumerable<ContentImpressions>> _result;
+        private ObjectResult<IEnumerable<ContentImpressions>> _result;
 
         protected override void When( )
         {

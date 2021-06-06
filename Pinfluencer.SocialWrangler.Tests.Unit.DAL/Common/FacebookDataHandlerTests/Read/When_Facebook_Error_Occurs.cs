@@ -11,7 +11,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTe
     public class When_Facebook_Error_Occurs : Given_A_FacebookDataHandler
     {
         private readonly FacebookApiException _facebookApiException;
-        private OperationResult<Model> _result;
+        private ObjectResult<Model> _result;
 
         public When_Facebook_Error_Occurs( FacebookApiException facebookApiException )
         {

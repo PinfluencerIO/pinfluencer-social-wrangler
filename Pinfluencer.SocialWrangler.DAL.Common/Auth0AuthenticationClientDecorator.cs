@@ -1,4 +1,5 @@
-﻿using Auth0.AuthenticationApi;
+﻿using System;
+using Auth0.AuthenticationApi;
 using Auth0.AuthenticationApi.Models;
 using Microsoft.Extensions.Configuration;
 using Pinfluencer.SocialWrangler.Core.Options;
@@ -17,14 +18,21 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
 
         public string GetToken( ( string clientId, string clientSecret, string audience ) authSettings )
         {
-            var ( clientId, clientSecret, audience ) = authSettings;
-            return _authenticationApiClient
-                .GetTokenAsync( new ClientCredentialsTokenRequest
-                {
-                    ClientId =  clientId,
-                    ClientSecret = clientSecret,
-                    Audience = audience
-                } ).Result.AccessToken;
+            try
+            {
+                var (clientId, clientSecret, audience) = authSettings;
+                return _authenticationApiClient
+                    .GetTokenAsync( new ClientCredentialsTokenRequest
+                    {
+                        ClientId = clientId,
+                        ClientSecret = clientSecret,
+                        Audience = audience
+                    } ).Result.AccessToken;
+            }
+            catch( AggregateException e )
+            {
+                throw e.InnerException;
+            }
         }
     }
 }

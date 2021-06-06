@@ -43,9 +43,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     } );
         }
 
-        public OperationResult<SocialInsightsUser> Get( string id ) { throw new NotImplementedException( ); }
+        public ObjectResult<SocialInsightsUser> Get( string id ) { throw new NotImplementedException( ); }
 
-        public OperationResult<IEnumerable<SocialInsightsUser>> GetAll( )
+        public ObjectResult<IEnumerable<SocialInsightsUser>> GetAll( )
         {
             return _facebookDataHandler
                 .Read<IEnumerable<SocialInsightsUser>,

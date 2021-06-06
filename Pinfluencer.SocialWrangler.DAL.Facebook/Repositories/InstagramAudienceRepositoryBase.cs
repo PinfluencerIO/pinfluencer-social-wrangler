@@ -20,6 +20,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public abstract IEnumerable<AudienceCount<TProperty>> MapMany( DataArray<Metric<object>> dtoCollection );
 
-        public abstract OperationResult<IEnumerable<AudienceCount<TProperty>>> Get( string instaId );
+        public abstract ObjectResult<IEnumerable<AudienceCount<TProperty>>> Get( string instaId );
     }
 }

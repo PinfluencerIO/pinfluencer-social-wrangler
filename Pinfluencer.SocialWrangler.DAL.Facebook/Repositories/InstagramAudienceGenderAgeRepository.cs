@@ -19,7 +19,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         {
         }
 
-        public override OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> Get( string instaId )
+        public override ObjectResult<IEnumerable<AudienceCount<GenderAgeProperty>>> Get( string instaId )
         {
             return FacebookDataHandler
                 .Read<IEnumerable<AudienceCount<GenderAgeProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",

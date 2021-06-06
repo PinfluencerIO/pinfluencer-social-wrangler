@@ -4,7 +4,9 @@ using Auth0.Core.Exceptions;
 using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
+using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
@@ -19,46 +21,23 @@ namespace Pinfluencer.SocialWrangler.API.Filters
 
     public class Auth0ActionFilter : ActionFilterAttribute
     {
-        private readonly IAuthServiceManagementClientDecorator _auth0ManagementClientDecorator;
-        private readonly IAuthServiceAuthenticationClientDecoratorFactory _authenticationClientFactory;
-        private readonly IConfiguration _configuration;
         private readonly MvcAdapter _mvcAdapter;
+        private readonly IAuthServiceAuthManager _authServiceAuthManager;
 
-        public Auth0ActionFilter( IAuthServiceManagementClientDecorator auth0ManagementClientDecorator,
-            IConfiguration configuration,
-            IAuthServiceAuthenticationClientDecoratorFactory authenticationClientFactory,
+        public Auth0ActionFilter( IAuthServiceAuthManager authServiceAuthManager, 
             MvcAdapter mvcAdapter )
         {
-            _auth0ManagementClientDecorator = auth0ManagementClientDecorator;
-            _configuration = configuration;
-            _authenticationClientFactory = authenticationClientFactory;
             _mvcAdapter = mvcAdapter;
+            _authServiceAuthManager = authServiceAuthManager;
         }
 
         public override void OnActionExecuting( ActionExecutingContext context )
         {
-            var auth0Settings = _configuration.Get<AppOptions>( ).AuthService;
-
-            if( auth0Settings.Domain == "" || auth0Settings.Id == "" || auth0Settings.Secret == "" ||
-                auth0Settings.ManagementDomain == "" ||
-                auth0Settings.Domain == null || auth0Settings.Id == null || auth0Settings.Secret == null ||
-                auth0Settings.ManagementDomain == null )
+            var result = _authServiceAuthManager.Initialize( );
+            if( result.Status == OperationResultEnum.Failed )
             {
-                context.Result = _mvcAdapter.UnauthorizedError( "auth0 configuration settings are not valid" );
-                return;
+                context.Result = _mvcAdapter.UnauthorizedError( result.Msg );
             }
-
-            var authenticationApiClient = _authenticationClientFactory.Factory( auth0Settings.Domain );
-
-            try
-            {
-                var token = authenticationApiClient.GetToken( ( auth0Settings.Id,
-                    auth0Settings.Secret,
-                    auth0Settings.ManagementDomain ) );
-
-                _auth0ManagementClientDecorator.Secret = token;
-            }
-            catch( ApiException exception ) { context.Result = _mvcAdapter.UnauthorizedError( exception.Message ); }
         }
     }
 }

@@ -18,20 +18,20 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             _auth0ManagementClientDecorator = auth0ManagementClientDecorator;
         }
 
-        public OperationResult<string> Get( string authId )
+        public ObjectResult<string> Get( string authId )
         {
             try
             {
                 var token = _auth0ManagementClientDecorator.GetIdentityToken( authId );
                 var result =
-                    new OperationResult<string>( token, OperationResultEnum.Success );
+                    new ObjectResult<string>( token, OperationResultEnum.Success );
                 _logger.LogInfo( "instagram token fetched successfully" );
                 return result;
             }
             catch( Exception )
             {
                 _logger.LogError( "instagram token was not fetched" );
-                return new OperationResult<string>( "", OperationResultEnum.Failed );
+                return new ObjectResult<string>( "", OperationResultEnum.Failed );
             }
         }
     }

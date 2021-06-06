@@ -14,7 +14,7 @@ namespace Pinfluencer.SocialWrangler.DAL.DIModule
         public static IServiceCollection BindDataAcessLayer( this IServiceCollection serviceCollection ) =>
             serviceCollection.BindServices( ApplicationLayerEnum.DAL, new Action[]
             {
-                DALCoreInitializer.Initialize,
+                DalCoreInitializer.Initialize,
                 DalUtilsInitializer.Initialize,
                 DalFacebookInitializer.Initialize,
                 DalPinfluencerInitializer.Initialize

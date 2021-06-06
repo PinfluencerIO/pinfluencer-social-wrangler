@@ -14,15 +14,15 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Called : Given_An_InstagramAudienceCountryRepository
     {
-        private OperationResult<IEnumerable<AudienceCount<CountryProperty>>> _result;
-        private readonly OperationResult<IEnumerable<AudienceCount<CountryProperty>>> _operationResult;
+        private ObjectResult<IEnumerable<AudienceCount<CountryProperty>>> _result;
+        private readonly ObjectResult<IEnumerable<AudienceCount<CountryProperty>>> _objectResult;
 
 
         public When_Called( IEnumerable<AudienceCount<CountryProperty>> audienceCountries,
             OperationResultEnum operationResultEnum )
         {
-            _operationResult =
-                new OperationResult<IEnumerable<AudienceCount<CountryProperty>>>( audienceCountries,
+            _objectResult =
+                new ObjectResult<IEnumerable<AudienceCount<CountryProperty>>>( audienceCountries,
                     operationResultEnum );
         }
 
@@ -76,7 +76,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                     Arg.Any<Func<DataArray<Metric<object>>, IEnumerable<AudienceCount<CountryProperty>>>>( ),
                     Arg.Any<IEnumerable<AudienceCount<CountryProperty>>>( ),
                     Arg.Any<RequestInsightParams>( ) )
-                .Returns( _operationResult );
+                .Returns( _objectResult );
             _result = SUT.Get( "123" );
         }
 
@@ -103,6 +103,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
         }
 
         [ Test ]
-        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _objectResult, _result ); }
     }
 }

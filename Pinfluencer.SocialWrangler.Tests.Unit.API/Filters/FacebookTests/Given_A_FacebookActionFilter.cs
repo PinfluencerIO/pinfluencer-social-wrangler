@@ -8,6 +8,7 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Common;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
 
@@ -20,31 +21,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         protected const string TestAuth0Id = "12345";
         protected const string Auth0IdParamKey = "auth-id";
         protected const string UserActionArgumentKey = "user";
-
-        private IFacebookDecorator _mockFacebookDecorator;
-        private IFacebookClientFactory _mockFacebookClientFactory;
-        protected ITokenRepository MockTokenRepository;
-        protected IFacebookDecorator MockFacebookDecorator;
+        
+        protected ISocialAuthManager MockSocialAuthManager;
 
         protected string ErrorMessage => GetResultObject<ErrorDto>( ).ErrorMsg;
 
         protected override void Given( )
         {
             base.Given( );
-            MockTokenRepository = Substitute.For<ITokenRepository>( );
-            MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
-            MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
-
-            SUT = new FacebookActionFilter( MockFacebookDecorator,
-                MvcAdapter,
-                MockTokenRepository );
-        }
-
-        protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )
-        {
-            MockTokenRepository
-                .Get( Arg.Any<string>( ) )
-                .Returns( new OperationResult<string>( value, resultEnum ) );
+            MockSocialAuthManager = Substitute.For<ISocialAuthManager>( );
+            SUT = new FacebookActionFilter( MvcAdapter, MockSocialAuthManager );
         }
 
         protected override Dictionary<string, StringValues> SetupQueryParams( )

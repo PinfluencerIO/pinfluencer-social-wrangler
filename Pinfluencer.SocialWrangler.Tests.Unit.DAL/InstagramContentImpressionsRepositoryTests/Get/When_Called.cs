@@ -13,8 +13,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Called : Given_An_InstagramContentImpressionsRepository
     {
-        private OperationResult<IEnumerable<ContentImpressions>> _result;
-        private readonly OperationResult<IEnumerable<ContentImpressions>> _operationResult;
+        private ObjectResult<IEnumerable<ContentImpressions>> _result;
+        private readonly ObjectResult<IEnumerable<ContentImpressions>> _objectResult;
 
         public static readonly IEnumerable<ContentImpressions> DefaultContentImpressions = new [ ]
         {
@@ -37,8 +37,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
 
         public When_Called( IEnumerable<ContentImpressions> audienceCountries, OperationResultEnum operationResultEnum )
         {
-            _operationResult =
-                new OperationResult<IEnumerable<ContentImpressions>>( audienceCountries,
+            _objectResult =
+                new ObjectResult<IEnumerable<ContentImpressions>>( audienceCountries,
                     operationResultEnum );
         }
 
@@ -63,7 +63,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
                     Arg.Any<Func<DataArray<Metric<int>>, IEnumerable<ContentImpressions>>>( ),
                     Arg.Any<IEnumerable<ContentImpressions>>( ),
                     Arg.Any<RequestInsightParams>( ) )
-                .Returns( _operationResult );
+                .Returns( _objectResult );
             _result = SUT.Get( "123", PeriodEnum.Day, ( new DateTime( 2021, 5, 28 ), new DateTime( 2021, 5, 29 ) ) );
         }
 
@@ -93,6 +93,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
         }
 
         [ Test ]
-        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _objectResult, _result ); }
     }
 }

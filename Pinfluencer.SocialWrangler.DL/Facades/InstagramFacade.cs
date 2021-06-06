@@ -26,37 +26,37 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             _socialAudienceRepository = socialAudienceRepository;
         }
 
-        public OperationResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id )
+        public ObjectResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id )
         {
             return _impressionsRepository.Get( id );
         }
 
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
-        public OperationResult<IEnumerable<SocialInsightsUser>> GetUsers( )
+        public ObjectResult<IEnumerable<SocialInsightsUser>> GetUsers( )
         {
             return _insightsSocialUserRepository.GetAll( );
         }
 
-        public OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights(
+        public ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights(
             string id )
         {
             var result = _socialAudienceRepository.GetCountry( id );
             if( result.Status != OperationResultEnum.Success )
-                return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
+                return new ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
                     Enumerable.Empty<AudiencePercentage<LocationProperty>>( ), OperationResultEnum.Failed );
 
             var totalFollowers = result.Value.Sum( x => x.Count );
-            return new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
+            return new ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
                 result.Value.Select( x => new AudiencePercentage<LocationProperty>
                     { Percentage = ( double ) x.Count / ( double ) totalFollowers, Value = x.Property } ),
                 OperationResultEnum.Success );
         }
 
-        public OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
+        public ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
         {
             var result = _socialAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
-                return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
+                return new ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
                     Enumerable.Empty<AudiencePercentage<GenderEnum>>( ), OperationResultEnum.Failed );
 
             var totalFollowers = result
@@ -66,17 +66,17 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 .Value
                 .GroupBy( x => x.Property.Gender )
                 .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
-            return new OperationResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
+            return new ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
                 totalFollowersOfGenderType.Select( x => new AudiencePercentage<GenderEnum>
                     { Percentage = ( double ) x.Item2 / totalFollowers, Value = x.Key } ),
                 OperationResultEnum.Success );
         }
 
-        public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
+        public ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
             var result = _socialAudienceRepository.GetGenderAge( id );
             if( result.Status != OperationResultEnum.Success )
-                return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
+                return new ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
                     Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );
 
             var totalFollowers = result
@@ -86,7 +86,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 .Value
                 .GroupBy( x => x.Property.AgeRange )
                 .Select( x => ( x.Key, x.Sum( y => y.Count ) ) );
-            return new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
+            return new ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
                 totalFollowersOfGenderType.Select( x => new AudiencePercentage<AgeProperty>
                 {
                     Percentage = ( double ) x.Item2 / totalFollowers,

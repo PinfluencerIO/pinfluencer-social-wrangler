@@ -5,7 +5,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded
 {
     public interface IReadable
     {
-        OperationResult<TModel> Read<TModel, TDto>( string resource,
+        ObjectResult<TModel> Read<TModel, TDto>( string resource,
             Func<TDto, TModel> mapper,
             TModel defaultModel,
             object defaultParams = null );

@@ -18,7 +18,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
         private readonly IEnumerable<AudiencePercentage<LocationProperty>> _audienceLocation;
         private readonly TypeResponse<BubbleCollection<AudienceLocation>> _audienceLocationRaw;
         private readonly OperationResultEnum _operationResult;
-        private OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
+        private ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
 
         private static object [ ] data =
         {
@@ -91,7 +91,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTe
                     Arg.Any<Func<TypeResponse<BubbleCollection<AudienceLocation>>,
                         IEnumerable<AudiencePercentage<LocationProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<LocationProperty>>>( ) )
-                .Returns( new OperationResult<IEnumerable<AudiencePercentage<LocationProperty>>>( _audienceLocation,
+                .Returns( new ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>>( _audienceLocation,
                     _operationResult ) );
             _result = SUT.GetAll( "123" );
         }

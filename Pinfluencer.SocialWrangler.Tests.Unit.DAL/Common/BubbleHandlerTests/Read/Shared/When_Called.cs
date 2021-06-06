@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Re
         protected const string TestUrl = "test";
         protected const string TestId = "123";
         protected const string TestValue = "value";
-        protected OperationResult<Model> Result;
+        protected ObjectResult<Model> Result;
 
         [ Test ]
         public void Then_Data_Will_Be_Created_Once( )
@@ -27,7 +27,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Re
                 .Get<Dto>( Arg.Is<string>( uri => uri == TestUrl ) );
         }
 
-        protected OperationResult<Model> SutCall( )
+        protected ObjectResult<Model> SutCall( )
         {
             return BubbleSut.Read<Model, Dto>( TestUrl, x => new Model
             {

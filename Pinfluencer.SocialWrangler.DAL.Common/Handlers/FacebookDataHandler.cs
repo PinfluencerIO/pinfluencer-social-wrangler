@@ -19,7 +19,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             _logger = logger;
         }
 
-        public OperationResult<TModel> Read<TModel, TDto>( string resource, Func<TDto, TModel> mapper,
+        public ObjectResult<TModel> Read<TModel, TDto>( string resource, Func<TDto, TModel> mapper,
             TModel defaultModel, object optionalParams = null )
         {
             var (result, fbResult) =
@@ -27,7 +27,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             if( !fbResult )
             {
                 _logger.LogError( $"{nameof( TModel )} were not fetched" );
-                return new OperationResult<TModel>
+                return new ObjectResult<TModel>
                 {
                     Value = defaultModel,
                     Status = OperationResultEnum.Failed,
@@ -36,7 +36,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             }
 
             _logger.LogInfo( $"{nameof( TModel )} were fetched" );
-            return new OperationResult<TModel>( mapper( result ), OperationResultEnum.Success );
+            return new ObjectResult<TModel>( mapper( result ), OperationResultEnum.Success );
         }
 
 

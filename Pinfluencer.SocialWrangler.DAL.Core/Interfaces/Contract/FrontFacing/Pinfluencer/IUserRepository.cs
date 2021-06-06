@@ -5,6 +5,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pi
 {
     public interface IUserRepository
     {
-        OperationResult<User> Get( string id );
+        ObjectResult<User> Get( string id );
     }
 }

@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests.G
         private readonly IEnumerable<AudiencePercentage<AgeProperty>> _audienceAge;
         private readonly TypeResponse<BubbleCollection<AudienceAge>> _audienceAgeRaw;
         private readonly OperationResultEnum _operationResult;
-        private OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> _result;
+        private ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>> _result;
 
         private static object [ ] data =
         {
@@ -87,7 +87,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceAgeRepositoryTests.G
                     Arg.Any<Func<TypeResponse<BubbleCollection<AudienceAge>>,
                         IEnumerable<AudiencePercentage<AgeProperty>>>>( ),
                     Arg.Any<IEnumerable<AudiencePercentage<AgeProperty>>>( ) )
-                .Returns( new OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>>( _audienceAge,
+                .Returns( new ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>>( _audienceAge,
                     _operationResult ) );
             _result = SUT.GetAll( "123" );
         }

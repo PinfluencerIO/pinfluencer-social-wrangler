@@ -20,7 +20,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             _bubbleDataHandler = bubbleDataHandler;
         }
 
-        public OperationResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAll( string audienceId )
+        public ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAll( string audienceId )
         {
             return _bubbleDataHandler
                 .Read<IEnumerable<AudiencePercentage<AgeProperty>>, TypeResponse<BubbleCollection<AudienceAge>>>(

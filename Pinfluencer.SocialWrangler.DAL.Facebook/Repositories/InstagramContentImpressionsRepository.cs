@@ -27,7 +27,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             throw new NotImplementedException( );
         }
 
-        public OperationResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution,
+        public ObjectResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution,
             ( DateTime start, DateTime end ) capturePeriod )
         {
             var startMinsEpoch = capturePeriod.start - new DateTime( 1970, 1, 1 );
@@ -36,6 +36,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             var endUnix = endMinsEpoch.TotalSeconds;
 
             string periodString;
+            //TODO: move switch into class
             switch( resolution )
             {
                 case PeriodEnum.Day:
@@ -48,7 +49,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
                     periodString = "week";
                     break;
                 default:
-                    return new OperationResult<IEnumerable<ContentImpressions>>(
+                    return new ObjectResult<IEnumerable<ContentImpressions>>(
                         Enumerable.Empty<ContentImpressions>( ),
                         OperationResultEnum.Failed );
             }

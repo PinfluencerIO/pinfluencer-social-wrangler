@@ -26,7 +26,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
         public User MapOut( TypeResponse<Profile> dto ) { return new User { Id = dto.Type.Id, Name = dto.Type.Name }; }
 
         //TODO: WRITE TESTS FOR SERIALIZATION AND SCHEMA ISSUES ( REGRESSION )
-        public OperationResult<User> Get( string id )
+        public ObjectResult<User> Get( string id )
         {
             return _bubbleDataHandler.Read<User, TypeResponse<Profile>>( $"profile/{id}",
                 MapOut,

@@ -14,11 +14,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Called : Given_A_InstagramUserRepository
     {
-        private readonly OperationResult<IEnumerable<SocialInsightsUser>> _operationResult;
+        private readonly ObjectResult<IEnumerable<SocialInsightsUser>> _objectResult;
 
-        private static IEnumerable<OperationResult<IEnumerable<SocialInsightsUser>>> data = new [ ]
+        private static IEnumerable<ObjectResult<IEnumerable<SocialInsightsUser>>> data = new [ ]
         {
-            new OperationResult<IEnumerable<SocialInsightsUser>>( new [ ]
+            new ObjectResult<IEnumerable<SocialInsightsUser>>( new [ ]
             {
                 new SocialInsightsUser
                 {
@@ -29,15 +29,15 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     Username = "aidangannon"
                 }
             }, OperationResultEnum.Success ),
-            new OperationResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>( ),
+            new ObjectResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>( ),
                 OperationResultEnum.Failed )
         };
 
-        private OperationResult<IEnumerable<SocialInsightsUser>> _result;
+        private ObjectResult<IEnumerable<SocialInsightsUser>> _result;
 
-        public When_Called( OperationResult<IEnumerable<SocialInsightsUser>> operationResult )
+        public When_Called( ObjectResult<IEnumerable<SocialInsightsUser>> objectResult )
         {
-            _operationResult = operationResult;
+            _objectResult = objectResult;
         }
 
         protected override void When( )
@@ -47,7 +47,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
                     Arg.Any<Func<DataArray<FacebookPage>, IEnumerable<SocialInsightsUser>>>( ),
                     Arg.Any<IEnumerable<SocialInsightsUser>>( ),
                     Arg.Any<object>( ) )
-                .Returns( _operationResult );
+                .Returns( _objectResult );
             _result = SUT.GetAll( );
         }
 
@@ -75,6 +75,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests
         }
 
         [ Test ]
-        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _objectResult, _result ); }
     }
 }

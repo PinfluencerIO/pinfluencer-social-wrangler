@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             return bodiedNoResponseRequest<TModel>( ( ) => _bubbleClient.Post( uri, mapper( model ) ), "created" );
         }
 
-        public OperationResult<TModel> Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper, TModel defaultModel,
+        public ObjectResult<TModel> Read<TModel, TDto>( string uri, Func<TDto, TModel> mapper, TModel defaultModel,
             object optionalParams = null )
         {
             return nonBodiedResponseRequest( ( ) => _bubbleClient.Get<TDto>( uri ), mapper, "fetched", defaultModel );
@@ -68,7 +68,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             return OperationResultEnum.Failed;
         }
 
-        private OperationResult<TModel> nonBodiedResponseRequest<TModel, TDataDto>(
+        private ObjectResult<TModel> nonBodiedResponseRequest<TModel, TDataDto>(
             Func<( HttpStatusCode, TDataDto )> call,
             Func<TDataDto, TModel> mapper,
             string action,
@@ -80,11 +80,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
                 if( validateHttpCode( httpStatusCode ) )
                 {
                     _logger.LogInfo( $"{typeof( TModel )} was {action} successfully" );
-                    return new OperationResult<TModel>( mapper( response ), OperationResultEnum.Success );
+                    return new ObjectResult<TModel>( mapper( response ), OperationResultEnum.Success );
                 }
 
             _logger.LogError( $"{typeof( TModel )} was not {action}" );
-            return new OperationResult<TModel>( defaultModel, OperationResultEnum.Failed );
+            return new ObjectResult<TModel>( defaultModel, OperationResultEnum.Failed );
         }
     }
 }

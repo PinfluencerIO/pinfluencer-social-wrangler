@@ -12,15 +12,15 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
     [ TestFixtureSource( nameof( data ) ) ]
     public class When_Called : Given_A_FacebookUserRepository
     {
-        private readonly OperationResult<SocialInfoUser> _operationResult;
+        private readonly ObjectResult<SocialInfoUser> _objectResult;
 
-        private OperationResult<SocialInfoUser> _result;
+        private ObjectResult<SocialInfoUser> _result;
 
         public When_Called( Func<SocialInfoUser, SocialInfoUser> func, OperationResultEnum operationResultEnum )
         {
             base.Given( );
-            _operationResult =
-                new OperationResult<SocialInfoUser>( func( new SocialInfoUser( ) ), operationResultEnum );
+            _objectResult =
+                new ObjectResult<SocialInfoUser>( func( new SocialInfoUser( ) ), operationResultEnum );
         }
 
         private static readonly object [ ] data =
@@ -56,7 +56,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
                     Arg.Any<Func<FacebookUser, SocialInfoUser>>( ),
                     Arg.Any<SocialInfoUser>( ),
                     Arg.Any<object>( ) )
-                .Returns( _operationResult );
+                .Returns( _objectResult );
             _result = SUT.Get( );
         }
 
@@ -88,6 +88,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookUserRepositoryTests.
         }
 
         [ Test ]
-        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _operationResult, _result ); }
+        public void Then_Valid_Response_Was_Returned( ) { Assert.AreSame( _objectResult, _result ); }
     }
 }

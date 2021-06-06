@@ -5,6 +5,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.So
 {
     public interface ISocialInfoUserRepository
     {
-        OperationResult<SocialInfoUser> Get( );
+        ObjectResult<SocialInfoUser> Get( );
     }
 }

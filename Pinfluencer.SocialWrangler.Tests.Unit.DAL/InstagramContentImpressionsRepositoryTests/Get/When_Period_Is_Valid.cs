@@ -17,7 +17,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
         private readonly PeriodEnum _periodEnum;
         private readonly string _period;
 
-        private OperationResult<IEnumerable<ContentImpressions>> _result;
+        private ObjectResult<IEnumerable<ContentImpressions>> _result;
 
         public When_Period_Is_Valid( PeriodEnum periodEnum, string period )
         {
@@ -32,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentImpressionsR
                     Arg.Any<Func<DataArray<Metric<int>>, IEnumerable<ContentImpressions>>>( ),
                     Arg.Any<IEnumerable<ContentImpressions>>( ),
                     Arg.Any<RequestInsightParams>( ) )
-                .Returns( new OperationResult<IEnumerable<ContentImpressions>>( When_Called.DefaultContentImpressions,
+                .Returns( new ObjectResult<IEnumerable<ContentImpressions>>( When_Called.DefaultContentImpressions,
                     OperationResultEnum.Success ) );
             _result = SUT.Get( "123", _periodEnum, ( new DateTime( 2021, 5, 28 ), new DateTime( 2021, 5, 29 ) ) );
         }

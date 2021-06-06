@@ -10,8 +10,4 @@
       <PackageReference Include="Facebook" Version="7.0.10-beta" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Interfaces" />
-    </ItemGroup>
-
 </Project>

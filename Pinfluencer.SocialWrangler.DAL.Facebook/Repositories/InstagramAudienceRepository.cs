@@ -32,7 +32,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             _countryGetter = countryGetter;
         }
 
-        public OperationResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId )
+        public ObjectResult<IEnumerable<AudienceCount<LocationProperty>>> GetCountry( string instaId )
         {
             var (fbResult, fbValidResult) = ValidateFacebookCall( ( ) => _facebookDecorator
                 .Get<DataArray<Metric<object>>>( $"{instaId}/insights",
@@ -40,13 +40,13 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
-                return new OperationResult<IEnumerable<AudienceCount<LocationProperty>>>(
+                return new ObjectResult<IEnumerable<AudienceCount<LocationProperty>>>(
                     Enumerable.Empty<AudienceCount<LocationProperty>>( ),
                     OperationResultEnum.Failed );
             }
             var genderAge =
                 fbResult.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            var outputResult = new OperationResult<IEnumerable<AudienceCount<LocationProperty>>>(
+            var outputResult = new ObjectResult<IEnumerable<AudienceCount<LocationProperty>>>(
                 genderAge?.Select( x => new AudienceCount<LocationProperty>
                 {
                     Count = ( int ) x.Value,
@@ -61,7 +61,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             return outputResult;
         }
 
-        public OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId )
+        public ObjectResult<IEnumerable<AudienceCount<GenderAgeProperty>>> GetGenderAge( string instaId )
         {
             var (fbResult, fbValidResult) = ValidateFacebookCall( ( ) => _facebookDecorator
                 .Get<DataArray<Metric<object>>>( $"{instaId}/insights",
@@ -69,13 +69,13 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             if( !fbValidResult )
             {
                 _logger.LogError( "audience insights not fetched successfully" );
-                return new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
+                return new ObjectResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
                     Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
                     OperationResultEnum.Failed );
             }
             var genderAge =
                 fbResult.Data.First( ).Insights.First( ).Value as IEnumerable<KeyValuePair<string, JToken>>;
-            var outputResult = new OperationResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
+            var outputResult = new ObjectResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
                 genderAge.Select( x =>
                 {
                     var generString = x.Key.Split( "." )[ 0 ];
