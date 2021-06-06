@@ -24,7 +24,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public IEnumerable<ContentImpressions> MapMany( DataArray<Metric<int>> dtoCollection )
         {
-            throw new NotImplementedException( );
+            return Enumerable.Empty< ContentImpressions >(  );
         }
 
         public ObjectResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution,
