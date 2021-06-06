@@ -24,7 +24,14 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 
         public IEnumerable<ContentImpressions> MapMany( DataArray<Metric<int>> dtoCollection )
         {
-            return Enumerable.Empty< ContentImpressions >(  );
+            return dtoCollection
+                .Data
+                .SelectMany( x => x.Insights )
+                .Select( x => new ContentImpressions
+                {
+                    Time = DateTime.Parse( x.Time ),
+                    Count = x.Value
+                } );
         }
 
         public ObjectResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution,
