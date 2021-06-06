@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Auth0.ManagementApi.Models;
 using Newtonsoft.Json;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;

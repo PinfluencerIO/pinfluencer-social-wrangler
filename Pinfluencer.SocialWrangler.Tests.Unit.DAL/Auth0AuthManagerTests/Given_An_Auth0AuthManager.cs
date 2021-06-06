@@ -5,6 +5,7 @@ using Pinfluencer.SocialWrangler.API;
 using Pinfluencer.SocialWrangler.API.Filters;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
@@ -22,7 +23,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Auth0AuthManagerTests
         protected const string TestId = "test_id";
         protected const string TestManagementDomain = "https://pinfluencer.eu.auth0.com/api/v2/";
         protected const string TestSecret = "test_secret";
-        private IConfiguration _mockConfiguration;
+        private IConfigurationAdapter _mockConfiguration;
         protected Result Result;
 
         protected IAuthServiceManagementClientDecorator MockAuth0ManagementClientDecorator;
@@ -51,6 +52,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Auth0AuthManagerTests
             MockAuth0AuthenticationFactory
                 .Factory( Arg.Any<string>( ) )
                 .Returns( MockAuth0AuthenticationClient );
+            _mockConfiguration = Substitute.For<IConfigurationAdapter>( );
 
             SetupConfiguration( OverridableAppOptions );
             SUT = new Auth0AuthManager( _mockConfiguration,
@@ -60,7 +62,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Auth0AuthManagerTests
 
         private void SetupConfiguration( AppOptions appOptions )
         {
-            _mockConfiguration = FakeConfiguration.GetFake( appOptions );
+            _mockConfiguration
+                .Get<AppOptions>(  )
+                .Returns( appOptions );
         }
 
         protected static AppOptions ModifyDefaultAppOptions( Func<AppOptions, AppOptions> appOptionsModifer )

@@ -4,6 +4,7 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces;
 using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
@@ -12,11 +13,11 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Managers
 {
     public class Auth0AuthManager : IAuthServiceAuthManager
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfigurationAdapter _configuration;
         private readonly IAuthServiceAuthenticationClientDecoratorFactory _authenticationClientFactory;
         private readonly IAuthServiceManagementClientDecorator _auth0ManagementClientDecorator;
 
-        public Auth0AuthManager( IConfiguration configuration, IAuthServiceAuthenticationClientDecoratorFactory authenticationClientFactory, IAuthServiceManagementClientDecorator auth0ManagementClientDecorator )
+        public Auth0AuthManager( IConfigurationAdapter configuration, IAuthServiceAuthenticationClientDecoratorFactory authenticationClientFactory, IAuthServiceManagementClientDecorator auth0ManagementClientDecorator )
         {
             _configuration = configuration;
             _authenticationClientFactory = authenticationClientFactory;

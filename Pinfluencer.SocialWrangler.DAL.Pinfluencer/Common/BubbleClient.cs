@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common
 {
     public class BubbleClient : ApiClientBase, IBubbleClient
     {
-        public BubbleClient( IConfiguration configuration, ISerializer serializer, IHttpClient httpClient ) : base(
+        public BubbleClient( IConfigurationAdapter configuration, ISerializer serializer, IHttpClient httpClient ) : base(
             httpClient, serializer )
         {
             var bubbleSettings = configuration

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Auth0.ManagementApi.Models;
 using Newtonsoft.Json;
 using NSubstitute;
 using NUnit.Framework;

@@ -5,6 +5,7 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
@@ -14,9 +15,9 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
     public class InstagramAudienceCountryRepository :
         InstagramAudienceRepositoryBase<InstagramAudienceCountryRepository, CountryProperty>
     {
-        private readonly CountryGetter _countryGetter;
+        private readonly ICountryGetter _countryGetter;
 
-        public InstagramAudienceCountryRepository( CountryGetter countryGetter,
+        public InstagramAudienceCountryRepository( ICountryGetter countryGetter,
             IFacebookDataHandler<InstagramAudienceCountryRepository> facebookDataHandler ) : base( facebookDataHandler )
         {
             _countryGetter = countryGetter;

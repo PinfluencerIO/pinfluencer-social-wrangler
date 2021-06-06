@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Auth0.ManagementApi;
 using Facebook;
 using Newtonsoft.Json;
 using NSubstitute;
@@ -17,7 +16,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
     public class DataGivenWhenThen<T> : PinfluencerGivenWhenThen<T> where T : class
     {
         protected IAuthServiceManagementClientDecorator MockAuthServiceManagementClientDecorator;
-        protected CountryGetter CountryGetter;
+        protected ICountryGetter CountryGetter;
         protected IFacebookDecorator MockFacebookDecorator;
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
         protected IFacebookDataHandler<T> MockFacebookDataHandler;

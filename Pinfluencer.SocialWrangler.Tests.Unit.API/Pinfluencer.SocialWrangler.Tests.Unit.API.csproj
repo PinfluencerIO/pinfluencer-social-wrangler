@@ -2,12 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RuntimeFrameworkVersion>3.1.0</RuntimeFrameworkVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0-release-20210422-02" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
         <PackageReference Include="NSubstitute" Version="4.2.2" />
         <PackageReference Include="nunit" Version="3.13.1" />
     </ItemGroup>
@@ -15,10 +13,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.API\Pinfluencer.SocialWrangler.API.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Middleware" />
     </ItemGroup>
 
 </Project>

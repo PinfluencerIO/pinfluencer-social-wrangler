@@ -1,5 +1,4 @@
-﻿using Auth0.ManagementApi.Models;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;

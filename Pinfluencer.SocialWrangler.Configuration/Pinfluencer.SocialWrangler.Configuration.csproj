@@ -5,12 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions\Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL\Pinfluencer.SocialWrangler.DL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Mono.Cecil" Version="0.11.3" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     </ItemGroup>
 
 </Project>

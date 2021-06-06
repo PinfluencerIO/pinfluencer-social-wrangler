@@ -2,15 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-
-        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
         <PackageReference Include="NSubstitute" Version="4.2.2" />
         <PackageReference Include="nunit" Version="3.13.1" />
-        <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -18,10 +15,6 @@
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Facebook\Pinfluencer.SocialWrangler.DAL.Facebook.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="FacebookTokenRepositoryTests" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Auth0.ManagementApi;
-using Microsoft.Extensions.Configuration;
 using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer
@@ -11,7 +11,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer
         private readonly AuthServiceOptions _auth0Settings;
         private ManagementApiClient _managementApiClient;
         
-        public Auth0ManagementClientDecorator( IConfiguration configuration )
+        public Auth0ManagementClientDecorator( IConfigurationAdapter configuration )
         {
             _auth0Settings = configuration
                 .Get<AppOptions>( )
