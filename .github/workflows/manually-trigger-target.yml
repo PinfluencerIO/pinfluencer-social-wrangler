@@ -26,5 +26,6 @@ jobs:
           dotnet-version: 3.1.x
       - name: Kick Off DevOps
         run: |
+          dotnet publish ${{ env.API_PROJ }} -o deploy -c Release
           dotnet publish ${{ env.DEVOPS_SLN }} -o devops
           dotnet exec ${{ env.DEVOPS_EXEC }} ${{ github.event.inputs.target }}
