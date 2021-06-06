@@ -5,6 +5,9 @@
 obj/
 bin/
 
+# IGNORE RESHARPER STUFF
+*.sln.DotSettings.user
+
 # IGNORE WEB CONFIG STUFF
 *apsettings.json
 *appsettings.Development.json
