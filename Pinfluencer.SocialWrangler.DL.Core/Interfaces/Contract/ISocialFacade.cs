@@ -11,7 +11,7 @@ namespace Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract
     {
         ObjectResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id );
         ObjectResult<IEnumerable<SocialInsightsUser>> GetUsers( );
-        ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights( string id );
+        ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>> GetAudienceCountryInsights( string id );
         ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id );
         ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id );
     }

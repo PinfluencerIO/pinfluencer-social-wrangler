@@ -5,13 +5,14 @@ using Newtonsoft.Json.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramAudienceGenderAgeRepository :
-        InstagramAudienceRepositoryBase<InstagramAudienceGenderAgeRepository, GenderAgeProperty>
+        InstagramAudienceRepositoryBase<InstagramAudienceGenderAgeRepository, GenderAgeProperty>, ISocialAudienceGenderAgeRepository
     {
         public InstagramAudienceGenderAgeRepository(
             IFacebookDataHandler<InstagramAudienceGenderAgeRepository> facebookDataHandler ) : base(
@@ -24,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             return FacebookDataHandler
                 .Read<IEnumerable<AudienceCount<GenderAgeProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",
                     MapMany, Enumerable.Empty<AudienceCount<GenderAgeProperty>>( ),
-                    new RequestInsightParams { metric = "audience_gender_age", period = "lifetime" } );
+                    new BaseRequestInsightParams { metric = "audience_gender_age", period = "lifetime" } );
         }
 
         public override IEnumerable<AudienceCount<GenderAgeProperty>> MapMany( DataArray<Metric<object>> dtoCollection )

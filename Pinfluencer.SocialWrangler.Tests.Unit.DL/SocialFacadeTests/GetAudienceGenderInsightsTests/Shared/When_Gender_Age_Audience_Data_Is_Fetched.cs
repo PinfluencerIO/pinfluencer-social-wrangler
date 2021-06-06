@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.Shared
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudienceGenderInsightsTests.Shared
 {
     public abstract class When_Gender_Age_Audience_Data_Is_Fetched : Given_An_InstagramFacade
     {
@@ -10,17 +10,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.Shared
         [ Test ]
         public void Then_Get_Gender_Age_Was_Called_Once( )
         {
-            MockSocialAudienceRepository
+            MockSocialAudienceGenderAgeRepository
                 .Received( 1 )
-                .GetGenderAge( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]
         public void Then_Get_Gender_Age_Was_Called_With_Correct_Instagram_Id( )
         {
-            MockSocialAudienceRepository
+            MockSocialAudienceGenderAgeRepository
                 .Received( 1 )
-                .GetGenderAge( InstagramId );
+                .Get( InstagramId );
         }
     }
 }

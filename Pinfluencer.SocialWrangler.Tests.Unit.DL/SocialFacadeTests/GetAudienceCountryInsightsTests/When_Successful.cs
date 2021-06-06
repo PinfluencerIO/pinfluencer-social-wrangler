@@ -12,31 +12,31 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudience
 {
     public class When_Successful : When_Called
     {
-        private ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
+        private ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>> _result;
 
         protected override void When( )
         {
-            MockSocialAudienceRepository
-                .GetCountry( Arg.Any<string>( ) )
-                .Returns( new ObjectResult<IEnumerable<AudienceCount<LocationProperty>>>(
+            MockSocialAudienceCountryRepository
+                .Get( Arg.Any<string>( ) )
+                .Returns( new ObjectResult<IEnumerable<AudienceCount<CountryProperty>>>(
                     new [ ]
                     {
-                        new AudienceCount<LocationProperty>
+                        new AudienceCount<CountryProperty>
                         {
                             Count = 39,
-                            Property = new LocationProperty
+                            Property = new CountryProperty
                                 { Country = CountryGetter.Countries[ CountryEnum.GB ], CountryCode = CountryEnum.GB }
                         },
-                        new AudienceCount<LocationProperty>
+                        new AudienceCount<CountryProperty>
                         {
                             Count = 113,
-                            Property = new LocationProperty
+                            Property = new CountryProperty
                                 { Country = CountryGetter.Countries[ CountryEnum.US ], CountryCode = CountryEnum.US }
                         },
-                        new AudienceCount<LocationProperty>
+                        new AudienceCount<CountryProperty>
                         {
                             Count = 113,
-                            Property = new LocationProperty
+                            Property = new CountryProperty
                                 { Country = CountryGetter.Countries[ CountryEnum.FR ], CountryCode = CountryEnum.FR }
                         }
                     },

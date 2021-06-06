@@ -16,18 +16,22 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
     {
         private readonly ISocialContentImpressionsRepository _impressionsRepository;
         private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
-        private readonly ISocialAudienceRepository _socialAudienceRepository;
         private readonly IDateTimeAdapter _dateTimeAdapter;
+        private readonly ISocialAudienceGenderAgeRepository _socialAudienceGenderAgeRepository;
+        private readonly ISocialAudienceCountryRepository _socialAudienceCountryRepository;
 
         public SocialFacade(
             ISocialContentImpressionsRepository impressionsRepository,
             IInsightsSocialUserRepository insightsSocialUserRepository,
-            ISocialAudienceRepository socialAudienceRepository, IDateTimeAdapter dateTimeAdapter )
+            IDateTimeAdapter dateTimeAdapter,
+            ISocialAudienceGenderAgeRepository socialAudienceGenderAgeRepository,
+            ISocialAudienceCountryRepository socialAudienceCountryRepository )
         {
             _impressionsRepository = impressionsRepository;
             _insightsSocialUserRepository = insightsSocialUserRepository;
-            _socialAudienceRepository = socialAudienceRepository;
             _dateTimeAdapter = dateTimeAdapter;
+            _socialAudienceGenderAgeRepository = socialAudienceGenderAgeRepository;
+            _socialAudienceCountryRepository = socialAudienceCountryRepository;
         }
 
         public ObjectResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id )
@@ -43,24 +47,24 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             return _insightsSocialUserRepository.GetAll( );
         }
 
-        public ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>> GetAudienceCountryInsights(
+        public ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>> GetAudienceCountryInsights(
             string id )
         {
-            var result = _socialAudienceRepository.GetCountry( id );
+            var result = _socialAudienceCountryRepository.Get( id );
             if( result.Status != OperationResultEnum.Success )
-                return new ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
-                    Enumerable.Empty<AudiencePercentage<LocationProperty>>( ), OperationResultEnum.Failed );
+                return new ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>>(
+                    Enumerable.Empty<AudiencePercentage<CountryProperty>>( ), OperationResultEnum.Failed );
 
             var totalFollowers = result.Value.Sum( x => x.Count );
-            return new ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>>(
-                result.Value.Select( x => new AudiencePercentage<LocationProperty>
+            return new ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>>(
+                result.Value.Select( x => new AudiencePercentage<CountryProperty>
                     { Percentage = ( double ) x.Count / ( double ) totalFollowers, Value = x.Property } ),
                 OperationResultEnum.Success );
         }
 
         public ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id )
         {
-            var result = _socialAudienceRepository.GetGenderAge( id );
+            var result = _socialAudienceGenderAgeRepository.Get( id );
             if( result.Status != OperationResultEnum.Success )
                 return new ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>>(
                     Enumerable.Empty<AudiencePercentage<GenderEnum>>( ), OperationResultEnum.Failed );
@@ -80,7 +84,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
 
         public ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id )
         {
-            var result = _socialAudienceRepository.GetGenderAge( id );
+            var result = _socialAudienceGenderAgeRepository.Get( id );
             if( result.Status != OperationResultEnum.Success )
                 return new ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>>(
                     Enumerable.Empty<AudiencePercentage<AgeProperty>>( ), OperationResultEnum.Failed );

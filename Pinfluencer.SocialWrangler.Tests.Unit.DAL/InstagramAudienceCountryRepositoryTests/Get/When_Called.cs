@@ -75,7 +75,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<Metric<object>>, IEnumerable<AudienceCount<CountryProperty>>>>( ),
                     Arg.Any<IEnumerable<AudienceCount<CountryProperty>>>( ),
-                    Arg.Any<RequestInsightParams>( ) )
+                    Arg.Any<BaseRequestInsightParams>( ) )
                 .Returns( _objectResult );
             _result = SUT.Get( "123" );
         }
@@ -88,7 +88,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<Metric<object>>, IEnumerable<AudienceCount<CountryProperty>>>>( ),
                     Arg.Any<IEnumerable<AudienceCount<CountryProperty>>>( ),
-                    Arg.Any<RequestInsightParams>( ) );
+                    Arg.Any<BaseRequestInsightParams>( ) );
         }
 
         [ Test ]
@@ -99,7 +99,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceCountryRepo
                 .Read<IEnumerable<AudienceCount<CountryProperty>>, DataArray<Metric<object>>>( "123/insights",
                     SUT.MapMany,
                     Arg.Is<IEnumerable<AudienceCount<CountryProperty>>>( x => !x.Any( ) ),
-                    Arg.Is<RequestInsightParams>( x => x.metric == "audience_country" && x.period == "lifetime" ) );
+                    Arg.Is<BaseRequestInsightParams>( x => x.metric == "audience_country" && x.period == "lifetime" ) );
         }
 
         [ Test ]

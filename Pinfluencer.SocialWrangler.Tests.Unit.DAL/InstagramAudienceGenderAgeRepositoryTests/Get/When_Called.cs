@@ -74,7 +74,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<Metric<object>>, IEnumerable<AudienceCount<GenderAgeProperty>>>>( ),
                     Arg.Any<IEnumerable<AudienceCount<GenderAgeProperty>>>( ),
-                    Arg.Any<RequestInsightParams>( ) )
+                    Arg.Any<BaseRequestInsightParams>( ) )
                 .Returns( _objectResult );
             _result = SUT.Get( "123" );
         }
@@ -87,7 +87,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<Metric<object>>, IEnumerable<AudienceCount<GenderAgeProperty>>>>( ),
                     Arg.Any<IEnumerable<AudienceCount<GenderAgeProperty>>>( ),
-                    Arg.Any<RequestInsightParams>( ) );
+                    Arg.Any<BaseRequestInsightParams>( ) );
         }
 
         [ Test ]
@@ -98,7 +98,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRe
                 .Read<IEnumerable<AudienceCount<GenderAgeProperty>>, DataArray<Metric<object>>>( "123/insights",
                     SUT.MapMany,
                     Arg.Is<IEnumerable<AudienceCount<GenderAgeProperty>>>( x => !x.Any( ) ),
-                    Arg.Is<RequestInsightParams>( x => x.metric == "audience_gender_age" && x.period == "lifetime" ) );
+                    Arg.Is<BaseRequestInsightParams>( x => x.metric == "audience_gender_age" && x.period == "lifetime" ) );
         }
 
         [ Test ]

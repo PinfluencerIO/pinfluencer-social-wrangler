@@ -7,13 +7,14 @@ using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramAudienceCountryRepository :
-        InstagramAudienceRepositoryBase<InstagramAudienceCountryRepository, CountryProperty>
+        InstagramAudienceRepositoryBase<InstagramAudienceCountryRepository, CountryProperty>, ISocialAudienceCountryRepository
     {
         private readonly ICountryGetter _countryGetter;
 
@@ -28,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
             return FacebookDataHandler
                 .Read<IEnumerable<AudienceCount<CountryProperty>>, DataArray<Metric<object>>>( $"{instaId}/insights",
                     MapMany, Enumerable.Empty<AudienceCount<CountryProperty>>( ),
-                    new RequestInsightParams { metric = "audience_country", period = "lifetime" } );
+                    new BaseRequestInsightParams { metric = "audience_country", period = "lifetime" } );
         }
 
         public override IEnumerable<AudienceCount<CountryProperty>> MapMany( DataArray<Metric<object>> dtoCollection )

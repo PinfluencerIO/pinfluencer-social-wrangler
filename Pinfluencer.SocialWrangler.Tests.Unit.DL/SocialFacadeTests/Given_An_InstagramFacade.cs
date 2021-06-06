@@ -11,6 +11,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests
         protected ISocialContentImpressionsRepository ImpressionsInsightsRepository;
         protected IInsightsSocialUserRepository InsightsSocialUserRepository;
         protected ISocialAudienceRepository MockSocialAudienceRepository;
+        protected ISocialAudienceGenderAgeRepository MockSocialAudienceGenderAgeRepository;
+        protected ISocialAudienceCountryRepository MockSocialAudienceCountryRepository;
 
         protected override void Given( )
         {
@@ -19,11 +21,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests
             ImpressionsInsightsRepository = Substitute.For<ISocialContentImpressionsRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockSocialAudienceRepository = Substitute.For<ISocialAudienceRepository>( );
+            MockSocialAudienceGenderAgeRepository = Substitute.For< ISocialAudienceGenderAgeRepository >( );
+            MockSocialAudienceCountryRepository = Substitute.For< ISocialAudienceCountryRepository >( );
 
             SUT = new SocialFacade( ImpressionsInsightsRepository,
                 InsightsSocialUserRepository,
-                MockSocialAudienceRepository,
-                MockDateTime );
+                MockDateTime,
+                MockSocialAudienceGenderAgeRepository,
+                MockSocialAudienceCountryRepository );
         }
     }
 }

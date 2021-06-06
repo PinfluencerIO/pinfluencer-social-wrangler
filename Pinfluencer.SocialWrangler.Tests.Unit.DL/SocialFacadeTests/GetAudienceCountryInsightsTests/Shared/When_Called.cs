@@ -10,17 +10,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudience
         [ Test ]
         public void Then_Get_Country_Was_Called_Once( )
         {
-            MockSocialAudienceRepository
+            MockSocialAudienceCountryRepository
                 .Received( 1 )
-                .GetCountry( Arg.Any<string>( ) );
+                .Get( Arg.Any<string>( ) );
         }
 
         [ Test ]
         public void Then_Get_Country_Was_Called_With_Correct_Instagram_Id( )
         {
-            MockSocialAudienceRepository
+            MockSocialAudienceCountryRepository
                 .Received( 1 )
-                .GetCountry( InstagramId );
+                .Get( InstagramId );
         }
     }
 }

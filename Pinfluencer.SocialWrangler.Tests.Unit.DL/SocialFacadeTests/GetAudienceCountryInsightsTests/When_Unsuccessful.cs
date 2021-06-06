@@ -12,14 +12,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudience
 {
     public class When_Unsuccessful : When_Called
     {
-        private ObjectResult<IEnumerable<AudiencePercentage<LocationProperty>>> _result;
+        private ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>> _result;
 
         protected override void When( )
         {
-            MockSocialAudienceRepository
-                .GetCountry( Arg.Any<string>( ) )
-                .Returns( new ObjectResult<IEnumerable<AudienceCount<LocationProperty>>>(
-                    Enumerable.Empty<AudienceCount<LocationProperty>>( ),
+            MockSocialAudienceCountryRepository
+                .Get( Arg.Any<string>( ) )
+                .Returns( new ObjectResult<IEnumerable<AudienceCount<CountryProperty>>>(
+                    Enumerable.Empty<AudienceCount<CountryProperty>>( ),
                     OperationResultEnum.Failed
                 ) );
             _result = SUT.GetAudienceCountryInsights( InstagramId );

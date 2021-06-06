@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudienceGenderInsightsTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudienceGenderInsightsTests
 {
@@ -16,8 +16,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudience
 
         protected override void When( )
         {
-            MockSocialAudienceRepository
-                .GetGenderAge( Arg.Any<string>( ) )
+            MockSocialAudienceGenderAgeRepository
+                .Get( Arg.Any<string>( ) )
                 .Returns( new ObjectResult<IEnumerable<AudienceCount<GenderAgeProperty>>>(
                     new [ ]
                     {
@@ -72,7 +72,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudience
                     },
                     OperationResultEnum.Success
                 ) );
-            _result = SUT.GetAudienceGenderInsights( "123" );
+            _result = SUT.GetAudienceGenderInsights( InstagramId );
         }
 
         [ Test ]
