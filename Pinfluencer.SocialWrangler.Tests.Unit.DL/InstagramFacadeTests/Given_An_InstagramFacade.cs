@@ -6,9 +6,9 @@ using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests
 {
     public abstract class
-        Given_An_InstagramFacade : DataGivenWhenThen<InstagramFacade>
+        Given_An_InstagramFacade : DataGivenWhenThen<SocialFacade>
     {
-        protected ISocialImpressionsRepository ImpressionsInsightsRepository;
+        protected ISocialContentImpressionsRepository ImpressionsInsightsRepository;
         protected IInsightsSocialUserRepository InsightsSocialUserRepository;
         protected ISocialAudienceRepository MockSocialAudienceRepository;
 
@@ -16,11 +16,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests
         {
             base.Given( );
 
-            ImpressionsInsightsRepository = Substitute.For<ISocialImpressionsRepository>( );
+            ImpressionsInsightsRepository = Substitute.For<ISocialContentImpressionsRepository>( );
             InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockSocialAudienceRepository = Substitute.For<ISocialAudienceRepository>( );
 
-            SUT = new InstagramFacade(
+            SUT = new SocialFacade(
                 ImpressionsInsightsRepository,
                 InsightsSocialUserRepository,
                 MockSocialAudienceRepository

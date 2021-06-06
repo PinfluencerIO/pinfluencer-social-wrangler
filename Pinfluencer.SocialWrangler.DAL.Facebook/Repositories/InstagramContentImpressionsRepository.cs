@@ -4,6 +4,7 @@ using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
 using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
@@ -12,7 +13,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
     public class InstagramContentImpressionsRepository :
         IDataCollectionMappable<IEnumerable<ContentImpressions>,
-            DataArray<Metric<int>>>
+            DataArray<Metric<int>>>, ISocialContentImpressionsRepository
     {
         private readonly IFacebookDataHandler<InstagramContentImpressionsRepository> _facebookDataHandler;
 

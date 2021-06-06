@@ -5,12 +5,12 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetProfileViewsTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetImpressionsTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetProfileViewsTests.
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetImpressionsTests.
     ConstructedSuccessfullyTests
 {
-    public class When_Multiple_Insights_Are_Returned : When_Get_User_Insights_Is_Called
+    public class When_Multiple_Insights_Are_Returned : When_Called
     {
         private ObjectResult<IEnumerable<ContentImpressions>> _result;
 

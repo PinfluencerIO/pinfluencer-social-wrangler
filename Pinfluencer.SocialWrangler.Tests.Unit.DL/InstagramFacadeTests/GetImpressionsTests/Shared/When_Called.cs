@@ -6,9 +6,9 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetProfileViewsTests.Shared
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetImpressionsTests.Shared
 {
-    public abstract class When_Get_User_Insights_Is_Called : Given_An_InstagramFacade
+    public abstract class When_Called : Given_An_InstagramFacade
     {
         protected const string TestId = "";
 
@@ -18,7 +18,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetProfi
         protected override void When( )
         {
             ImpressionsInsightsRepository
-                .Get( Arg.Any<string>( ) )
+                .Get( Arg.Any< string >( ),
+                    Arg.Any< PeriodEnum >( ),
+                    Arg.Any< (DateTime start, DateTime end) >( ) )
                 .Returns(
                     new ObjectResult<IEnumerable<ContentImpressions>>(
                         ImpressionsColleciton, ImpressionsOperationResult
@@ -31,15 +33,19 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetProfi
         {
             ImpressionsInsightsRepository
                 .Received( 1 )
-                .Get( Arg.Any<string>( ) );
+                .Get( Arg.Any< string >( ),
+                    Arg.Any< PeriodEnum >( ),
+                    Arg.Any< (DateTime start, DateTime end) >( ) );
         }
 
         [ Test ]
-        public void Then_Get_Impressions_Insights_Was_Called_With_Correct_Id( )
+        public void Then_Correct_Users_Impressions_Were_Fetched_From_Last_28_Days( )
         {
             ImpressionsInsightsRepository
                 .Received( )
-                .Get( Arg.Is( TestId ) );
+                .Get( Arg.Is( TestId ),
+                    PeriodEnum.Day28,
+                    ( CurrentTime, CurrentTime.AddDays( 1 ) ) );
         }
 
         protected IEnumerable<ContentImpressions> GetSingleImpressionsColleciton( DateTime date, int impressions )
@@ -62,12 +68,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InstagramFacadeTests.GetProfi
                 new ContentImpressions( date1, impressions1 ),
                 new ContentImpressions( date2, impressions2 )
             };
-        }
-
-        protected void SetDefaultImpressionsColleciton( )
-        {
-            ImpressionsColleciton = GetSingleImpressionsColleciton( new DateTime( 2000, 1, 1 ), 5 );
-            ImpressionsOperationResult = OperationResultEnum.Success;
         }
     }
 }
