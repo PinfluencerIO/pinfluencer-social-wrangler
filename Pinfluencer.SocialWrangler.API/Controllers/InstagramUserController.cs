@@ -8,18 +8,18 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     [ Route( "instagram-user" ) ]
     public class InstagramUserController : SocialWranglerController
     {
-        private readonly IInstagramFacade _instagramFacade;
+        private readonly ISocialFacade _socialFacade;
 
-        public InstagramUserController( IInstagramFacade instagramFacaade, MvcAdapter mvcAdapter ) : base( mvcAdapter )
+        public InstagramUserController( ISocialFacade socialFacaade, MvcAdapter mvcAdapter ) : base( mvcAdapter )
         {
-            _instagramFacade = instagramFacaade;
+            _socialFacade = socialFacaade;
         }
 
         [ Route( "" ) ]
         [ HttpGet ]
         public IActionResult GetAll( )
         {
-            var users = _instagramFacade.GetUsers( );
+            var users = _socialFacade.GetUsers( );
             if( users.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( users.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram users" );
         }
