@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
@@ -33,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         {
             return _impressionsRepository.Get( id,
                 PeriodEnum.Day28,
-                ( _dateTimeAdapter.Now( ), _dateTimeAdapter.Now( ).AddDays( 1 ) ) );
+                ( _dateTimeAdapter.Now( ).Subtract( new TimeSpan( 1, 0, 0, 0 ) ), _dateTimeAdapter.Now( ) ) );
         }
 
         //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )

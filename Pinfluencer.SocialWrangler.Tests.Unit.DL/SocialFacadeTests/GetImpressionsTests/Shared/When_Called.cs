@@ -45,7 +45,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetImpressi
                 .Received( )
                 .Get( Arg.Is( TestId ),
                     PeriodEnum.Day28,
-                    ( CurrentTime, CurrentTime.AddDays( 1 ) ) );
+                    ( CurrentTimeMinus1Day, CurrentTime ) );
         }
 
         protected IEnumerable<ContentImpressions> GetSingleImpressionsColleciton( DateTime date, int impressions )

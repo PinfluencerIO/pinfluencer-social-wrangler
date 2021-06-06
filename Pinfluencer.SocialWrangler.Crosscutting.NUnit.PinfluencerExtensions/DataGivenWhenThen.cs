@@ -19,6 +19,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
         protected IFacebookDataHandler<T> MockFacebookDataHandler;
         protected ISerializer Serializer;
+        protected DateTime CurrentTimeMinus1Day = new DateTime( 2021, 5, 27 );
 
         protected override void Given( )
         {
