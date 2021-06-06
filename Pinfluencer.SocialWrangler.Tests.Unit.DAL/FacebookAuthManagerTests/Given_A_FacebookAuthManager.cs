@@ -1,12 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Primitives;
-using NSubstitute;
-using Pinfluencer.SocialWrangler.API.Core.Dtos.Request;
-using Pinfluencer.SocialWrangler.API.Core.Dtos.Response;
-using Pinfluencer.SocialWrangler.API.Filters;
+﻿using NSubstitute;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;

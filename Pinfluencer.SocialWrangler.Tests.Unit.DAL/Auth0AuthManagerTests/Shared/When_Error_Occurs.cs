@@ -1,6 +1,4 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
 

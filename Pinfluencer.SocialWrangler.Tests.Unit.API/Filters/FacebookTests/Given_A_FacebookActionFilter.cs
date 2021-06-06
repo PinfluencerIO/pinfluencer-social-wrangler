@@ -4,13 +4,8 @@ using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Core.Dtos.Request;
 using Pinfluencer.SocialWrangler.API.Core.Dtos.Response;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
-using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
 {

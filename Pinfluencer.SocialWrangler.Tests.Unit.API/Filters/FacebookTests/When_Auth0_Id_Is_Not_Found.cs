@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests

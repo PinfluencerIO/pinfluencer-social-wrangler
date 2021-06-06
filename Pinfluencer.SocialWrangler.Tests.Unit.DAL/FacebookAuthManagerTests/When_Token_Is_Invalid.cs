@@ -1,6 +1,4 @@
-﻿using System.Net;
-using Facebook;
-using Microsoft.AspNetCore.Mvc;
+﻿using Facebook;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;

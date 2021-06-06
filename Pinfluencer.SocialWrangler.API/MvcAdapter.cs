@@ -34,19 +34,19 @@ namespace Pinfluencer.SocialWrangler.API
 
         public IActionResult OkResult<T>( T objectVal ) { return Ok( objectVal ); }
 
-        public ContentResult Ok( object objectValue ) { return ToJson( objectValue, HttpStatusCode.OK ); }
+        private ContentResult Ok( object objectValue ) { return ToJson( objectValue, HttpStatusCode.OK ); }
 
-        public ContentResult BadRequest( object objectValue )
+        private ContentResult BadRequest( object objectValue )
         {
             return ToJson( objectValue, HttpStatusCode.BadRequest );
         }
 
-        public ContentResult Unauthorized( object objectValue )
+        private ContentResult Unauthorized( object objectValue )
         {
             return ToJson( objectValue, HttpStatusCode.Unauthorized );
         }
 
-        public ContentResult NotFound( object objectValue ) { return ToJson( objectValue, HttpStatusCode.NotFound ); }
+        private ContentResult NotFound( object objectValue ) { return ToJson( objectValue, HttpStatusCode.NotFound ); }
 
         private ContentResult ToJson( object objectValue, HttpStatusCode statusCode )
         {

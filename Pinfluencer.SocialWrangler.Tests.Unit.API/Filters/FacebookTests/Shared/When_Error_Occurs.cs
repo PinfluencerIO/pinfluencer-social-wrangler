@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared

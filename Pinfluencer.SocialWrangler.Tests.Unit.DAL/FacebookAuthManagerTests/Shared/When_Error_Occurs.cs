@@ -1,6 +1,4 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests.Shared

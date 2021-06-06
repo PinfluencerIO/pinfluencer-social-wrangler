@@ -1,12 +1,8 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.API;
-using Pinfluencer.SocialWrangler.API.Filters;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
