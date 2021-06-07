@@ -36,7 +36,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentRepositoryTe
 
         public IEnumerable<Content> MapMany( DataArray<InstagramContent> dtoCollection )
         {
-            return Enumerable.Empty<Content>( );
+            return dtoCollection
+                .Data
+                .Select( x => new Content
+                {
+                    Id = x.Id,
+                    TimeOfUpload = x.UploadTime
+                } );
         }
     }
 }
