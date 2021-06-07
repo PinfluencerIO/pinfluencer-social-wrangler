@@ -7,14 +7,14 @@ using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
-    public class InfluencerRepository :
+    public class BubbleInfluencerRepository :
         IDataMappableIn<InfluencerModel,
             Influencer>,
         IInfluencerRepository
     {
-        private readonly IBubbleDataHandler<InfluencerRepository> _bubbleDataHandler;
+        private readonly IBubbleDataHandler<BubbleInfluencerRepository> _bubbleDataHandler;
 
-        public InfluencerRepository( IBubbleDataHandler<InfluencerRepository> bubbleDataHandler )
+        public BubbleInfluencerRepository( IBubbleDataHandler<BubbleInfluencerRepository> bubbleDataHandler )
         {
             _bubbleDataHandler = bubbleDataHandler;
         }

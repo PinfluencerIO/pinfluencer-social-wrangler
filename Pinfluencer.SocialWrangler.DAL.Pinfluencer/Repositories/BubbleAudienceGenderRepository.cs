@@ -11,13 +11,13 @@ using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
-    public class AudienceGenderRepository : IAudienceGenderRepository
+    public class BubbleAudienceGenderRepository : IAudienceGenderRepository
     {
         private const string Resource = "audiencegender";
 
-        private readonly IBubbleDataHandler<AudienceGenderRepository> _bubbleDataHandler;
+        private readonly IBubbleDataHandler<BubbleAudienceGenderRepository> _bubbleDataHandler;
 
-        public AudienceGenderRepository( IBubbleDataHandler<AudienceGenderRepository> bubbleDataHandler )
+        public BubbleAudienceGenderRepository( IBubbleDataHandler<BubbleAudienceGenderRepository> bubbleDataHandler )
         {
             _bubbleDataHandler = bubbleDataHandler;
         }

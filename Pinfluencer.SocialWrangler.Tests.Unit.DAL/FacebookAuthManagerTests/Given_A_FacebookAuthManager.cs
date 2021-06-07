@@ -18,7 +18,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests
 
         private IFacebookDecorator _mockFacebookDecorator;
         private IFacebookClientFactory _mockFacebookClientFactory;
-        protected ITokenRepository MockTokenRepository;
+        protected IFacebookTokenRepository FacebookTokenRepository;
         protected IFacebookDecorator MockFacebookDecorator;
 
         protected Result Result;
@@ -26,17 +26,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests
         protected override void Given( )
         {
             base.Given( );
-            MockTokenRepository = Substitute.For<ITokenRepository>( );
+            FacebookTokenRepository = Substitute.For<IFacebookTokenRepository>( );
             MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
             MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
 
-            SUT = new FacebookAuthManager( MockTokenRepository,
+            SUT = new FacebookAuthManager( FacebookTokenRepository,
                 MockFacebookDecorator );
         }
 
         protected void SetUpUserRepository( string value, OperationResultEnum resultEnum )
         {
-            MockTokenRepository
+            FacebookTokenRepository
                 .Get( Arg.Any<string>( ) )
                 .Returns( new ObjectResult<string>( value, resultEnum ) );
         }

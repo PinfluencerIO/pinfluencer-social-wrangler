@@ -5,14 +5,14 @@ using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
-namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
+namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
-    public class FacebookTokenRepository : ITokenRepository
+    public class Auth0FacebookTokenRepository : IFacebookTokenRepository
     {
         private readonly IAuthServiceManagementClientDecorator _auth0ManagementClientDecorator;
-        private readonly ILoggerAdapter<FacebookTokenRepository> _logger;
+        private readonly ILoggerAdapter<Auth0FacebookTokenRepository> _logger;
 
-        public FacebookTokenRepository( ILoggerAdapter<FacebookTokenRepository> logger, IAuthServiceManagementClientDecorator auth0ManagementClientDecorator )
+        public Auth0FacebookTokenRepository( ILoggerAdapter<Auth0FacebookTokenRepository> logger, IAuthServiceManagementClientDecorator auth0ManagementClientDecorator )
         {
             _logger = logger;
             _auth0ManagementClientDecorator = auth0ManagementClientDecorator;

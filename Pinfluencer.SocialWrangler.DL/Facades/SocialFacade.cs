@@ -49,7 +49,11 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             var result = _insightsSocialUserRepository.GetAll( );
             if( !result.Value.Any( ) )
             {
-                result.Status = OperationResultEnum.Failed;
+                return new ObjectResult<IEnumerable<SocialInsightsUser>>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Value = result.Value
+                };
             }
 
             return result;

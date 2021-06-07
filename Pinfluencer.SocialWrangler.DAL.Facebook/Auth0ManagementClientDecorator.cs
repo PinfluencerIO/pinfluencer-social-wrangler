@@ -4,7 +4,7 @@ using Pinfluencer.SocialWrangler.Core.Options;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
-namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer
+namespace Pinfluencer.SocialWrangler.DAL.Facebook
 {
     public class Auth0ManagementClientDecorator : IAuthServiceManagementClientDecorator
     {

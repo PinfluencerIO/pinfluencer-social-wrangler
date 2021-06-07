@@ -9,19 +9,19 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Managers
 {
     public class FacebookAuthManager : ISocialAuthManager
     {
-        private readonly ITokenRepository _tokenRepository;
+        private readonly IFacebookTokenRepository _facebookTokenRepository;
         private readonly IFacebookDecorator _facebookDecorator;
 
-        public FacebookAuthManager( ITokenRepository tokenRepository, IFacebookDecorator facebookDecorator )
+        public FacebookAuthManager( IFacebookTokenRepository facebookTokenRepository, IFacebookDecorator facebookDecorator )
         {
-            _tokenRepository = tokenRepository;
+            _facebookTokenRepository = facebookTokenRepository;
             _facebookDecorator = facebookDecorator;
         }
 
         //TODO: override default message
         public Result Initialize( string authUser )
         {
-            var tokenResult = _tokenRepository.Get( authUser );
+            var tokenResult = _facebookTokenRepository.Get( authUser );
             if( tokenResult.Status == OperationResultEnum.Failed )
             {
                 return Result.Error( "auth0 id did not match an existing user" );

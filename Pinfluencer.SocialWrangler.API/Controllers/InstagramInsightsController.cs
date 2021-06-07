@@ -73,5 +73,14 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
+        
+        [ NonAction ]
+        [ ActionName( "reach" ) ]
+        private IActionResult getReach( string user )
+        {
+            var insights = _socialFacade.GetReach( user );
+            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
+            return MvcAdapter.BadRequestError( "failed to fetch instagram reach insights for user" );
+        }
     }
 }

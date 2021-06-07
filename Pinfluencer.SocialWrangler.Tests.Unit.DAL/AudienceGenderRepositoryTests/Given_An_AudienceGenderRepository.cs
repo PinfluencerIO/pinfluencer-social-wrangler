@@ -3,12 +3,12 @@ using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceGenderRepositoryTests
 {
-    public class Given_An_AudienceGenderRepository : DataGivenWhenThen<AudienceGenderRepository>
+    public class Given_An_AudienceGenderRepository : DataGivenWhenThen<BubbleAudienceGenderRepository>
     {
         protected override void Given( )
         {
             base.Given( );
-            SUT = new AudienceGenderRepository( MockBubbleDataHandler );
+            SUT = new BubbleAudienceGenderRepository( MockBubbleDataHandler );
         }
     }
 }

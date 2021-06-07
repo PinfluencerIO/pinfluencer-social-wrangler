@@ -6,7 +6,7 @@ using InfluencerModel = Pinfluencer.SocialWrangler.Core.Models.User.Influencer;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests
 {
-    public class Given_A_InfluencerRepository : DataGivenWhenThen<InfluencerRepository>
+    public class Given_A_InfluencerRepository : DataGivenWhenThen<BubbleInfluencerRepository>
     {
         protected InfluencerModel DefaultInfluencer =>
             new InfluencerModel
@@ -22,7 +22,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests
         protected override void Given( )
         {
             base.Given( );
-            SUT = new InfluencerRepository( MockBubbleDataHandler );
+            SUT = new BubbleInfluencerRepository( MockBubbleDataHandler );
         }
     }
 }

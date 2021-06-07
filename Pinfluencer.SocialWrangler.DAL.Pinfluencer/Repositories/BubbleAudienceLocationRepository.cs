@@ -11,11 +11,11 @@ using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
-    public class AudienceLocationRepository : IAudienceLocationRepository
+    public class BubbleAudienceLocationRepository : IAudienceLocationRepository
     {
-        private readonly IBubbleDataHandler<AudienceLocationRepository> _bubbleDataHandler;
+        private readonly IBubbleDataHandler<BubbleAudienceLocationRepository> _bubbleDataHandler;
 
-        public AudienceLocationRepository( IBubbleDataHandler<AudienceLocationRepository> bubbleDataHandler )
+        public BubbleAudienceLocationRepository( IBubbleDataHandler<BubbleAudienceLocationRepository> bubbleDataHandler )
         {
             _bubbleDataHandler = bubbleDataHandler;
         }

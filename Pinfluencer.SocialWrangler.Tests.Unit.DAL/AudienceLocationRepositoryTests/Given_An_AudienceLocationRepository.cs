@@ -3,12 +3,12 @@ using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceLocationRepositoryTests
 {
-    public class Given_An_AudienceLocationRepository : DataGivenWhenThen<AudienceLocationRepository>
+    public class Given_An_AudienceLocationRepository : DataGivenWhenThen<BubbleAudienceLocationRepository>
     {
         protected override void Given( )
         {
             base.Given( );
-            SUT = new AudienceLocationRepository( MockBubbleDataHandler );
+            SUT = new BubbleAudienceLocationRepository( MockBubbleDataHandler );
         }
     }
 }

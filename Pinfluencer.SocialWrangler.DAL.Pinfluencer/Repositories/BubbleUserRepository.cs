@@ -11,14 +11,14 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
     //TODO: REFACTOR SEPERATE DATA SOURCES INTO SEPERATE REPOSITORIES
     //TODO: ADD LOGGING !!!
 
-    public class UserRepository :
+    public class BubbleUserRepository :
         IUserRepository,
         IDataMappableOut<User,
             TypeResponse<Profile>>
     {
-        private readonly IBubbleDataHandler<UserRepository> _bubbleDataHandler;
+        private readonly IBubbleDataHandler<BubbleUserRepository> _bubbleDataHandler;
 
-        public UserRepository( IBubbleDataHandler<UserRepository> bubbleDataHandler )
+        public BubbleUserRepository( IBubbleDataHandler<BubbleUserRepository> bubbleDataHandler )
         {
             _bubbleDataHandler = bubbleDataHandler;
         }

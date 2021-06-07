@@ -10,12 +10,12 @@ using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
 {
-    public class AudienceAgeRepository : IAudienceAgeRepository
+    public class BubbleAudienceAgeRepository : IAudienceAgeRepository
     {
         private const string Resource = "audienceage";
-        private readonly IBubbleDataHandler<AudienceAgeRepository> _bubbleDataHandler;
+        private readonly IBubbleDataHandler<BubbleAudienceAgeRepository> _bubbleDataHandler;
 
-        public AudienceAgeRepository( IBubbleDataHandler<AudienceAgeRepository> bubbleDataHandler )
+        public BubbleAudienceAgeRepository( IBubbleDataHandler<BubbleAudienceAgeRepository> bubbleDataHandler )
         {
             _bubbleDataHandler = bubbleDataHandler;
         }

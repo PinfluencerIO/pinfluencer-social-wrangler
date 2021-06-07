@@ -2,7 +2,7 @@
 
 namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing
 {
-    public interface ITokenRepository
+    public interface IFacebookTokenRepository
     {
         ObjectResult<string> Get( string authId );
     }

@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests
         [ Test ]
         public void Then_User_Repository_Was_Fetched_From_Once( )
         {
-            MockTokenRepository
+            FacebookTokenRepository
                 .Received( 1 )
                 .Get( Arg.Any<string>( ) );
         }
@@ -33,7 +33,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests
         [ Test ]
         public void Then_Valid_Auth0_Id_Was_Used( )
         {
-            MockTokenRepository
+            FacebookTokenRepository
                 .Received( )
                 .Get( Arg.Is( TestAuth0Id ) );
         }
