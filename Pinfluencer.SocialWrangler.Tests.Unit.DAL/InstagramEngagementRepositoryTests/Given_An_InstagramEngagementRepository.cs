@@ -1,4 +1,5 @@
-﻿using Pinfluencer.SocialWrangler.Core;
+﻿using System.Linq;
+using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
@@ -36,6 +37,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramEngagementRepositor
                     } );
         }
 
-        public int MapOut( DataArray<Metric<int>> dto ) { return default; }
+        public int MapOut( DataArray<Metric<int>> dto ) 
+        { 
+            return dto
+                .Data
+                .First( )
+                .Insights
+                .First( )
+                .Value; 
+        }
     }
 }
