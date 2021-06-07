@@ -7,9 +7,9 @@ using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {

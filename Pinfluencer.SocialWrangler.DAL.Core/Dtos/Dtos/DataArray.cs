@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Pinfluencer.SocialWrangler.DAL.Facebook.Dtos
+namespace Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos
 {
     [ DataContract ]
     public class DataArray<T>

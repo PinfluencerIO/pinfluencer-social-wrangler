@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramAudienceGenderAgeRepositoryTests.MapMany
 {

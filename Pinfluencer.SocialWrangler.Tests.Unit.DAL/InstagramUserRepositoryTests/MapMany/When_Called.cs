@@ -3,7 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramUserRepositoryTests.MapMany
 {

@@ -1,78 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
-    public class InstagramContentImpressionsRepository :
-        IDataCollectionMappable<IEnumerable<ContentImpressions>,
-            DataArray<Metric<int>>>, ISocialContentImpressionsRepository
+    public class InstagramContentImpressionsRepository : ISocialContentImpressionsRepository
     {
-        private readonly IFacebookDataHandler<InstagramContentImpressionsRepository> _facebookDataHandler;
-
-        public InstagramContentImpressionsRepository(
-            IFacebookDataHandler<InstagramContentImpressionsRepository> facebookDataHandler )
+        private readonly IInstagramInsightsDataHandler<ContentImpressions> _instagramInsightsDataHandler;
+        
+        public InstagramContentImpressionsRepository( IInstagramInsightsDataHandler<ContentImpressions> instagramInsightsDataHandler )
         {
-            _facebookDataHandler = facebookDataHandler;
-        }
-
-        public IEnumerable<ContentImpressions> MapMany( DataArray<Metric<int>> dtoCollection )
-        {
-            return dtoCollection
-                .Data
-                .SelectMany( x => x.Insights )
-                .Select( x => new ContentImpressions
-                {
-                    Time = DateTime.Parse( x.Time ),
-                    Count = x.Value
-                } );
+            _instagramInsightsDataHandler = instagramInsightsDataHandler;
         }
 
         public ObjectResult<IEnumerable<ContentImpressions>> Get( string instaId, PeriodEnum resolution,
             ( DateTime start, DateTime end ) capturePeriod )
         {
-            var startMinsEpoch = capturePeriod.start - new DateTime( 1970, 1, 1 );
-            var endMinsEpoch = capturePeriod.end - new DateTime( 1970, 1, 1 );
-            var startUnix = startMinsEpoch.TotalSeconds;
-            var endUnix = endMinsEpoch.TotalSeconds;
-
-            string periodString;
-            //TODO: move switch into class
-            switch( resolution )
-            {
-                case PeriodEnum.Day:
-                    periodString = "day";
-                    break;
-                case PeriodEnum.Day28:
-                    periodString = "days_28";
-                    break;
-                case PeriodEnum.Week:
-                    periodString = "week";
-                    break;
-                default:
-                    return new ObjectResult<IEnumerable<ContentImpressions>>(
-                        Enumerable.Empty<ContentImpressions>( ),
-                        OperationResultEnum.Failed );
-            }
-
-            return _facebookDataHandler
-                .Read<IEnumerable<ContentImpressions>, DataArray<Metric<int>>>( $"{instaId}/insights",
-                    MapMany,
-                    Enumerable.Empty<ContentImpressions>( ),
-                    new RequestInsightParams
-                    {
-                        metric = "impressions",
-                        period = periodString,
-                        since = ( int ) startUnix,
-                        until = ( int ) endUnix
-                    } );
+            return _instagramInsightsDataHandler.Read( instaId,
+                resolution,
+                ( capturePeriod.start, capturePeriod.end ),
+                "impressions" );
         }
     }
 }

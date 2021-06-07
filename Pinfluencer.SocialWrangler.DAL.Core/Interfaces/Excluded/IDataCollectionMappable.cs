@@ -2,6 +2,6 @@
 {
     public interface IDataCollectionMappable<out TModelCollection, in TDtoCollection>
     {
-        TModelCollection MapMany( TDtoCollection dtoCollection );
+        public TModelCollection MapMany( TDtoCollection dtoCollection );
     }
 }

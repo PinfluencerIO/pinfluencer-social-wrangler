@@ -1,4 +1,4 @@
-﻿namespace Pinfluencer.SocialWrangler.DAL.Facebook.Dtos
+﻿namespace Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos
 {
     public class BaseRequestInsightParams
     {

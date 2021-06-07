@@ -4,15 +4,15 @@ using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
-using Pinfluencer.SocialWrangler.DAL.Facebook.Dtos;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Handlers
 {
     public class InstagramInsightsDataHandler<T> :
         IDataCollectionMappable<IEnumerable<T>,
-            DataArray<Metric<int>>> where T : SocialInsightsBase, new()
+            DataArray<Metric<int>>>, IInstagramInsightsDataHandler<T> where T : SocialInsightsBase, new()
     {
         private readonly IFacebookDataHandler<T> _facebookDataHandler;
         
