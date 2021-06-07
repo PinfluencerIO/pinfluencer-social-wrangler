@@ -57,7 +57,12 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentRepositoryTe
             MockFacebookDataHandler
                 .Read( Arg.Any<string>( ),
                     Arg.Any<Func<DataArray<InstagramContent>,IEnumerable<Content>>>( ),
-                    Arg.Any<IEnumerable<Content>>( ) );
+                    Arg.Any<IEnumerable<Content>>( ) )
+                .Returns( new ObjectResult<IEnumerable<Content>>
+                {
+                    Status = _status,
+                    Value = _content
+                } );
             _result = SUT.GetAll( "123" );
         }
 
