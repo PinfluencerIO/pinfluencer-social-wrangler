@@ -19,22 +19,25 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         private readonly IDateTimeAdapter _dateTimeAdapter;
         private readonly ISocialAudienceGenderAgeRepository _socialAudienceGenderAgeRepository;
         private readonly ISocialAudienceCountryRepository _socialAudienceCountryRepository;
+        private readonly ISocialContentReachRepository _socialContentReachRepository;
 
         public SocialFacade(
             ISocialContentImpressionsRepository impressionsRepository,
             IInsightsSocialUserRepository insightsSocialUserRepository,
             IDateTimeAdapter dateTimeAdapter,
             ISocialAudienceGenderAgeRepository socialAudienceGenderAgeRepository,
-            ISocialAudienceCountryRepository socialAudienceCountryRepository )
+            ISocialAudienceCountryRepository socialAudienceCountryRepository,
+            ISocialContentReachRepository socialContentReachRepository )
         {
             _impressionsRepository = impressionsRepository;
             _insightsSocialUserRepository = insightsSocialUserRepository;
             _dateTimeAdapter = dateTimeAdapter;
             _socialAudienceGenderAgeRepository = socialAudienceGenderAgeRepository;
             _socialAudienceCountryRepository = socialAudienceCountryRepository;
+            _socialContentReachRepository = socialContentReachRepository;
         }
 
-        public ObjectResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id )
+        public ObjectResult<IEnumerable<ContentImpressions>> GetImpressions( string id )
         {
             return _impressionsRepository.Get( id,
                 PeriodEnum.Day28,
@@ -108,6 +111,17 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                     Value = new AgeProperty { Max = x.Key.Item2, Min = x.Key.Item1 }
                 } ),
                 OperationResultEnum.Success );
+        }
+
+        public ObjectResult<IEnumerable<ContentReach>> GetReach( string id )
+        {
+            return _socialContentReachRepository.Get( id,
+                PeriodEnum.Day28, (
+                _dateTimeAdapter
+                    .Now( )
+                    .Subtract( new TimeSpan( 1, 0, 0, 0 ) ),
+                _dateTimeAdapter
+                    .Now( ) ) );
         }
     }
 }

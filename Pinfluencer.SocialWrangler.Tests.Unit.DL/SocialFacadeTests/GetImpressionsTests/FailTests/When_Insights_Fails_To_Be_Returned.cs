@@ -21,7 +21,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetImpressi
 
             base.When( );
 
-            _result = SUT.GetMonthlyProfileViews( TestId );
+            _result = SUT.GetImpressions( TestId );
         }
 
         [ Test ]

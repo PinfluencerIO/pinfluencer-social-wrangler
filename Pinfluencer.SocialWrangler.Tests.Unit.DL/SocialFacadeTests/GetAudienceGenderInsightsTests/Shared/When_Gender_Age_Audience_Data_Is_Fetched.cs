@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudienceGenderInsightsTests.Shared
 {
-    public abstract class When_Gender_Age_Audience_Data_Is_Fetched : Given_An_InstagramFacade
+    public abstract class When_Gender_Age_Audience_Data_Is_Fetched : Given_A_SocialFacade
     {
         protected const string InstagramId = "123";
 

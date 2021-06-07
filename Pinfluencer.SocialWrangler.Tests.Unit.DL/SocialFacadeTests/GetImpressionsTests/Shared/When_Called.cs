@@ -8,7 +8,7 @@ using Pinfluencer.SocialWrangler.Core.Models.Insights;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetImpressionsTests.Shared
 {
-    public abstract class When_Called : Given_An_InstagramFacade
+    public abstract class When_Called : Given_A_SocialFacade
     {
         protected const string TestId = "";
 

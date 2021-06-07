@@ -7,7 +7,7 @@ using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetUsersTests.Shared
 {
-    public abstract class When_Get_All_Is_Called : Given_An_InstagramFacade
+    public abstract class When_Get_All_Is_Called : Given_A_SocialFacade
     {
         protected ObjectResult<IEnumerable<SocialInsightsUser>> Result;
         protected OperationResultEnum InstaUsersOperationResult { set; get; }

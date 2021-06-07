@@ -9,10 +9,11 @@ namespace Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract
 {
     public interface ISocialFacade
     {
-        ObjectResult<IEnumerable<ContentImpressions>> GetMonthlyProfileViews( string id );
+        ObjectResult<IEnumerable<ContentImpressions>> GetImpressions( string id );
         ObjectResult<IEnumerable<SocialInsightsUser>> GetUsers( );
         ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>> GetAudienceCountryInsights( string id );
         ObjectResult<IEnumerable<AudiencePercentage<GenderEnum>>> GetAudienceGenderInsights( string id );
         ObjectResult<IEnumerable<AudiencePercentage<AgeProperty>>> GetAudienceAgeInsights( string id );
+        ObjectResult<IEnumerable<ContentReach>> GetReach( string id );
     }
 }

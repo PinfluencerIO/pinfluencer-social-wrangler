@@ -42,7 +42,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ ActionName( "impressions" ) ]
         private IActionResult getImpressions( string user )
         {
-            var insights = _socialFacade.GetMonthlyProfileViews( user );
+            var insights = _socialFacade.GetImpressions( user );
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram impressions for user" );
         }

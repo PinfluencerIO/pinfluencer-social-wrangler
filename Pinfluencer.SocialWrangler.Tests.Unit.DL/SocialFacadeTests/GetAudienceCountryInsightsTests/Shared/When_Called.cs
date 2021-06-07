@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetAudienceCountryInsightsTests.Shared
 {
-    public abstract class When_Called : Given_An_InstagramFacade
+    public abstract class When_Called : Given_A_SocialFacade
     {
         protected const string InstagramId = "123";
 
