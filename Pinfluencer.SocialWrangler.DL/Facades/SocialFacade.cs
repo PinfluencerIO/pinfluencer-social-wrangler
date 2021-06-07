@@ -40,8 +40,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 PeriodEnum.Day28,
                 ( _dateTimeAdapter.Now( ).Subtract( new TimeSpan( 1, 0, 0, 0 ) ), _dateTimeAdapter.Now( ) ) );
         }
-
-        //TODO: MOVE BUSINESS RULES OUT OF DATA LAYER ( NUMBER OF USERS RETURNED SHOULDN'T CONCERN DATA LAYER )
+        
         public ObjectResult<IEnumerable<SocialInsightsUser>> GetUsers( )
         {
             return _insightsSocialUserRepository.GetAll( );

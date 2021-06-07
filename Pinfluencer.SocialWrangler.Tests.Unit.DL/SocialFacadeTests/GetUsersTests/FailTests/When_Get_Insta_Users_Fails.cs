@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetUsersTests.Shared;
@@ -10,8 +8,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetUsersTes
 {
     public class When_Get_Insta_Users_Fails : When_Get_All_Is_Called
     {
-        private ObjectResult<IEnumerable<SocialInsightsUser>> _result;
-
         protected override void When( )
         {
             InstaUserCollection = Enumerable.Empty<SocialInsightsUser>( );
@@ -19,10 +15,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetUsersTes
 
             base.When( );
 
-            _result = SUT.GetUsers( );
+            Result = SUT.GetUsers( );
         }
 
         [ Test ]
-        public void Then_Operation_Result_Fails( ) { Assert.AreEqual( OperationResultEnum.Failed, _result.Status ); }
+        public void Then_Operation_Result_Fails( ) { Assert.AreEqual( OperationResultEnum.Failed, Result.Status ); }
     }
 }

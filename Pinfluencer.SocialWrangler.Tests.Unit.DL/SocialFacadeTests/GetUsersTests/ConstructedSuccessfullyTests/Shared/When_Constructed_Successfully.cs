@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
+﻿using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetUsersTests.Shared;
@@ -10,8 +8,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialFacadeTests.GetUsersTes
 {
     public abstract class When_Constructed_Successfully : When_Get_All_Is_Called
     {
-        protected ObjectResult<IEnumerable<SocialInsightsUser>> Result;
-
         protected void SetSingleUser( string handle, string id, string name, string bio, int followers )
         {
             InstaUserCollection = new [ ]
