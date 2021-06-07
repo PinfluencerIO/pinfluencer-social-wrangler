@@ -27,7 +27,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramEngagementRepositor
         public ObjectResult<int> Get( string media )
         {
             return _facebookDataHandler
-                .Read<int, DataArray<Metric<int>>>( $"{media}",
+                .Read<int, DataArray<Metric<int>>>( $"{media}/insights",
                     MapOut,
                     default,
                     new RequestInsightParams
