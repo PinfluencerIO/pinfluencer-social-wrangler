@@ -3,12 +3,13 @@ using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
 {
-    public class InstagramContentRepository : IDataCollectionMappable<IEnumerable<Content>,DataArray<InstagramContent>>
+    public class InstagramContentRepository : IDataCollectionMappable<IEnumerable<Content>,DataArray<InstagramContent>>, ISocialContentRepository
     {
         private readonly IFacebookDataHandler<InstagramContentRepository> _facebookDataHandler;
         public InstagramContentRepository( IFacebookDataHandler<InstagramContentRepository> facebookDataHandler )
