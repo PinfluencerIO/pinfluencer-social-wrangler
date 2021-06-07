@@ -35,8 +35,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentRepositoryTe
             CollectionAssert.AreEquivalent( new []
             {
                 ( "123235342", "05/05/2021" ),
-                ( "123235342", "11/12/2021" ),
-                ( "123235342", "11/12/2020" )
+                ( "547385748", "11/12/2021" ),
+                ( "547385748", "11/12/2020" )
             }, result.Select( x => ( x.Id, x.TimeOfUpload.ToString( "MM/dd/yyyy" ) ) ) );
         }
     }
