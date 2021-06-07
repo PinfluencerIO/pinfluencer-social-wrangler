@@ -43,7 +43,13 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         
         public ObjectResult<IEnumerable<SocialInsightsUser>> GetUsers( )
         {
-            return _insightsSocialUserRepository.GetAll( );
+            var result = _insightsSocialUserRepository.GetAll( );
+            if( !result.Value.Any( ) )
+            {
+                result.Status = OperationResultEnum.Failed;
+            }
+
+            return result;
         }
 
         public ObjectResult<IEnumerable<AudiencePercentage<CountryProperty>>> GetAudienceCountryInsights(
