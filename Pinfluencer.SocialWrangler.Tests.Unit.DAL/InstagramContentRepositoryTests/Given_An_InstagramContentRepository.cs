@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
@@ -29,11 +28,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramContentRepositoryTe
 
         public ObjectResult<IEnumerable<Content>> GetAll( string user )
         {
-            return new ObjectResult<IEnumerable<Content>>
-            {
-                Status = OperationResultEnum.Failed,
-                Value = Enumerable.Empty<Content>( )
-            };
+            return _facebookDataHandler
+                .Read<IEnumerable<Content>,DataArray<InstagramContent>>( $"{user}/media",
+                    MapMany,
+                    Enumerable.Empty<Content>( ) );
         }
 
         public IEnumerable<Content> MapMany( DataArray<InstagramContent> dtoCollection )
