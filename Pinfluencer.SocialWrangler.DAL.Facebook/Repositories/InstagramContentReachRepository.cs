@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
@@ -20,11 +19,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Facebook.Repositories
         public ObjectResult<IEnumerable<ContentReach>> Get( string instaId, PeriodEnum resolution,
             ( DateTime start, DateTime end ) capturePeriod )
         {
-            return new ObjectResult<IEnumerable<ContentReach>>
-            {
-                Status = OperationResultEnum.Failed,
-                Value = Enumerable.Empty<ContentReach>( )
-            };
+            return _instagramInsightsDataHandler.Read( instaId, resolution, capturePeriod, "reach" );
         }
     }
 }
