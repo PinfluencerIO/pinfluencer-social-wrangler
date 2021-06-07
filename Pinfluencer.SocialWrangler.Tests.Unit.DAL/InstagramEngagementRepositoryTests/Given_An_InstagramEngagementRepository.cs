@@ -1,5 +1,4 @@
 ﻿using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
@@ -25,13 +24,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InstagramEngagementRepositor
             _facebookDataHandler = facebookDataHandler;
         }
 
-        public ObjectResult<int> Get( string id )
+        public ObjectResult<int> Get( string media )
         {
-            return new ObjectResult<int>
-            {
-                Status = OperationResultEnum.Failed,
-                Value = default
-            };
+            return _facebookDataHandler
+                .Read<int, DataArray<Metric<int>>>( $"{media}",
+                    MapOut,
+                    default,
+                    new RequestInsightParams
+                    {
+                        metric = "engagement"
+                    } );
         }
 
         public int MapOut( DataArray<Metric<int>> dto ) { return default; }
