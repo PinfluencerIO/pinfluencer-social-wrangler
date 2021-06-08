@@ -16,16 +16,21 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         private readonly ISocialContentReachRepository _socialContentReachRepository;
         private readonly ISocialContentImpressionsRepository _impressionsRepository;
         private readonly ISocialContentRepository _socialContentRepository;
-        private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
+        private readonly ISocialInsightUserFacade _insightsSocialUserFacade;
         private readonly ISocialEngagementRepository _socialEngagementRepository;
         
-        public SocialContentFacade( ISocialContentReachRepository socialContentReachRepository, IDateTimeAdapter dateTimeAdapter, ISocialContentImpressionsRepository impressionsRepository, ISocialContentRepository socialContentRepository, IInsightsSocialUserRepository insightsSocialUserRepository, ISocialEngagementRepository socialEngagementRepository )
+        public SocialContentFacade( ISocialContentReachRepository socialContentReachRepository,
+            IDateTimeAdapter dateTimeAdapter,
+            ISocialContentImpressionsRepository impressionsRepository,
+            ISocialContentRepository socialContentRepository,
+            ISocialInsightUserFacade insightsSocialUserFacade,
+            ISocialEngagementRepository socialEngagementRepository )
         {
             _socialContentReachRepository = socialContentReachRepository;
             _dateTimeAdapter = dateTimeAdapter;
             _impressionsRepository = impressionsRepository;
             _socialContentRepository = socialContentRepository;
-            _insightsSocialUserRepository = insightsSocialUserRepository;
+            _insightsSocialUserFacade = insightsSocialUserFacade;
             _socialEngagementRepository = socialEngagementRepository;
         }
 
@@ -74,8 +79,8 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
 
         public ObjectResult<double> GetEngagementRate( )
         {
-            var user = _insightsSocialUserRepository
-                .GetAll( )
+            var user = _insightsSocialUserFacade
+                .GetUsers( )
                 .Value
                 .First( );
             var contentCollection = _socialContentRepository

@@ -1,6 +1,7 @@
 ﻿using NSubstitute;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DL.Facades;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests
@@ -10,7 +11,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests
         protected ISocialContentReachRepository MockSocialContentReachRepository;
         protected ISocialContentImpressionsRepository ImpressionsInsightsRepository;
         protected ISocialContentRepository MockSocialContentRepository;
-        protected IInsightsSocialUserRepository MockSocialInsightsUserRepository;
+        protected ISocialInsightUserFacade MockSocialInsightsUserFacade;
         protected ISocialEngagementRepository MockSocialEngagementRepository;
 
         protected override void Given( )
@@ -19,13 +20,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests
             ImpressionsInsightsRepository = Substitute.For<ISocialContentImpressionsRepository>( );
             MockSocialContentReachRepository = Substitute.For< ISocialContentReachRepository >( );
             MockSocialContentRepository = Substitute.For< ISocialContentRepository >( );
-            MockSocialInsightsUserRepository = Substitute.For< IInsightsSocialUserRepository >( );
+            MockSocialInsightsUserFacade = Substitute.For< ISocialInsightUserFacade >( );
             MockSocialEngagementRepository = Substitute.For< ISocialEngagementRepository >( );
             SUT = new SocialContentFacade( MockSocialContentReachRepository, 
                 MockDateTime, 
                 ImpressionsInsightsRepository,
                 MockSocialContentRepository,
-                MockSocialInsightsUserRepository,
+                MockSocialInsightsUserFacade,
                 MockSocialEngagementRepository );
         }
     }
