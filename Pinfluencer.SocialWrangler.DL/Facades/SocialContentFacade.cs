@@ -72,10 +72,29 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
 
         public ObjectResult<double> GetEngagementRate( )
         {
+            var user = _insightsSocialUserRepository
+                .GetAll( )
+                .Value
+                .First( );
+            var contentCollection = _socialContentRepository
+                .GetAll( user.Id )
+                .Value;
+            var collection = contentCollection
+                .Where( x => x.TimeOfUpload > _dateTimeAdapter
+                    .Now( )
+                    .Subtract( new TimeSpan( 28, 0, 0, 0 ) ) )
+                .ToArray(  );
+            double engagements = collection
+                .Sum( content => _socialEngagementRepository
+                    .Get( content.Id )
+                    .Value / ( double ) user.Followers );
+
+            engagements /= collection.Count();
+
             return new ObjectResult<double>
             {
-                Status = OperationResultEnum.Failed,
-                Value = default
+                Status = OperationResultEnum.Success,
+                Value = engagements
             };
         }
     }
