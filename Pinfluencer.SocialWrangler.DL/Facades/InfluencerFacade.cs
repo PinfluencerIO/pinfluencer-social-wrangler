@@ -10,18 +10,16 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
     public class InfluencerFacade : IInfluencerFacade
     {
         private readonly IInfluencerRepository _influencerRepository;
-        private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
-        private readonly ISocialInfoUserRepository _socialInfoUserRepository;
+        private readonly IGetInfluencerFromSocialCommand _getInfluencerFromSocialCommand;
         private readonly IUserRepository _userRepository;
 
         public InfluencerFacade( IUserRepository userRepository,
-            IInsightsSocialUserRepository insightsSocialUserRepository, IInfluencerRepository influencerRepository,
-            ISocialInfoUserRepository socialInfoUserRepository )
+            IInfluencerRepository influencerRepository,
+            IGetInfluencerFromSocialCommand getInfluencerFromSocialCommand )
         {
             _userRepository = userRepository;
-            _insightsSocialUserRepository = insightsSocialUserRepository;
             _influencerRepository = influencerRepository;
-            _socialInfoUserRepository = socialInfoUserRepository;
+            _getInfluencerFromSocialCommand = getInfluencerFromSocialCommand;
         }
 
         public OperationResultEnum Onboard( string id )
@@ -29,21 +27,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             var userResult = _userRepository.Get( id );
             if( userResult.Status != OperationResultEnum.Success ) return OperationResultEnum.Failed;
 
-            var user = userResult.Value;
-            var socialInsightUserResult = _insightsSocialUserRepository.GetAll( );
-            if( socialInsightUserResult.Status != OperationResultEnum.Success ) return OperationResultEnum.Failed;
-
-            var socialInsightUsers = socialInsightUserResult.Value;
-            if( !socialInsightUsers.Any( ) ) return OperationResultEnum.Failed;
-
-            var socialInsightsUser = socialInsightUsers.First( );
-
-            var socialInfoUserResult = _socialInfoUserRepository.Get( );
-            if( socialInfoUserResult.Status == OperationResultEnum.Failed ) return OperationResultEnum.Failed;
-
-            var socialInfoUser = socialInfoUserResult.Value;
-
-            var influnecerStatus = _influencerRepository.Create( new Influencer
+            /*var influnecerStatus = _influencerRepository.Create( new Influencer
             {
                 Bio = socialInsightsUser.Bio,
                 SocialUsername = socialInsightsUser.Username,
@@ -51,8 +35,8 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 Age = socialInfoUser.Age,
                 Gender = socialInfoUser.Gender,
                 Location = socialInfoUser.Location
-            } );
-            return influnecerStatus;
+            } );*/
+            return OperationResultEnum.Failed;
         }
     }
 }

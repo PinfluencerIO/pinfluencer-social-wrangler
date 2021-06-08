@@ -5,7 +5,7 @@ using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pinfluencer;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests
 {
@@ -23,24 +23,20 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests
             },
             Name = "Aidan"
         };
-
-        protected IInsightsSocialUserRepository InsightsSocialUserRepository;
-
+        
         protected IInfluencerRepository MockInfluencerRepository;
         protected IUserRepository MockUserRepository;
-        protected ISocialInfoUserRepository SocialInfoUserRepository;
+        protected IGetInfluencerFromSocialCommand MockGetInfluencerFromSocialCommand;
 
         protected override void Given( )
         {
             MockUserRepository = Substitute.For<IUserRepository>( );
-            InsightsSocialUserRepository = Substitute.For<IInsightsSocialUserRepository>( );
             MockInfluencerRepository = Substitute.For<IInfluencerRepository>( );
-            SocialInfoUserRepository = Substitute.For<ISocialInfoUserRepository>( );
+            MockGetInfluencerFromSocialCommand = Substitute.For<IGetInfluencerFromSocialCommand>( );
 
             SUT = new InfluencerFacade( MockUserRepository,
-                InsightsSocialUserRepository,
                 MockInfluencerRepository,
-                SocialInfoUserRepository );
+                MockGetInfluencerFromSocialCommand );
         }
     }
 }

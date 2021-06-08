@@ -3,10 +3,11 @@ using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
+using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.DL.Commands
 {
-    public class GetInfluencerFromSocialCommand
+    public class GetInfluencerFromSocialCommand : IGetInfluencerFromSocialCommand
     {
         private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
         private readonly ISocialInfoUserRepository _socialInfoUserRepository;
