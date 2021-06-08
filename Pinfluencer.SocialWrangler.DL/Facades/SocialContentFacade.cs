@@ -2,6 +2,8 @@
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
@@ -85,17 +87,22 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                     .Subtract( new TimeSpan( 28, 0, 0, 0 ) ) )
                 .ToArray(  );
             double engagements = collection
-                .Sum( content => _socialEngagementRepository
-                    .Get( content.Id )
-                    .Value / ( double ) user.Followers );
+                .Sum( x => engagementSelector( x, user ) );
 
             engagements /= collection.Count();
 
             return new ObjectResult<double>
             {
                 Status = OperationResultEnum.Success,
-                Value = engagements
+                Value = Math.Round( engagements, 4 )
             };
+        }
+
+        private double engagementSelector( Content content, SocialInsightsUser user )
+        {
+            return _socialEngagementRepository
+                .Get( content.Id )
+                .Value / ( double ) user.Followers;
         }
     }
 }

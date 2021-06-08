@@ -100,7 +100,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetE
         [ Test ]
         public void Then_Correct_Engagement_Rate_Was_Calculated( )
         {
-            Assert.AreEqual( 0.091, _result.Value );
+            Assert.AreEqual( 0.0829, _result.Value );
         }
 
         [ Test ]
