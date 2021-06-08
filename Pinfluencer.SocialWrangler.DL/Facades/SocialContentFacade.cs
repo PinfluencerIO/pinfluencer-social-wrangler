@@ -2,8 +2,6 @@
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
@@ -79,20 +77,56 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
 
         public ObjectResult<double> GetEngagementRate( )
         {
-            var user = _insightsSocialUserFacade
-                .GetUsers( )
+            var userResult = _insightsSocialUserFacade
+                .GetUsers( );
+            if( userResult.Status == OperationResultEnum.Failed )
+            {
+                return new ObjectResult<double>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Value = default
+                };
+            }
+
+            var user = userResult
                 .Value
                 .First( );
-            var contentCollection = _socialContentRepository
-                .GetAll( user.Id )
+            var contentCollectionResult = _socialContentRepository
+                .GetAll( user.Id );
+            if( contentCollectionResult.Status == OperationResultEnum.Failed )
+            {
+                return new ObjectResult<double>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Value = default
+                };
+            }
+
+            var contentCollection = contentCollectionResult
                 .Value;
             var collection = contentCollection
                 .Where( x => x.TimeOfUpload > _dateTimeAdapter
                     .Now( )
                     .Subtract( new TimeSpan( 28, 0, 0, 0 ) ) )
                 .ToArray(  );
-            double engagements = collection
-                .Sum( x => engagementSelector( x, user ) );
+            double engagements = 0;
+            foreach( var content in collection )
+            {
+                var engagementResult = _socialEngagementRepository
+                    .Get( content.Id );
+                if( engagementResult.Status == OperationResultEnum.Failed )
+                {
+                    return new ObjectResult<double>
+                    {
+                        Status = OperationResultEnum.Failed,
+                        Value = default
+                    };
+                }
+                else
+                {
+                    engagements += ( engagementResult.Value / ( double ) user.Followers );
+                }
+            }
 
             engagements /= collection.Count();
 
@@ -101,13 +135,6 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 Status = OperationResultEnum.Success,
                 Value = Math.Round( engagements, 4 )
             };
-        }
-
-        private double engagementSelector( Content content, SocialInsightsUser user )
-        {
-            return _socialEngagementRepository
-                .Get( content.Id )
-                .Value / ( double ) user.Followers;
         }
     }
 }
