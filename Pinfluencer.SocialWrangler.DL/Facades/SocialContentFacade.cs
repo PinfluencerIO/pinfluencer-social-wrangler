@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
@@ -41,15 +39,29 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 };
         }
         
-        public ObjectResult<IEnumerable<ContentReach>> GetReach( string id )
+        public ObjectResult<int> GetReach( string id )
         {
-            return _socialContentReachRepository.Get( id,
+            var result = _socialContentReachRepository.Get( id,
                 PeriodEnum.Day28, (
                     _dateTimeAdapter
                         .Now( )
                         .Subtract( new TimeSpan( 1, 0, 0, 0 ) ),
                     _dateTimeAdapter
                         .Now( ) ) );
+            return result.Status == OperationResultEnum.Failed
+                ? new ObjectResult<int>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Value = default
+                }
+                : new ObjectResult<int>
+                {
+                    Status = OperationResultEnum.Success,
+                    Value = result
+                        .Value
+                        .First( )
+                        .Count
+                };
         }
     }
 }

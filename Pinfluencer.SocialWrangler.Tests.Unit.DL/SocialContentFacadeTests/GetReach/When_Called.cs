@@ -12,7 +12,6 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetR
     [ TestFixtureSource( nameof( _data ) ) ]
     public class When_Called : Given_A_SocialContentFacade
     {
-
         private static object [ ] _data =
         {
             new object [ ]
@@ -25,20 +24,26 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetR
                         Count = 5
                     }
                 },
-                OperationResultEnum.Success
+                OperationResultEnum.Success,
+                5
             },
             new object [ ]
             {
                 Enumerable.Empty<ContentReach>(  ),
-                OperationResultEnum.Failed
+                OperationResultEnum.Failed,
+                0
             }
         };
+        
+        private readonly int _expectedReach;
+        private ObjectResult<int> _result;
+        private readonly ObjectResult<IEnumerable<ContentReach>> _operationResult;
 
-        private ObjectResult<IEnumerable<ContentReach>> _result;
-        private ObjectResult<IEnumerable<ContentReach>> _operationResult;
-
-        public When_Called( IEnumerable<ContentReach> contentReachArray, OperationResultEnum operationResult )
+        public When_Called( IEnumerable<ContentReach> contentReachArray,
+            OperationResultEnum operationResult,
+            int expectedReach )
         {
+            _expectedReach = expectedReach;
             _operationResult = new ObjectResult<IEnumerable<ContentReach>>
             {
                 Status = operationResult,
@@ -70,9 +75,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetR
         }
 
         [ Test ]
-        public void Then_Valid_Result_Was_Returned( )
+        public void Then_Valid_Object_Was_Returned( )
         {
-            Assert.AreSame( _operationResult, _result );
+            Assert.AreEqual( _operationResult.Status, _result.Status );
+            Assert.AreEqual( _expectedReach, _result.Value );
         }
     }
 }
