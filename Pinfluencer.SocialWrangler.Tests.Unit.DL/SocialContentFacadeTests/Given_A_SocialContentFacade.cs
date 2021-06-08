@@ -9,15 +9,24 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests
     {
         protected ISocialContentReachRepository MockSocialContentReachRepository;
         protected ISocialContentImpressionsRepository ImpressionsInsightsRepository;
-        
+        protected ISocialContentRepository MockSocialContentRepository;
+        protected IInsightsSocialUserRepository MockSocialInsightsUserRepository;
+        protected ISocialEngagementRepository MockSocialEngagementRepository;
+
         protected override void Given( )
         {
             base.Given( );
             ImpressionsInsightsRepository = Substitute.For<ISocialContentImpressionsRepository>( );
             MockSocialContentReachRepository = Substitute.For< ISocialContentReachRepository >( );
+            MockSocialContentRepository = Substitute.For< ISocialContentRepository >( );
+            MockSocialInsightsUserRepository = Substitute.For< IInsightsSocialUserRepository >( );
+            MockSocialEngagementRepository = Substitute.For< ISocialEngagementRepository >( );
             SUT = new SocialContentFacade( MockSocialContentReachRepository, 
                 MockDateTime, 
-                ImpressionsInsightsRepository );
+                ImpressionsInsightsRepository,
+                MockSocialContentRepository,
+                MockSocialInsightsUserRepository,
+                MockSocialEngagementRepository );
         }
     }
 }

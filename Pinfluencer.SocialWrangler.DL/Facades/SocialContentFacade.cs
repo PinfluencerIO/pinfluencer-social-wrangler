@@ -13,12 +13,18 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         private readonly IDateTimeAdapter _dateTimeAdapter;
         private readonly ISocialContentReachRepository _socialContentReachRepository;
         private readonly ISocialContentImpressionsRepository _impressionsRepository;
+        private readonly ISocialContentRepository _socialContentRepository;
+        private readonly IInsightsSocialUserRepository _insightsSocialUserRepository;
+        private readonly ISocialEngagementRepository _socialEngagementRepository;
         
-        public SocialContentFacade( ISocialContentReachRepository socialContentReachRepository, IDateTimeAdapter dateTimeAdapter, ISocialContentImpressionsRepository impressionsRepository )
+        public SocialContentFacade( ISocialContentReachRepository socialContentReachRepository, IDateTimeAdapter dateTimeAdapter, ISocialContentImpressionsRepository impressionsRepository, ISocialContentRepository socialContentRepository, IInsightsSocialUserRepository insightsSocialUserRepository, ISocialEngagementRepository socialEngagementRepository )
         {
             _socialContentReachRepository = socialContentReachRepository;
             _dateTimeAdapter = dateTimeAdapter;
             _impressionsRepository = impressionsRepository;
+            _socialContentRepository = socialContentRepository;
+            _insightsSocialUserRepository = insightsSocialUserRepository;
+            _socialEngagementRepository = socialEngagementRepository;
         }
 
         public ObjectResult<int> GetImpressions( string id )
@@ -62,6 +68,15 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                         .First( )
                         .Count
                 };
+        }
+
+        public ObjectResult<double> GetEngagementRate( )
+        {
+            return new ObjectResult<double>
+            {
+                Status = OperationResultEnum.Failed,
+                Value = default
+            };
         }
     }
 }
