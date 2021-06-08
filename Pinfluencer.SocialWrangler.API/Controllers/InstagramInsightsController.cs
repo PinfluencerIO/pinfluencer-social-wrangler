@@ -11,12 +11,16 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     [ Route( "instagram-insights" ) ]
     public class InstagramInsightsController : SocialWranglerController
     {
-        private readonly ISocialFacade _socialFacade;
+        private readonly ISocialAudienceFacade _socialAudienceFacade;
+        private readonly ISocialContentFacade _socialContentFacade;
 
-        public InstagramInsightsController( ISocialFacade socialFacade, MvcAdapter mvcAdapter ) :
+        public InstagramInsightsController( MvcAdapter mvcAdapter,
+            ISocialAudienceFacade socialAudienceFacade,
+            ISocialContentFacade socialContentFacade ) :
             base( mvcAdapter )
         {
-            _socialFacade = socialFacade;
+            _socialAudienceFacade = socialAudienceFacade;
+            _socialContentFacade = socialContentFacade;
         }
 
         [ Route( "" ) ]
@@ -42,7 +46,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ ActionName( "impressions" ) ]
         private IActionResult getImpressions( string user )
         {
-            var insights = _socialFacade.GetImpressions( user );
+            var insights = _socialContentFacade.GetImpressions( user );
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram impressions for user" );
         }
@@ -51,7 +55,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ ActionName( "audience-age" ) ]
         private IActionResult getAudienceAge( string user )
         {
-            var insights = _socialFacade.GetAudienceAgeInsights( user );
+            var insights = _socialAudienceFacade.GetAudienceAgeInsights( user );
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram audience age insights for user" );
         }
@@ -60,7 +64,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ ActionName( "audience-gender" ) ]
         private IActionResult getAudienceGender( string user )
         {
-            var insights = _socialFacade.GetAudienceGenderInsights( user );
+            var insights = _socialAudienceFacade.GetAudienceGenderInsights( user );
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
@@ -69,7 +73,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ ActionName( "audience-country" ) ]
         private IActionResult getAudienceCountry( string user )
         {
-            var insights = _socialFacade.GetAudienceCountryInsights( user );
+            var insights = _socialAudienceFacade.GetAudienceCountryInsights( user );
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram audience gender insights for user" );
         }
@@ -78,7 +82,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ ActionName( "reach" ) ]
         private IActionResult getReach( string user )
         {
-            var insights = _socialFacade.GetReach( user );
+            var insights = _socialContentFacade.GetReach( user );
             if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
             return MvcAdapter.BadRequestError( "failed to fetch instagram reach insights for user" );
         }
