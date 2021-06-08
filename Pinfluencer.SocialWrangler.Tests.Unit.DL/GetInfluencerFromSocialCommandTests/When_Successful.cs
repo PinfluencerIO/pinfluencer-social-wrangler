@@ -32,7 +32,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.GetInfluencerFromSocialComman
             Assert.AreEqual( 21, influencer.Age );
             Assert.AreEqual( "This is an example", influencer.Bio );
             Assert.AreEqual( GenderEnum.Male, influencer.Gender );
-            Assert.AreEqual( "United Kingdom", influencer.Location );
+            Assert.AreEqual( "United Kingdom", influencer.Location.Country );
+            Assert.AreEqual( "London", influencer.Location.City );
             Assert.AreEqual( "examplehandle", influencer.SocialUsername );
         }
 
