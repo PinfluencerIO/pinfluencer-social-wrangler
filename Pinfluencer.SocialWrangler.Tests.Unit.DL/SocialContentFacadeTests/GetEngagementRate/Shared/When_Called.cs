@@ -12,7 +12,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetE
     {
         protected override void When( )
         {
-                        CurrentTime = new DateTime( 2021, 5, 21 );
+            CurrentTime = new DateTime( 2021, 5, 21 );
             MockSocialContentRepository
                 .GetAll( Arg.Any<string>( ) )
                 .Returns( new ObjectResult<IEnumerable<Content>>
