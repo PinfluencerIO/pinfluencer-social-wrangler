@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
@@ -22,11 +23,22 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             _impressionsRepository = impressionsRepository;
         }
 
-        public ObjectResult<IEnumerable<ContentImpressions>> GetImpressions( string id )
+        public ObjectResult<int> GetImpressions( string id )
         {
-            return _impressionsRepository.Get( id,
+            var result = _impressionsRepository.Get( id,
                 PeriodEnum.Day28,
                 ( _dateTimeAdapter.Now( ).Subtract( new TimeSpan( 1, 0, 0, 0 ) ), _dateTimeAdapter.Now( ) ) );
+            return result.Status == OperationResultEnum.Failed
+                ? new ObjectResult<int>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Value = default
+                }
+                : new ObjectResult<int>
+                {
+                    Status = OperationResultEnum.Success,
+                    Value = result.Value.First().Count
+                };
         }
         
         public ObjectResult<IEnumerable<ContentReach>> GetReach( string id )

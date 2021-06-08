@@ -6,7 +6,7 @@ namespace Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract
 {
     public interface ISocialContentFacade
     {
-        ObjectResult<IEnumerable<ContentImpressions>> GetImpressions( string id );
+        ObjectResult<int> GetImpressions( string id );
         ObjectResult<IEnumerable<ContentReach>> GetReach( string id );
     }
 }
