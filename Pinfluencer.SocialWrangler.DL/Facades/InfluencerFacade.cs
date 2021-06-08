@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Core.Models.User;
+﻿using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pinfluencer;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.DL.Facades
@@ -27,16 +24,19 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             var userResult = _userRepository.Get( id );
             if( userResult.Status != OperationResultEnum.Success ) return OperationResultEnum.Failed;
 
-            /*var influnecerStatus = _influencerRepository.Create( new Influencer
+            var influencerFromSocialResult = _getInfluencerFromSocialCommand
+                .Run( );
+            if( influencerFromSocialResult.Status == OperationResultEnum.Failed )
             {
-                Bio = socialInsightsUser.Bio,
-                SocialUsername = socialInsightsUser.Username,
-                User = user,
-                Age = socialInfoUser.Age,
-                Gender = socialInfoUser.Gender,
-                Location = socialInfoUser.Location
-            } );*/
-            return OperationResultEnum.Failed;
+                return OperationResultEnum.Failed;
+            }
+
+            var influencerFromSocial = influencerFromSocialResult.Value;
+            influencerFromSocial
+                .User = userResult.Value;
+            
+            var influnecerStatus = _influencerRepository.Create( influencerFromSocial );
+            return influnecerStatus;
         }
     }
 }
