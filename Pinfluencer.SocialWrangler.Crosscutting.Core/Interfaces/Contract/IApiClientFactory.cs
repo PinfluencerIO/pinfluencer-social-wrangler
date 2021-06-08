@@ -1,5 +1,5 @@
 ﻿using System;
-using Pinfluencer.SocialWrangler.Core;
+using Pinfluencer.SocialWrangler.Core.Interfaces;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract
 {

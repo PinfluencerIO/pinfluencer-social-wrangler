@@ -20,7 +20,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         [ HttpPost ]
         public IActionResult Create( [ FromBody ] UserDto user )
         {
-            return _influencerFacade.OnboardInfluencer( user.UserId ) == OperationResultEnum.Success
+            return _influencerFacade.Onboard( user.UserId ) == OperationResultEnum.Success
                 ? MvcAdapter.Success( "influencer created" )
                 : MvcAdapter.BadRequestError( "influencer not created" );
         }

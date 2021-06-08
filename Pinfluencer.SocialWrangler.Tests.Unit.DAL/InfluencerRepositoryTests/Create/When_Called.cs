@@ -44,7 +44,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.InfluencerRepositoryTests.Cr
                         x.Age == DefaultInfluencer.Age &&
                         x.Bio == DefaultInfluencer.Bio &&
                         x.Gender == DefaultInfluencer.Gender &&
-                        x.Location == DefaultInfluencer.Location &&
+                        x.Location.Country == DefaultInfluencer.Location.Country &&
+                        x.Location.City == DefaultInfluencer.Location.City &&
                         x.User.Id == DefaultInfluencer.User.Id &&
                         x.SocialUsername == DefaultInfluencer.SocialUsername ),
                     SUT.MapIn );

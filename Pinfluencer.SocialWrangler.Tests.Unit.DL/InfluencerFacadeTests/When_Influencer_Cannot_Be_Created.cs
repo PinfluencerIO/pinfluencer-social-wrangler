@@ -28,7 +28,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests
             MockInfluencerRepository
                 .Create( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Failed );
-            Result = SUT.OnboardInfluencer( "123" );
+            Result = SUT.Onboard( "123" );
         }
     }
 }

@@ -4,20 +4,20 @@ using NSubstitute;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
-using Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests.Shared;
+using Pinfluencer.SocialWrangler.Tests.Unit.DL.GetInfluencerFromSocialCommandTests.Shared;
 
-namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests
+namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.GetInfluencerFromSocialCommandTests
 {
-    public class When_No_Insta_Users_Are_Returned : When_Instagram_Error_Occurs
+    public class When_Instagram_Users_Cannot_Be_Retrieved : When_Error_Occurs
     {
         protected override void When( )
         {
             base.When( );
-            InsightsSocialUserRepository
+            MockInsightsSocialUserRepository
                 .GetAll( )
                 .Returns( new ObjectResult<IEnumerable<SocialInsightsUser>>( Enumerable.Empty<SocialInsightsUser>( ),
-                    OperationResultEnum.Success ) );
-            Result = SUT.Onboard( "123" );
+                    OperationResultEnum.Failed ) );
+            Result = SUT.Run( );
         }
     }
 }

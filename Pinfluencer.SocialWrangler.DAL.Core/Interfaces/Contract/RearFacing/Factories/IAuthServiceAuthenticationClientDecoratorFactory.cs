@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Core;
+﻿using Pinfluencer.SocialWrangler.Core.Interfaces;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories

@@ -28,7 +28,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests
             MockInfluencerRepository
                 .Create( Arg.Any<Influencer>( ) )
                 .Returns( OperationResultEnum.Success );
-            _result = SUT.OnboardInfluencer( "123" );
+            _result = SUT.Onboard( "123" );
         }
 
         [ Test ]
@@ -40,7 +40,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.InfluencerFacadeTests
                     x.Age == 21 &&
                     x.Bio == "This is an example" &&
                     x.Gender == GenderEnum.Male &&
-                    x.Location == "United Kingdom" &&
+                    x.Location.Country == "United Kingdom" &&
                     x.User.Id == "123" &&
                     x.SocialUsername == "examplehandle" ) );
         }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Attributes;
 using Pinfluencer.SocialWrangler.Core.Constants;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.Core.Interfaces;
 using Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions;
 
 namespace Pinfluencer.SocialWrangler.Configuration

@@ -24,7 +24,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             _socialInfoUserRepository = socialInfoUserRepository;
         }
 
-        public OperationResultEnum OnboardInfluencer( string id )
+        public OperationResultEnum Onboard( string id )
         {
             var userResult = _userRepository.Get( id );
             if( userResult.Status != OperationResultEnum.Success ) return OperationResultEnum.Failed;
@@ -50,7 +50,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                 User = user,
                 Age = socialInfoUser.Age,
                 Gender = socialInfoUser.Gender,
-                Location = socialInfoUser.Location.Country
+                Location = socialInfoUser.Location
             } );
             return influnecerStatus;
         }
