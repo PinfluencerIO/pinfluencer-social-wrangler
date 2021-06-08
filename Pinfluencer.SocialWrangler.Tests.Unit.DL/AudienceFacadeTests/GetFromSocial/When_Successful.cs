@@ -150,12 +150,12 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSo
                     .Select( x => ( x.Percentage, x.Value ) ) );
             CollectionAssert.AreEquivalent( new []
                 {
-                    ( 0.4, CountryEnum.GB, "United Kingdom" ), 
-                    ( 0.6, CountryEnum.US, "United States" )
+                    ( 0.2, CountryEnum.GB, "United Kingdom" ), 
+                    ( 0.8, CountryEnum.US, "United States" )
                 },
                 _result
                     .Value
-                    .AudienceLocation
+                    .AudienceCountry
                     .Select( x => ( x.Percentage, x.Value.CountryCode, x.Value.Country ) ) );
             Assert.AreEqual( 25, _result.Value.Reach );
             Assert.AreEqual( 123, _result.Value.Impressions );

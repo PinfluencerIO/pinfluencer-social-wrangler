@@ -31,7 +31,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
                 .Create( Arg.Any<string>( ), Arg.Is<AudienceModel>( x => x.Id == null &&
                                                                          x.AudienceAge == null &&
                                                                          x.AudienceGender == null &&
-                                                                         x.AudienceLocation == null ),
+                                                                         x.AudienceCountry == null ),
                     Arg.Any<Func<AudienceModel, Audience>>( ) );
         }
 

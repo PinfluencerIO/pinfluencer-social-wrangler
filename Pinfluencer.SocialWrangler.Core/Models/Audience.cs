@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Core.Models
     {
         public string Id { get; set; }
         public IEnumerable<AudiencePercentage<GenderEnum>> AudienceGender { get; set; }
-        public IEnumerable<AudiencePercentage<LocationProperty>> AudienceLocation { get; set; }
+        public IEnumerable<AudiencePercentage<CountryProperty>> AudienceCountry { get; set; }
         public IEnumerable<AudiencePercentage<AgeProperty>> AudienceAge { get; set; }
         public int Impressions { get; set; }
         public int Reach { get; set; }

@@ -1,4 +1,5 @@
-﻿using Pinfluencer.SocialWrangler.Core;
+﻿using System.Linq;
+using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
@@ -22,10 +23,35 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         
         public ObjectResult<Audience> GetFromSocial( )
         {
+            var user = _socialInsightUserFacade
+                .GetUsers( )
+                .Value
+                .First( );
             return new ObjectResult<Audience>
             {
-                Status = OperationResultEnum.Failed,
-                Value = new Audience( )
+                Status = OperationResultEnum.Success,
+                Value = new Audience
+                {
+                    AudienceAge = _socialAudienceFacade
+                        .GetAudienceAgeInsights( user.Id )
+                        .Value,
+                    AudienceGender = _socialAudienceFacade
+                        .GetAudienceGenderInsights( user.Id )
+                        .Value,
+                    AudienceCountry = _socialAudienceFacade
+                        .GetAudienceCountryInsights( user.Id )
+                        .Value,
+                    EngagementRate = _socialContentFacade
+                        .GetEngagementRate( )
+                        .Value,
+                    Followers = user.Followers,
+                    Impressions = _socialContentFacade
+                        .GetImpressions( user.Id )
+                        .Value,
+                    Reach = _socialContentFacade
+                        .GetReach( user.Id )
+                        .Value
+                }
             };
         }
     }

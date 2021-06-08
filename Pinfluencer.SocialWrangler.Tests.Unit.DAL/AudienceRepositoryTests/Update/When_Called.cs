@@ -57,25 +57,25 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Upda
                     Percentage = 0.25, Value = GenderEnum.Male
                 }
             },
-            AudienceLocation = new [ ]
+            AudienceCountry = new [ ]
             {
-                new AudiencePercentage<LocationProperty>
+                new AudiencePercentage<CountryProperty>
                 {
-                    Percentage = 0.5, Value = new LocationProperty
+                    Percentage = 0.5, Value = new CountryProperty
                     {
                         Country = "United Kingdom"
                     }
                 },
-                new AudiencePercentage<LocationProperty>
+                new AudiencePercentage<CountryProperty>
                 {
-                    Percentage = 0.25, Value = new LocationProperty
+                    Percentage = 0.25, Value = new CountryProperty
                     {
                         Country = "United States"
                     }
                 },
-                new AudiencePercentage<LocationProperty>
+                new AudiencePercentage<CountryProperty>
                 {
-                    Percentage = 0.25, Value = new LocationProperty
+                    Percentage = 0.25, Value = new CountryProperty
                     {
                         Country = "Spain"
                     }
@@ -115,9 +115,9 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Upda
                                                                              .SequenceEqual(
                                                                                  DefaultAudience.AudienceGender.Select(
                                                                                      x => x.Id ) ) &&
-                                                                         x.AudienceLocation.Select( x => x.Id )
+                                                                         x.AudienceCountry.Select( x => x.Id )
                                                                              .SequenceEqual(
-                                                                                 DefaultAudience.AudienceLocation
+                                                                                 DefaultAudience.AudienceCountry
                                                                                      .Select( x => x.Id ) ) ),
                     Arg.Any<Func<AudienceModel, Audience>>( ) );
         }
@@ -129,7 +129,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Upda
             Assert.True( mapResult.AudienceAge.SequenceEqual( DefaultAudience.AudienceAge.Select( x => x.Id ) ) &&
                          mapResult.AudienceGender.SequenceEqual( DefaultAudience.AudienceGender.Select( x => x.Id ) ) &&
                          mapResult.AudienceLocation.SequenceEqual(
-                             DefaultAudience.AudienceLocation.Select( x => x.Id ) ) );
+                             DefaultAudience.AudienceCountry.Select( x => x.Id ) ) );
         }
 
         [ Test ]

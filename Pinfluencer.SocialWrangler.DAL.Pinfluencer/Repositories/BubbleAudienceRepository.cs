@@ -34,7 +34,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories
             {
                 AudienceAge = model.AudienceAge.Select( x => x.Id ),
                 AudienceGender = model.AudienceGender.Select( x => x.Id ),
-                AudienceLocation = model.AudienceLocation.Select( x => x.Id )
+                AudienceLocation = model.AudienceCountry.Select( x => x.Id )
             };
         }
 
