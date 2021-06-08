@@ -86,7 +86,7 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
         private IActionResult getReach( string user )
         {
             var insights = _socialContentFacade.GetReach( user );
-            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( insights.Value );
+            if( insights.Status != OperationResultEnum.Failed ) return MvcAdapter.OkResult( new { Reach = insights.Value } );
             return MvcAdapter.BadRequestError( "failed to fetch instagram reach insights for user" );
         }
     }
