@@ -78,7 +78,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
         public ObjectResult<double> GetEngagementRate( )
         {
             var userResult = _insightsSocialUserFacade
-                .GetUsers( );
+                .GetFirstUser( );
             if( userResult.Status == OperationResultEnum.Failed )
             {
                 return new ObjectResult<double>
@@ -89,8 +89,7 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             }
 
             var user = userResult
-                .Value
-                .First( );
+                .Value;
             var contentCollectionResult = _socialContentRepository
                 .GetAll( user.Id );
             if( contentCollectionResult.Status == OperationResultEnum.Failed )

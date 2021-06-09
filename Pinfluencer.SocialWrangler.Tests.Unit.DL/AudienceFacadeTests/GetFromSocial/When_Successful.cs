@@ -91,16 +91,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSo
                     }
                 } );
             MockSocialInsightsUserFacade
-                .GetUsers( )
-                .Returns( new ObjectResult<IEnumerable<SocialInsightsUser>>
+                .GetFirstUser( )
+                .Returns( new ObjectResult<SocialInsightsUser>
                 {
                     Status = OperationResultEnum.Success,
-                    Value = new [ ]
+                    Value = 
+                    new SocialInsightsUser
                     {
-                        new SocialInsightsUser
-                        {
-                            Id = TestUserId
-                        }
+                        Id = TestUserId
                     }
                 } );
             MockSocialContentFacade

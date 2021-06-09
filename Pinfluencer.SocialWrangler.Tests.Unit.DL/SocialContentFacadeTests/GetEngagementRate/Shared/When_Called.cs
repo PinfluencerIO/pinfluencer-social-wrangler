@@ -50,20 +50,17 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetE
                         Value = 45
                     } );
             MockSocialInsightsUserFacade
-                .GetUsers( )
-                .Returns( new ObjectResult<IEnumerable<SocialInsightsUser>>
+                .GetFirstUser( )
+                .Returns( new ObjectResult<SocialInsightsUser>
                 {
                     Status = OperationResultEnum.Success,
-                    Value = new [ ]
+                    Value = new SocialInsightsUser
                     {
-                        new SocialInsightsUser
-                        {
-                            Bio = "u958hushfiuijds",
-                            Id = "14354432",
-                            Followers = 434,
-                            Name = "fkdwar",
-                            Username = "434tgkijfgfd"
-                        }
+                        Bio = "u958hushfiuijds",
+                        Id = "14354432",
+                        Followers = 434,
+                        Name = "fkdwar",
+                        Username = "434tgkijfgfd"
                     }
                 } );
         }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
@@ -16,11 +14,11 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetE
         protected override void When( )
         {
             MockSocialInsightsUserFacade
-                .GetUsers( )
-                .Returns( new ObjectResult<IEnumerable<SocialInsightsUser>>
+                .GetFirstUser( )
+                .Returns( new ObjectResult<SocialInsightsUser>
                 {
                     Status = OperationResultEnum.Failed,
-                    Value = Enumerable.Empty<SocialInsightsUser>( )
+                    Value = null
                 } );
             _result = SUT.GetEngagementRate( );
         }
