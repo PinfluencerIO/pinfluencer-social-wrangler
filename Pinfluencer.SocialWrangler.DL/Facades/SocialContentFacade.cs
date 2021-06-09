@@ -112,7 +112,8 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
             {
                 return new ObjectResult<double>
                 {
-                    Status = OperationResultEnum.Success,
+                    Status = OperationResultEnum.Warning,
+                    Msg = "No posts were made in the last 28 days",
                     Value = default
                 };
             }

@@ -14,7 +14,8 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.Utils
             _settings = new JsonSerializerSettings
             {
                 ContractResolver = contractResolver.Resolver,
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                DateFormatString = "dd-MM-yyyy"
             };
         }
 

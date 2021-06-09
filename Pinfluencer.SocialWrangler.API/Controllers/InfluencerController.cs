@@ -10,10 +10,14 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
     public class InfluencerController : SocialWranglerController
     {
         private readonly IInfluencerFacade _influencerFacade;
+        private readonly IGetInfluencerFromSocialCommand _getInfluencerFromSocialCommand;
 
-        public InfluencerController( IInfluencerFacade influencerFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter )
+        public InfluencerController( IInfluencerFacade influencerFacade,
+            MvcAdapter mvcAdapter,
+            IGetInfluencerFromSocialCommand getInfluencerFromSocialCommand ) : base( mvcAdapter )
         {
             _influencerFacade = influencerFacade;
+            _getInfluencerFromSocialCommand = getInfluencerFromSocialCommand;
         }
 
         [ Route( "" ) ]
@@ -23,6 +27,16 @@ namespace Pinfluencer.SocialWrangler.API.Controllers
             return _influencerFacade.Onboard( user.UserId ) == OperationResultEnum.Success
                 ? MvcAdapter.Success( "influencer created" )
                 : MvcAdapter.BadRequestError( "influencer not created" );
+        }
+        
+        [ Route( "" ) ]
+        [ HttpGet ]
+        public IActionResult Get( )
+        {
+            var influencerStatus = _getInfluencerFromSocialCommand.Run( );
+            return influencerStatus.Status == OperationResultEnum.Success
+                ? MvcAdapter.OkResult( influencerStatus.Value )
+                : MvcAdapter.BadRequestError( "influencer not fetched" );
         }
     }
 }
