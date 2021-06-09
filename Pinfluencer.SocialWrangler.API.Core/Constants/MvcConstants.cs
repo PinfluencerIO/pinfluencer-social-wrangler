@@ -2,6 +2,6 @@
 {
     public static class MvcConstants
     {
-        public const string Auth0IdKey = "auth-id";
+        public const string Auth0IdKey = "auth-user";
     }
 }

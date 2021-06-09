@@ -14,7 +14,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
     {
         protected const string TestToken = "654321";
         protected const string TestAuth0Id = "12345";
-        protected const string Auth0IdParamKey = "auth-id";
+        protected const string Auth0IdParamKey = "auth-user";
         protected const string UserActionArgumentKey = "user";
         
         protected ISocialAuthManager MockSocialAuthManager;
