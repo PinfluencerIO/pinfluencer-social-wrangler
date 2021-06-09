@@ -5,10 +5,11 @@ using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
+using Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetEngagementRate.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialContentFacadeTests.GetEngagementRate
 {
-    public class When_No_Content_Has_Been_Posted_In_Last_28_Days : Given_A_SocialContentFacade
+    public class When_No_Content_Has_Been_Posted_In_Last_28_Days : When_Called
     {
         private ObjectResult<double> _result;
 

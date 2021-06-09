@@ -108,6 +108,14 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
                     .Now( )
                     .Subtract( new TimeSpan( 28, 0, 0, 0 ) ) )
                 .ToArray(  );
+            if( collection.Length == 0 )
+            {
+                return new ObjectResult<double>
+                {
+                    Status = OperationResultEnum.Success,
+                    Value = default
+                };
+            }
             double engagements = 0;
             foreach( var content in collection )
             {
