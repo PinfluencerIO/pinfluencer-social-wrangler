@@ -31,5 +31,14 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
 
             return result;
         }
+
+        public ObjectResult<SocialInsightsUser> GetFirstUser( )
+        {
+            return new ObjectResult<SocialInsightsUser>
+            {
+                Status = OperationResultEnum.Failed,
+                Value = null
+            };
+        }
     }
 }

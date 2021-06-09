@@ -7,5 +7,7 @@ namespace Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract
     public interface ISocialInsightUserFacade
     {
         ObjectResult<IEnumerable<SocialInsightsUser>> GetUsers( );
+        
+        ObjectResult<SocialInsightsUser> GetFirstUser( );
     }
 }
