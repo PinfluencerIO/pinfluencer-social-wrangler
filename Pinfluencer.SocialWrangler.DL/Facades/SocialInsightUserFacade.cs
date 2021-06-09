@@ -34,10 +34,21 @@ namespace Pinfluencer.SocialWrangler.DL.Facades
 
         public ObjectResult<SocialInsightsUser> GetFirstUser( )
         {
+            var usersResult = GetUsers( );
+            if( usersResult.Status == OperationResultEnum.Failed )
+            {
+                return new ObjectResult<SocialInsightsUser>
+                {
+                    Status = OperationResultEnum.Failed,
+                    Value = null
+                };
+            }
             return new ObjectResult<SocialInsightsUser>
             {
-                Status = OperationResultEnum.Failed,
-                Value = null
+                Status = OperationResultEnum.Success,
+                Value = usersResult
+                    .Value
+                    .First( )
             };
         }
     }
