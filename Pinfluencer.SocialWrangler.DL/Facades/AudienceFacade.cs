@@ -7,7 +7,7 @@ using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.DL.Facades
 {
-    public class AudienceFacade
+    public class AudienceFacade : IAudienceFacade
     {
         private readonly ISocialInsightUserFacade _socialInsightUserFacade;
         private readonly ISocialAudienceFacade _socialAudienceFacade;
