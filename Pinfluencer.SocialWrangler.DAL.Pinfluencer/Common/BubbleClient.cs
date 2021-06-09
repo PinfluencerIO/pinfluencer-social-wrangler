@@ -1,13 +1,21 @@
 ﻿using System;
+using Pinfluencer.SocialWrangler.Core.Options;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Web;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common
 {
-    public class BubbleClient : ApiClient, IBubbleClient
+    public class BubbleClient : ApiClientBase, IBubbleClient
     {
-        public BubbleClient( IHttpClient httpClient ) : base( httpClient ) { }
-
-        public BubbleClient( IHttpClient httpClient, Uri uri, string token ) : base( httpClient, uri, token ) { }
+        public BubbleClient( IConfigurationAdapter configuration, ISerializer serializer, IHttpClient httpClient ) : base(
+            httpClient, serializer )
+        {
+            var bubbleSettings = configuration
+                .Get<AppOptions>( )
+                .PinfluencerData;
+            SetBaseUrl( new Uri( bubbleSettings.Domain ) );
+            SetBearerToken( bubbleSettings.Secret );
+        }
     }
 }

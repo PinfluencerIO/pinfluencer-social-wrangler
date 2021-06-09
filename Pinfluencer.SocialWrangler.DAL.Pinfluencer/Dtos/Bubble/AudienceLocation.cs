@@ -10,7 +10,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble
 
         public double Percentage { get; set; }
 
-        [ JsonProperty( "_id" ) ]
-        public string Id { get; set; }
+        [ JsonProperty( "_id" ) ] public string Id { get; set; }
     }
 }

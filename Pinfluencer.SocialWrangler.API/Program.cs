@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Pinfluencer.SocialWrangler.API
@@ -9,6 +10,7 @@ namespace Pinfluencer.SocialWrangler.API
         {
             Host.CreateDefaultBuilder( args )
                 .ConfigureWebHostDefaults( webBuilder => { webBuilder.UseStartup<Startup>( ); } )
+                .UseServiceProviderFactory( new DefaultServiceProviderFactory( ) )
                 .Build( )
                 .Run( );
         }

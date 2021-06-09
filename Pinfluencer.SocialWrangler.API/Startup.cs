@@ -1,69 +1,26 @@
-using System;
-using Auth0.AuthenticationApi;
-using Auth0.ManagementApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.API.Options;
-using Pinfluencer.SocialWrangler.BLL.Facades;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Repositories;
-using Pinfluencer.SocialWrangler.Core.Models.User;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
-using Pinfluencer.SocialWrangler.Crosscutting.Web;
-using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Factories;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Factories;
-using Pinfluencer.SocialWrangler.DAL.Instagram.Repositories;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Factories;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Repositories;
+using Pinfluencer.SocialWrangler.Crosscutting.DIModule;
+using Pinfluencer.SocialWrangler.DAL.DIModule;
+using Pinfluencer.SocialWrangler.DL.DIModule;
 
 namespace Pinfluencer.SocialWrangler.API
 {
     public class Startup
     {
-        public void ConfigureServices( IServiceCollection dependancyCollection )
+        public void ConfigureServices( IServiceCollection services )
         {
-            dependancyCollection
-                .AddSingleton<CountryGetter>( )
-                .AddScoped<Auth0Context>( )
-                .AddScoped<FacebookContext>( )
-                .AddTransient<IContractResolver, ClassicJsonResolver>( )
-                .AddTransient<ISerializer, JsonSerialzierAdapter>( )
-                .AddTransient<MvcAdapter>( )
-                .AddTransient<IFacebookClientFactory, FacebookClientFactory>( )
-                .AddTransient<IAuth0AuthenticationApiClientFactory, Auth0AuthenticationApiClientFactory>( )
-                .AddTransient<IUserRepository, UserRepository>( )
-                .AddTransient<ISocialImpressionsRepository, InstagramImpressionsRepository>( )
-                .AddTransient<ISocialAudienceRepository, InstagramAudienceRepository>( )
-                .AddTransient<ISocialUserRepository, InstagramUserRepository>( )
-                .AddTransient<IManagementConnection, HttpClientManagementConnection>( )
-                .AddTransient<IAuthenticationConnection, HttpClientAuthenticationConnection>( )
-                .AddTransient<InstagramFacade>( )
-                .AddTransient<SimpleAuthActionFilter>( )
-                .AddTransient<FacebookActionFilter>( )
+            services
+                .BindCrosscuttingLayer( )
+                .BindDomainLayer( )
+                .BindDataAcessLayer( )
                 .AddTransient<Auth0ActionFilter>( )
-                .AddTransient<IHttpClient, HttpClientAdapter>( )
-                .AddTransient<IBubbleClient>( provider =>
-                {
-                    var bubbleSettings = provider.GetService<IConfiguration>( ).Get<AppOptions>( );
-                    return new BubbleClient( provider.GetService<IHttpClient>( ),
-                        new Uri( bubbleSettings.Bubble.Domain ), bubbleSettings.Bubble.Secret );
-                } )
-                .AddTransient( typeof( IBubbleDataHandler<> ), typeof( BubbleDataHandler<> ) )
-                .AddTransient<IDateTimeAdapter, DateTimeAdapter>( )
-                .AddTransient<IUser, User>( )
-                .AddTransient<InfluencerFacade>( )
-                .AddTransient( typeof( ILoggerAdapter<> ), typeof( LoggerAdapter<> ) )
+                .AddTransient<FacebookActionFilter>( )
+                .AddTransient<SimpleAuthActionFilter>( )
+                .AddTransient<MvcAdapter>( )
                 .AddControllers( );
         }
 

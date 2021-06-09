@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
@@ -28,7 +29,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
         {
             return new Dictionary<string, StringValues>( );
         }
-        
+
         protected virtual Dictionary<string, object> SetupActionArguments( )
         {
             return new Dictionary<string, object>( );
@@ -42,7 +43,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions
 
         protected override void Given( )
         {
-            Serializer = new JsonSerialzierAdapter( new ClassicJsonResolver( ) );
+            Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
             _mockHttpContext = Substitute.For<HttpContext>( );
             _mockHttpRequest = Substitute.For<HttpRequest>( );
             MvcAdapter = new MvcAdapter( Serializer );

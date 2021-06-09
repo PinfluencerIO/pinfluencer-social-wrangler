@@ -18,7 +18,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.SimpleAuthTests
 
             MockConfiguration = Substitute.For<IConfiguration>( );
 
-            Sut = new SimpleAuthActionFilter( MockConfiguration, MvcAdapter );
+            SUT = new SimpleAuthActionFilter( MockConfiguration, MvcAdapter );
         }
     }
 }

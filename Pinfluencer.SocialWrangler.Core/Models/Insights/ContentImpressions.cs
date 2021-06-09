@@ -2,7 +2,7 @@
 
 namespace Pinfluencer.SocialWrangler.Core.Models.Insights
 {
-    public class ContentImpressions
+    public class ContentImpressions : SocialInsightsBase
     {
         public ContentImpressions( DateTime time, int count )
         {
@@ -10,8 +10,6 @@ namespace Pinfluencer.SocialWrangler.Core.Models.Insights
             Count = count;
         }
 
-        public DateTime Time { get; }
-
-        public int Count { get; }
+        public ContentImpressions( ) { }
     }
 }

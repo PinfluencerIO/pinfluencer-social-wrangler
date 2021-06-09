@@ -3,6 +3,7 @@
     public enum OperationResultEnum
     {
         Success,
+        Warning,
         Failed
     }
 }

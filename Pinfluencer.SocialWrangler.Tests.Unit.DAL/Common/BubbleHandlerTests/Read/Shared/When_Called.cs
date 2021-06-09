@@ -1,24 +1,22 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Read.Shared
 {
     public abstract class When_Called : Given_A_BubbleHandler
     {
-        protected OperationResult<TestModel> Result;
-        
         protected const string TestUrl = "test";
         protected const string TestId = "123";
         protected const string TestValue = "value";
-        
+        protected ObjectResult<Model> Result;
+
         [ Test ]
         public void Then_Data_Will_Be_Created_Once( )
         {
             MockBubbleClient
                 .Received( 1 )
-                .Get<TestDto>( Arg.Any<string>( ) );
+                .Get<Dto>( Arg.Any<string>( ) );
         }
 
         [ Test ]
@@ -26,26 +24,16 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Re
         {
             MockBubbleClient
                 .Received( )
-                .Get<TestDto>( Arg.Is<string>( uri => uri == TestUrl ) );
+                .Get<Dto>( Arg.Is<string>( uri => uri == TestUrl ) );
         }
 
-        protected OperationResult<TestModel> SutCall( ) =>
-            BubbleSut.Read<TestModel, TestDto>( TestUrl, x => new TestModel
+        protected ObjectResult<Model> SutCall( )
+        {
+            return BubbleSut.Read<Model, Dto>( TestUrl, x => new Model
             {
                 Id = x.Id,
                 Value = x.Value
-            }, new TestModel( ) );
-    }
-
-    public class TestModel
-    {
-        public string Id { get; set; }
-        public string Value { get; set; }
-    }
-    
-    public class TestDto
-    {
-        public string Id { get; set; }
-        public string Value { get; set; }
+            }, new Model( ) );
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Re
     {
         [ Test ]
         public void Then_Failiure_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Failed, Result.Status ); }
-        
+
         [ Test ]
         public void Then_Error_Is_Logged( )
         {

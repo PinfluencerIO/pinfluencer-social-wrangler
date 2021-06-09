@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
+using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared;
 
@@ -9,8 +11,10 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         protected override void When( )
         {
             base.When( );
-            SetUpUserRepository( TestToken, OperationResultEnum.Success );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            MockSocialAuthManager
+                .Initialize( Arg.Any<string>( ) )
+                .Returns( new Result { Status = OperationResultEnum.Success } );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

@@ -13,14 +13,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Up
         protected override void When( )
         {
             MockBubbleClient
-                .Patch( Arg.Any<string>( ), Arg.Any<TestDto>( ) )
+                .Patch( Arg.Any<string>( ), Arg.Any<Dto>( ) )
                 .Returns( HttpStatusCode.Created );
             _result = SutCall( );
         }
 
         [ Test ]
         public void Then_Success_Is_Returned( ) { Assert.AreEqual( OperationResultEnum.Success, _result ); }
-        
+
         [ Test ]
         public void Then_Success_Event_Is_Logged( )
         {

@@ -9,7 +9,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Up
         protected override void When( )
         {
             MockBubbleClient
-                .Patch( Arg.Any<string>( ), Arg.Any<TestDto>( ) )
+                .Patch( Arg.Any<string>( ), Arg.Any<Dto>( ) )
                 .Returns( HttpStatusCode.BadRequest );
             Result = SutCall( );
         }

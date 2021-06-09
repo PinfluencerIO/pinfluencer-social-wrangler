@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Configuration\Pinfluencer.SocialWrangler.Configuration.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Common\Pinfluencer.SocialWrangler.DAL.Common.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Facebook\Pinfluencer.SocialWrangler.DAL.Facebook.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />
+    </ItemGroup>
+
+</Project>

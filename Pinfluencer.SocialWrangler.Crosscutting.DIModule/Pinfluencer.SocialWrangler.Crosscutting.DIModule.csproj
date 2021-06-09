@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Configuration\Pinfluencer.SocialWrangler.Configuration.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Web\Pinfluencer.SocialWrangler.Crosscutting.Web.csproj" />
+    </ItemGroup>
+
+</Project>

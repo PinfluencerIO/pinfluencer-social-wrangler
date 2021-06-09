@@ -4,9 +4,9 @@ namespace Pinfluencer.SocialWrangler.Bootstrapping.DevOps.Deploy
 {
     public class AppsettingsDto
     {
-        public Auth0SettingsDto Auth0 { get; set; }
+        public AuthServiceSettingsDto AuthService { get; set; }
 
-        public BubbleSettingsDto Bubble { get; set; }
+        public PinfluencerDataSettingsDto PinfluencerData { get; set; }
 
         [ JsonProperty( PropertyName = "Simple-Auth-Key" ) ]
         public string SimpleAuthKey { get; set; }

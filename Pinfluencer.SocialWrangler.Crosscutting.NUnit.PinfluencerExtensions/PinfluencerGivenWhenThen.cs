@@ -1,26 +1,24 @@
 ﻿using System;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
     public class PinfluencerGivenWhenThen<T> : GivenWhenThen<T> where T : class
     {
-        protected IUser GetUser( FakeUserProps userProps ) => FakeUserModel.GetFake( MockDateTime, userProps );
-
         protected ILoggerAdapter<T> MockLogger;
-
-        protected override void Given( ) { MockLogger = Substitute.For<ILoggerAdapter<T>>( ); }
 
         protected IDateTimeAdapter MockDateTime { get; } = Substitute.For<IDateTimeAdapter>( );
 
         protected DateTime CurrentTime
         {
-            set => MockDateTime.Now( ).Returns( value );
+            get => MockDateTime.Now( );
+            set => MockDateTime
+                .Now( )
+                .Returns( value );
         }
-        
-        
+
+        protected override void Given( ) { MockLogger = Substitute.For<ILoggerAdapter<T>>( ); }
     }
 }

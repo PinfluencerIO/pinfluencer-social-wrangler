@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.API.ResponseDtos;
+using Pinfluencer.SocialWrangler.API.Core.Dtos.Response;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.SimpleAuthTests.OnActionExecutedTests.Shared
 {
@@ -15,7 +15,8 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.SimpleAuthTests.OnAc
         [ Test ]
         public void Then_Result_Status_Is_Unauthorized( )
         {
-            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ), ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
+            Assert.AreEqual( HttpStatusCode.Unauthorized.GetHashCode( ),
+                ( MockActionExecutingContext.Result as ContentResult ).StatusCode );
         }
     }
 }

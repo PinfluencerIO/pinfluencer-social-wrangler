@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
+using NSubstitute;
 using NUnit.Framework;
+using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests.Shared;
 
@@ -12,12 +14,14 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests
         {
             return new Dictionary<string, StringValues> { { Auth0IdParamKey, "" } };
         }
-        
+
         protected override void When( )
         {
             base.When( );
-            SetUpUserRepository( TestToken, OperationResultEnum.Success );
-            Sut.OnActionExecuting( MockActionExecutingContext );
+            MockSocialAuthManager
+                .Initialize( Arg.Any<string>( ) )
+                .Returns( new Result { Status = OperationResultEnum.Success } );
+            SUT.OnActionExecuting( MockActionExecutingContext );
         }
 
         [ Test ]

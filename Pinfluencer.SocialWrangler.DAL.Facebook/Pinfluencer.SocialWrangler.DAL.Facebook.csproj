@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Auth0.ManagementApi" Version="7.8.0" />
+      <PackageReference Include="Facebook" Version="7.0.6" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.CodeContracts\Pinfluencer.SocialWrangler.Crosscutting.CodeContracts.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Common\Pinfluencer.SocialWrangler.DAL.Common.csproj" />
+    </ItemGroup>
+
+</Project>

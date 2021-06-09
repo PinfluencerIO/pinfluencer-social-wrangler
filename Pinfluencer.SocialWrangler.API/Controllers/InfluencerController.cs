@@ -1,22 +1,42 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pinfluencer.SocialWrangler.API.RequestDtos;
-using Pinfluencer.SocialWrangler.BLL.Facades;
+using Pinfluencer.SocialWrangler.API.Core.Dtos.Request;
 using Pinfluencer.SocialWrangler.Core.Enum;
+using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.API.Controllers
 {
     //TODO: implement auto-mapper
     [ Route( "influencer" ) ]
-    public class InfluencerController : InstagramServiceController
+    public class InfluencerController : SocialWranglerController
     {
-        private readonly InfluencerFacade _influencerFacade;
-        
-        public InfluencerController( InfluencerFacade influencerFacade, MvcAdapter mvcAdapter ) : base( mvcAdapter ) { _influencerFacade = influencerFacade; }
+        private readonly IInfluencerFacade _influencerFacade;
+        private readonly IGetInfluencerFromSocialCommand _getInfluencerFromSocialCommand;
+
+        public InfluencerController( IInfluencerFacade influencerFacade,
+            MvcAdapter mvcAdapter,
+            IGetInfluencerFromSocialCommand getInfluencerFromSocialCommand ) : base( mvcAdapter )
+        {
+            _influencerFacade = influencerFacade;
+            _getInfluencerFromSocialCommand = getInfluencerFromSocialCommand;
+        }
 
         [ Route( "" ) ]
         [ HttpPost ]
-        public IActionResult Create( [ FromBody ] UserDto user ) => 
-            _influencerFacade.OnboardInfluencer( user.UserId ) == OperationResultEnum.Success ?
-                MvcAdapter.Success( "influencer created" ) : MvcAdapter.BadRequestError( "influencer not created" ) as IActionResult;
+        public IActionResult Create( [ FromBody ] UserDto user )
+        {
+            return _influencerFacade.Onboard( user.UserId ) == OperationResultEnum.Success
+                ? MvcAdapter.Success( "influencer created" )
+                : MvcAdapter.BadRequestError( "influencer not created" );
+        }
+        
+        [ Route( "" ) ]
+        [ HttpGet ]
+        public IActionResult Get( )
+        {
+            var influencerStatus = _getInfluencerFromSocialCommand.Run( );
+            return influencerStatus.Status == OperationResultEnum.Success
+                ? MvcAdapter.OkResult( influencerStatus.Value )
+                : MvcAdapter.BadRequestError( "influencer not fetched" );
+        }
     }
 }

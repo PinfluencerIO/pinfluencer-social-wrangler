@@ -15,13 +15,13 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
         private OperationResultEnum _result;
 
         public When_Called( OperationResultEnum operationResult ) { _operationResult = operationResult; }
-        
+
         protected override void When( )
         {
             MockBubbleDataHandler
                 .Create( Arg.Any<string>( ), Arg.Any<AudienceModel>( ), Arg.Any<Func<AudienceModel, Audience>>( ) )
                 .Returns( _operationResult );
-            _result = Sut.Create( new AudienceModel( ) );
+            _result = SUT.Create( new AudienceModel( ) );
         }
 
         [ Test ]
@@ -31,25 +31,26 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.AudienceRepositoryTests.Crea
                 .Create( Arg.Any<string>( ), Arg.Is<AudienceModel>( x => x.Id == null &&
                                                                          x.AudienceAge == null &&
                                                                          x.AudienceGender == null &&
-                                                                         x.AudienceLocation == null ), Arg.Any<Func<AudienceModel, Audience>>( ) );
+                                                                         x.AudienceCountry == null ),
+                    Arg.Any<Func<AudienceModel, Audience>>( ) );
         }
-        
+
         [ Test ]
         public void Then_Correct_Audience_Was_Created( )
         {
-            var mapResult = Sut.EmptyModelMap( new AudienceModel( ) );
+            var mapResult = SUT.EmptyModelMap( new AudienceModel( ) );
             Assert.True( mapResult.AudienceAge == null &&
                          mapResult.AudienceGender == null &&
                          mapResult.AudienceLocation == null );
         }
-        
+
         [ Test ]
         public void Then_Correct_Resource_Is_Used( )
         {
             MockBubbleDataHandler
                 .Create( Arg.Is( "audience" ), Arg.Any<AudienceModel>( ), Arg.Any<Func<AudienceModel, Audience>>( ) );
         }
-        
+
         [ Test ]
         public void Then_Valid_Status_Is_Returned( ) { Assert.AreEqual( _operationResult, _result ); }
     }

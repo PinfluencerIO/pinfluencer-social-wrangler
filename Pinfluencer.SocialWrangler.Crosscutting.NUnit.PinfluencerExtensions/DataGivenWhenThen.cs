@@ -1,46 +1,50 @@
-﻿using System.Collections.Generic;
-using Auth0.ManagementApi;
+﻿using System;
+using System.Collections.Generic;
 using Facebook;
+using Newtonsoft.Json;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Core.Interfaces.Models;
-using Pinfluencer.SocialWrangler.Core.Models.User;
-using Pinfluencer.SocialWrangler.DAL.Common;
-using Pinfluencer.SocialWrangler.DAL.Common.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Clients;
-using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Handlers;
-using Pinfluencer.SocialWrangler.DAL.Pinfluencer;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.Utils;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
+using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {
     public class DataGivenWhenThen<T> : PinfluencerGivenWhenThen<T> where T : class
     {
-        protected FacebookContext FacebookContext;
-        protected Auth0Context Auth0Context;
-        protected FacebookClient MockFacebookClient => FacebookContext.FacebookClient;
-        protected IUser User;
-        protected IManagementConnection MockAuth0ManagementApiConnection;
-        protected CountryGetter CountryGetter;
+        protected IAuthServiceManagementClientDecorator MockAuthServiceManagementClientDecorator;
+        protected ICountryGetter CountryGetter;
+        protected IFacebookDecorator MockFacebookDecorator;
         protected IBubbleDataHandler<T> MockBubbleDataHandler;
-        protected IBubbleClient MockBubbleClient;
+        protected IFacebookDataHandler<T> MockFacebookDataHandler;
+        protected ISerializer Serializer;
+        protected DateTime CurrentTimeMinus1Day = new DateTime( 2021, 5, 27 );
 
         protected override void Given( )
         {
             base.Given( );
+            Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
             CountryGetter = new CountryGetter( );
-            MockBubbleClient = Substitute.For<IBubbleClient>( );
-            MockAuth0ManagementApiConnection = Substitute.For<IManagementConnection>( );
-            FacebookContext = new FacebookContext { FacebookClient = Substitute.For<FacebookClient>( ) };
-            Auth0Context = new Auth0Context { ManagementApiClient = new ManagementApiClient( "token", "domain", MockAuth0ManagementApiConnection ) };
+            MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
+            MockAuthServiceManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );
             MockBubbleDataHandler = Substitute.For<IBubbleDataHandler<T>>( );
-            User = new User( MockDateTime );
+            MockFacebookDataHandler = Substitute.For<IFacebookDataHandler<T>>( );
+            CurrentTime = new DateTime( 2021, 5, 28 );
         }
 
-        protected static IEnumerable<FacebookApiException> FacebookExceptionFixture( ) => new [ ]
+        protected static IEnumerable<FacebookApiException> FacebookExceptionFixture( )
         {
-            new FacebookApiException( "api error" ),
-            new FacebookApiLimitException( "limit error" ),
-            new FacebookOAuthException( "oauth error" )
-        };
+            return new [ ]
+            {
+                new FacebookApiException( "api error" ),
+                new FacebookApiLimitException( "limit error" ),
+                new FacebookOAuthException( "oauth error" )
+            };
+        }
+
+        protected static object ToJsonObject( object content ) =>
+            JsonConvert.DeserializeObject( JsonConvert
+                .SerializeObject( content ) );
     }
 }

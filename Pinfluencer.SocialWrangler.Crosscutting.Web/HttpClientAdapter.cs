@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.Web
 {

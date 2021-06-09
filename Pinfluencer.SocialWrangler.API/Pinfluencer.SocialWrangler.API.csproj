@@ -5,13 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Instagram\Pinfluencer.SocialWrangler.DAL.Instagram.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Auth0.AuthenticationApi" Version="7.6.1" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.API.Core\Pinfluencer.SocialWrangler.API.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.DIModule\Pinfluencer.SocialWrangler.Crosscutting.DIModule.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Core\Pinfluencer.SocialWrangler.DAL.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.DIModule\Pinfluencer.SocialWrangler.DAL.DIModule.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL.Core\Pinfluencer.SocialWrangler.DL.Core.csproj" />
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL.DIModule\Pinfluencer.SocialWrangler.DL.DIModule.csproj" />
     </ItemGroup>
 
 </Project>
