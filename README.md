@@ -1,7 +1,3 @@
-# Run Locally 💻
-## Steps 🔎
-  * Refer to appsettings.Example.json in API project directory
-  * Go to API project directory and run command 'dotnet run'
 # DevOps ⚙️
 ## Manually Triggered 🤓
 * Deploy latest commit
@@ -12,3 +8,7 @@
 * Deploy latest push
 * to skip deploy put [ nodeploy ] in the commit message
     * example: "this is my commit message [ nodeploy ]"
+# Run Locally 💻
+## Steps 🔎
+  * Refer to appsettings.Example.json in API project directory
+  * Go to API project directory and run command 'dotnet run'
