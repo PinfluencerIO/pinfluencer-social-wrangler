@@ -1,6 +1,6 @@
 # DevOps ⚙️
 ## Manually Triggered 🤓
-* Deploy latest commit
+* Deploy latest commit of trunk
 * Close server
 * Open server
 ## GitHub Event Triggered 🤖
@@ -9,6 +9,6 @@
 * to skip deploy put [ nodeploy ] in the commit message
     * example: "this is my commit message [ nodeploy ]"
 # Run Locally 💻
-## Steps 🔎
+## Steps 🕹️
   * Refer to appsettings.Example.json in API project directory
   * Go to API project directory and run command 'dotnet run'
