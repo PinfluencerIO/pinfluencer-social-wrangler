@@ -1,0 +1,129 @@
+openapi: 3.0.1
+info:
+  title: Social Wrangler API
+  description: API for collecting influencer's instagram data
+  version: "1.1"
+servers:
+- url: https://pinfluencer.eu-west-2.elasticbeanstalk.com/social-wrangler/
+paths:
+  /social-data:
+    get:
+      tags:
+      - user
+      summary: Gathers social data for an influencer
+      operationId: getSocialDataByAuthUser
+      parameters:
+      - name: auth-user
+        in: query
+        description: The auth 0 user ID of the influencer
+        required: true
+        schema:
+          type: string
+      - name: Simple-Auth-Key
+        in: header
+        description: The secret key to access the Social Wrangler API
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/social_data'
+        401:
+          description: Authorization error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        400:
+          description: Data access error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    social_data:
+      type: object
+      properties:
+        audience:
+          type: object
+          properties:
+            audience_gender:
+              type: array
+              items:
+                type: object
+                properties:
+                  percentage:
+                    type: number
+                    description: percentage of followers of the given gender
+                  value:
+                    type: string
+                    description: gender
+            audience_country:
+              type: array
+              items:
+                type: object
+                properties:
+                  percentage:
+                    type: number
+                  value:
+                    type: object
+                    properties:
+                      country_code:
+                        type: string
+                        description: alpha 2 country code
+                      country: 
+                        type: string
+                        description: country name
+            audience_age:
+              type: array
+              items:
+                type: object
+                properties:
+                  percentage:
+                    type: number
+                  value:
+                    type: object
+                    properties:
+                      max:
+                        type: number
+                      min: 
+                        type: number
+            impressions:
+              type: number
+            reach:
+              type: number
+            followers:
+              type: number
+            engagement_rate:
+              type: number
+        influencer:
+          type: object
+          properties:
+            social_username:
+              type: string
+            bio:
+              type: string
+            location:
+              type: object
+              properties:
+                city:
+                  type: string
+                country_code:
+                  type: string
+                country:
+                  type: string
+            gender:
+              type: string
+            age:
+              type: number
+    error:
+      type: object
+      properties:
+        error_msg:
+          type: string
+          description: message returned by the error

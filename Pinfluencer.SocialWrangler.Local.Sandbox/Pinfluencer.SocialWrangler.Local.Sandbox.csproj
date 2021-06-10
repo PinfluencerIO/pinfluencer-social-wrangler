@@ -16,5 +16,9 @@
       <PackageReference Include="Ninject.Extensions.Factory" Version="3.3.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
+    </ItemGroup>
+
 
 </Project>
