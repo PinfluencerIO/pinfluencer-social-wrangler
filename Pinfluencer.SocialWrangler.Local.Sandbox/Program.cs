@@ -10,8 +10,7 @@ namespace Pinfluencer.SocialWrangler.Local.Sandbox
             ( Activator.CreateInstance( AppDomain.CurrentDomain
                         .GetAssemblies( )
                         .SelectMany( t => t.GetTypes( ) )
-                        .First( t =>
-                            t.IsClass && t.Namespace == "Pinfluencer.SocialWrangler.Local.Sandbox.LocalSandbox" ) ) as
+                        .First( t => t.Name == "Runner" ) ) as
                     IRunnable )?
                 .Run( );
         }
