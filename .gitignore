@@ -18,3 +18,6 @@ LocalSandbox/
 
 # IGNORE VERSION CONTROL
 .vs/
+
+# IGNORE PACKAGES
+packages/
