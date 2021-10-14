@@ -1,6 +1,6 @@
 ﻿using System;
-using Pinfluencer.SocialWrangler.Core.Attributes;
-using Pinfluencer.SocialWrangler.Core.Enum;
+using Aidan.Common.Core.Attributes;
+using Aidan.Common.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing
 {

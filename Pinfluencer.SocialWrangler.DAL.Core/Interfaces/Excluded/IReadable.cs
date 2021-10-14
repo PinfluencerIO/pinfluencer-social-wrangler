@@ -1,5 +1,5 @@
 ﻿using System;
-using Pinfluencer.SocialWrangler.Core;
+using Aidan.Common.Core;
 
 namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded
 {

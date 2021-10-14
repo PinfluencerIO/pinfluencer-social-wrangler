@@ -1,6 +1,6 @@
 ﻿using System;
+using Aidan.Common.Core.Enum;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 

@@ -1,8 +1,8 @@
 ﻿using System;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Interfaces.Contract;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Core;
 using Pinfluencer.SocialWrangler.Core.Options;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;

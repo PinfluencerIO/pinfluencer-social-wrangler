@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Core;
+﻿using Aidan.Common.Core;
 
 namespace Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract
 {

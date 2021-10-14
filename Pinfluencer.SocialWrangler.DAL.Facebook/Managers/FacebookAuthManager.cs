@@ -1,6 +1,6 @@
-﻿using Facebook;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
+﻿using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using Facebook;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;

@@ -5,8 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Core\Pinfluencer.SocialWrangler.Crosscutting.Core.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions.csproj" />
+      <PackageReference Include="Aidan.Common.Utils" Version="1.0.2" />
+      <PackageReference Include="Facebook" Version="7.0.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Core\Pinfluencer.SocialWrangler.DAL.Core.csproj" />
     </ItemGroup>
 
 </Project>

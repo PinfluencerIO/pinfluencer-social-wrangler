@@ -9,9 +9,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Configuration\Pinfluencer.SocialWrangler.Configuration.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj" />
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.Web\Pinfluencer.SocialWrangler.Crosscutting.Web.csproj" />
+      <PackageReference Include="Aidan.Common.DependencyInjection" Version="1.0.3" />
+      <PackageReference Include="Aidan.Common.Utils" Version="1.0.2" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj" />
     </ItemGroup>
 
 </Project>

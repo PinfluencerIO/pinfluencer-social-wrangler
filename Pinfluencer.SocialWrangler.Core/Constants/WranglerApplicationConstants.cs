@@ -1,8 +1,8 @@
 ﻿namespace Pinfluencer.SocialWrangler.Core.Constants
 {
-    public static class ApplicationConstants
+    public static class WranglerApplicationConstants
     {
         public const string RootNamespace = "Pinfluencer.SocialWrangler";
-        public const string ContractNamespace = "Core.Interfaces.Contract";
+        public const string CommonRootNamespace = "Aidan.Common";
     }
 }

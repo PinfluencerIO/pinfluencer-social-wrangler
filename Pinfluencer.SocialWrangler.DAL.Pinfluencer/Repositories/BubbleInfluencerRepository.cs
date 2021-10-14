@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Core.Enum;
+﻿using Aidan.Common.Core.Enum;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Pinfluencer;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Excluded;

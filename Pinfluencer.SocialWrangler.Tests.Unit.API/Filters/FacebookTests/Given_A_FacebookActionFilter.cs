@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Aidan.Common.Utils.Test;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Core.Dtos.Request;
 using Pinfluencer.SocialWrangler.API.Core.Dtos.Response;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.FacebookTests

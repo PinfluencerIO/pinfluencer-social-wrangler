@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Pinfluencer.SocialWrangler.Core.Enum;
+using Aidan.Common.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 
 namespace Pinfluencer.SocialWrangler.Core.Models

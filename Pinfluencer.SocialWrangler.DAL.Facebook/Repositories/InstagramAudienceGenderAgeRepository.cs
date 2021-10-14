@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
 using Newtonsoft.Json.Linq;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;

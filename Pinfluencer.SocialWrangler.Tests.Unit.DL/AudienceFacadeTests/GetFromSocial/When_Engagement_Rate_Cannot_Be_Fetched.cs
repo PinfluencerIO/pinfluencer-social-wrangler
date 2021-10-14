@@ -1,9 +1,9 @@
-﻿using NSubstitute;
+﻿using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using Aidan.Common.Utils.Test;
+using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSocial.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSocial

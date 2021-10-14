@@ -1,7 +1,7 @@
 ﻿using System;
+using Aidan.Common.Core.Interfaces.Contract;
+using Aidan.Common.Utils.Test;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 
 namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
 {

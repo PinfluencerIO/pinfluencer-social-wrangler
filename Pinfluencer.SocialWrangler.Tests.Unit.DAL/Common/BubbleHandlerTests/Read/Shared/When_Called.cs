@@ -1,6 +1,6 @@
-﻿using NSubstitute;
+﻿using Aidan.Common.Core;
+using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Read.Shared
 {

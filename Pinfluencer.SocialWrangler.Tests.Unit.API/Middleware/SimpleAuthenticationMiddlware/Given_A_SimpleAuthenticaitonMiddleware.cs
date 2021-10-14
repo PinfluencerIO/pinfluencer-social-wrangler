@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Aidan.Common.Utils.Test;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Middleware;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Middleware.SimpleAuthenticationMiddlware
 {

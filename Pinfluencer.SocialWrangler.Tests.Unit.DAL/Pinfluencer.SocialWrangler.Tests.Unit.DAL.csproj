@@ -5,13 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Aidan.Common.Utils" Version="1.0.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
         <PackageReference Include="NSubstitute" Version="4.2.2" />
         <PackageReference Include="nunit" Version="3.13.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions\Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Facebook\Pinfluencer.SocialWrangler.DAL.Facebook.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DAL.Pinfluencer\Pinfluencer.SocialWrangler.DAL.Pinfluencer.csproj" />

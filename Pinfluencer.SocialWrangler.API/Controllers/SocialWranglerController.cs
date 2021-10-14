@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aidan.Common.Utils.Web;
+using Microsoft.AspNetCore.Mvc;
 using Pinfluencer.SocialWrangler.API.Filters;
 
 namespace Pinfluencer.SocialWrangler.API.Controllers

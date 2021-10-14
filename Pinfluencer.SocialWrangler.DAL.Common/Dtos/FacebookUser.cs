@@ -1,6 +1,6 @@
 ﻿using System;
+using Aidan.Common.Core.Enum;
 using Newtonsoft.Json;
-using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common.Dtos
 {

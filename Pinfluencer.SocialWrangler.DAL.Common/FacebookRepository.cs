@@ -1,6 +1,6 @@
 ﻿using System;
+using Aidan.Common.Core.Interfaces.Contract;
 using Facebook;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 
 namespace Pinfluencer.SocialWrangler.DAL.Common
 {

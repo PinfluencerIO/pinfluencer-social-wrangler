@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Aidan.Common.Core.Interfaces.Contract;
+using Aidan.Common.Utils.Utils;
+using Aidan.Common.Utils.Web;
 using Facebook;
 using Newtonsoft.Json;
 using NSubstitute;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Crosscutting.Utils;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
@@ -24,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected override void Given( )
         {
             base.Given( );
-            Serializer = new JsonSerialzierAdapter( new PinfluencerJsonResolver( ) );
+            Serializer = new JsonSerialzierAdapter( new GenericJsonResolver( ) );
             CountryGetter = new CountryGetter( );
             MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
             MockAuthServiceManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );

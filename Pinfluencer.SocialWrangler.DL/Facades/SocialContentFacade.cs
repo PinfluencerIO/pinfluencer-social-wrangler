@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using Aidan.Common.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;
 

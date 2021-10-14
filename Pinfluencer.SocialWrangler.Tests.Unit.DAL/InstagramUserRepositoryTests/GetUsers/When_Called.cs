@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Dtos.Dtos;

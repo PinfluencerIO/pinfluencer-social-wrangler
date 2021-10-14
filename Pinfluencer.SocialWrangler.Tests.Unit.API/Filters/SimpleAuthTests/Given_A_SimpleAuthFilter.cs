@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Aidan.Common.Utils.Test;
+using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Pinfluencer.SocialWrangler.API.Filters;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.Extensions;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.API.Filters.SimpleAuthTests
 {

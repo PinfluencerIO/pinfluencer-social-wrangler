@@ -1,6 +1,6 @@
-﻿using NSubstitute;
+﻿using Aidan.Common.Core.Enum;
+using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Create.Shared
 {

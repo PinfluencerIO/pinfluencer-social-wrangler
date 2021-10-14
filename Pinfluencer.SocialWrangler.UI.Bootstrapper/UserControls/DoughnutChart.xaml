@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Pinfluencer.SocialWrangler.UI.Bootstrapper.UserControls.DoughnutChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Pinfluencer.SocialWrangler.UI.Bootstrapper.UserControls"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             x:Name="DoughnutChartUserControl">
+    <wpf:PieChart LegendLocation="Bottom"
+                  InnerRadius="70"
+                  Width="200"
+                  Height="200"
+                  DataTooltip="{x:Null}"
+                  Series="{Binding SeriesCollection, ElementName=DoughnutChartUserControl}"
+                  FontWeight="Light"
+                  Foreground="DimGray">
+    </wpf:PieChart>
+</UserControl>

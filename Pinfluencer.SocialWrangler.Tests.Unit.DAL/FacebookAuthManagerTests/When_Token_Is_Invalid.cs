@@ -1,8 +1,8 @@
-﻿using Facebook;
+﻿using Aidan.Common.Core.Enum;
+using Facebook;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests

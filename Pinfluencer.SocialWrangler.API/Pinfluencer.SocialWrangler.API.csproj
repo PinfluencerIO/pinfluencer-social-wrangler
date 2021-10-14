@@ -13,4 +13,8 @@
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL.DIModule\Pinfluencer.SocialWrangler.DL.DIModule.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Aidan.Common.DependencyInjection" Version="1.0.3" />
+    </ItemGroup>
+
 </Project>

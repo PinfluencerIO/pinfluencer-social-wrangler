@@ -3,10 +3,196 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Pinfluencer.SocialWrangler.UI.Bootstrapper.Views"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:bootstrapper="clr-namespace:Pinfluencer.SocialWrangler.UI.Bootstrapper"
+        xmlns:userControls="clr-namespace:Pinfluencer.SocialWrangler.UI.Bootstrapper.UserControls"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
-    <Grid>
-        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignLightBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Foreground="{DynamicResource MaterialDesignLightForeground}"
+        Width="1150"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Social Wrangler">
+    <Grid Background="#f0f0f0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Row="1" Column="1" Background="White">
+            <StackPanel Margin="10">
+                <userControls:DoughnutChart AudienceGender="{Binding AudienceGender}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2" Background="White"
+              Margin="15 0 0 0">
+            <StackPanel Margin="10">
+                <TextBlock
+                           TextAlignment="Center"
+                           FontWeight="Light"
+                           FontSize="16"
+                           Foreground="DimGray">
+                    Audience Country
+                    <materialDesign:PackIcon Kind="Globe" />
+                </TextBlock>
+                <lvc:CartesianChart Series="{Binding AudienceCountrySeries}"
+                                    LegendLocation="Bottom"
+                                    Width="400"
+                                    Height="200"
+                                    ChartLegend="{x:Null}"
+                                    FontSize="12">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="{x:Null}" ShowLabels="False">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Stroke="White"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="{x:Null}" Labels="{Binding Countries}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Stroke="White"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.DataTooltip>
+                        <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
+                    </lvc:CartesianChart.DataTooltip>
+                </lvc:CartesianChart>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="3" Background="White"
+              Margin="15 0 0 0">
+            <StackPanel Margin="10">
+                <TextBlock
+                           TextAlignment="Center"
+                           FontWeight="Light"
+                           FontSize="16"
+                           Foreground="DimGray">
+                    Audience Age
+                    <materialDesign:PackIcon Kind="Users" />
+                </TextBlock>
+                <lvc:CartesianChart Series="{Binding AudienceAgeSeries}"
+                                    LegendLocation="Bottom"
+                                    Width="400"
+                                    Height="200"
+                                    ChartLegend="{x:Null}"
+                                    FontSize="12">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="{x:Null}" ShowLabels="False">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Stroke="White"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="{x:Null}" Labels="{Binding Ages}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Stroke="White"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.DataTooltip>
+                        <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
+                    </lvc:CartesianChart.DataTooltip>
+                </lvc:CartesianChart>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1" Background="White"
+              Margin="0 15 0 0">
+            <StackPanel Margin="10">
+                <TextBlock TextAlignment="Center"
+                           FontWeight="Light"
+                           FontSize="12"
+                           Foreground="DimGray">
+                    Reach
+                    <materialDesign:PackIcon Kind="User"/>
+                </TextBlock>
+                <TextBlock Text="1320"
+                           TextAlignment="Center"
+                           FontWeight="Medium"
+                           FontSize="14"
+                           Foreground="DimGray"></TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Background="White"
+                  Margin="15 15 0 0" Grid.Column="0">
+                <StackPanel Margin="10">
+                    <TextBlock TextAlignment="Center"
+                               FontWeight="Light"
+                               FontSize="12"
+                               Foreground="DimGray">
+                        Impressions
+                        <materialDesign:PackIcon Kind="User"/>
+                    </TextBlock>
+                    <TextBlock Text="1420"
+                               TextAlignment="Center"
+                               FontWeight="Medium"
+                               FontSize="14"
+                               Foreground="DimGray"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Background="White"
+                  Margin="15 15 0 0" Grid.Column="1">
+                <StackPanel Margin="10">
+                    <TextBlock TextAlignment="Center"
+                               FontWeight="Light"
+                               FontSize="12"
+                               Foreground="DimGray">
+                        Followers
+                        <materialDesign:PackIcon Kind="User"/>
+                    </TextBlock>
+                    <TextBlock Text="1220"
+                               TextAlignment="Center"
+                               FontWeight="Medium"
+                               FontSize="14"
+                               Foreground="DimGray"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Background="White"
+                  Margin="15 15 0 0" Grid.Column="0">
+                <StackPanel Margin="10">
+                    <TextBlock TextAlignment="Center"
+                               FontWeight="Light"
+                               FontSize="12"
+                               Foreground="DimGray">
+                        Engagement Rate
+                        <materialDesign:PackIcon Kind="User"/>
+                    </TextBlock>
+                    <TextBlock Text="56.2%"
+                               TextAlignment="Center"
+                               FontWeight="Medium"
+                               FontSize="14"
+                               Foreground="DimGray"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

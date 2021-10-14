@@ -1,5 +1,5 @@
 ﻿using System;
-using Pinfluencer.SocialWrangler.Core.Enum;
+using Aidan.Common.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Core.Models.Insights
 {

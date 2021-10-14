@@ -1,7 +1,7 @@
 ﻿using System.Net;
+using Aidan.Common.Core.Enum;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.BubbleHandlerTests.Create.Shared;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;
 

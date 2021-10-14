@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using Aidan.Common.Core.Interfaces.Contract;
 using Auth0.ManagementApi;
 using Pinfluencer.SocialWrangler.Core.Options;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Facebook

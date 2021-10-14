@@ -1,9 +1,9 @@
-﻿using Facebook;
+﻿using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using Facebook;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.Common.FacebookDataHandlerTests.Read
 {

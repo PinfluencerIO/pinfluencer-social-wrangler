@@ -1,7 +1,7 @@
 ﻿using System;
+using Aidan.Common.Core.Enum;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble;
 using AudienceModel = Pinfluencer.SocialWrangler.Core.Models.Audience;

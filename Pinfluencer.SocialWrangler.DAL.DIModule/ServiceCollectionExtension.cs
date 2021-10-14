@@ -1,7 +1,7 @@
 ﻿using System;
+using Aidan.Common.Core.Enum;
 using Microsoft.Extensions.DependencyInjection;
 using Pinfluencer.SocialWrangler.Configuration;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.DAL.Common;
 using Pinfluencer.SocialWrangler.DAL.Core;
 using Pinfluencer.SocialWrangler.DAL.Facebook;

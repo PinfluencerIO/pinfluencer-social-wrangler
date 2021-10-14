@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using Aidan.Common.Utils.Test;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
-using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;
 using Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSocial.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSocial
@@ -31,7 +31,7 @@ namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.AudienceFacadeTests.GetFromSo
         [ Test ]
         public void Then_Result_Is_Warning( )
         {
-            ResultAssert.IsWarning( _result );
+            ResultAssert.IsWarning<Audience>( _result );
         }
         
         [ Test ]

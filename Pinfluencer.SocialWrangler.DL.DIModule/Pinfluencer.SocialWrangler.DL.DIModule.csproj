@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Pinfluencer.SocialWrangler.Configuration\Pinfluencer.SocialWrangler.Configuration.csproj" />
       <ProjectReference Include="..\Pinfluencer.SocialWrangler.DL\Pinfluencer.SocialWrangler.DL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Aidan.Common.DependencyInjection" Version="1.0.3" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     </ItemGroup>
 

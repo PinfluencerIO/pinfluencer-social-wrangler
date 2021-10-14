@@ -1,7 +1,7 @@
 ﻿using System;
+using Aidan.Common.Core.Interfaces.Contract;
+using Aidan.Common.Utils.Web;
 using Pinfluencer.SocialWrangler.Core.Options;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
-using Pinfluencer.SocialWrangler.Crosscutting.Web;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common

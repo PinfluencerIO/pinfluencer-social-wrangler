@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Core.Enum;
+﻿using Aidan.Common.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Core.Models.User;

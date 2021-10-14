@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core.Enum;
+﻿using Aidan.Common.Core.Enum;
+using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests.Shared;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DAL.FacebookAuthManagerTests

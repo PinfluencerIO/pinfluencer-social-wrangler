@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
+﻿using Aidan.Common.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Common.Dtos;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;

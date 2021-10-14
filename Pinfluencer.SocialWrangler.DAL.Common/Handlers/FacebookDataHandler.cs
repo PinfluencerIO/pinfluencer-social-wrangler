@@ -1,8 +1,8 @@
 ﻿using System;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using Aidan.Common.Core.Interfaces.Contract;
 using Facebook;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Handlers;
 
@@ -53,7 +53,6 @@ namespace Pinfluencer.SocialWrangler.DAL.Common.Handlers
             }
 
             return errorReturn;
-            ;
         }
     }
 }

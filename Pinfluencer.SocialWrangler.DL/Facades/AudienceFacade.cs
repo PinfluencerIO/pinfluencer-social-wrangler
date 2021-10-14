@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Insights;
 using Pinfluencer.SocialWrangler.DL.Core.Interfaces.Contract;

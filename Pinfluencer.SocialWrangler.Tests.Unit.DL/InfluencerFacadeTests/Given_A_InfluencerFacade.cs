@@ -1,6 +1,6 @@
-﻿using NSubstitute;
+﻿using Aidan.Common.Core.Enum;
+using NSubstitute;
 using Pinfluencer.SocialWrangler.DL.Facades;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 using Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions;

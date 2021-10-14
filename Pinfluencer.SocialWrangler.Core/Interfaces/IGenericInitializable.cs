@@ -1,4 +1,6 @@
-﻿namespace Pinfluencer.SocialWrangler.Core.Interfaces
+﻿using Aidan.Common.Core;
+
+namespace Pinfluencer.SocialWrangler.Core.Interfaces
 {
     public interface IGenericInitializable<in T>
     {

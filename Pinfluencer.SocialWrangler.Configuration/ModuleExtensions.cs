@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Aidan.Common.Core.Attributes;
+using Aidan.Common.Core.Enum;
 using Microsoft.Extensions.DependencyInjection;
-using Pinfluencer.SocialWrangler.Core.Attributes;
 using Pinfluencer.SocialWrangler.Core.Constants;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Interfaces;
 using Pinfluencer.SocialWrangler.Crosscutting.AspNetCoreExtensions;
 
@@ -20,6 +20,15 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return services;
         }
 
+        private static void RegisterViewModels( IServiceCollection services, Type [ ] types )
+        {
+            var viewModels = types.Where( x => x.Name.EndsWith( "ViewModel" ) );
+            foreach( var viewModel in viewModels )
+            {
+                services.AddTransient( viewModel );
+            }
+        }
+        
         private static void RegisterFactories( IServiceCollection services, Type [ ] factories )
         {
             foreach( var factory in factories ) services.AddFactory( factory );
@@ -130,7 +139,18 @@ namespace Pinfluencer.SocialWrangler.Configuration
             return types;
         }
 
-        public static IServiceCollection BindServices( this IServiceCollection serviceCollection, ApplicationLayerEnum applicationLayer, Action[] initializers ) => 
-            Bind( serviceCollection, GetTypes( applicationLayer.ToString( ) ), applicationLayer.ToString( ) );
+        public static IServiceCollection BindServices( this IServiceCollection serviceCollection,
+            ApplicationLayerEnum applicationLayer, Action [ ] initializers )
+        {
+            var types = GetTypes( applicationLayer.ToString( ) );
+            Bind( serviceCollection, types , applicationLayer.ToString( ) );
+            if( applicationLayer == ApplicationLayerEnum.UI )
+            {
+                RegisterViewModels( serviceCollection, types );
+            }
+
+            return serviceCollection;
+        }
+            
     }
 }

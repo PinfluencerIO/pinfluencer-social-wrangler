@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Aidan.Common.Core.Enum;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Dtos.Bubble
 {

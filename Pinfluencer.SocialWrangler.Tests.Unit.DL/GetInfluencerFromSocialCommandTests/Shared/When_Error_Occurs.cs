@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
+﻿using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
+using NUnit.Framework;
 using Pinfluencer.SocialWrangler.Core.Models.User;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.GetInfluencerFromSocialCommandTests.Shared

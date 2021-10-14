@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using Aidan.Common.Core;
+using Aidan.Common.Core.Enum;
 using NSubstitute;
 using NUnit.Framework;
-using Pinfluencer.SocialWrangler.Core;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.Core.Models.Social;
 
 namespace Pinfluencer.SocialWrangler.Tests.Unit.DL.SocialUserFacadeTests.GetUsersTests.Shared

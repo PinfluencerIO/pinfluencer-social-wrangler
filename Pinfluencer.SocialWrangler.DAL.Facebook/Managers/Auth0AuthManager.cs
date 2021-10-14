@@ -1,7 +1,7 @@
-﻿using Auth0.Core.Exceptions;
-using Pinfluencer.SocialWrangler.Core;
+﻿using Aidan.Common.Core;
+using Aidan.Common.Core.Interfaces.Contract;
+using Auth0.Core.Exceptions;
 using Pinfluencer.SocialWrangler.Core.Options;
-using Pinfluencer.SocialWrangler.Crosscutting.Core.Interfaces.Contract;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.FrontFacing.Social;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories;
