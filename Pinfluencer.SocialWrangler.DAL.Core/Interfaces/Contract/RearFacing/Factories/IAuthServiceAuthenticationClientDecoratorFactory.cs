@@ -1,4 +1,4 @@
-﻿using Pinfluencer.SocialWrangler.Core.Interfaces;
+﻿using Aidan.Common.Core.Interfaces.Excluded;
 using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients;
 
 namespace Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Factories
