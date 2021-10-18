@@ -6,9 +6,9 @@ using Pinfluencer.SocialWrangler.DAL.Core.Interfaces.Contract.RearFacing.Clients
 
 namespace Pinfluencer.SocialWrangler.DAL.Pinfluencer.Common
 {
-    public class BubbleClient : ApiClientBase, IBubbleClient
+    public class BubbleClient : ApiClientBase<IJsonSnakeCaseSerializer>, IBubbleClient
     {
-        public BubbleClient( IConfigurationAdapter configuration, ISerializer serializer, IHttpClient httpClient ) : base(
+        public BubbleClient( IConfigurationAdapter configuration, IJsonSnakeCaseSerializer serializer, IHttpClient httpClient ) : base(
             httpClient, serializer )
         {
             var bubbleSettings = configuration

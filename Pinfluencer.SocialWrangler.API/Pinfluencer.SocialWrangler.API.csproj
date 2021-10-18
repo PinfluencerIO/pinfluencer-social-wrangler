@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Aidan.Common.DependencyInjection" Version="1.0.3" />
+      <PackageReference Include="Aidan.Common.DependencyInjection" Version="1.0.4" />
     </ItemGroup>
 
 </Project>

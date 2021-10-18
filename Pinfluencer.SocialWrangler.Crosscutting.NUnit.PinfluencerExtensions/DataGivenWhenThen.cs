@@ -25,7 +25,7 @@ namespace Pinfluencer.SocialWrangler.Crosscutting.NUnit.PinfluencerExtensions
         protected override void Given( )
         {
             base.Given( );
-            Serializer = new JsonSerialzierAdapter( new GenericJsonResolver( ) );
+            Serializer = new JsonSnakeCaseSerialzier( new JsonSnakeCaseResolver( new JsonSnakeCaseFieldNameParser( ) ) );
             CountryGetter = new CountryGetter( );
             MockFacebookDecorator = Substitute.For<IFacebookDecorator>( );
             MockAuthServiceManagementClientDecorator = Substitute.For<IAuthServiceManagementClientDecorator>( );

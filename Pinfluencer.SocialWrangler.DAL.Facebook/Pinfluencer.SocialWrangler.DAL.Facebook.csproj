@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Aidan.Common.Utils" Version="1.0.2" />
-      <PackageReference Include="Auth0.ManagementApi" Version="7.8.0" />
+      <PackageReference Include="Aidan.Common.Utils" Version="1.0.7" />
+      <PackageReference Include="Auth0.ManagementApi" Version="7.11.0" />
       <PackageReference Include="Facebook" Version="7.0.6" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>

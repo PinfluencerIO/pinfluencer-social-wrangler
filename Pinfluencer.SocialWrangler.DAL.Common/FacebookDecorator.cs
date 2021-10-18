@@ -10,7 +10,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
     public class FacebookDecorator : IFacebookDecorator
     {
         private readonly IFacebookClientFactory _facebookClientFactory;
-        private readonly ISerializer _serializer;
+        private readonly IJsonSnakeCaseSerializer _serializer;
         private IFacebookClientAdapter _facebookClient;
 
         public string Token
@@ -18,7 +18,7 @@ namespace Pinfluencer.SocialWrangler.DAL.Common
             set => _facebookClient = _facebookClientFactory.Factory( value );
         }
         
-        public FacebookDecorator( IFacebookClientFactory facebookClientFactory, ISerializer serializer )
+        public FacebookDecorator( IFacebookClientFactory facebookClientFactory, IJsonSnakeCaseSerializer serializer )
         {
             _facebookClientFactory = facebookClientFactory;
             _serializer = serializer;

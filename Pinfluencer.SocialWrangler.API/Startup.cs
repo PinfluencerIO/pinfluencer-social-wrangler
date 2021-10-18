@@ -22,7 +22,10 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddTransient<FacebookActionFilter>( )
                 .AddTransient<SimpleAuthActionFilter>( )
                 .AddTransient<MvcAdapter>( )
-                .AddControllers( );
+                .AddControllers( )
+                .AddJsonOptions( x =>
+                    x.JsonSerializerOptions
+                        .PropertyNamingPolicy = services.ResolveJsonNamingPolicy(  ) );
         }
 
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
