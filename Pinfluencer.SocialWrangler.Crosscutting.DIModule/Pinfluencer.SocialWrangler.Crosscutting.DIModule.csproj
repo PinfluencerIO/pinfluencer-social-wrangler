@@ -10,7 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="Aidan.Common.DependencyInjection" Version="1.0.4" />
-      <PackageReference Include="Aidan.Common.Utils" Version="1.0.7" />
+      <PackageReference Include="Aidan.Common.Utils" Version="1.0.9" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     </ItemGroup>
 

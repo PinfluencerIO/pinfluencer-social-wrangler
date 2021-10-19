@@ -1,3 +1,4 @@
+using Aidan.Common.Core.Enum;
 using Aidan.Common.Utils.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,9 +24,7 @@ namespace Pinfluencer.SocialWrangler.API
                 .AddTransient<SimpleAuthActionFilter>( )
                 .AddTransient<MvcAdapter>( )
                 .AddControllers( )
-                .AddJsonOptions( x =>
-                    x.JsonSerializerOptions
-                        .PropertyNamingPolicy = services.ResolveJsonNamingPolicy(  ) );
+                .BindJsonOptions( CaseEnum.Snake );
         }
 
         public void Configure( IApplicationBuilder app, IWebHostEnvironment env )
