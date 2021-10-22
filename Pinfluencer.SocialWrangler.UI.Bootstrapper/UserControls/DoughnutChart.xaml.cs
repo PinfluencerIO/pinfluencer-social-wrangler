@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Aidan.Common.Core.Enum;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using Pinfluencer.SocialWrangler.Core.Enum;
 
 namespace Pinfluencer.SocialWrangler.UI.Bootstrapper.UserControls
 {

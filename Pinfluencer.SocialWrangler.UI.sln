@@ -5,11 +5,7 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.UI.Bootstrapper", "Pinfluencer.SocialWrangler.UI.Bootstrapper\Pinfluencer.SocialWrangler.UI.Bootstrapper.csproj", "{AFAC5A6A-CF27-4AB6-A386-54E9F4191174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.Utils", "Pinfluencer.SocialWrangler.Crosscutting.Utils\Pinfluencer.SocialWrangler.Crosscutting.Utils.csproj", "{E716C698-C760-4114-9465-7AD1F488BAFE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Core", "Pinfluencer.SocialWrangler.Core\Pinfluencer.SocialWrangler.Core.csproj", "{A01366EB-C955-411A-9ECC-D956A0AE8901}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.Core", "Pinfluencer.SocialWrangler.Crosscutting.Core\Pinfluencer.SocialWrangler.Crosscutting.Core.csproj", "{9BB8A2F4-4298-4C7E-832B-740973D83867}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinfluencer.SocialWrangler.Crosscutting.DIModule", "Pinfluencer.SocialWrangler.Crosscutting.DIModule\Pinfluencer.SocialWrangler.Crosscutting.DIModule.csproj", "{31CBDC7B-7D0E-4CA3-9E41-AFE4BAB85884}"
 EndProject
@@ -25,18 +21,10 @@ Global
 		{AFAC5A6A-CF27-4AB6-A386-54E9F4191174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFAC5A6A-CF27-4AB6-A386-54E9F4191174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFAC5A6A-CF27-4AB6-A386-54E9F4191174}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E716C698-C760-4114-9465-7AD1F488BAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E716C698-C760-4114-9465-7AD1F488BAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E716C698-C760-4114-9465-7AD1F488BAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E716C698-C760-4114-9465-7AD1F488BAFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A01366EB-C955-411A-9ECC-D956A0AE8901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A01366EB-C955-411A-9ECC-D956A0AE8901}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A01366EB-C955-411A-9ECC-D956A0AE8901}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A01366EB-C955-411A-9ECC-D956A0AE8901}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BB8A2F4-4298-4C7E-832B-740973D83867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BB8A2F4-4298-4C7E-832B-740973D83867}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BB8A2F4-4298-4C7E-832B-740973D83867}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BB8A2F4-4298-4C7E-832B-740973D83867}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31CBDC7B-7D0E-4CA3-9E41-AFE4BAB85884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31CBDC7B-7D0E-4CA3-9E41-AFE4BAB85884}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31CBDC7B-7D0E-4CA3-9E41-AFE4BAB85884}.Release|Any CPU.ActiveCfg = Release|Any CPU

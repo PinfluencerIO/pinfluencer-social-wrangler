@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aidan.Common.Core.Enum;
 using Caliburn.Micro;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
-using Pinfluencer.SocialWrangler.Core.Enum;
 using Pinfluencer.SocialWrangler.UI.Bootstrapper.Models;
 
 namespace Pinfluencer.SocialWrangler.UI.Bootstrapper.ViewModels
